@@ -1,11 +1,10 @@
 import React from 'react'
 import './assets/scss/style.scss'
+import Routes from './routes'
 
 function App() {
   return (
-    <div className="App">
-      React App
-    </div>
+    <Routes />
   )
 }
 
