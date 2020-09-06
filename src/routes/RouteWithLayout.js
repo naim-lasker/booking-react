@@ -1,25 +1,28 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import Page from './Page'
 
-// TODO temporary auth solution will be replaced by state
-import authService from '../services/authService'
+const authService = () => {
+  return true
+}
 
 const RouteWithLayout = props => {
-  const { layout: Layout, component: Component, ...rest } = props;
+  const { layout: Layout, component: Component, ...rest } = props
 
   return (
-    <Route {...rest} 
-      render={matchProps => 
-        authService.checkAuth() ? (
-          <Layout>
-            <Component {...matchProps} />
-          </Layout>
-        ) : (
-          <Redirect to="/" />
-        )
-      }
-    />
+    <Page
+        {...rest}
+        render={matchProps => 
+          authService ? (
+            <Layout>
+              <Component {...matchProps} />
+            </Layout>
+          ) : (
+            <Redirect to="/" />
+          )
+        }
+      />
   );
 };
 

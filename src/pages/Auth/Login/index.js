@@ -1,11 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 export default function LoginPage() {
-
-    // useEffect(() => {
-    //     document.title = 'Login'
-    // }, [])
-
 
     return (
         <div>
