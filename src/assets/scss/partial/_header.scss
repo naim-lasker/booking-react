@@ -1,0 +1,174 @@
+/*--------------------------------------------------------------
+# Start Header Styles
+--------------------------------------------------------------*/
+.header-area {
+    position: relative;
+    z-index: 9999;
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0;
+        background: url(/images/header-bg.png) no-repeat;
+        height: 100%;
+        background-position: left top;
+        width: 100%;
+        @media screen and (max-width: 1780px) {
+            background-size: contain;
+            height: 80%;
+        }
+        @media screen and (max-width: 1600px) {
+            height: 70%;
+        }
+        @media screen and (max-width: 1550px) {
+            height: 60%;
+        }
+        @media screen and (max-width: 1400px) {
+            height: 48%;
+        }
+    }
+
+    .navbar-toggler {
+        i {
+            display: inline-block;
+            font-size: 28px;
+            background-color: #f3f3f3;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 6px 0px 50px 0px rgba(44, 71, 125, 0.5);
+        }
+    }
+    .header-toggler {
+        position: fixed;
+        top: 30px;
+        right: 20px;
+    }
+    .sidebar-toggler {
+        position: fixed;
+        top: 30px;
+        left: 20px;
+    }
+    .navbar-brand {
+        img {
+            @media screen and (max-width: 991px) {
+                max-width: 100px;
+            }
+        }
+    }
+    .navbar-collapse {
+        @media screen and (max-width: 991px) {
+            position: fixed;
+            top: 82px;
+            left: 32px;
+            right: 32px;
+            background-color: #ddd;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    }
+    .nav-item {
+        .nav-link {
+            position: relative;
+            text-transform: uppercase;
+            color: $title-color2;
+            font-family: $MyriadRegular-font;
+            font-size: 15px;
+            padding: 5px 15px;
+            @media screen and (max-width: 991px) {
+                margin-bottom: 12px;
+            }
+            &:hover {
+                color: $primary-color;
+            }
+            &.sigh-out-btn {
+                box-shadow: 0px 0px 18px rgba(26, 17, 141, 0.20);
+                border-radius: 50px;
+                text-transform: capitalize;
+                padding: 12px 61px;
+                font-size: 16px;
+                display: inline-block;
+            }
+            .menu-icon {
+                display: inline-block;
+                height: 40px;
+                width: 40px;
+                line-height: 40px;
+                border-radius: 20px;
+                border: 1px solid $text-color3;
+                color: #aec2ce;
+                font-size: 16px;
+            }
+            .menu-notification {
+                position: absolute;
+                top: -5px;
+                right: 13px;
+                display: inline-block;
+                background-color: $primary-color3;
+                color: $white;
+                height: 22px;
+                line-height: 22px;
+                width: 22px;
+                border-radius: 11px;
+            }
+        }
+    }
+    .authenticate {
+        position: relative;
+        box-shadow: 0px 0px 14px rgba(#2c477d, 0.2);
+        border-radius: 40px;
+        padding: 18px 25px;
+        @media screen and (max-width: 991px) {
+            padding: 0px 0px 18px 16px;
+            box-shadow: none;
+            padding-bottom: 5px;
+        }
+        .nav-link {
+            color: $black;
+            text-transform: capitalize;
+            font-size: 16px;
+            padding: 0;
+            background-color: transparent;
+            border: 0;
+            cursor: pointer;
+            &::after {
+                content: none;
+                border: 0;
+            }
+            &:first-child {
+                position: relative;
+                padding-right: 40px;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 6px;
+                    right: 21px;
+                    background: #3a3671;
+                    height: 16px;
+                    width: 1.5px;
+                    @media screen and (max-width: 991px) {
+                        content: none;
+                    }
+                }
+            }
+        }
+        .dropdown-menu {
+            border: 0;
+            padding-top: 0;
+            margin: 0 10px;
+            background-color: #fff;
+            padding: 0 25px 10px;
+            @media screen and (max-width: 991px) {
+                background-color: transparent;
+            }
+        }
+        .dropdown-item {
+            color: $black;
+            border-top: 1.5px dotted $black;
+            padding: 5px 0;
+        }
+    }
+}
+
+/*--------------------------------------------------------------
+# End Header Styles
+--------------------------------------------------------------*/

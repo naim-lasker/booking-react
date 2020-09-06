@@ -1,0 +1,300 @@
+//----------- Start Service Area Page -------------/
+.service-area {
+    .service-area-container {
+        margin-bottom: 50px;
+        .service-content-container {
+            box-shadow: 0px 0px 13px 3px rgba(44, 71, 125, 0.16);
+            padding: 6px 6px 75px 6px;
+            border-radius: 50px;
+            margin-bottom: 75px;
+            @media screen and (max-width: 767px) {
+                margin-bottom: 50px;
+            }
+        }
+        .service-banner-area {
+            padding-bottom: 70px;
+            @media screen and (max-width: 767px) {
+                padding-bottom: 40px;
+            }
+        }
+
+        .service-banner-img {
+            img {
+                @media screen and (max-width: 767px) {
+                    min-height: 120px;
+                }
+            }
+        }
+        .service-content {
+            @media screen and (max-width: 991px) {
+                padding: 0 15px;
+            }
+            .service-header {
+                font-size: 35px;
+                font-weight: 600;
+                color: $primary-color;
+                @media screen and (max-width: 400px) {
+                    font-size: 25px;
+                }
+            }
+
+            .service-open {
+                font-size: 17px;
+                color: $text-color2;
+                font-weight: 400;
+                padding-bottom: 5px;
+                @media screen and (max-width: 400px) {
+                    margin: 5px 0;
+                }
+            }
+            .para-text {
+                font-size: 17px;
+                color: $text-color3;
+                font-weight: 400;
+            }
+
+            .location {
+                font-size: 20px;
+                color: $text-color2;
+                font-weight: 400;
+                margin-bottom: 30px;
+
+                .para-text {
+                    font-size: 20px;
+                }
+            }
+
+            .para-content {
+                padding-right: 50px;
+
+                @media screen and (max-width: 991px) {
+                    padding-right: 0;
+                }
+            }
+
+            .booking-schedule {
+                width: 80%;
+                @media screen and (max-width: 991px) {
+                    width: 100%;
+                    margin-top: 30px;
+                }
+                .booking-header {
+                    font-size: 14px;
+                    font-family: $MyriadRegular-font;
+                    color: $title-color2;
+                }
+
+                .booking-time {
+                    margin-left: 30px;
+                    @media screen and (max-width: 767px) {
+                        margin-left: 0;
+                    }
+                }
+
+                .input-box {
+                    border: 3px solid #d6e0e6;
+                    height: 60px;
+                }
+
+                .input-group-text {
+                    border-right: 3px solid #d6e0e6;
+                    border-top: 3px solid #d6e0e6;
+                    border-bottom: 3px solid #d6e0e6;
+                    border-top-right-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    height: 60px;
+                }
+            }
+
+            .video-img {
+                border: 7px solid #8a9398;
+                @media screen and (max-width: 400px) {
+                    margin-bottom: 30px;
+                }
+            }
+        }
+
+        // /* Start Carousel Style */
+        .owl-dots {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 88%;
+            left: 50%;
+            @include transform(translate(-50%, 0%));
+
+            @media screen and (max-width: 991px) {
+                display: none;
+            }
+        }
+
+        .owl-carousel button.owl-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 5px;
+            margin: 0 5px;
+            background-color: #cbd9de;
+        }
+
+        .owl-carousel button.owl-dot.active {
+            background-color: $primary-color2;
+        }
+
+        /* End Carousel Style */
+        .review-text {
+            font-size: 18px;
+            font-weight: 400;
+            color: $text-color;
+        }
+
+        .tab-content {
+            margin-top: 37px;
+
+            .table-list-header {
+                background-image: linear-gradient(to right, #07cdf5 0%, #12f7f4 50%, #07cdf5 100%);
+
+                .list-header {
+                    font-size: 20px;
+                    font-weight: 600;
+                    @media screen and (max-width: 402px) {
+                        font-size: 17px;
+                    }
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+            }
+
+            .shadow-table {
+                box-shadow: 0px 0px 4px rgba(26, 17, 141, 0.16);
+                .table {
+                    border-spacing: 2px;
+                }
+
+                .table-row {
+                    box-shadow: 0px 0px 3px 0px rgba(44, 71, 125, 0.1);
+                }
+            }
+        }
+
+        //----------- Start Customer Review Area Page -------------//
+        .review-container {
+            padding: 30px 75px;
+            box-shadow: 0px -2px 31px 4px rgba(25, 20, 225, 0.15);
+            border-radius: 10px;
+            margin-bottom: 35px;
+            @media screen and (max-width: 767px) {
+                padding: 25px 15px;
+            }
+            .stars {
+                padding-bottom: 20px;
+                .single-star {
+                    font-size: 25px;
+                    // text-shadow: 0px -2px 6px 1px rgba(0, 0, 0, 0.15);
+                    background: -webkit-linear-gradient(#f1bb0b, #fbe031);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+            .review-para {
+                font-size: 22px;
+                font-family: $MyriadRegular-font;
+                font-weight: 400;
+                color: $text-color4;
+                margin-bottom: 0;
+            }
+        }
+        //----------- End Customer Review Area Page -------------//
+
+        .shadow-table {
+            .img-container {
+                margin-left: 10px;
+
+                @media screen and (max-width: 1199px) {
+                    margin-left: 12px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    margin-right: 25px;
+                }
+            }
+
+            .question-icon,
+            .table-total-container,
+            .table-price-container {
+                @media screen and (max-width: 767px) {
+                    margin: 0 25px;
+                }
+            }
+
+            .table-text {
+                color: #3a3671;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .table-gray-text {
+                color: #b9b8cb;
+                font-size: 18px;
+            }
+
+            .table-quantity-container {
+                border: 1px solid #3a3671;
+                border-radius: 4px;
+
+                @media screen and (max-width: 767px) {
+                    margin: 0 25px;
+                }
+            }
+
+            .table-quantity-btn {
+                display: inline-block;
+                background-color: $white;
+                color: #3a3671;
+                margin: 0;
+                font-size: 26px;
+                padding: 3px 8px 5px;
+            }
+
+            .table-quantity-value {
+                font-size: 20px;
+                padding: 4px 11px;
+                background-color: #3a3671;
+                color: #fff;
+            }
+        }
+
+        .order-table {
+            .table-header {
+                font-size: 52px;
+                color: $title-color;
+                padding-bottom: 50px;
+                @media screen and (max-width: 767px) {
+                    font-size: 30px;
+                    padding-bottom: 15px;
+                }
+            }
+            .bottom-content {
+                @media screen and (max-width: 400px) {
+                    flex-direction: column;
+                }
+            }
+            .total-value {
+                font-size: 22px;
+                font-weight: 500;
+                color: $primary-color;
+                @media screen and (max-width: 400px) {
+                    padding-bottom: 10px;
+                }
+            }
+            .gradient-btn {
+                margin-left: 25px;
+                @media screen and (max-width: 400px) {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+//----------- End Service Area Page -------------//

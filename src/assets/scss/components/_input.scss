@@ -1,0 +1,19 @@
+//--------- Start Input Style -------------//
+.input-box {
+    padding: 0 25px;
+    height: 55px;
+    border-radius: 12px;
+    border-color: $border-color;
+    border-width: 1.5px;
+    font-size: 17px;
+    @media screen and (max-width: 767px) {
+        padding: 18px 16px;
+    }
+}
+
+.label-name {
+    font-size: 17px;
+    font-family: $primary-font;
+    margin-bottom: 0;
+}
+

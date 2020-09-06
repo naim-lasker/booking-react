@@ -1,0 +1,46 @@
+//--------- Start Shadow Tab Style -------------//
+.shadow-tab {
+    .nav-item {
+        .nav-link {
+            min-width: 198px;
+            border-left: 3px solid $border-color;
+            border-top: 3px solid $border-color;
+            border-bottom: 3px solid $border-color;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+            padding: 0px 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: $text-color;
+            min-height: 61px;
+
+            @media screen and (max-width: 1199px) {
+                min-width: 151px;
+            }
+
+            @media screen and (max-width: 991px) {
+                border: 3px solid $border-color;
+            }
+
+            @media screen and (max-width: 402px) {
+                min-width: 248px;
+                align-items: center;
+            }
+
+            &:hover, &.active {
+                background-color: white;
+                box-shadow: inset 1px -10px 8px 2px rgba(0, 0, 0, 0.1);
+                color: $text-color2;
+            }
+        }
+
+        &:last-child {
+            .nav-link {
+                border-right: 3px solid $border-color;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,82 @@
+/*--------------------------------------------------------------
+# Start Sidebar Styles
+--------------------------------------------------------------*/
+.booking-sidebar {
+    box-shadow: 12px 0 20px -14px rgba(#2c477d, 0.15), -12px 0 8px -11px rgba(#2c477d, 0.15);
+    padding: 22px 22px;
+    height: 100%;
+    background-color: $white;
+    @include transition(all 0.6s ease 0s);
+    @media screen and (max-width: 991px) {
+        position: fixed;
+        width: 320px;
+        top: 95px;
+        bottom: 0;
+        min-height: 100vh;
+        left: -100%;
+        z-index: 10;
+        overflow-y: auto;
+    }
+
+    .side-profile-container {
+        background: url(/images/profile/profile-bg.png) no-repeat;
+        background-size: auto;
+        min-height: 100px;
+        background-position: center center;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .side-profile {
+        max-width: 99px;
+    }
+
+    .side-btn-container {
+        margin-top: 40px;
+        margin-bottom: 68px;
+    }
+
+    .side-name {
+        color: $text-color3;
+        font-size: 17px;
+        font-family: $primary-font;
+    }
+
+    .side-liest {
+        margin-left: 30px;
+    }
+
+    .side-activities {
+        margin-bottom: 115px;
+    }
+
+    .side-list-icon,
+    .side-list-icon.dropdown-toggle {
+        text-decoration: none;
+        color: $title-color;
+        font-size: 15px;
+        font-family: $MyriadRegular-font;
+        font-weight: 600;
+        @include transition();
+        margin-left: 16px;
+        &:hover {
+            text-transform: uppercase;
+            color: #0069eb;
+        }
+    }
+    .side-activitie-item {
+        margin-bottom: 12px;
+    }
+
+    .side-feature-item {
+        margin-bottom: 32px;
+    }
+}
+
+.show-sidebar {
+    left: 0;
+}
+
+/*--------------------------------------------------------------
+# Start Sidebar Styles
+--------------------------------------------------------------*/

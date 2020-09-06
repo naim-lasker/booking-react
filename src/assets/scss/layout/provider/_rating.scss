@@ -1,0 +1,62 @@
+#provider {
+    //--------- Start Provider Rating Area -------------//
+    .my-rating-area {
+        .myrating-head-container {
+            margin-bottom: 30px;
+            .rating-point {
+                font-size: 43px;
+                font-family: $MyriadRegular-font;
+                font-weight: 400;
+            }
+            .stars {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                .single-promotion-star {
+                    font-size: 30px;
+                }
+            }
+            .rating-total {
+                font-size: 22px;
+                font-family: $MyriadRegular-font;
+                color: #c0bffc;
+                font-weight: 400;
+            }
+        }
+        // copied from sideber profile
+        .myrating-img-container {
+            background: url(/images/profile/profile-bg.png) no-repeat;
+            background-size: auto;
+            min-height: 100px;
+            background-position: center center;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        // copied from customer-review page
+        .review-container {
+            padding: 35px 70px;
+            box-shadow: 0px -2px 31px 4px rgba(25, 20, 225, 0.15);
+            border-radius: 10px;
+            margin-bottom: 35px;
+            @media screen and (max-width: 767px) {
+                padding: 30px 18px;
+            }
+
+            .review-para {
+                font-size: 22px;
+                font-family: $MyriadRegular-font;
+                font-weight: 400;
+                color: $text-color4;
+            }
+        }
+        .stars {
+            padding-bottom: 20px;
+            .single-promotion-star {
+                // text-shadow: 0px -2px 6px 1px rgba(0, 0, 0, 0.15);
+                background: -webkit-linear-gradient(#f1bb0b, #fbe031);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+    //--------- End Provider Rating Area -------------//
+}

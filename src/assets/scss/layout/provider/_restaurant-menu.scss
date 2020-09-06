@@ -1,0 +1,55 @@
+#provider {
+    //--------- Start Add Menu Area -------------//
+    .add-menu-area {
+        .upload-container {
+            margin-bottom: 30px;
+            .upload-img-container {
+                padding: 30px;
+                border: 1px dashed #d9d1fe;
+                border-radius: 20px;
+            }
+            .browse-img {
+                font-size: 20px;
+                font-family: $MyriadRegular-font;
+                font-weight: 400;
+            }
+            .upload-img-header {
+                margin-right: 60px;
+                margin-top: 15px;
+                font-size: 22px;
+                font-family: $MyriadRegular-font;
+                font-weight: 400;
+            }
+        }
+
+        .menu-summery-area {
+            position: absolute;
+            background: #3300cc;
+            bottom: 35%;
+            left: -50%;
+            padding: 25px 20px;
+            min-width: 290px;
+            font-family: $MyriadRegular-font;
+            @media screen and (max-width: 1199px) and (min-width: 992px) {
+                left: -57%;
+            }
+            @media screen and (max-width: 991px) {
+                position: relative;
+                bottom: 0;
+                left: 0;
+                margin: 0 auto 50px;
+                max-width: 290px;
+            }
+            .menu-summery-title {
+                font-family: $MyriadRegular-font;
+                font-size: 17px;
+            }
+            td {
+                padding: 2px 10px;
+                font-weight: 600;
+                font-size: 17px;
+            }
+        }
+    }
+    //----------- End Add Menu Area -------------//
+}

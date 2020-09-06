@@ -1,0 +1,28 @@
+//--------- Start Breadcrumb Style -------------//
+
+.breadcrumb-nav {
+    .breadcrumb-icon {
+        margin-right: 24px;
+        color: #aec2ce;
+        @media screen and (max-width: 380px) {
+            font-size: 14px;
+        }
+    }
+
+    .breadcrumb-text {
+        font-size: 18px;
+        font-family: $MyriadRegular-font;
+        color: $text-color3;
+        font-weight: 400;
+        @media screen and (max-width: 380px) {
+            font-size: 16px;
+        }
+    }
+    li {
+        &:last-child {
+            .breadcrumb-text {
+                color: $primary-color;
+            }
+        }
+    }
+}

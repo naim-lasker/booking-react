@@ -1,0 +1,143 @@
+//--------- Start Buttons Style -------------//
+
+// Gradient buttons style
+.gradient-btn {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    color: $white;
+    border: 0;
+    padding: 17px 60px;
+    cursor: pointer;
+    font-family: $MyriadRegular-font;
+    border-radius: 50px;
+    background-size: 200% auto;
+    @include transition();
+    @media screen and (max-width: 575px) {
+        font-size: 17px;
+        padding: 10px 30px;
+    }
+    &.gradient-lime {
+        background-image: linear-gradient(to right, $primary-color3 0%, $primary-color4 50%, $primary-color3 100%);
+    }
+    &.gradient-blue {
+        background-image: linear-gradient(to right, #0237e3 0%, #00c3ed 50%, #0237e3 100%);
+    }
+    &:hover {
+        background-position: right center;
+        color: $white;
+    }
+}
+
+// Shadow buttons style
+.shadow-btn {
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    color: $title-color2;
+    background-color: $white;
+    padding: 14px 60px;
+    cursor: pointer;
+    font-family: $MyriadRegular-font;
+    border-radius: 8px;
+    border: 3px solid $border-color;
+    box-shadow: 0px 5px 7px rgba(#2c477d, 0.2);
+    @include transition();
+    &:hover {
+        color: $primary-color;
+        box-shadow: 0px 5px 7px rgba($primary-color2, 0.2);
+        border: 3px solid $primary-color;
+    }
+}
+
+// Shadow buttons style
+.border-btn {
+    display: inline-block;
+    padding: 10px 50px;
+    border: 1px solid #09c9f6;
+    border-radius: 48px;
+    box-shadow: 0px 6px 3px -2px rgba(#4f4d66, 0.2);
+    font-size: 16px;
+    font-weight: 400;
+    font-family: $primary-font;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $text-color2;
+    background-color: $white;
+    @include transition();
+    @media screen and (max-width: 575px) {
+        padding: 6px 30px;
+    }
+    &:hover {
+        color: $title-color;
+        border: 1px solid #09c9f6;
+        background-color: #09c9f6;
+        box-shadow: 0px 6px 3px -2px rgba(#09c9f6, 0.2);
+    }
+    &.primary-color {
+        color: $primary-color2;
+        &:hover {
+            color: $title-color;
+        }
+    }
+}
+
+.badge-btn {
+    display: inline-block;
+    text-decoration: none;
+    font-family: $primary-font;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 2px 15px;
+    border-radius: 5px;
+    text-align: center;
+    @include transition();
+    &.gray-bg {
+        background-color: #eeeeee;
+        color: $black;
+    }
+    &.white-bg {
+        background-color: $white;
+        color: $black;
+    }
+    &.black-bg {
+        background-color: $black;
+        color: $white;
+    }
+    &:hover {
+        color: $white;
+        background-color: $primary-color2;
+    }
+}
+
+// View More buttons style
+.view-more-btn {
+    font-size: 15px;
+    color: #292929;
+    font-family: $primary-font;
+    font-weight: 600;
+    margin-bottom: 60px;
+    @include transition();
+    &:hover {
+        color: $primary-color;
+    }
+}
+
+
+.underline-btn {
+    display: inline-block;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 700;
+    border-bottom: 1px solid #555;
+    line-height: 15px;
+    @include transition();
+    &:hover {
+        color: $primary-color2;
+        border-bottom: 1px solid $primary-color2;
+    }
+}

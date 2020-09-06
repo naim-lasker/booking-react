@@ -1,0 +1,27 @@
+//--------- Start Pagination Style -------------//
+
+.booking-pagination {
+    padding-bottom: 75px;
+    font-size: 18px;
+    font-family: $primary-font;
+    .page-item {
+        .page-link {
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 30px;
+            padding: 0;
+            text-align: center;
+        }
+        &:first-child {
+            border-radius: 30px;
+        }
+    }
+    .active-page {
+        background: #00aced;
+        margin: 0 5px;
+    }
+    .single-page {
+        color: #4a5253;
+    }
+}

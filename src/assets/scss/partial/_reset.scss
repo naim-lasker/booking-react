@@ -1,0 +1,254 @@
+/* =================================== */
+/*  Basic Style 
+/* =================================== */
+
+::-moz-selection {
+    /* Code for Firefox */
+    background-color: $primary-color;
+    color: $white;
+}
+::selection {
+    background-color: $primary-color;
+    color: $white;
+}
+::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+
+::placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+.form-control::-webkit-input-placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+.form-control:-moz-placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+.form-control::-moz-placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+.form-control::placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+.form-control:-ms-input-placeholder {
+    color: $text-color;
+    font-weight: 400;
+    font-family: $primary-font;
+}
+
+body {
+    color: $text-color;
+    font-family: $primary-font;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.625em;
+    position: relative;
+}
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+select {
+    display: block;
+}
+figure {
+    margin: 0;
+}
+
+a {
+    @include transition(all 0.3s ease 0s);
+}
+
+iframe {
+    border: 0;
+}
+button {
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+    }
+}
+.form-control:focus {
+    border-color: $border-color;;
+}
+a,
+a:focus,
+a:hover {
+    text-decoration: none;
+    outline: 0;
+}
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus,
+.btn:focus {
+    text-decoration: none;
+    outline: 0;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.card-panel {
+    margin: 0;
+    padding: 60px;
+}
+/**
+ *  Typography
+ *
+ **/
+.btn i,
+.btn-large i,
+.btn-floating i,
+.btn-large i,
+.btn-flat i {
+    font-size: 1em;
+    line-height: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $primary-font;
+    color: $black;
+    line-height: 1.2em;
+    margin-bottom: 0;
+    margin-top: 0;
+    font-weight: 600;
+}
+h1 {
+    font-size: 36px;
+}
+h2 {
+    font-size: 30px;
+}
+h3 {
+    font-size: 24px;
+}
+h4 {
+    font-size: 18px;
+}
+h5 {
+    font-size: 16px;
+}
+h6 {
+    font-size: 14px;
+}
+
+td,
+th {
+    border-radius: 0px;
+}
+
+.dashboard {
+    background: url(/images/bg-img.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#header_placeholder {
+    height: 100px;
+    width: 100%;
+    display: none;
+}
+
+.mb-68 {
+    margin-bottom: 68px;
+}
+
+
+// Font Size
+.fs-16 {
+    font-size: 16px;
+}
+.fs-17 {
+    font-size: 17px;
+}
+.fs-18 {
+    font-size: 18px;
+}
+.fs-19 {
+    font-size: 19px;
+}
+.fs-20 {
+    font-size: 20px;
+}
+.fs-21 {
+    font-size: 21px;
+}
+.fs-22 {
+    font-size: 22px;
+}
+
+
+// Overflow
+.overflow-hidden {
+    overflow: hidden;
+}
+
+// Bg Color
+.gray-bg {
+    background: #f9f9ff;
+}
+
+
+// Color
+.gray-text {
+    color: #b9b8cb;
+}
+.gray-text2 {
+    color: $text-color3;;
+}
+.title-text {
+    color: #616573;
+}
+
+
+

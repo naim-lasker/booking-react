@@ -1,0 +1,21 @@
+//--------- Start Shadow Table Style -------------//
+.shadow-table {
+    .table {
+        border-collapse: separate;
+        border-spacing: 16px;
+    }
+    .table-responsive {
+        overflow: visible;
+        @media screen and (max-width: 767px) {
+            overflow-x: auto;
+        }
+    }
+    tr {
+        box-shadow: 6px 0px 50px 0px rgba(#2c477d, 0.15);
+
+        td {
+            padding: 10px 0;
+            vertical-align: middle;
+        }
+    }
+}

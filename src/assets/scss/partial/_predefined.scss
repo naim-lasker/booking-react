@@ -1,0 +1,69 @@
+// Title section
+.title-section {
+    margin-bottom: 50px;
+    h2 {
+        font-size: 52px;
+        color: $black;
+        font-weight: 700;
+        @media screen and (max-width: 767px) {
+            font-size: 35px;
+        }
+    }
+    p {
+        margin-top: 15px;
+        max-width: 670px;
+        color: #555555;
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+}
+
+// Overlay style
+.overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+// Question icon style
+.question-icon {
+    display: inline-block;
+    font-family: $MyriadRegular-font;
+    font-size: 24px;
+    font-weight: 700;
+    color: $title-color2;
+    transform: rotate(10deg);
+    border: 0;
+    background-color: transparent;
+}
+
+// Star Rating
+.stars{
+    .single-promotion-rating {
+        font-size: 14px;
+        color: #c3c2d2;
+        font-weight: 400;
+    }
+    .single-promotion-star {
+        background: -webkit-linear-gradient(#00aced, #271ad3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+//------- Star Rating---------//
+
+.stars{
+    .single-rating {
+        font-size: 14px;
+        color: #c3c2d2;
+        font-weight: 400;
+    }
+    .single-star {
+        background: -webkit-linear-gradient(#00aced, #271ad3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

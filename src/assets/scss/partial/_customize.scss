@@ -1,0 +1,35 @@
+
+.datepicker {
+    @media screen and (min-width: 1200px) {
+        min-width: 166px;
+    }
+    td, th {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default {
+    border-radius: 15px;
+    border-color: $primary-color3;
+    width: 24px;
+    height: 24px;
+    top: -11px;
+}
+.ui-state-active, .ui-widget-content .ui-state-active {
+    background-color: $primary-color3;
+}
+.ui-state-default:focus, .ui-widget-content .ui-state-default:focus {
+    outline: none;
+}
+
+.ui-widget.ui-widget-content, .ui-slider-horizontal {
+    height: 4px;
+    background-color: $border-color;
+    border: 0;
+}
+.ui-slider-horizontal .ui-slider-range {
+    height: 8px;
+    top: -2px;
+    background-color: $primary-color3;
+}

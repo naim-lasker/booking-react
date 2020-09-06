@@ -1,0 +1,43 @@
+// Including variables and mixins
+@import "partial/fonts";
+@import "partial/variables";
+@import "partial/mixins";
+@import "partial/reset";
+@import "partial/predefined";
+@import "partial/header";
+@import "partial/sidebar";
+@import "partial/footer";
+@import "partial/customize";
+
+
+
+
+// Component Scss
+@import "components/table";
+@import "components/tab";
+@import "components/breadcrumb";
+@import "components/pagination";
+@import "components/button";
+@import "components/input";
+
+
+// Public Scss
+@import "layout/public/news";
+
+
+// Custom Scss
+@import "layout/provider/login";
+@import "layout/provider/booking";
+@import "layout/provider/restaurant-menu";
+@import "layout/provider/product";
+@import "layout/provider/message";
+@import "layout/provider/rating";
+
+
+@import "layout/customer/promotion";
+@import "layout/customer/rating";
+@import "layout/customer/home";
+@import "layout/customer/checkout";
+@import "layout/customer/profile";
+@import "layout/customer/services";
+@import "layout/customer/filter-log";
