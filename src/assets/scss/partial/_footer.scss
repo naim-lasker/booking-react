@@ -24,22 +24,20 @@
         }
     }
 
-    .social-icons {
-        .social-icon {
-            background-color: transparent;
-            color: $primary-color4;
-            font-size: 20px;
-            display: inline-block;
-            border: 1px solid #5a5968;
-            border-radius: 40px;
-            height: 45px;
-            line-height: 45px;
-            width: 45px;
-            margin: 0px 6px;
-            &:hover {
-                background-color: $white;
-                color: $black;
-            }
+    .social-icon {
+        background-color: transparent;
+        color: $primary-color4;
+        font-size: 20px;
+        display: inline-block;
+        border: 1px solid #5a5968;
+        border-radius: 40px;
+        width: 45px;
+        height: 45px;
+        line-height: 40px;
+        margin: 0px 6px;
+        &:hover {
+            background-color: $white;
+            color: $black;
         }
     }
 }

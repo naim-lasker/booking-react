@@ -1,55 +1,53 @@
 //--------- Start Login Area -------------//
 
-#provider {
-    .singin-area {
-        .outer-container {
-            box-shadow: 0px 0px 20px rgba(#2c477d, 0.2);
-            border-radius: 50px;
-            padding: 60px 25px 70px;
-            @media screen and (max-width: 575px) {
-                padding: 30px 15px 40px;
+.singin-area {
+    .outer-container {
+        box-shadow: 0px 0px 20px rgba(#2c477d, 0.2);
+        border-radius: 50px;
+        padding: 60px 25px 70px;
+        @media screen and (max-width: 575px) {
+            padding: 30px 15px 40px;
+        }
+    }
+    .sign-title {
+        color: $primary-color;
+        margin-bottom: 30px;
+        font-size: 48px;
+        font-weight: 400;
+        font-family: $MyriadRegular-font;
+        @media screen and (max-width: 767px) {
+            font-size: 35px;
+        }
+    }
+    .input-group-text {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-right-width: 1.5px;
+        border-top-width: 1.5px;
+        border-bottom-width: 1.5px;
+        padding-right: 25px;
+        border-color: $border-color;
+    }
+    .forget-pass {
+        padding: 20px 0px;
+        a {
+            color: #afb5b5;
+            &:hover {
+                color: $primary-color;
             }
         }
-        .sign-title {
-            color: $primary-color;
-            margin-bottom: 30px;
-            font-size: 48px;
-            font-weight: 400;
-            font-family: $MyriadRegular-font;
-            @media screen and (max-width: 767px) {
-                font-size: 35px;
-            }
-        }
-        .input-group-text {
-            border-top-right-radius: 12px;
-            border-bottom-right-radius: 12px;
-            border-right-width: 1.5px;
-            border-top-width: 1.5px;
-            border-bottom-width: 1.5px;
-            padding-right: 25px;
-            border-color: $border-color;
-        }
-        .forget-pass {
-            padding: 20px 0px;
-            a {
-                color: #afb5b5;
-                &:hover {
-                    color: $primary-color;
-                }
-            }
-        }
-        .captcha-box {
-            border: 1.5px solid $border-color;
-            border-radius: 12px;
-            padding: 13px 25px;
-            font-weight: 500;
-            color: #000;
-            font-size: 30px;
-        }
-        .not-registered {
-            color: $primary-color;
-            border-bottom: 1px solid $primary-color;
-        }
+    }
+    .captcha-box {
+        border: 1.5px solid $border-color;
+        border-radius: 12px;
+        padding: 13px 25px;
+        font-weight: 500;
+        color: #000;
+        font-size: 30px;
+    }
+    .not-registered {
+        color: $primary-color;
+        border-bottom: 1px solid $primary-color;
     }
 }
 
