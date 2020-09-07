@@ -1,6 +1,8 @@
 import React, { Fragment } from "react"
 import Header from "./Header"
 import Footer from "./Footer"
+import Sidebar from "./Sidebar"
+import Pagination from "./Pagination"
 
 const Main = (props) => {
     const { children } = props
@@ -8,7 +10,15 @@ const Main = (props) => {
     return (
         <Fragment>
             <Header />
-            {children}
+            <div className='container'>
+                <div className='row'>
+                    <div className='col-lg-3'>
+                        <Sidebar />
+                    </div>
+
+                    {children}
+                </div>
+            </div>
             <Footer />
         </Fragment>
     )

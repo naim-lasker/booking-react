@@ -1,29 +1,27 @@
-import React from 'react'
-import { Router, Switch } from 'react-router-dom'
-import Page from './Page'
+import React from "react"
+import { Router, Switch } from "react-router-dom"
+import Page from "./Page"
 
-import browserHistory from './history'
+import browserHistory from "./history"
 
-import LoginPage from '../pages/Auth/Login'
-import RouteWithLayout from './RouteWithLayout'
-import Main from '../layouts/Main'
-// import Dashboard from '../pages/Dashboard/Home'
+import RouteWithLayout from "./RouteWithLayout"
+import Main from "../layouts/Main"
 
 
-
-
+import LoginPage from "../pages/Auth/Login"
+import PromotionDealsPage from "../pages/Customer/Promotion/Deals"
 
 const Routes = () => {
-
     return (
         <Router history={browserHistory}>
             <Switch>
+                <Page exact component={LoginPage} path='/login' title='Login' />
                 <RouteWithLayout
-                    component={LoginPage}
+                    component={PromotionDealsPage}
                     exact
                     layout={Main}
-                    path="/login"
-                    title="Login"
+                    path='/promotion'
+                    title='Promotion'
                 />
 
                 {/* <Page path="/login" component={LoginPage} title="Index" /> */}
@@ -33,4 +31,3 @@ const Routes = () => {
 }
 
 export default Routes
-
