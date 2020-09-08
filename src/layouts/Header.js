@@ -60,7 +60,7 @@ const Header = () => {
                                     >
                                         <a
                                             className='dropdown-item'
-                                            href='index.html'
+                                            href='/login'
                                         >
                                             Sign in as Provider
                                         </a>

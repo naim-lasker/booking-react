@@ -14,7 +14,7 @@ const Sidebar = () => {
                 <h4 className='side-name'>Charli Maria</h4>
             </div>
             <div className='side-btn-container text-center'>
-                <a className='border-btn' href='customer-edit.html'>
+                <a className='border-btn' href='/'>
                     Edit Profile
                 </a>
             </div>
@@ -25,7 +25,7 @@ const Sidebar = () => {
                         <i className='fa fa-eye'></i>
                         <a
                             className='side-list-icon'
-                            href='customer-promotion.html'
+                            href='/promotion'
                         >
                             Promotion
                         </a>
