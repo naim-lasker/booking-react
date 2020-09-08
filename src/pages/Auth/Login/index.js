@@ -84,7 +84,7 @@ export default function LoginPage() {
                                                 </a>
                                             </p>
                                             <a
-                                                href='customer-checkout.html'
+                                                href='/promotion'
                                                 className='gradient-btn gradient-lime mb-sm-0 mb-4'
                                             >
                                                 Log In

@@ -8,6 +8,7 @@ import RouteWithLayout from "./RouteWithLayout"
 import Main from "../layouts/Main"
 
 
+import HomePage from "../pages/public/Home"
 import LoginPage from "../pages/Auth/Login"
 import PromotionDealsPage from "../pages/Customer/Promotion/Deals"
 
@@ -15,6 +16,7 @@ const Routes = () => {
     return (
         <Router history={browserHistory}>
             <Switch>
+                <Page exact component={HomePage} path='/' title='Home' />
                 <Page exact component={LoginPage} path='/login' title='Login' />
                 <RouteWithLayout
                     component={PromotionDealsPage}

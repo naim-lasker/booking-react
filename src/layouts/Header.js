@@ -5,7 +5,7 @@ const Header = () => {
         <header className='header-area pb-3 pb-lg-5'>
             <div className='container'>
                 <nav className='navbar navbar-expand-lg'>
-                    <a className='navbar-brand' href='#'>
+                    <a className='navbar-brand' href='/'>
                         <img src='/images/logo.png' alt='' />
                     </a>
                     <button
@@ -25,8 +25,8 @@ const Header = () => {
                     >
                         <ul className='navbar-nav ml-auto align-items-lg-center'>
                             <li className='nav-item active'>
-                                <a className='nav-link' href='home-air.html'>
-                                    Home{" "}
+                                <a className='nav-link' href='/'>
+                                    Home
                                     <span className='sr-only'>(current)</span>
                                 </a>
                             </li>
@@ -37,7 +37,8 @@ const Header = () => {
                             </li>
                             <li className='nav-item mx-lg-4 mx-0'>
                                 <div className='authenticate d-flex flex-column flex-lg-row dropdown'>
-                                    <button
+                                    <a
+                                        href='/login'
                                         className='nav-link dropdown-toggle text-left mb-2 mb-lg-0'
                                         type='button'
                                         id='dropdownSignIn'
@@ -51,7 +52,7 @@ const Header = () => {
                                             alt=''
                                         />
                                         Sign In
-                                    </button>
+                                    </a>
 
                                     <div
                                         className='dropdown-menu'
@@ -63,7 +64,7 @@ const Header = () => {
                                         >
                                             Sign in as Provider
                                         </a>
-                                        <a className='dropdown-item' href='#'>
+                                        <a className='dropdown-item' href='/login'>
                                             Sign in as User
                                         </a>
                                     </div>
