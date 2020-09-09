@@ -1,353 +1,347 @@
-#user {
-    //--------- Start Booking Area -------------//
-    .home-booking-area {
-        .nav-item {
-            .nav-link {
-                min-width: 198px;
-                border-left: 3px solid $border-color;
-                border-top: 3px solid $border-color;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                border-bottom-left-radius: 0px;
-                border-bottom-right-radius: 0px;
-                padding: 9px 10px;
-                @media screen and (max-width: 1199px) {
-                    min-width: 186px;
-                }
-                @media screen and (max-width: 991px) {
-                    border: 3px solid $border-color;
-                }
-                @media screen and (max-width: 402px) {
-                    min-width: 290px;
-                }
-                &.active {
-                    background-color: $primary-color2;
-                    border-color: $primary-color2;
-                    .tab-top-text,
-                    .tab-bottom-text {
-                        color: $white;
-                    }
-                    img {
-                        @include filter(brightness(0) invert(1));
-                    }
-                }
+//--------- Start Booking Area -------------//
+.home-booking-area {
+    .nav-item {
+        min-width: 198px;
+        border-left: 3px solid $border-color;
+        border-top: 3px solid $border-color;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        padding: 9px 10px;
+        @media screen and (max-width: 1199px) {
+            min-width: 186px;
+        }
+        @media screen and (max-width: 991px) {
+            border: 3px solid $border-color;
+        }
+        @media screen and (max-width: 402px) {
+            min-width: 290px;
+        }
+        &.active {
+            background-color: $primary-color2;
+            border-color: $primary-color2;
+            .tab-top-text,
+            .tab-bottom-text {
+                color: $white;
             }
-            &:last-child {
-                .nav-link {
-                    border-right: 3px solid $border-color;
-                }
+            img {
+                @include filter(brightness(0) invert(1));
             }
         }
-        .tab-content {
-            padding: 20px 45px 60px;
+
+        &:last-child {
+            border-right: 3px solid $border-color;
+        }
+    }
+    .tab-content {
+        padding: 20px 45px 60px;
+        border: 3px solid $border-color;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-top-right-radius: 8px;
+        box-shadow: 0px 5px 7px rgba(#2c477d, 0.2);
+        @media screen and (max-width: 1199px) {
+            border-top-right-radius: 0px;
+        }
+        @media screen and (max-width: 991px) {
+            padding: 20px 30px 60px;
+        }
+        @media screen and (max-width: 575px) {
+            padding: 20px 15px 60px;
+        }
+        [type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* IMAGE STYLES */
+        [type="radio"] + .radio-tab {
+            cursor: pointer;
+        }
+
+        /* CHECKED STYLES */
+        [type="radio"]:checked + .radio-tab {
+            border: 3px solid $primary-color;
+        }
+        .radio-tab {
+            min-width: 190px;
             border: 3px solid $border-color;
-            border-bottom-left-radius: 8px;
-            border-bottom-right-radius: 8px;
-            border-top-right-radius: 8px;
-            box-shadow: 0px 5px 7px rgba(#2c477d, 0.2);
-            @media screen and (max-width: 1199px) {
-                border-top-right-radius: 0px;
+            border-radius: 8px;
+            padding: 11px 15px;
+            @media screen and (max-width: 1199px) and (min-width: 992px) {
+                min-width: 160px;
             }
-            @media screen and (max-width: 991px) {
-                padding: 20px 30px 60px;
+            @media screen and (max-width: 991px) and (min-width: 425px) {
+                min-width: 250px;
             }
             @media screen and (max-width: 575px) {
-                padding: 20px 15px 60px;
+                min-width: 215px;
             }
-            [type="radio"] {
-                position: absolute;
-                opacity: 0;
-                width: 0;
-                height: 0;
-            }
-
-            /* IMAGE STYLES */
-            [type="radio"] + .radio-tab {
-                cursor: pointer;
-            }
-
-            /* CHECKED STYLES */
-            [type="radio"]:checked + .radio-tab {
-                border: 3px solid $primary-color;
-            }
-            .radio-tab {
-                min-width: 190px;
-                border: 3px solid $border-color;
-                border-radius: 8px;
-                padding: 11px 15px;
-                @media screen and (max-width: 1199px) and (min-width: 992px) {
-                    min-width: 160px;
-                }
-                @media screen and (max-width: 991px) and (min-width: 425px) {
-                    min-width: 250px;
-                }
-                @media screen and (max-width: 575px){
-                    min-width: 215px;
-                }
-                p {
-                    font-size: 16px;
-                    color: $title-color2;
-                    font-weight: 600;
-                    line-height: 16px;
-                    font-family: $MyriadRegular-font;
-                }
-            }
-            .input-box {
-                border: 3px solid $border-color;
-                height: 60px;
-            }
-            .input-group-text {
-                border-right: 3px solid $border-color;
-                border-top: 3px solid $border-color;
-                border-bottom: 3px solid $border-color;
-                border-top-right-radius: 8px;
-                border-bottom-right-radius: 8px;
-                height: 60px;
-            }
-            .form-control::-webkit-input-placeholder {
+            p {
+                font-size: 16px;
                 color: $title-color2;
                 font-weight: 600;
-                font-size: 16px;
-                font-family: $MyriadRegular-font;
-            }
-            .form-control:-moz-placeholder {
-                color: $title-color2;
-                font-weight: 600;
-                font-size: 16px;
-                font-family: $MyriadRegular-font;
-            }
-            .form-control::-moz-placeholder {
-                color: $title-color2;
-                font-weight: 600;
-                font-size: 16px;
-                font-family: $MyriadRegular-font;
-            }
-            .form-control::placeholder {
-                color: $title-color2;
-                font-weight: 600;
-                font-size: 16px;
-                font-family: $MyriadRegular-font;
-            }
-            .form-control:-ms-input-placeholder {
-                color: $title-color2;
-                font-weight: 600;
-                font-size: 16px;
+                line-height: 16px;
                 font-family: $MyriadRegular-font;
             }
         }
-        .reserve-now {
-            top: -35px;
-            position: relative;
-            text-align: center;
-            width: 100%;
-            z-index: 2;
+        .input-box {
+            border: 3px solid $border-color;
+            height: 60px;
         }
-        .tab-top-text {
-            color: $title-color2;
-            margin-bottom: 0;
-            line-height: 14px;
-            font-size: 14px;
-            font-family: $MyriadRegular-font;
+        .input-group-text {
+            border-right: 3px solid $border-color;
+            border-top: 3px solid $border-color;
+            border-bottom: 3px solid $border-color;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            height: 60px;
         }
-        .tab-bottom-text {
+        .form-control::-webkit-input-placeholder {
             color: $title-color2;
             font-weight: 600;
-            font-size: 20px;
+            font-size: 16px;
+            font-family: $MyriadRegular-font;
+        }
+        .form-control:-moz-placeholder {
+            color: $title-color2;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: $MyriadRegular-font;
+        }
+        .form-control::-moz-placeholder {
+            color: $title-color2;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: $MyriadRegular-font;
+        }
+        .form-control::placeholder {
+            color: $title-color2;
+            font-weight: 600;
+            font-size: 16px;
+            font-family: $MyriadRegular-font;
+        }
+        .form-control:-ms-input-placeholder {
+            color: $title-color2;
+            font-weight: 600;
+            font-size: 16px;
             font-family: $MyriadRegular-font;
         }
     }
-    //----------- End Booking Page -------------//
-
-    //----------- Start Banner Page -------------//
-    .banner-area {
-        margin-bottom: 70px;
-        .banner-content {
-            background: url(/images/banner-bg.png) no-repeat;
-            background-size: cover;
-            min-height: 455px;
-            padding: 25px;
-
-            .banner-info {
-                width: 56%;
-                @media screen and (max-width: 991px) {
-                    width: 100%;
-                }
-
-                .section-header {
-                    font-weight: 500;
-                    font-size: 55px;
-                    font-family: $MyriadRegular-font;
-                    @media screen and (max-width: 767px) {
-                        font-size: 35px;
-                    }
-                }
-
-                .para {
-                    font-weight: 400;
-                    font-size: 17px;
-                }
-            }
-        }
-
-
-        /* Start Carousel Style */
-        .owl-dots {
-            display: flex;
-            justify-content: center;
-            margin-top: 12px;
-            @media screen and (max-width: 991px) {
-                display: none;
-            }
-        }
-
-        .owl-carousel button.owl-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 5px;
-            margin: 0 5px;
-            background-color: #cbd9de;
-        }
-
-        .owl-carousel button.owl-dot.active {
-            background-color: $primary-color2;
-        }
-        /* End Carousel Style */
+    .reserve-now {
+        top: -35px;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        z-index: 2;
     }
-    //----------- End Banner Page -------------//
+    .tab-top-text {
+        color: $title-color2;
+        margin-bottom: 0;
+        line-height: 14px;
+        font-size: 14px;
+        font-family: $MyriadRegular-font;
+    }
+    .tab-bottom-text {
+        color: $title-color2;
+        font-weight: 600;
+        font-size: 20px;
+        font-family: $MyriadRegular-font;
+    }
+}
+//----------- End Booking Page -------------//
 
-    //----------- Start Activities Page -------------//
-    .activities-area {
-        .single-activity {
-            position: relative;
-            padding: 10px;
-            box-shadow: 0px 0px 10px rgba(26, 17, 141, 0.16);
-            margin-bottom: 20px;
+//----------- Start Banner Page -------------//
+.banner-area {
+    margin-bottom: 70px;
+    .banner-content {
+        background: url(/images/banner-bg.png) no-repeat;
+        background-size: cover;
+        min-height: 455px;
+        padding: 25px;
+
+        .banner-info {
+            width: 56%;
+            @media screen and (max-width: 991px) {
+                width: 100%;
+            }
+
+            .section-header {
+                font-weight: 500;
+                font-size: 55px;
+                font-family: $MyriadRegular-font;
+                @media screen and (max-width: 767px) {
+                    font-size: 35px;
+                }
+            }
+
+            .para {
+                font-weight: 400;
+                font-size: 17px;
+            }
         }
-        .activity-title {
+    }
+
+    /* Start Carousel Style */
+    .owl-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 12px;
+        @media screen and (max-width: 991px) {
+            display: none;
+        }
+    }
+
+    .owl-carousel button.owl-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 5px;
+        margin: 0 5px;
+        background-color: #cbd9de;
+    }
+
+    .owl-carousel button.owl-dot.active {
+        background-color: $primary-color2;
+    }
+    /* End Carousel Style */
+}
+//----------- End Banner Page -------------//
+
+//----------- Start Activities Page -------------//
+.activities-area {
+    .single-activity {
+        position: relative;
+        padding: 10px;
+        box-shadow: 0px 0px 10px rgba(26, 17, 141, 0.16);
+        margin-bottom: 20px;
+    }
+    .activity-title {
+        font-size: 45px;
+        font-weight: 400;
+        line-height: 34px;
+        font-family: $MyriadRegular-font;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        @media screen and (max-width: 1480px) {
+            font-size: 40px;
+        }
+        @media screen and (max-width: 1199px) {
+            font-size: 35px;
+        }
+        @media screen and (max-width: 991px) {
+            font-size: 30px;
+            line-height: 28px;
+        }
+    }
+}
+//----------- End Activities Page -------------//
+
+//----------- Start Category Page -------------//
+.category-area {
+    margin-top: 25px;
+    .category-title {
+        font-size: 52px;
+        font-family: $MyriadRegular-font;
+        font-weight: 500;
+        line-height: 38px;
+        margin-bottom: 44px;
+        @media screen and (max-width: 1199px) {
             font-size: 45px;
-            font-weight: 400;
-            line-height: 34px;
-            font-family: $MyriadRegular-font;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            @include transform(translate(-50%, -50%));
-            @media screen and (max-width: 1480px) {
-                font-size: 40px;
-            }
-            @media screen and (max-width: 1199px) {
-                font-size: 35px;
-            }
-            @media screen and (max-width: 991px) {
-                font-size: 30px;
-                line-height: 28px;
+        }
+        @media screen and (max-width: 992px) {
+            font-size: 35px;
+        }
+    }
+
+    .single-category {
+        padding: 10px;
+        box-shadow: 0px 0px 10px rgba(26, 17, 141, 0.16);
+        margin-bottom: 20px;
+        @include transition(all 0.3s ease 0s);
+        &:hover {
+            box-shadow: 0px 0px 40px rgba(26, 17, 141, 0.16);
+            cursor: pointer;
+            .single-category-title {
+                color: #00aced;
             }
         }
     }
-    //----------- End Activities Page -------------//
 
-    //----------- Start Category Page -------------//
-    .category-area {
-        margin-top: 25px;
-        .category-title {
-            font-size: 52px;
-            font-family: $MyriadRegular-font;
-            font-weight: 500;
-            line-height: 38px;
-            margin-bottom: 44px;
-            @media screen and (max-width: 1199px) {
-                font-size: 45px;
-            }
-            @media screen and (max-width: 992px) {
-                font-size: 35px;
-            }
+    .single-category-middle {
+        padding: 25px 15px;
+    }
+
+    .single-category-title {
+        font-size: 20px;
+        font-family: $primary-font;
+        color: #3a3671;
+        font-weight: 500;
+        line-height: 18px;
+        margin-bottom: 20px;
+        @include transition(all 0.3s ease 0s);
+    }
+
+    .single-category-para {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .single-category-rating {
+        font-size: 14px;
+        color: #c3c2d2;
+        font-weight: 400;
+    }
+    .single-category-star {
+        background: -webkit-linear-gradient(#00aced, #271ad3);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .single-category-bottom {
+        margin-bottom: 50px;
+    }
+
+    .single-category-line {
+        background-color: #e1edf2;
+        display: block;
+        height: 1px;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .owl-nav {
+        width: 110%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -5%;
+        display: flex;
+        justify-content: space-between;
+        z-index: -1;
+        @media screen and (max-width: 1199px) {
+            display: none;
         }
-
-        .single-category {
-            padding: 10px;
-            box-shadow: 0px 0px 10px rgba(26, 17, 141, 0.16);
-            margin-bottom: 20px;
+        .owl-prev,
+        .owl-next {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border: 1px solid $text-color;
+            border-radius: 30px;
+            font-size: 20px;
+            color: $text-color;
+            background-color: $white;
             @include transition(all 0.3s ease 0s);
             &:hover {
-                box-shadow: 0px 0px 40px rgba(26, 17, 141, 0.16);
-                cursor: pointer;
-                .single-category-title {
-                    color: #00aced;
-                }
-            }
-        }
-
-        .single-category-middle {
-            padding: 25px 15px;
-        }
-
-        .single-category-title {
-            font-size: 20px;
-            font-family: $primary-font;
-            color: #3a3671;
-            font-weight: 500;
-            line-height: 18px;
-            margin-bottom: 20px;
-            @include transition(all 0.3s ease 0s);
-        }
-
-        .single-category-para {
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .single-category-rating {
-            font-size: 14px;
-            color: #c3c2d2;
-            font-weight: 400;
-        }
-        .single-category-star {
-            background: -webkit-linear-gradient(#00aced, #271ad3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .single-category-bottom {
-            margin-bottom: 50px;
-        }
-
-        .single-category-line {
-            background-color: #e1edf2;
-            display: block;
-            height: 1px;
-            width: 100%;
-            margin-bottom: 5px;
-        }
-
-        .owl-nav {
-            width: 110%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: -5%;
-            display: flex;
-            justify-content: space-between;
-            z-index: -1;
-            @media screen and (max-width: 1199px) {
-                display: none;
-            }
-            .owl-prev,
-            .owl-next {
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                line-height: 40px;
-                border: 1px solid $text-color;
-                border-radius: 30px;
-                font-size: 20px;
-                color: $text-color;
-                background-color: $white;
-                @include transition(all 0.3s ease 0s);
-                &:hover {
-                    background-color: $primary-color;
-                    color: $white;
-                    border: 1px solid $primary-color;
-                }
+                background-color: $primary-color;
+                color: $white;
+                border: 1px solid $primary-color;
             }
         }
     }
-    //----------- End Category Page -------------//
 }
+//----------- End Category Page -------------//
