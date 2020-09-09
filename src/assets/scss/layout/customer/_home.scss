@@ -156,7 +156,7 @@
 
 //----------- Start Banner Page -------------//
 .banner-area {
-    margin-bottom: 70px;
+    margin-bottom: 100px;
     .banner-content {
         background: url(/images/banner-bg.png) no-repeat;
         background-size: cover;
@@ -186,25 +186,25 @@
     }
 
     /* Start Carousel Style */
-    .owl-dots {
+    .carousel-indicators {
         display: flex;
         justify-content: center;
-        margin-top: 12px;
+        bottom: -25px;
         @media screen and (max-width: 991px) {
             display: none;
         }
-    }
 
-    .owl-carousel button.owl-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 5px;
-        margin: 0 5px;
-        background-color: #cbd9de;
-    }
-
-    .owl-carousel button.owl-dot.active {
-        background-color: $primary-color2;
+        li {
+            width: 12px;
+            height: 12px;
+            border-radius: 5px;
+            margin: 0 5px;
+            background-color: #cbd9de;
+            border: 0;
+            &.active {
+                background-color: $primary-color2;
+            }
+        }
     }
     /* End Carousel Style */
 }
