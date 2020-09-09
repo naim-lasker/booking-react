@@ -1,62 +1,34 @@
 import React from "react"
-
+import SingleActivity from "../../../components/Home/SingleActivity"
 
 export default () => {
+    const activityData = [
+        {
+            heading: "Restaurants",
+            imgUrl: "/images/activities/restaurant.png",
+        },
+        {
+            heading: "Tour & Excursions",
+            imgUrl: "/images/activities/tour.png",
+        },
+        {
+            heading: "Land Activities",
+            imgUrl: "/images/activities/land.png",
+        },
+        {
+            heading: "Water Activities",
+            imgUrl: "/images/activities/water.png",
+        },
+    ]
+
     return (
         <section className='activities-area'>
             <div className='container'>
                 <div className='row'>
-                    <div className='col-lg-3 col-md-6'>
-                        <div className='single-activity'>
-                            <img
-                                className='img-fluid w-100'
-                                src='/images/activities/restaurant.png'
-                                alt=''
-                            />
-                            <h2 className='text-white text-center activity-title'>
-                                Restaurants
-                            </h2>
-                        </div>
-                    </div>
-
-                    <div className='col-lg-3 col-md-6'>
-                        <div className='single-activity'>
-                            <img
-                                className='img-fluid w-100'
-                                src='/images/activities/tour.png'
-                                alt=''
-                            />
-                            <h2 className='text-white text-center activity-title'>
-                                Tour & Excursions
-                            </h2>
-                        </div>
-                    </div>
-
-                    <div className='col-lg-3 col-md-6'>
-                        <div className='single-activity'>
-                            <img
-                                className='img-fluid w-100'
-                                src='/images/activities/land.png'
-                                alt=''
-                            />
-                            <h2 className='text-white text-center activity-title'>
-                                Land Activities
-                            </h2>
-                        </div>
-                    </div>
-
-                    <div className='col-lg-3 col-md-6'>
-                        <div className='single-activity'>
-                            <img
-                                className='img-fluid w-100'
-                                src='/images/activities/water.png'
-                                alt=''
-                            />
-                            <h2 className='text-white text-center activity-title'>
-                                Water Activities
-                            </h2>
-                        </div>
-                    </div>
+                    {activityData.length > 0 &&
+                        activityData.map((activity, index) => (
+                            <SingleActivity key={index} activity={activity} />
+                        ))}
                 </div>
             </div>
         </section>
