@@ -1,7 +1,8 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import Slider from "react-slick"
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
-import SingleCategory from "../../../components/Home/SingleCategory"
+import SingleCategory from "../../../components/Public/Home/SingleCategory"
 
 const SlickButton = ({ currentSlide, slideCount, children, ...props }) => (
     <button {...props}>{children}</button>
@@ -139,9 +140,9 @@ export default () => {
                     </div>
 
                     <div className='col-lg-12 text-center mt-2'>
-                        <a className='shadow-btn' href='#'>
+                        <Link className='shadow-btn' to='/'>
                             View More
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

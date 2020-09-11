@@ -1,5 +1,5 @@
 import React from "react"
-import SingleActivity from "../../../components/Home/SingleActivity"
+import SingleActivity from "../../../components/Public/Home/SingleActivity"
 
 export default () => {
     const activityData = [

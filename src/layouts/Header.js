@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 const Header = () => {
     return (
@@ -37,8 +38,9 @@ const Header = () => {
                             </li>
                             <li className='nav-item mx-lg-4 mx-0'>
                                 <div className='authenticate d-flex flex-column flex-lg-row dropdown'>
-                                    <a
-                                        href='/login'
+                                    <Link
+                                        className='breadcrumb-text'
+                                        to='/login'
                                         className='nav-link dropdown-toggle text-left mb-2 mb-lg-0'
                                         type='button'
                                         id='dropdownSignIn'
@@ -52,26 +54,29 @@ const Header = () => {
                                             alt=''
                                         />
                                         Sign In
-                                    </a>
+                                    </Link>
 
                                     <div
                                         className='dropdown-menu'
                                         aria-labelledby='dropdownSignIn'
                                     >
-                                        <a
+                                        <Link
                                             className='dropdown-item'
-                                            href='/login'
+                                            to='/login'
                                         >
                                             Sign in as Provider
-                                        </a>
-                                        <a className='dropdown-item' href='/login'>
+                                        </Link>
+                                        <Link
+                                            className='dropdown-item'
+                                            to='/login'
+                                        >
                                             Sign in as User
-                                        </a>
+                                        </Link>
                                     </div>
 
-                                    <a className='nav-link' href='#'>
+                                    <Link className='nav-link' to='/'>
                                         Sign Up
-                                    </a>
+                                    </Link>
                                 </div>
                             </li>
                         </ul>

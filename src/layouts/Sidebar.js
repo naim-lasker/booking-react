@@ -1,4 +1,9 @@
 import React from "react"
+import { Link } from "react-router-dom"
+import SingleActivity from "../components/Layout/Sidebar/SingleActivity"
+import SingleFeature from "../components/Layout/Sidebar/SingleFeature"
+import { activityList, featureList } from "../mock-data/sidebar"
+
 
 const Sidebar = () => {
     return (
@@ -14,80 +19,15 @@ const Sidebar = () => {
                 <h4 className='side-name'>Charli Maria</h4>
             </div>
             <div className='side-btn-container text-center'>
-                <a className='border-btn' href='/'>
+                <Link className='border-btn' to='/'>
                     Edit Profile
-                </a>
+                </Link>
             </div>
 
-            <div className='side-liest'>
-                <ul className='side-activities'>
-                    <li className='side-activitie-item'>
-                        <i className='fa fa-eye'></i>
-                        <a
-                            className='side-list-icon'
-                            href='/promotion'
-                        >
-                            Promotion
-                        </a>
-                    </li>
-                    <li className='side-activitie-item'>
-                        <i className='fa fa-eye'></i>
-                        <a className='side-list-icon' href='#'>
-                            Restaurant
-                        </a>
-                    </li>
-                    <li className='side-activitie-item'>
-                        <i className='fa fa-eye'></i>
-                        <a className='side-list-icon' href='#'>
-                            Tours & Excursions
-                        </a>
-                    </li>
-                    <li className='side-activitie-item'>
-                        <i className='fa fa-eye'></i>
-                        <a className='side-list-icon' href='#'>
-                            Water Activities
-                        </a>
-                    </li>
-                    <li className='side-activitie-item'>
-                        <i className='fa fa-eye'></i>
-                        <a className='side-list-icon' href='#'>
-                            Land Activities
-                        </a>
-                    </li>
-                </ul>
+            <div className='side-list'>
+                <SingleActivity activityList={activityList} />
 
-                <ul className='side-features'>
-                    <li className='side-feature-item'>
-                        <i className='fa fa-book-open'></i>
-                        <a className='side-list-icon' href='#'>
-                            My Bookings
-                        </a>
-                    </li>
-                    <li className='side-feature-item'>
-                        <i className='fa fa-envelope'></i>
-                        <a className='side-list-icon' href='#'>
-                            Messeges
-                        </a>
-                    </li>
-                    <li className='side-feature-item'>
-                        <i className='fa fa-heart'></i>
-                        <a className='side-list-icon' href='#'>
-                            Favourites
-                        </a>
-                    </li>
-                    <li className='side-feature-item'>
-                        <i className='fa fa-star'></i>
-                        <a className='side-list-icon' href='#'>
-                            My Ratings
-                        </a>
-                    </li>
-                    <li className='side-feature-item'>
-                        <i className='fa fa-envelope'></i>
-                        <a className='side-list-icon' href='#'>
-                            Contact Supports
-                        </a>
-                    </li>
-                </ul>
+                <SingleFeature featureList={featureList} />
             </div>
         </div>
     )

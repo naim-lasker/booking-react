@@ -1,9 +1,9 @@
 import React from "react"
 import { Tabs, Tab } from "react-bootstrap"
-import TabHeading from "../../../components/Home/TabHeading"
-import RadionInput from "../../../components/Home/RadionInput"
-import DateTimeInput from "../../../components/Home/DateTimeInput"
-import InfoText from "../../../components/Home/InfoText"
+import TabHeading from "../../../components/Public/Home/TabHeading"
+import RadionInput from "../../../components/Public/Home/RadionInput"
+import DateTimeInput from "../../../components/Public/Home/DateTimeInput"
+import InfoText from "../../../components/Public/Home/InfoText"
 
 export default () => {
     return (

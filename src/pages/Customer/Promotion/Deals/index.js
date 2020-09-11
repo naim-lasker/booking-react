@@ -1,5 +1,6 @@
 import React from "react"
 import { FaHome } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
 
@@ -16,16 +17,16 @@ const PromotionDealsPage = () => {
                 />
 
                 <div>
-                    <a
+                    <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        href='#'
+                        to='/'
                     >
                         Show More
-                    </a>
-                    <a className='border-btn primary-color ml-md-3' href='#'>
+                    </Link>
+                    <Link className='border-btn primary-color ml-md-3' to='/'>
                         <span className='fas fa-filter mt-1'></span>
                         Apply Filter
-                    </a>
+                    </Link>
                 </div>
             </div>
 
@@ -76,14 +77,14 @@ const PromotionDealsPage = () => {
                             </div>
 
                             <div className='mb-2'>
-                                <a className='view-more-btn' href='#'>
+                                <Link className='view-more-btn' to='/'>
                                     <img
                                         src='/images/icons/arrow-shape.png'
                                         alt=''
                                         className='mr-2'
                                     />
                                     View More
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>

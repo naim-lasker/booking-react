@@ -8,29 +8,32 @@ const Breadcrumb = ({ icon, names }) => {
         <nav className='breadcrumb-nav'>
             <ul className='breadcrumb-list d-flex align-items-center'>
                 <li className='breadcrumb-icon'>{icon}</li>
-                {names.map((item, index) => (
-                    <Fragment key={index}>
-                        <li className='mr-4'>
-                            {item.link ? (
-                                <Link
-                                    className='breadcrumb-text'
-                                    to={item.link}
-                                >
-                                    {item.name}
-                                </Link>
-                            ) : (
-                                <span className='breadcrumb-text'>
-                                    {item.name}
-                                </span>
-                            )}
-                        </li>
-                        {index !== names.length - 1 && (
-                            <li className='breadcrumb-icon'>
-                                <FaAngleDoubleRight />
+                {names && names.length > 0 &&
+                    names.map((item, index) => (
+                        <Fragment key={index}>
+                            <li
+                                className={index !== names.length - 1 ? "mr-4" : null}
+                            >
+                                {item.link ? (
+                                    <Link
+                                        className='breadcrumb-text'
+                                        to={item.link}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ) : (
+                                    <span className='breadcrumb-text'>
+                                        {item.name}
+                                    </span>
+                                )}
                             </li>
-                        )}
-                    </Fragment>
-                ))}
+                            {index !== names.length - 1 && (
+                                <li className='breadcrumb-icon'>
+                                    <FaAngleDoubleRight />
+                                </li>
+                            )}
+                        </Fragment>
+                    ))}
             </ul>
         </nav>
     )
