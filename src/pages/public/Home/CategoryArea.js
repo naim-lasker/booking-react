@@ -1,15 +1,31 @@
 import React from "react"
 import Slider from "react-slick"
+import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import SingleCategory from "../../../components/Home/SingleCategory"
+
+const SlickButton = ({ currentSlide, slideCount, children, ...props }) => (
+    <button {...props}>{children}</button>
+)
 
 export default () => {
     const settings = {
         arrows: true,
+        autoplay: true,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
         centerPadding: 30,
+        prevArrow: (
+            <SlickButton>
+                <FaAngleLeft />
+            </SlickButton>
+        ),
+        nextArrow: (
+            <SlickButton>
+                <FaAngleRight />
+            </SlickButton>
+        ),
         responsive: [
             {
                 breakpoint: 1024,
@@ -35,33 +51,73 @@ export default () => {
     }
     const categoryData = [
         {
-            heading: "Restaurants",
-            imgUrl: "/images/activities/restaurant.png",
+            id: 1,
+            heading: "Tour & travel",
+            imgUrl: "/images/categories/tour-travel.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.5,
         },
         {
-            heading: "Tour & Excursions",
-            imgUrl: "/images/activities/tour.png",
+            id: 2,
+            heading: "Food Delivery",
+            imgUrl: "/images/categories/food.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.7,
         },
         {
-            heading: "Land Activities",
-            imgUrl: "/images/activities/land.png",
+            id: 3,
+            heading: "Beauty & Spa",
+            imgUrl: "/images/categories/spa.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 3.5,
         },
         {
-            heading: "Water Activities",
-            imgUrl: "/images/activities/water.png",
+            id: 4,
+            heading: "Best Resorts",
+            imgUrl: "/images/categories/resort.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.5,
         },
         {
-            heading: "Land Activities",
-            imgUrl: "/images/activities/land.png",
+            id: 5,
+            heading: "Tour & travel",
+            imgUrl: "/images/categories/tour-travel.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.5,
         },
         {
-            heading: "Water Activities",
-            imgUrl: "/images/activities/water.png",
+            id: 6,
+            heading: "Food Delivery",
+            imgUrl: "/images/categories/food.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.7,
+        },
+        {
+            id: 7,
+            heading: "Beauty & Spa",
+            imgUrl: "/images/categories/spa.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 3.5,
+        },
+        {
+            id: 8,
+            heading: "Best Resorts",
+            imgUrl: "/images/categories/resort.png",
+            info:
+                "There are many variations of passages of Lorem Ipsum available, but the",
+            rating: 4.5,
         },
     ]
 
     return (
-        <section className='category-area'>
+        <section className='category-area mb-5'>
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-12'>
@@ -80,6 +136,12 @@ export default () => {
                                     />
                                 ))}
                         </Slider>
+                    </div>
+
+                    <div className='col-lg-12 text-center mt-2'>
+                        <a className='shadow-btn' href='#'>
+                            View More
+                        </a>
                     </div>
                 </div>
             </div>

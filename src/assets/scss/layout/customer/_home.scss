@@ -312,40 +312,51 @@
         margin-bottom: 5px;
     }
 
-    .owl-nav {
-        width: 110%;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        left: -5%;
-        display: flex;
-        justify-content: space-between;
-        z-index: -1;
-        @media screen and (max-width: 1199px) {
-            display: none;
-        }
-        .owl-prev,
-        .owl-next {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            line-height: 40px;
-            border: 1px solid $text-color;
-            border-radius: 30px;
-            font-size: 20px;
-            color: $text-color;
-            background-color: $white;
-            @include transition(all 0.3s ease 0s);
-            &:hover {
-                background-color: $primary-color;
-                color: $white;
-                border: 1px solid $primary-color;
-            }
+    .slick-slide {
+        padding: 0 10px;
+    }
+
+    .slick-prev, .slick-next {
+        &::before {
+            content: none;
         }
     }
 
-    .slick-slide {
-        padding: 0 10px;
-      }
+    .slick-prev {
+        left: -5%;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        border: 1px solid $text-color;
+        border-radius: 30px;
+        font-size: 20px;
+        color: $text-color;
+        background-color: $white;
+        @include transition(all 0.3s ease 0s);
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            border: 1px solid $primary-color;
+        }
+    }
+    .slick-next {
+        right: -5%;
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        border: 1px solid $text-color;
+        border-radius: 30px;
+        font-size: 20px;
+        color: $text-color;
+        background-color: $white;
+        @include transition(all 0.3s ease 0s);
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            border: 1px solid $primary-color;
+        }
+    }
 }
 //----------- End Category Page -------------//
