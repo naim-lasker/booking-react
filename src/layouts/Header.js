@@ -32,8 +32,8 @@ const Header = () => {
                                 </a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link' href='#'>
-                                    Help
+                                <a className='nav-link' href='/news'>
+                                    News
                                 </a>
                             </li>
                             <li className='nav-item mx-lg-4 mx-0'>

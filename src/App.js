@@ -1,12 +1,14 @@
 import React from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import "./assets/scss/style.scss"
+import { Provider } from "react-redux"
+import { store } from "./store"
 import Routes from "./routes"
 
 function App() {
-    return <Routes />
+    return (
+        <Provider store={store}>
+            <Routes />
+        </Provider>
+    )
 }
 
 export default App
