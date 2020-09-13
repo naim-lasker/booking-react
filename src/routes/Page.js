@@ -3,9 +3,10 @@ import { Route } from 'react-router-dom'
 
 
 const Page = props => {
-    const { title, ...rest } = props;
+    const { title, ...rest } = props
+
     useEffect(() => {
-        document.title = props.title || ''
+        document.title = title || ''
     }, [])
 
     return <Route {...rest} />

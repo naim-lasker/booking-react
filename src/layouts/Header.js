@@ -39,7 +39,6 @@ const Header = () => {
                             <li className='nav-item mx-lg-4 mx-0'>
                                 <div className='authenticate d-flex flex-column flex-lg-row dropdown'>
                                     <Link
-                                        className='breadcrumb-text'
                                         to='/login'
                                         className='nav-link dropdown-toggle text-left mb-2 mb-lg-0'
                                         type='button'

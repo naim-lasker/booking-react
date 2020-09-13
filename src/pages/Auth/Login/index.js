@@ -57,7 +57,7 @@ export default function LoginPage() {
                                         </div>
 
                                         <div className='forget-pass text-center'>
-                                            <a href='#'>
+                                            <a href='/'>
                                                 Forgot your password?
                                             </a>
                                         </div>
@@ -77,7 +77,7 @@ export default function LoginPage() {
                                             <p className='m-0'>
                                                 Not registered yet?{" "}
                                                 <a
-                                                    href='#'
+                                                    href='/'
                                                     className='not-registered'
                                                 >
                                                     Click here

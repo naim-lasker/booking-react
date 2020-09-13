@@ -1,51 +1,84 @@
 //--------- Start News Area -------------//
-.news-top-area {
-    .news-top-carousel, .news-top-carousel2 {
-        overflow: hidden;
+
+.news-top-carousel2 {
+    overflow: hidden;
+}
+.news-top-carousel2 {
+    .owl-nav {
+        left: 50%;
+        width: 36%;
+        @include transform(translate(-50%, -50%));
+        .owl-prev,
+        .owl-next {
+            border-radius: 20px;
+        }
+        @media screen and (max-width: 1199px) {
+            width: 53%;
+        }
+        @media screen and (max-width: 991px) {
+            display: none !important;
+        }
     }
-    .news-top-carousel {
-        .owl-item.active.center {
-            .single-top-news {
-                &::before {
-                    background-color: rgba(0, 0, 0, 0.5);
-                }
+    .owl-item.active.center {
+        .single-top-news {
+            &::before {
+                background-color: transparent;
             }
         }
     }
-    .news-top-carousel2 {
-        .owl-nav {
-            left: 50%;
-            width: 36%;
-            @include transform(translate(-50%, -50%));
-            .owl-prev, .owl-next {
-                border-radius: 20px;
-            }
-            @media screen and (max-width: 1199px) {
-                width: 53%;
-            }
-            @media screen and (max-width: 991px) {
-                display: none!important;
-            }
-        }
-        .owl-item.active.center {
-            .single-top-news {
-                &::before {
-                    background-color:transparent;
-                }
-            }
-        }
-    }
-    .owl-stage-outer {
-        overflow: visible;
-        padding-bottom: 95px;
-    }
+}
+.owl-stage-outer {
+    overflow: visible;
+    padding-bottom: 95px;
 }
 
 .news-top-carousel {
-    .single-top-news {
-        &:before {
-            background-color: rgba(0, 0, 0, 0.3);
+    .slick-list {
+        padding-bottom: 95px !important;
+    }
+    .slick-slide {
+        & * {
+            outline: none !important;
         }
+        .single-top-news {
+            &::before {
+                background-color: rgba(0, 0, 0, 0.3);
+            }
+        }
+    }
+    .slick-center {
+        .single-top-news {
+            &::before {
+                background-color: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+    .slick-prev,
+    .slick-next {
+        top: 39%;
+        z-index: 10;
+        background: #fff;
+        height: 40px;
+        width: 40px;
+        font-size: 20px;
+        color: #555555;
+        @include transition(all 0.3s ease 0s);
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            border: 1px solid $primary-color;
+        }
+        &::before {
+            content: none;
+        }
+    }
+
+    .slick-prev {
+        left: 0%;
+    }
+    .slick-next {
+        right: 0%;
     }
 }
 
@@ -53,69 +86,6 @@
     .single-top-news {
         &:before {
             background-color: rgba(255, 255, 255, 0.8);
-        }
-    }
-}
-
-.newsletter-area {
-    padding: 45px 40px;
-    background-color: #eeeeee;
-    border-radius: 20px;
-    position: relative;
-    bottom: -40px;
-    @media screen and (max-width: 991px) {
-        bottom: 0px;
-    }
-    @media screen and (max-width: 767px) {
-        padding: 30px 15px;
-    }
-    h2 {
-        font-size: 28px;
-        font-weight: 700;
-        margin-bottom: 1px;
-        @media screen and (max-width: 1199px) {
-            font-size: 24px;
-        }
-    }
-    p {
-        color: #555555;
-        font-size: 16px;
-    }
-    .form-control {
-        width: 64%;
-        padding: 5px 20px;
-        border-radius: 10px;
-        height: 50px;
-        background-color: #fff;
-        border: 0;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        @media screen and (max-width: 1199px) {
-            width: 55%;
-        }
-        @media screen and (max-width: 398px) {
-            width: 100%;
-            margin-bottom: 10px;
-            border-radius: 10px;
-        }
-    }
-
-    .btn {
-        border-radius: 10px;
-        font-size: 15px;
-        font-weight: 700;
-        background-color: $title-color;
-        color: $white;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding: 13px 26px;
-        @include transition();
-        &:hover {
-            color: $white;
-            background-color: $primary-color2;
-        }
-        @media screen and (max-width: 1199px) {
-            border-radius: 10px;
         }
     }
 }
@@ -183,17 +153,78 @@
     }
 }
 
+.newsletter-area {
+    padding: 45px 40px;
+    background-color: #eeeeee;
+    border-radius: 20px;
+    position: relative;
+    bottom: -40px;
+    @media screen and (max-width: 991px) {
+        bottom: 0px;
+    }
+    @media screen and (max-width: 767px) {
+        padding: 30px 15px;
+    }
+    h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 1px;
+        @media screen and (max-width: 1199px) {
+            font-size: 24px;
+        }
+    }
+    p {
+        color: #555555;
+        font-size: 16px;
+    }
+    .form-control {
+        width: 64%;
+        padding: 5px 20px;
+        border-radius: 10px;
+        height: 50px;
+        background-color: #fff;
+        border: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        @media screen and (max-width: 1199px) {
+            width: 55%;
+        }
+        @media screen and (max-width: 398px) {
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+    }
 
-.news-area,
-.news-top-area {
+    .btn {
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        background-color: $title-color;
+        color: $white;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding: 13px 26px;
+        @include transition();
+        &:hover {
+            color: $white;
+            background-color: $primary-color2;
+        }
+        @media screen and (max-width: 1199px) {
+            border-radius: 10px;
+        }
+    }
+}
+
+.news-area {
     .owl-nav {
         width: 100%;
         position: absolute;
         @include transform(translateY(-50%));
-        display: flex!important;
+        display: flex !important;
         justify-content: space-between;
         @media screen and (max-width: 767px) {
-            display: none!important;
+            display: none !important;
         }
 
         .owl-prev,
@@ -204,12 +235,6 @@
             font-size: 20px !important;
             color: #555555 !important;
         }
-    }
-}
-
-.news-top-area {
-    .owl-nav {
-        top: 39%;
     }
 }
 

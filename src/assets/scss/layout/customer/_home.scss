@@ -197,7 +197,7 @@
         li {
             width: 12px;
             height: 12px;
-            border-radius: 5px;
+            border-radius: 10px;
             margin: 0 5px;
             background-color: #cbd9de;
             border: 0;
@@ -317,6 +317,21 @@
     }
 
     .slick-prev, .slick-next {
+        z-index: 10;
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+        border: 1px solid $text-color;
+        border-radius: 30px;
+        font-size: 20px;
+        color: $text-color;
+        background-color: $white;
+        @include transition(all 0.3s ease 0s);
+        &:hover {
+            background-color: $primary-color;
+            color: $white;
+            border: 1px solid $primary-color;
+        }
         &::before {
             content: none;
         }
@@ -324,39 +339,9 @@
 
     .slick-prev {
         left: -5%;
-        z-index: 10;
-        width: 40px;
-        height: 40px;
-        line-height: 38px;
-        border: 1px solid $text-color;
-        border-radius: 30px;
-        font-size: 20px;
-        color: $text-color;
-        background-color: $white;
-        @include transition(all 0.3s ease 0s);
-        &:hover {
-            background-color: $primary-color;
-            color: $white;
-            border: 1px solid $primary-color;
-        }
     }
     .slick-next {
         right: -5%;
-        z-index: 10;
-        width: 40px;
-        height: 40px;
-        line-height: 38px;
-        border: 1px solid $text-color;
-        border-radius: 30px;
-        font-size: 20px;
-        color: $text-color;
-        background-color: $white;
-        @include transition(all 0.3s ease 0s);
-        &:hover {
-            background-color: $primary-color;
-            color: $white;
-            border: 1px solid $primary-color;
-        }
     }
 }
 //----------- End Category Page -------------//
