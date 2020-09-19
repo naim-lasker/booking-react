@@ -12,15 +12,25 @@ const base_url = Config.base_url
  * @param {*} perPage
  * @param {*} callback
  */
-export const getNotifications = (merchantId, page, perPage, callback) => {
+export const addAccountDetails = (merchantId, page, perPage, callback) => {
 
     return async (dispatch, getState) => {
+        const body = {
+            role: 2,
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            password,
+        }
+
         try {
             const access_token = getState().auth.login.access_token
+
+            return console.log('access_token', access_token);
             const api = base_url + '/auth/merchants-notifications/' + merchantId + '?&page=' + page + '&per_page=' + perPage
 
             dispatch({ type: 'NOTIFICATION_LIST_PENDING', api })
-            const response = await httpRequest.get(api, true, access_token)
+            const response = await httpRequest.get(api, true, access_token, body)
 
             dispatch({ type: 'NOTIFICATION_LIST_SUCCESS', payload: response })
             callback(response, null)

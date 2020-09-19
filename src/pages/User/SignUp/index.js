@@ -57,7 +57,7 @@ const UserSignUp = (props) => {
                                                     src='images/arrow-shape.png'
                                                     alt=''
                                                 />
-                                                Create your Provider account
+                                                Create your User account
                                             </h2>
                                             <div>
                                                 <div className='input-group mb-3'>

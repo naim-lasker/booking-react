@@ -56,104 +56,109 @@ const AddUserAccount = (props) => {
 
                                 <div className='row justify-content-center my-5'>
                                     <div className='col-lg-8'>
-                                        <div className='form-container mb-3'>
-                                            <div className='mb-4'>
-                                                <div className='d-flex align-items-center mb-3'>
-                                                    <label
-                                                        className='label-name'
-                                                        htmlFor='fullName'
-                                                    >
-                                                        Name of the Account
-                                                    </label>
-                                                    <button className='question-icon ml-2'>
-                                                        ?
-                                                    </button>
-                                                </div>
-                                                <div>
-                                                    <input
-                                                        type='text'
-                                                        className='form-control input-box'
-                                                        placeholder='Gaji asif'
-                                                    />
-                                                </div>
-                                            </div>
-
-                                            <div className='mb-4'>
-                                                <div className='row'>
-                                                    <div className='col-lg-6'>
-                                                        <div className='d-flex align-items-center mb-3'>
-                                                            <label
-                                                                className='label-name'
-                                                                htmlFor='email'
-                                                            >
-                                                                IBAN
-                                                            </label>
-                                                            <button className='question-icon ml-2'>
-                                                                ?
-                                                            </button>
-                                                        </div>
-                                                        <div>
-                                                            <input
-                                                                type='text'
-                                                                className='form-control input-box'
-                                                                placeholder='lora.king@gmail.com'
-                                                            />
-                                                        </div>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className='form-container mb-3'>
+                                                <div className='mb-4'>
+                                                    <div className='d-flex align-items-center mb-3'>
+                                                        <label
+                                                            className='label-name'
+                                                            htmlFor='fullName'
+                                                        >
+                                                            Name of the Account
+                                                        </label>
+                                                        <button className='question-icon ml-2'>
+                                                            ?
+                                                        </button>
                                                     </div>
-                                                    <div className='col-lg-6'>
-                                                        <div className='d-flex align-items-center mb-3'>
-                                                            <label
-                                                                className='label-name'
-                                                                htmlFor='phoneNumber'
-                                                            >
-                                                                Bank Name
-                                                            </label>
-                                                            <button className='question-icon ml-2'>
-                                                                ?
-                                                            </button>
-                                                        </div>
-
-                                                        <div>
-                                                            <input
-                                                                type='text'
-                                                                className='form-control input-box'
-                                                                placeholder='Bank Name'
-                                                            />
-                                                        </div>
+                                                    <div>
+                                                        <input
+                                                            type='text'
+                                                            className='form-control input-box'
+                                                            placeholder='Gaji asif'
+                                                        />
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className='mb-4'>
-                                                <div className='d-flex align-items-center mb-3'>
-                                                    <label
-                                                        className='label-name'
-                                                        htmlFor='countryOforigin'
+                                                <div className='mb-4'>
+                                                    <div className='row'>
+                                                        <div className='col-lg-6'>
+                                                            <div className='d-flex align-items-center mb-3'>
+                                                                <label
+                                                                    className='label-name'
+                                                                    htmlFor='email'
+                                                                >
+                                                                    IBAN
+                                                                </label>
+                                                                <button className='question-icon ml-2'>
+                                                                    ?
+                                                                </button>
+                                                            </div>
+                                                            <div>
+                                                                <input
+                                                                    type='text'
+                                                                    className='form-control input-box'
+                                                                    placeholder='lora.king@gmail.com'
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className='col-lg-6'>
+                                                            <div className='d-flex align-items-center mb-3'>
+                                                                <label
+                                                                    className='label-name'
+                                                                    htmlFor='phoneNumber'
+                                                                >
+                                                                    Bank Name
+                                                                </label>
+                                                                <button className='question-icon ml-2'>
+                                                                    ?
+                                                                </button>
+                                                            </div>
+
+                                                            <div>
+                                                                <input
+                                                                    type='text'
+                                                                    className='form-control input-box'
+                                                                    placeholder='Bank Name'
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className='mb-4'>
+                                                    <div className='d-flex align-items-center mb-3'>
+                                                        <label
+                                                            className='label-name'
+                                                            htmlFor='countryOforigin'
+                                                        >
+                                                            SWIFT BIC
+                                                        </label>
+                                                        <button className='question-icon ml-2'>
+                                                            ?
+                                                        </button>
+                                                    </div>
+                                                    <div>
+                                                        <input
+                                                            type='text'
+                                                            className='form-control input-box'
+                                                            placeholder='**********'
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className='d-flex justify-content-between mb-5 pb-5'>
+                                                    <a
+                                                        href='/'
+                                                        className='gradient-btn gradient-lime'
                                                     >
-                                                        SWIFT BIC
-                                                    </label>
-                                                    <button className='question-icon ml-2'>
-                                                        ?
+                                                        Cancel
+                                                    </a>
+                                                    <button type="submit" className='gradient-btn gradient-blue gradient-lime'>
+                                                        Add Account
                                                     </button>
                                                 </div>
-                                                <div>
-                                                    <input
-                                                        type='text'
-                                                        className='form-control input-box'
-                                                        placeholder='**********'
-                                                    />
-                                                </div>
                                             </div>
-
-                                            <div className='d-flex justify-content-between mb-5 pb-5'>
-                                                <button className='gradient-btn gradient-lime'>
-                                                    Cancel
-                                                </button>
-                                                <button className='gradient-btn gradient-blue gradient-lime'>
-                                                    Add Account
-                                                </button>
-                                            </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

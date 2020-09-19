@@ -1,6 +1,6 @@
 import React from "react"
 import { Dropdown } from "react-bootstrap"
-import { FaSignInAlt } from "react-icons/fa"
+import { FaBars, FaSignInAlt } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import auth from "../helpers/auth"
 
@@ -28,7 +28,7 @@ const Header = props => {
                         aria-expanded='false'
                         aria-label='Toggle navigation'
                     >
-                        <i className='fas fa-bars'></i>
+                        <FaBars />
                     </button>
                     <div
                         className='collapse navbar-collapse'
@@ -41,11 +41,11 @@ const Header = props => {
                                     <span className='sr-only'>(current)</span>
                                 </a>
                             </li>
-                            <li className='nav-item'>
+                            {/* <li className='nav-item'>
                                 <a className='nav-link' href='/news'>
                                     News
                                 </a>
-                            </li>
+                            </li> */}
 
                             {userInfo && userInfo.token ? (
                                 <li className='nav-item'>
@@ -71,7 +71,7 @@ const Header = props => {
                                         >
                                             <img
                                                 className='mr-2'
-                                                src='assets/images/icons/sign-in.png'
+                                                src='/images/icons/sign-in.png'
                                                 alt=''
                                             />
                                             Sign In

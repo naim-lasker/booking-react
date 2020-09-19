@@ -26,7 +26,7 @@ const SignInPage = (props) => {
         event.preventDefault()
 
         if (code !== "sWwm") {
-            return notify("error", "Captcha code doesnot match")
+            return notify("error", "Captcha code does not match")
         }
 
         setLoading(true)

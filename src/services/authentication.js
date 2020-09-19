@@ -43,8 +43,10 @@ export const Login = (email, password, callback) => {
 /**
  * Method: POST
  * Provider SignIn
+ * @param {* email} firstName
+ * @param {* lastName} lastName
  * @param {* email} email
- * @param {* valid password} password
+ * @param {* password} password
  * @param {*is function that return reponse data or err in promise} callback
  */
 
@@ -81,8 +83,10 @@ export const ProviderSignIn = (
 /**
  * Method: POST
  * User SignIn
+ * @param {* email} firstName
+ * @param {* lastName} lastName
  * @param {* email} email
- * @param {* valid password} password
+ * @param {* password} password
  * @param {*is function that return reponse data or err in promise} callback
  */
 
