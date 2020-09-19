@@ -7,8 +7,6 @@ import auth from "../helpers/auth"
 const Header = props => {
     const userInfo = auth.getUserInfo()
 
-    console.log('userInfo', userInfo);
-
     const logOut = () => {
         auth.clearUserInfo()
         window.location.href = "/login"
