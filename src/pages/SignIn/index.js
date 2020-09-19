@@ -12,31 +12,42 @@ import auth from "../../helpers/auth"
 const SignInPage = (props) => {
     const userInfo = auth.getUserInfo()
 
-    if(userInfo && userInfo.token) {
+    if (userInfo && userInfo.token) {
         window.location.href = "/user-add-account"
     }
-    
+
     const dispatch = useDispatch()
     const [email, setEmail] = useInput("")
     const [password, setPasword] = useInput("")
+    const [code, setCode] = useInput("")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        if (code !== "sWwm") {
+            return notify("error", "Captcha code doesnot match")
+        }
+        
         setLoading(true)
+
         dispatch(
             Login(email, password, (res, err) => {
                 console.log("login res1", res)
                 setLoading(false)
 
-                if (res.data && res.data.status == "error") {
+                if (res && res.data && res.data.status == "error") {
                     return notify("error", res.data.data)
                 }
-                
-                if(res) {
+
+                if (res) {
                     if (res.data && res.data.data && res.data.data.role == 1) {
                         window.location.href = "/provider-add-account"
-                    } else if(res.data && res.data.data && res.data.data.role == 2) {
+                    } else if (
+                        res.data &&
+                        res.data.data &&
+                        res.data.data.role == 2
+                    ) {
                         window.location.href = "/user-add-account"
                     }
                 }
@@ -119,9 +130,12 @@ const SignInPage = (props) => {
                                                     <span>sWwm</span>
                                                 </div>
                                                 <input
+                                                    required
                                                     type='text'
                                                     className='form-control input-box'
                                                     placeholder='Type the code shown'
+                                                    value={code}
+                                                    onChange={setCode}
                                                 />
                                             </div>
 
