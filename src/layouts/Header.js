@@ -1,4 +1,5 @@
 import React from "react"
+import { Dropdown } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const Header = () => {
@@ -37,10 +38,10 @@ const Header = () => {
                                 </a>
                             </li>
                             <li className='nav-item mx-lg-4 mx-0'>
-                                <div className='authenticate d-flex flex-column flex-lg-row dropdown'>
+                                <div className='authenticate d-flex flex-column flex-lg-row align-items-center dropdown'>
                                     <Link
                                         to='/login'
-                                        className='nav-link dropdown-toggle text-left mb-2 mb-lg-0'
+                                        className='nav-link mb-2 mb-lg-0'
                                         type='button'
                                         id='dropdownSignIn'
                                         data-toggle='dropdown'
@@ -55,27 +56,23 @@ const Header = () => {
                                         Sign In
                                     </Link>
 
-                                    <div
-                                        className='dropdown-menu'
-                                        aria-labelledby='dropdownSignIn'
-                                    >
-                                        <Link
-                                            className='dropdown-item'
-                                            to='/login'
+                                    <Dropdown>
+                                        <Dropdown.Toggle className="nav-link text-left mb-2 mb-lg-0"
+                                            variant='success'
+                                            id='dropdown-basic'
                                         >
-                                            Sign in as Provider
-                                        </Link>
-                                        <Link
-                                            className='dropdown-item'
-                                            to='/login'
-                                        >
-                                            Sign in as User
-                                        </Link>
-                                    </div>
+                                            Sign Up
+                                        </Dropdown.Toggle>
 
-                                    <Link className='nav-link' to='/'>
-                                        Sign Up
-                                    </Link>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href='/provider-signup'>
+                                                Sign in as Provider
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href='#/action-2'>
+                                                Sign in as User
+                                            </Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
                                 </div>
                             </li>
                         </ul>

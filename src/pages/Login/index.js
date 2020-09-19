@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
-import Header from "../../../layouts/Header"
-import Footer from "../../../layouts/Footer"
-import { Login } from "../../../services/authentication"
-import { useInput } from "../../../helpers/common"
+import Header from "../../layouts/Header"
+import Footer from "../../layouts/Footer"
+import { Login } from "../../services/authentication"
+import { useInput } from "../../helpers/common"
 import { ToastContainer } from "react-toastify"
-import { notify } from "../../../helpers/ui"
+import { notify } from "../../helpers/ui"
 
 const LoginPage = (props) => {
     const dispatch = useDispatch()
@@ -49,7 +49,7 @@ const LoginPage = (props) => {
                                                     alt=''
                                                 />
                                                 <span className='ml-2'>
-                                                    Provider Sign in
+                                                    Sign in
                                                 </span>
                                             </h2>
                                             <div>
