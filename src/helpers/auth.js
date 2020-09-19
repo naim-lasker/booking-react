@@ -1,7 +1,6 @@
 import { isEmpty } from "lodash"
 
-// const TOKEN_KEY = 'jwtToken';
-const ACC_TOKEN = "token"
+const USER_INFO = "userInfo"
 
 const parse = JSON.parse
 const stringify = JSON.stringify
@@ -36,8 +35,8 @@ const auth = {
         }
     },
 
-    clearToken(tokenKey = ACC_TOKEN) {
-        return auth.clear(tokenKey)
+    clearUserInfo(userInfo = USER_INFO) {
+        return auth.clear(userInfo)
     },
 
     /**
@@ -57,8 +56,8 @@ const auth = {
         return null
     },
 
-    getToken(tokenKey = ACC_TOKEN) {
-        return auth.get(tokenKey)
+    getUserInfo(userInfo = USER_INFO) {
+        return auth.get(userInfo)
     },
 
     /**
@@ -83,8 +82,8 @@ const auth = {
         return null
     },
 
-    setToken(value = "", isLocalStorage = false, tokenKey = ACC_TOKEN) {
-        return auth.set(value, tokenKey, isLocalStorage)
+    setUserInfo(value = "", isLocalStorage = false, userInfo = USER_INFO) {
+        return auth.set(value, userInfo, isLocalStorage)
     },
 }
 

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { Login } from "../../../services/authentication"
+import { ProviderSignIn } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
@@ -12,23 +12,25 @@ const LoginPage = (props) => {
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useInput("Naim")
     const [lastName, setLastName] = useInput("Lasker")
-    const [email, setEmail] = useInput("naim@gmail.com")
+    const [email, setEmail] = useInput("provider1@gmail.com")
     const [password, setPasword] = useInput("123456")
-    const [consfirmPassword, setConsfirmPassword] = useInput("naim@gmail.com")
+    const [consfirmPassword, setConsfirmPassword] = useInput("123456")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
+
+        
         dispatch(
-            Login(email, password, (res, err) => {
+            ProviderSignIn(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
                 if (res.data.status == "error") {
                     return notify("error", res.data.data)
                 }
 
-                console.log("login res", res)
-                props.history.push("/")
+                console.log("sign up res", res)
+                props.history.push("/login")
             })
         )
     }

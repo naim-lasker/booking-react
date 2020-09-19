@@ -7,8 +7,17 @@ import { Login } from "../../services/authentication"
 import { useInput } from "../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../helpers/ui"
+import auth from "../../helpers/auth"
 
-const LoginPage = (props) => {
+const SignInPage = (props) => {
+    const userInfo = auth.getUserInfo()
+
+    if(userInfo && userInfo.token) {
+        window.location.href = "/user-add-account"
+    }
+    
+
+    console.log('userInfo', userInfo);
     const dispatch = useDispatch()
     const [email, setEmail] = useInput("naim@gmail.com")
     const [password, setPasword] = useInput("123456")
@@ -20,12 +29,12 @@ const LoginPage = (props) => {
         dispatch(
             Login(email, password, (res, err) => {
                 setLoading(false)
-                if (res.data.status == "error") {
+                if (res.data && res.data.status == "error") {
                     return notify("error", res.data.data)
                 }
 
                 console.log("login res", res)
-                props.history.push('/')
+                window.location.href = "/user-add-account"
             })
         )
     }
@@ -134,7 +143,7 @@ const LoginPage = (props) => {
                                                             size='sm'
                                                             role='status'
                                                             aria-hidden='true'
-                                                            className="ml-2 mb-1"
+                                                            className='ml-2 mb-1'
                                                         />
                                                     )}
                                                 </button>
@@ -151,4 +160,4 @@ const LoginPage = (props) => {
         </Fragment>
     )
 }
-export default LoginPage
+export default SignInPage
