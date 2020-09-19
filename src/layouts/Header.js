@@ -16,7 +16,7 @@ const Header = props => {
         <header className='header-area pb-3 pb-lg-5'>
             <div className='container'>
                 <nav className='navbar navbar-expand-lg'>
-                    <a className='navbar-brand' href='/'>
+                    <a className='navbar-brand' href='/promotion'>
                         <img src='/images/logo.png' alt='' />
                     </a>
                     <button
