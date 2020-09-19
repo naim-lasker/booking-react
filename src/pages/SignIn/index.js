@@ -28,7 +28,7 @@ const SignInPage = (props) => {
         if (code !== "sWwm") {
             return notify("error", "Captcha code doesnot match")
         }
-        
+
         setLoading(true)
 
         dispatch(
@@ -141,9 +141,9 @@ const SignInPage = (props) => {
 
                                             <div className='mt-4 d-flex flex-sm-row flex-column-reverse justify-content-between align-items-center'>
                                                 <p className='m-0'>
-                                                    Not registered yet?{" "}
+                                                    <span className="mr-2">Not registered yet?</span>
                                                     <a
-                                                        href='/'
+                                                        href='/user-signup'
                                                         className='not-registered'
                                                     >
                                                         Click here
