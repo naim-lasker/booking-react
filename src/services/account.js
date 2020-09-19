@@ -1,4 +1,5 @@
 import { Config } from '../config/index'
+import auth from '../helpers/auth'
 import httpRequest from '../helpers/request'
 
 const base_url = Config.base_url
@@ -6,38 +7,38 @@ const base_url = Config.base_url
 
 /**
  * Method: GET
- * access_token from reducer state by using getState() function
  * @param {*} merchantId
  * @param {*} page
  * @param {*} perPage
  * @param {*} callback
  */
-export const addAccountDetails = (merchantId, page, perPage, callback) => {
+export const addAccountDetails = (bankAccountName, iban, bankName, swiftBic, callback) => {
+    const userInfo = auth.getUserInfo()
 
-    return async (dispatch, getState) => {
+    return async (dispatch) => {
         const body = {
-            role: 2,
-            first_name: firstName,
-            last_name: lastName,
-            email,
-            password,
+            bank_account_name: bankAccountName,
+            iban: iban,
+            bank_name: bankName,
+            swift_bic: swiftBic,
         }
 
         try {
-            const access_token = getState().auth.login.access_token
+            const token = userInfo.token
 
-            return console.log('access_token', access_token);
-            const api = base_url + '/auth/merchants-notifications/' + merchantId + '?&page=' + page + '&per_page=' + perPage
+            console.log('token', token);
 
-            dispatch({ type: 'NOTIFICATION_LIST_PENDING', api })
-            const response = await httpRequest.get(api, true, access_token, body)
+            const api = base_url + '/auth/merchants-notifications/'
 
-            dispatch({ type: 'NOTIFICATION_LIST_SUCCESS', payload: response })
+            dispatch({ type: 'ADD_ACCOUNT_DETAILS_PENDING', api })
+            const response = await httpRequest.get(api, true, token, body)
+
+            dispatch({ type: 'ADD_ACCOUNT_DETAILS_SUCCESS', payload: response })
             callback(response, null)
 
         } catch (error) {
             callback(null, error.response)
-            console.log('NOTIFICATION_LIST_ERROR--->', error.response)
+            console.log('ADD_ACCOUNT_DETAILS_ERROR--->', error.response)
         }
     }
 }

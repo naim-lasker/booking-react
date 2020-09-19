@@ -21,6 +21,7 @@ const AddProviderAccount = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        return
         setLoading(true)
 
         dispatch(

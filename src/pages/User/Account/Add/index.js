@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
-import { UserSignIn } from "../../../../services/authentication"
+import { addAccountDetails } from "../../../../services/account"
 import { useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
@@ -12,27 +12,33 @@ import { FaHome } from "react-icons/fa"
 
 const AddUserAccount = (props) => {
     const dispatch = useDispatch()
-    const [firstName, setFirstName] = useInput("Naim")
-    const [lastName, setLastName] = useInput("Lasker")
-    const [email, setEmail] = useInput("user1@gmail.com")
-    const [password, setPasword] = useInput("123456")
-    const [consfirmPassword, setConsfirmPassword] = useInput("123456")
+    const [bankAccountName, setBankAccountName] = useInput("Jhon Doe")
+    const [iban, setIban] = useInput("123456")
+    const [bankName, setBankName] = useInput("Dutch Bangla")
+    const [swiftBic, setSwiftBic] = useInput("123456")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        return
         setLoading(true)
 
         dispatch(
-            UserSignIn(firstName, lastName, email, password, (res, err) => {
-                setLoading(false)
-                if (res.data.status == "error") {
-                    return notify("error", res.data.data)
-                }
+            addAccountDetails(
+                bankAccountName,
+                iban,
+                bankName,
+                swiftBic,
+                (res, err) => {
+                    setLoading(false)
+                    // if (res.data.status == "error") {
+                    //     return notify("error", res.data.data)
+                    // }
 
-                console.log("sign up res", res)
-                // props.history.push("/")
-            })
+                    console.log("sign up res", res)
+                    // props.history.push("/")
+                }
+            )
         )
     }
 
@@ -75,6 +81,12 @@ const AddUserAccount = (props) => {
                                                             type='text'
                                                             className='form-control input-box'
                                                             placeholder='Gaji asif'
+                                                            value={
+                                                                bankAccountName
+                                                            }
+                                                            onChange={
+                                                                setBankAccountName
+                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -98,6 +110,10 @@ const AddUserAccount = (props) => {
                                                                     type='text'
                                                                     className='form-control input-box'
                                                                     placeholder='lora.king@gmail.com'
+                                                                    value={iban}
+                                                                    onChange={
+                                                                        setIban
+                                                                    }
                                                                 />
                                                             </div>
                                                         </div>
@@ -119,6 +135,12 @@ const AddUserAccount = (props) => {
                                                                     type='text'
                                                                     className='form-control input-box'
                                                                     placeholder='Bank Name'
+                                                                    value={
+                                                                        swiftBic
+                                                                    }
+                                                                    onChange={
+                                                                        setSwiftBic
+                                                                    }
                                                                 />
                                                             </div>
                                                         </div>
@@ -142,6 +164,10 @@ const AddUserAccount = (props) => {
                                                             type='text'
                                                             className='form-control input-box'
                                                             placeholder='**********'
+                                                            value={bankName}
+                                                            onChange={
+                                                                setBankName
+                                                            }
                                                         />
                                                     </div>
                                                 </div>
@@ -153,8 +179,21 @@ const AddUserAccount = (props) => {
                                                     >
                                                         Cancel
                                                     </a>
-                                                    <button type="submit" className='gradient-btn gradient-blue gradient-lime'>
-                                                        Add Account
+                                                    <button
+                                                        type='submit'
+                                                        className='gradient-btn gradient-blue gradient-lime'
+                                                    >
+                                                        <span>Add Account</span>
+                                                        {loading && (
+                                                            <Spinner
+                                                                as='span'
+                                                                animation='border'
+                                                                size='sm'
+                                                                role='status'
+                                                                aria-hidden='true'
+                                                                className='ml-2 mb-1'
+                                                            />
+                                                        )}
                                                     </button>
                                                 </div>
                                             </div>

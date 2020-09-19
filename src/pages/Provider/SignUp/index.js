@@ -21,7 +21,7 @@ const ProviderSignUp = (props) => {
         event.preventDefault()
 
         if(password !== consfirmPassword) {
-            return notify("error", "Your pasword doesnot match!")
+            return notify("error", "Your pasword does not match!")
         }
 
         setLoading(true)
@@ -30,8 +30,10 @@ const ProviderSignUp = (props) => {
             ProviderSignIn(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
 
-                if(err && err.data.contents) {
+                if(err && err.data.contents && err.data.contents.email) {
                     return notify("error", err.data.contents.email[0])
+                } else if(err && err.data.contents && err.data.contents.password) {
+                    return notify("error", err.data.contents.password[0])
                 }
 
                 props.history.push("/login")
@@ -99,7 +101,7 @@ const ProviderSignUp = (props) => {
                                                 <div className='input-group mb-3'>
                                                     <input
                                                         required
-                                                        type='text'
+                                                        type='email'
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Email Address'
                                                         value={email}

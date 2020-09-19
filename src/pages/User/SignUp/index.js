@@ -30,8 +30,12 @@ const UserSignUp = (props) => {
             UserSignIn(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
 
-                if(err && err.data.contents) {
+                console.log('Sign Up response',  res);
+
+                if(err && err.data.contents && err.data.contents.email) {
                     return notify("error", err.data.contents.email[0])
+                } else if(err && err.data.contents && err.data.contents.password) {
+                    return notify("error", err.data.contents.password[0])
                 }
 
                 props.history.push("/login")
@@ -99,7 +103,7 @@ const UserSignUp = (props) => {
                                                 <div className='input-group mb-3'>
                                                     <input
                                                         required
-                                                        type='text'
+                                                        type='email'
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Email Address'
                                                         value={email}
