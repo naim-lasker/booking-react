@@ -28,12 +28,18 @@ const SignInPage = (props) => {
             Login(email, password, (res, err) => {
                 console.log("login res1", res)
                 setLoading(false)
-                if (res && res.data && res.data.status == "error") {
+
+                if (res.data && res.data.status == "error") {
                     return notify("error", res.data.data)
                 }
-
-                console.log("login res2", res)
-                window.location.href = "/user-add-account"
+                
+                if(res) {
+                    if (res.data && res.data.data && res.data.data.role == 1) {
+                        window.location.href = "/provider-add-account"
+                    } else if(res.data && res.data.data && res.data.data.role == 2) {
+                        window.location.href = "/user-add-account"
+                    }
+                }
             })
         )
     }
