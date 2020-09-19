@@ -8,7 +8,7 @@ import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 
-const LoginPage = (props) => {
+const UserSignUp = (props) => {
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useInput("Naim")
     const [lastName, setLastName] = useInput("Lasker")
@@ -19,17 +19,21 @@ const LoginPage = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        setLoading(true)
 
+        if(password !== consfirmPassword) {
+            return notify("error", "Your pasword doesnot match!")
+        }
+
+        setLoading(true)
         
         dispatch(
             UserSignIn(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
-                if (res.data.status == "error") {
-                    return notify("error", res.data.data)
+
+                if(err && err.data.contents) {
+                    return notify("error", err.data.contents.email[0])
                 }
 
-                console.log("sign up res", res)
                 props.history.push("/login")
             })
         )
@@ -149,7 +153,7 @@ const LoginPage = (props) => {
                                                 </div>
 
                                                 <div className='mt-5 d-flex justify-content-between align-items-center'>
-                                                    <p className='mt-4 ml-2'>
+                                                    <label className='mt-4 ml-2'>
                                                         <input
                                                             required
                                                             type='checkbox'
@@ -174,7 +178,7 @@ const LoginPage = (props) => {
                                                                 Terms of use
                                                             </span>
                                                         </a>
-                                                    </p>
+                                                    </label>
 
                                                     <button
                                                         type='submit'
@@ -206,4 +210,4 @@ const LoginPage = (props) => {
         </Fragment>
     )
 }
-export default LoginPage
+export default UserSignUp

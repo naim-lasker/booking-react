@@ -9,8 +9,8 @@ import Main from "../layouts/Main"
 
 
 import SignInPage from "../pages/SignIn"
-import ProviderSignIn from "../pages/Provider/SignUp"
-import UserSignIn from "../pages/User/SignUp"
+import ProviderSignUp from "../pages/Provider/SignUp"
+import UserSignUp from "../pages/User/SignUp"
 import AddUserAccount from "../pages/User/Account/Add"
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
@@ -21,8 +21,8 @@ const Routes = () => {
         <Router history={browserHistory}>
             <Switch>
                 <Page exact component={SignInPage} path='/login' title='Sign In' />
-                <Page exact component={ProviderSignIn} path='/provider-signup' title='Sign Up' />
-                <Page exact component={UserSignIn} path='/user-signup' title='Sign Up' />
+                <Page exact component={ProviderSignUp} path='/provider-signup' title='Sign Up' />
+                <Page exact component={UserSignUp} path='/user-signup' title='Sign Up' />
                 <Page exact component={AddUserAccount} path='/user-add-account' title='Add Acount Details' />
                 <Page exact component={HomePage} path='/' title='Home' />
                 <Page exact component={NewsPage} path='/news' title='News' />

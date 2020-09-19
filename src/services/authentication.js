@@ -35,7 +35,7 @@ export const Login = (email, password, callback) => {
             }
         } catch (error) {
             callback(null, error.response)
-            console.log("LOGIN_ERROR--->", error)
+            console.log("LOGIN_ERROR--->", error.response)
         }
     }
 }
@@ -73,7 +73,7 @@ export const ProviderSignIn = (
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("PROVIDER_SIGNIN_ERROR--->", error)
+            console.log("PROVIDER_SIGNIN_ERROR--->", error.response)
         }
     }
 }
@@ -111,7 +111,7 @@ export const UserSignIn = (
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("USER_SIGNIN_ERROR--->", error)
+            console.log("USER_SIGNIN_ERROR--->", error.response)
         }
     }
 }
