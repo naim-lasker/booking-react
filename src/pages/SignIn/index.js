@@ -16,11 +16,9 @@ const SignInPage = (props) => {
         window.location.href = "/user-add-account"
     }
     
-
-    console.log('userInfo', userInfo);
     const dispatch = useDispatch()
-    const [email, setEmail] = useInput("naim@gmail.com")
-    const [password, setPasword] = useInput("123456")
+    const [email, setEmail] = useInput("")
+    const [password, setPasword] = useInput("")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {

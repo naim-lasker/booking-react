@@ -10,11 +10,11 @@ import { notify } from "../../../helpers/ui"
 
 const ProviderSignUp = (props) => {
     const dispatch = useDispatch()
-    const [firstName, setFirstName] = useInput("Naim")
-    const [lastName, setLastName] = useInput("Lasker")
-    const [email, setEmail] = useInput("provider1@gmail.com")
-    const [password, setPasword] = useInput("123456")
-    const [consfirmPassword, setConsfirmPassword] = useInput("123456")
+    const [firstName, setFirstName] = useInput("")
+    const [lastName, setLastName] = useInput("")
+    const [email, setEmail] = useInput("")
+    const [password, setPasword] = useInput("")
+    const [consfirmPassword, setConsfirmPassword] = useInput("")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
