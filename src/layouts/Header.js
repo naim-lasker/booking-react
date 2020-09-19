@@ -36,8 +36,8 @@ const Header = props => {
                     >
                         <ul className='navbar-nav ml-auto align-items-lg-center'>
                             <li className='nav-item active'>
-                                <a className='nav-link' href='/'>
-                                    Home
+                                <a className='nav-link' href="/promotion">
+                                    Promotion
                                     <span className='sr-only'>(current)</span>
                                 </a>
                             </li>
