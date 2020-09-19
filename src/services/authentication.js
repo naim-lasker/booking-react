@@ -14,43 +14,29 @@ const base_url = Config.base_url
 
 export const Login = (email, password, callback) => {
     return async (dispatch) => {
+        const url = base_url + "/login"
+        const body = {
+            password,
+            email,
+        }
+
         dispatch({ type: "LOGIN_PENDING" })
 
         try {
-            const response = await login(email, password)
+            const response = await httpRequest.post(url, false, null, body)
             dispatch({ type: "LOGIN_SUCCESS", payload: response })
             callback(response, null)
+
+            if (response.data.status === "success") {
+                auth.setToken("token", response.data.data.token)
+                return {
+                    token: response.data.data.token,
+                }
+            }
         } catch (error) {
             callback(null, error.response)
-            console.log("LOGIN_ERROR--->", error.response)
+            console.log("LOGIN_ERROR--->", error)
         }
-    }
-}
-
-/**
- * Method: POST
- * @param {*} email
- * @param {*} password
- */
-
-const login = async (email, password) => {
-    const url = base_url + "/login"
-    const body = {
-        password,
-        email,
-    }
-
-    const response = await httpRequest.post(url, false, null, body)
-
-    console.log("response", response)
-
-    if (response.data.status === "success") {
-        auth.setToken("token", response.data.data.token)
-        return {
-            token: response.data.data.token,
-        }
-    } else {
-        throw Error("login failed")
     }
 }
 

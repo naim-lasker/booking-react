@@ -1,21 +1,27 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
+import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { Login } from "../../../services/authentication"
+import { useInput } from "../../../helpers/common"
+import { ToastContainer } from "react-toastify"
+import { notify } from "../../../helpers/ui"
 
 export default function LoginPage() {
     const dispatch = useDispatch()
-    const [email, setEmail] = useState("naim@gmail.com")
-    const [password, setPasword] = useState("123456")
+    const [email, setEmail] = useInput("naim@gmail.com")
+    const [password, setPasword] = useInput("123456")
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
+        setLoading(true)
         dispatch(
             Login(email, password, (res, err) => {
-                if (err) {
-                    return console.log("login error", err)
+                setLoading(false)
+                if (res.data.status == "error") {
+                    return notify("error", res.data.data)
                 }
 
                 console.log("login res", res)
@@ -25,6 +31,8 @@ export default function LoginPage() {
 
     return (
         <Fragment>
+            <ToastContainer />
+
             <Header />
             <section className='singin-area mb-5 pb-5'>
                 <div className='container'>
@@ -46,16 +54,13 @@ export default function LoginPage() {
                                             <div>
                                                 <div className='input-group mb-3'>
                                                     <input
-                                                        type='text'
+                                                        required
+                                                        type='email'
                                                         autoComplete='on'
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Email Address'
                                                         value={email}
-                                                        onChange={(e) =>
-                                                            setPasword(
-                                                                e.target.value
-                                                            )
-                                                        }
+                                                        onChange={setEmail}
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -69,16 +74,13 @@ export default function LoginPage() {
 
                                                 <div className='input-group'>
                                                     <input
+                                                        required
                                                         type='password'
                                                         autoComplete='on'
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Password'
                                                         value={password}
-                                                        onChange={(e) =>
-                                                            setEmail(
-                                                                e.target.value
-                                                            )
-                                                        }
+                                                        onChange={setPasword}
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -123,7 +125,17 @@ export default function LoginPage() {
                                                     className='gradient-btn gradient-lime mb-sm-0 mb-4'
                                                     type='submit'
                                                 >
-                                                    Log In
+                                                    <span>Log In</span>
+                                                    {loading && (
+                                                        <Spinner
+                                                            as='span'
+                                                            animation='border'
+                                                            size='sm'
+                                                            role='status'
+                                                            aria-hidden='true'
+                                                            className="ml-2 mb-1"
+                                                        />
+                                                    )}
                                                 </button>
                                             </div>
                                         </form>

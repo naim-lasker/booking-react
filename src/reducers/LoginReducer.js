@@ -3,7 +3,6 @@ const INITIAL_STATE = {
 }
 
 export const LoginReducer = (state = INITIAL_STATE, action) => {
-    console.log("action", action)
     switch (action.type) {
         case "LOGIN_SUCCESS":
             return {
