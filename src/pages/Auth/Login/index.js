@@ -8,7 +8,7 @@ import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 
-export default function LoginPage() {
+const LoginPage = (props) => {
     const dispatch = useDispatch()
     const [email, setEmail] = useInput("naim@gmail.com")
     const [password, setPasword] = useInput("123456")
@@ -25,6 +25,7 @@ export default function LoginPage() {
                 }
 
                 console.log("login res", res)
+                props.history.push('/')
             })
         )
     }
@@ -150,3 +151,4 @@ export default function LoginPage() {
         </Fragment>
     )
 }
+export default LoginPage
