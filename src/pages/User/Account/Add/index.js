@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
-import { addAccountDetails } from "../../../../services/account"
+import { addProviderAccountDetails } from "../../../../services/account"
 import { useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
@@ -12,30 +12,35 @@ import { FaHome } from "react-icons/fa"
 
 const AddUserAccount = (props) => {
     const dispatch = useDispatch()
-    const [bankAccountName, setBankAccountName] = useInput("Jhon Doe")
-    const [iban, setIban] = useInput("123456")
-    const [bankName, setBankName] = useInput("Dutch Bangla")
-    const [swiftBic, setSwiftBic] = useInput("123456")
+    const [bankAccountName, setBankAccountName] = useInput("")
+    const [iban, setIban] = useInput("")
+    const [bankName, setBankName] = useInput("")
+    const [swiftBic, setSwiftBic] = useInput("")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        return
         setLoading(true)
 
         dispatch(
-            addAccountDetails(
+            addProviderAccountDetails(
                 bankAccountName,
                 iban,
                 bankName,
                 swiftBic,
                 (res, err) => {
                     setLoading(false)
-                    // if (res.data.status == "error") {
-                    //     return notify("error", res.data.data)
-                    // }
+                    if (res && res.data && res.data.status == "error") {
+                        return notify("error", res.data.data)
+                    } else if (
+                        res &&
+                        res.data &&
+                        res.data.status == "success"
+                    ) {
+                        notify("success", res.data.data)
+                    }
 
-                    console.log("sign up res", res)
+                    console.log("add account res", res)
                     // props.history.push("/")
                 }
             )
@@ -78,6 +83,7 @@ const AddUserAccount = (props) => {
                                                     </div>
                                                     <div>
                                                         <input
+                                                            required
                                                             type='text'
                                                             className='form-control input-box'
                                                             placeholder='Gaji asif'
@@ -107,6 +113,7 @@ const AddUserAccount = (props) => {
                                                             </div>
                                                             <div>
                                                                 <input
+                                                                    required
                                                                     type='text'
                                                                     className='form-control input-box'
                                                                     placeholder='lora.king@gmail.com'
@@ -132,6 +139,7 @@ const AddUserAccount = (props) => {
 
                                                             <div>
                                                                 <input
+                                                                    required
                                                                     type='text'
                                                                     className='form-control input-box'
                                                                     placeholder='Bank Name'
@@ -161,6 +169,7 @@ const AddUserAccount = (props) => {
                                                     </div>
                                                     <div>
                                                         <input
+                                                            required
                                                             type='text'
                                                             className='form-control input-box'
                                                             placeholder='**********'
@@ -174,7 +183,7 @@ const AddUserAccount = (props) => {
 
                                                 <div className='d-flex justify-content-between mb-5 pb-5'>
                                                     <a
-                                                        href='/'
+                                                        href='/promotion'
                                                         className='gradient-btn gradient-lime'
                                                     >
                                                         Cancel

@@ -7,13 +7,14 @@ const base_url = Config.base_url
 
 /**
  * Method: GET
- * @param {*} merchantId
- * @param {*} page
- * @param {*} perPage
+ * @param {*} bankAccountName
+ * @param {*} iban
+ * @param {*} bankName
+ * @param {*} swiftBic
  * @param {*} callback
  */
-export const addAccountDetails = (bankAccountName, iban, bankName, swiftBic, callback) => {
-    const userInfo = auth.getUserInfo()
+export const addProviderAccountDetails = (bankAccountName, iban, bankName, swiftBic, callback) => {
+    // const userInfo = auth.getUserInfo()
 
     return async (dispatch) => {
         const body = {
@@ -21,17 +22,19 @@ export const addAccountDetails = (bankAccountName, iban, bankName, swiftBic, cal
             iban: iban,
             bank_name: bankName,
             swift_bic: swiftBic,
+            user_id: 1,
         }
 
         try {
-            const token = userInfo.token
+            // const token = userInfo.token
 
-            console.log('token', token);
+            // console.log('userInfo', userInfo);
+            // console.log('token', token);
 
-            const api = base_url + '/auth/merchants-notifications/'
+            const api = base_url + '/add_bank_account'
 
             dispatch({ type: 'ADD_ACCOUNT_DETAILS_PENDING', api })
-            const response = await httpRequest.get(api, true, token, body)
+            const response = await httpRequest.post(api, false, null, body)
 
             dispatch({ type: 'ADD_ACCOUNT_DETAILS_SUCCESS', payload: response })
             callback(response, null)
