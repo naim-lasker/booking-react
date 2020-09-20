@@ -12,10 +12,10 @@ import { FaHome } from "react-icons/fa"
 
 const AddProviderAccount = (props) => {
     const dispatch = useDispatch()
-    const [bankAccountName, setBankAccountName] = useInput("Jhon Doe")
-    const [iban, setIban] = useInput("123456")
-    const [bankName, setBankName] = useInput("Dutch Bangla")
-    const [swiftBic, setSwiftBic] = useInput("123456")
+    const [bankAccountName, setBankAccountName] = useInput("")
+    const [iban, setIban] = useInput("")
+    const [bankName, setBankName] = useInput("")
+    const [swiftBic, setSwiftBic] = useInput("")
     const [loading, setLoading] = useState(false)
 
     const handleSubmit = (event) => {
