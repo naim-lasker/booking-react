@@ -1,20 +1,22 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
-import Header from "../../layouts/Header"
-import Footer from "../../layouts/Footer"
-import { Login } from "../../services/authentication"
-import { useInput } from "../../helpers/common"
+import Header from "../../../layouts/Header"
+import Footer from "../../../layouts/Footer"
+import { UserSignIn } from "../../../services/authentication"
+import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
-import { notify } from "../../helpers/ui"
-import auth from "../../helpers/auth"
+import { notify } from "../../../helpers/ui"
+import auth from "../../../helpers/auth"
 
-const SignInPage = (props) => {
+const UserSignIn = (props) => {
     const userInfo = auth.getUserInfo()
 
-    if (userInfo && userInfo.token) {
-        window.location.href = "/user-add-account"
-    }
+    useEffect(() => {
+        if (userInfo && userInfo.token && userInfo.role == 2) {
+            window.location.href = "/user-add-account"
+        }
+    }, [])
 
     const dispatch = useDispatch()
     const [email, setEmail] = useInput("")
@@ -32,23 +34,28 @@ const SignInPage = (props) => {
         setLoading(true)
 
         dispatch(
-            Login(email, password, (res, err) => {
-                console.log("login res1", res)
+            UserSignIn(email, password, (res, err) => {
                 setLoading(false)
 
-                if (res && res.data && res.data.status == "error") {
-                    return notify("error", res.data.data)
-                }
-
-                if (res) {
-                    if (res.data && res.data.data && res.data.data.role == 1) {
-                        window.location.href = "/provider-add-account"
-                    } else if (
-                        res.data &&
-                        res.data.data &&
-                        res.data.data.role == 2
-                    ) {
+                if (err) {
+                    notify(
+                        "error",
+                        err.data && err.data.data
+                            ? err.data.data
+                            : err.data &&
+                              err.data.contents &&
+                              err.data.contents.email
+                            ? err.data.contents.email[0]
+                            : "Something went wrong"
+                    )
+                } else if (res) {
+                    console.log("res", res)
+                    if (res.data && res.data.data && res.data.data.role == 2) {
+                        auth.clearProviderInfo()
+                        auth.setUserInfo(res.data.data)
                         window.location.href = "/user-add-account"
+                    } else {
+                        notify("error", "Please provide valid credential")
                     }
                 }
             })
@@ -141,7 +148,9 @@ const SignInPage = (props) => {
 
                                             <div className='mt-4 d-flex flex-sm-row flex-column-reverse justify-content-between align-items-center'>
                                                 <p className='m-0'>
-                                                    <span className="mr-2">Not registered yet?</span>
+                                                    <span className='mr-2'>
+                                                        Not registered yet?
+                                                    </span>
                                                     <a
                                                         href='/user-signup'
                                                         className='not-registered'
@@ -179,4 +188,4 @@ const SignInPage = (props) => {
         </Fragment>
     )
 }
-export default SignInPage
+export default UserSignIn

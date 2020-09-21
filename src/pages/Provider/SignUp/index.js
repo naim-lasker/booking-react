@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { ProviderSignIn } from "../../../services/authentication"
+import { ProviderSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
@@ -27,7 +27,7 @@ const ProviderSignUp = (props) => {
         setLoading(true)
         
         dispatch(
-            ProviderSignIn(firstName, lastName, email, password, (res, err) => {
+            ProviderSignUp(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
 
                 if(err && err.data.contents && err.data.contents.email) {
@@ -36,7 +36,7 @@ const ProviderSignUp = (props) => {
                     return notify("error", err.data.contents.password[0])
                 }
 
-                props.history.push("/login")
+                props.history.push("/provider-signin")
             })
         )
     }

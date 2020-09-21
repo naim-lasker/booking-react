@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
+import CustomAlert from "../../../../components/UI/SweetAlert"
 
 const AddProviderAccount = (props) => {
     const dispatch = useDispatch()
@@ -16,7 +17,13 @@ const AddProviderAccount = (props) => {
     const [iban, setIban] = useInput("")
     const [bankName, setBankName] = useInput("")
     const [swiftBic, setSwiftBic] = useInput("")
+    const [alert, setAlert] = useState(false)
+    const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
+
+    const hideAlert = () => {
+        setAlert(false)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -33,8 +40,13 @@ const AddProviderAccount = (props) => {
 
                     if (res && res.data && res.data.status == "error") {
                         return notify("error", res.data.data)
-                    }else if (res && res.data && res.data.status == "success") {
-                        notify("success", res.data.data)
+                    } else if (
+                        res &&
+                        res.data &&
+                        res.data.status == "success"
+                    ) {
+                        setMessage(res.data.data)
+                        setAlert(true)
                     }
 
                     console.log("add account res", res)
@@ -49,6 +61,9 @@ const AddProviderAccount = (props) => {
             <ToastContainer />
 
             <Header />
+
+            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+
             <section className='customer-edit-area'>
                 <div className='container'>
                     <div className='row justify-content-center '>
@@ -179,12 +194,15 @@ const AddProviderAccount = (props) => {
                                                 </div>
 
                                                 <div className='d-flex justify-content-between mb-5 pb-5'>
-                                                    <a href="/promotion" className='gradient-btn gradient-lime'>
+                                                    <a
+                                                        href='/promotion'
+                                                        className='gradient-btn gradient-lime'
+                                                    >
                                                         Cancel
                                                     </a>
                                                     <button
                                                         type='submit'
-                                                        className='gradient-btn gradient-blue gradient-lime'
+                                                        className='gradient-btn gradient-blue'
                                                     >
                                                         <span>Add Account</span>
                                                         {loading && (

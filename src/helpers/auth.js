@@ -1,6 +1,7 @@
 import { isEmpty } from "lodash"
 
 const USER_INFO = "userInfo"
+const PROVIDER_INFO = "providerInfo"
 
 const parse = JSON.parse
 const stringify = JSON.stringify
@@ -35,6 +36,10 @@ const auth = {
         }
     },
 
+    clearProviderInfo(providerInfo = PROVIDER_INFO) {
+        return auth.clear(providerInfo)
+    },
+
     clearUserInfo(userInfo = USER_INFO) {
         return auth.clear(userInfo)
     },
@@ -54,6 +59,10 @@ const auth = {
         }
 
         return null
+    },
+
+    getProviderInfo(providerInfo = PROVIDER_INFO) {
+        return auth.get(providerInfo)
     },
 
     getUserInfo(userInfo = USER_INFO) {
@@ -80,6 +89,10 @@ const auth = {
         }
 
         return null
+    },
+
+    setProviderInfo(value = "", isLocalStorage = false, providerInfo = PROVIDER_INFO) {
+        return auth.set(value, providerInfo, isLocalStorage)
     },
 
     setUserInfo(value = "", isLocalStorage = false, userInfo = USER_INFO) {

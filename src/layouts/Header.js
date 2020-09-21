@@ -4,12 +4,14 @@ import { FaBars, FaSignInAlt } from "react-icons/fa"
 import { Link } from "react-router-dom"
 import auth from "../helpers/auth"
 
-const Header = props => {
+const Header = (props) => {
     const userInfo = auth.getUserInfo()
+    const providerInfo = auth.getProviderInfo()
 
     const logOut = () => {
         auth.clearUserInfo()
-        window.location.href = "/login"
+        auth.clearProviderInfo()
+        window.location.href = "/promotion"
     }
 
     return (
@@ -36,7 +38,7 @@ const Header = props => {
                     >
                         <ul className='navbar-nav ml-auto align-items-lg-center'>
                             <li className='nav-item active'>
-                                <a className='nav-link' href="/promotion">
+                                <a className='nav-link' href='/promotion'>
                                     Promotion
                                     <span className='sr-only'>(current)</span>
                                 </a>
@@ -47,41 +49,47 @@ const Header = props => {
                                 </a>
                             </li> */}
 
-                            {userInfo && userInfo.token ? (
+                            {userInfo && userInfo.token || providerInfo && providerInfo.token ? (
                                 <li className='nav-item'>
                                     <button
                                         className='nav-link sigh-out-btn'
                                         onClick={logOut}
                                     >
-                                        <FaSignInAlt className="mr-2" />
+                                        <FaSignInAlt className='mr-2' />
                                         <span>Log out</span>
                                     </button>
                                 </li>
                             ) : (
                                 <li className='nav-item mx-lg-4 mx-0'>
                                     <div className='authenticate d-flex flex-column flex-lg-row align-items-center dropdown'>
-                                        <Link
-                                            to='/login'
-                                            className='nav-link mb-2 mb-lg-0'
-                                            type='button'
-                                            id='dropdownSignIn'
-                                            data-toggle='dropdown'
-                                            aria-haspopup='true'
-                                            aria-expanded='false'
-                                        >
-                                            <img
-                                                className='mr-2'
-                                                src='/images/icons/sign-in.png'
-                                                alt=''
-                                            />
-                                            Sign In
-                                        </Link>
 
                                         <Dropdown>
                                             <Dropdown.Toggle
                                                 className='nav-link text-left mb-2 mb-lg-0'
                                                 variant='success'
-                                                id='dropdown-basic'
+                                            >
+                                                <img
+                                                    className='mr-2'
+                                                    src='/images/icons/sign-in.png'
+                                                    alt=''
+                                                />
+                                                Sign In
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item href='/provider-signin'>
+                                                    Sign in as Provider
+                                                </Dropdown.Item>
+                                                <Dropdown.Item href='/user-signin'>
+                                                    Sign in as User
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+
+                                        <Dropdown>
+                                            <Dropdown.Toggle
+                                                className='nav-link text-left mb-2 mb-lg-0'
+                                                variant='success'
                                             >
                                                 Sign Up
                                             </Dropdown.Toggle>

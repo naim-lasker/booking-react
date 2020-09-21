@@ -3,27 +3,34 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
-import { addProviderAccountDetails } from "../../../../services/account"
+import { addUserAccountDetails } from "../../../../services/account"
 import { useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
+import CustomAlert from "../../../../components/UI/SweetAlert"
 
 const AddUserAccount = (props) => {
     const dispatch = useDispatch()
-    const [bankAccountName, setBankAccountName] = useInput("")
-    const [iban, setIban] = useInput("")
-    const [bankName, setBankName] = useInput("")
-    const [swiftBic, setSwiftBic] = useInput("")
+    const [bankAccountName, setBankAccountName] = useInput("Gazi Asif")
+    const [iban, setIban] = useInput("1234")
+    const [bankName, setBankName] = useInput("Dutch Bangla")
+    const [swiftBic, setSwiftBic] = useInput("123456")
     const [loading, setLoading] = useState(false)
+    const [alert, setAlert] = useState(false)
+    const [message, setMessage] = useState("")
+
+    const hideAlert = () => {
+        setAlert(false)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         setLoading(true)
 
         dispatch(
-            addProviderAccountDetails(
+            addUserAccountDetails(
                 bankAccountName,
                 iban,
                 bankName,
@@ -37,7 +44,8 @@ const AddUserAccount = (props) => {
                         res.data &&
                         res.data.status == "success"
                     ) {
-                        notify("success", res.data.data)
+                        setMessage(res.data.data)
+                        setAlert(true)
                     }
 
                     console.log("add account res", res)
@@ -52,6 +60,9 @@ const AddUserAccount = (props) => {
             <ToastContainer />
 
             <Header />
+
+            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+
             <section className='customer-edit-area'>
                 <div className='container'>
                     <div className='row justify-content-center '>

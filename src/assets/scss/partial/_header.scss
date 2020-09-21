@@ -162,6 +162,17 @@
                     border-color: transparent;
                 }
             }
+            &:first-child {
+                .dropdown-menu {
+                    left: -6px !important;
+                }
+                .nav-link {
+                    padding-left: 0px;
+                    &::before {
+                        content: none;
+                    }
+                }
+            }
         }
         .dropdown-menu {
             left: -78px !important;
