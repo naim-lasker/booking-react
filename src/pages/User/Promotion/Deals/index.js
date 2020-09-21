@@ -11,7 +11,7 @@ const PromotionDealsPage = () => {
                 <Breadcrumb
                     icon={<FaHome />}
                     names={[
-                        { name: "Promotion", link: "/test1" },
+                        { name: "Promotion", link: "/promotion" },
                         { name: "Leave a review" },
                     ]}
                 />

@@ -11,7 +11,7 @@ const base_url = Config.base_url
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const ProviderSignIn = (email, password, callback) => {
+export const providerSignIn = (email, password, callback) => {
     return async (dispatch) => {
         try {
             const url = base_url + "/login"
@@ -46,7 +46,7 @@ export const ProviderSignIn = (email, password, callback) => {
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const ProviderSignUp = (
+export const providerSignUp = (
     firstName,
     lastName,
     email,
@@ -84,7 +84,7 @@ export const ProviderSignUp = (
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const UserSignIn = (email, password, callback) => {
+export const userSignUp = (email, password, callback) => {
     return async (dispatch) => {
         try {
             const url = base_url + "/login"
@@ -120,7 +120,7 @@ export const UserSignIn = (email, password, callback) => {
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const UserSignUp = (firstName, lastName, email, password, callback) => {
+export const userSignIn = (firstName, lastName, email, password, callback) => {
     return async (dispatch) => {
         const url = base_url + "/new_register"
         const body = {

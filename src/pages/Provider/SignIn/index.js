@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { ProviderSignIn } from "../../../services/authentication"
+import { providerSignIn } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import auth from "../../../helpers/auth"
 
-const SignInPage = (props) => {
+const ProviderSignIn = (props) => {
     const providerInfo = auth.getProviderInfo()
 
     const dispatch = useDispatch()
@@ -34,7 +34,7 @@ const SignInPage = (props) => {
         setLoading(true)
 
         dispatch(
-            ProviderSignIn(email, password, (res, err) => {
+            providerSignIn(email, password, (res, err) => {
                 setLoading(false)
 
                 if (err) {
@@ -187,4 +187,4 @@ const SignInPage = (props) => {
         </Fragment>
     )
 }
-export default SignInPage
+export default ProviderSignIn

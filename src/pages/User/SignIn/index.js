@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { UserSignIn } from "../../../services/authentication"
+import { userSignIn } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
@@ -34,7 +34,7 @@ const UserSignIn = (props) => {
         setLoading(true)
 
         dispatch(
-            UserSignIn(email, password, (res, err) => {
+            userSignIn(email, password, (res, err) => {
                 setLoading(false)
 
                 if (err) {

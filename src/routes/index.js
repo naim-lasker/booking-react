@@ -7,13 +7,14 @@ import browserHistory from "./History"
 import RouteWithLayout from "./RouteWithLayout"
 import Main from "../layouts/Main"
 
-import UserSignIn from "../pages/User/SignIn"
 import ProviderSignIn from "../pages/Provider/SignIn"
 import ProviderSignUp from "../pages/Provider/SignUp"
 import AddProviderAccount from "../pages/Provider/Account/Add"
 
+import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
 import AddUserAccount from "../pages/User/Account/Add"
+
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
 import PromotionDealsPage from "../pages/User/Promotion/Deals"

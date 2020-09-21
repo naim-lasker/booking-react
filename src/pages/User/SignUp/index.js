@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { UserSignUp } from "../../../services/authentication"
+import { userSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
@@ -27,7 +27,7 @@ const UserSignUp = (props) => {
         setLoading(true)
         
         dispatch(
-            UserSignUp(firstName, lastName, email, password, (res, err) => {
+            userSignUp(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
 
                 console.log('Sign Up response',  res);
