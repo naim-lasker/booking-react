@@ -11,15 +11,16 @@ import CustomAlert from "../../../components/UI/SweetAlert"
 
 const ProviderSignUp = (props) => {
     const dispatch = useDispatch()
-    const [firstName, handleFirstName, setFirstName] = useInput("provider6")
-    const [lastName, handlesetLastName, setLastName] = useInput("Three")
-    const [email, handleEmail, setEmail] = useInput("provider6@gmail.com")
-    const [password, handlePasword, setPasword] = useInput("123456")
+
+    const [firstName, handleFirstName, setFirstName] = useInput("")
+    const [lastName, handlesetLastName, setLastName] = useInput("")
+    const [email, handleEmail, setEmail] = useInput("")
+    const [password, handlePasword, setPasword] = useInput("")
     const [
         confirmPassword,
         handleConfirmPassword,
         setConfirmPassword,
-    ] = useInput("123456")
+    ] = useInput("")
     const [loading, setLoading] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
@@ -50,9 +51,11 @@ const ProviderSignUp = (props) => {
                 if (err) {
                     notify(
                         "error",
-                        err.data.contents && err.data.contents.email
+                        err.data && err.data.contents && err.data.contents.email
                             ? err.data.contents.email[0]
-                            : err.data.contents && err.data.contents.password
+                            : err.data &&
+                              err.data.contents &&
+                              err.data.contents.password
                             ? err.data.contents.password[0]
                             : "Something went wrong"
                     )
