@@ -31,6 +31,7 @@ const ProviderCreateStore = (props) => {
         setAddress("")
         setAbout("")
         setAlert(false)
+        props.history.push("/")
     }
 
     const handleSubmit = (event) => {

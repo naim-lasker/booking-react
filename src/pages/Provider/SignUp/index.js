@@ -65,7 +65,7 @@ const ProviderSignUp = (props) => {
                         res.data.contents &&
                         res.data.contents.role == 1
                     ) {
-                        setMessage(email + " is successfully registered.")
+                        setMessage(email + " is registered successfully.")
                         setAlert(true)
                     }
                 }
