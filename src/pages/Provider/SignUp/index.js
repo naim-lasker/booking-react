@@ -7,36 +7,65 @@ import { providerSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
+import CustomAlert from "../../../components/UI/SweetAlert"
 
 const ProviderSignUp = (props) => {
     const dispatch = useDispatch()
-    const [firstName, setFirstName] = useInput("")
-    const [lastName, setLastName] = useInput("")
-    const [email, setEmail] = useInput("")
-    const [password, setPasword] = useInput("")
-    const [consfirmPassword, setConsfirmPassword] = useInput("")
+    const [firstName, handleFirstName, setFirstName] = useInput("provider6")
+    const [lastName, handlesetLastName, setLastName] = useInput("Three")
+    const [email, handleEmail, setEmail] = useInput("provider6@gmail.com")
+    const [password, handlePasword, setPasword] = useInput("123456")
+    const [
+        confirmPassword,
+        handleConfirmPassword,
+        setConfirmPassword,
+    ] = useInput("123456")
     const [loading, setLoading] = useState(false)
+    const [alert, setAlert] = useState(false)
+    const [message, setMessage] = useState("")
+
+    const hideAlert = () => {
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setPasword("")
+        setConfirmPassword("")
+        setAlert(false)
+        props.history.push("/provider-signin")
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        if(password !== consfirmPassword) {
+        if (password !== confirmPassword) {
             return notify("error", "Your pasword does not match!")
         }
 
         setLoading(true)
-        
+
         dispatch(
             providerSignUp(firstName, lastName, email, password, (res, err) => {
                 setLoading(false)
 
-                if(err && err.data.contents && err.data.contents.email) {
-                    return notify("error", err.data.contents.email[0])
-                } else if(err && err.data.contents && err.data.contents.password) {
-                    return notify("error", err.data.contents.password[0])
+                if (err) {
+                    notify(
+                        "error",
+                        err.data.contents && err.data.contents.email
+                            ? err.data.contents.email[0]
+                            : err.data.contents && err.data.contents.password
+                            ? err.data.contents.password[0]
+                            : "Something went wrong"
+                    )
+                } else if (res) {
+                    if (
+                        res.data &&
+                        res.data.contents &&
+                        res.data.contents.role == 1
+                    ) {
+                        setMessage(email + " is successfully registered.")
+                        setAlert(true)
+                    }
                 }
-
-                props.history.push("/provider-signin")
             })
         )
     }
@@ -46,6 +75,9 @@ const ProviderSignUp = (props) => {
             <ToastContainer />
 
             <Header />
+
+            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+
             <section className='singin-area mb-5 pb-5'>
                 <div className='container'>
                     <div className='row justify-content-center'>
@@ -69,7 +101,9 @@ const ProviderSignUp = (props) => {
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter First Name'
                                                         value={firstName}
-                                                        onChange={setFirstName}
+                                                        onChange={
+                                                            handleFirstName
+                                                        }
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -87,7 +121,9 @@ const ProviderSignUp = (props) => {
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Last Name'
                                                         value={lastName}
-                                                        onChange={setLastName}
+                                                        onChange={
+                                                            handlesetLastName
+                                                        }
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -105,7 +141,7 @@ const ProviderSignUp = (props) => {
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Email Address'
                                                         value={email}
-                                                        onChange={setEmail}
+                                                        onChange={handleEmail}
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -124,7 +160,7 @@ const ProviderSignUp = (props) => {
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Password'
                                                         value={password}
-                                                        onChange={setPasword}
+                                                        onChange={handlePasword}
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>
@@ -141,8 +177,10 @@ const ProviderSignUp = (props) => {
                                                         type='password'
                                                         className='form-control input-box py-2 border-right-0'
                                                         placeholder='Enter Confirm Password'
-                                                        value={consfirmPassword}
-                                                        onChange={setConsfirmPassword}
+                                                        value={confirmPassword}
+                                                        onChange={
+                                                            handleConfirmPassword
+                                                        }
                                                     />
                                                     <span className='input-group-append'>
                                                         <div className='input-group-text bg-transparent'>

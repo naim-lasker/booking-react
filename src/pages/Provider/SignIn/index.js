@@ -52,7 +52,7 @@ const ProviderSignIn = (props) => {
                     if (res.data && res.data.data && res.data.data.role == 1) {
                         auth.clearUserInfo()
                         auth.setProviderInfo(res.data.data)
-                        window.location.href = "/provider-add-account"
+                        window.location.href = "/provider-create-store"
                     } else {
                         notify("error", "Please provide valid credential")
                     }

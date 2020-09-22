@@ -20,10 +20,10 @@ export const providerSignIn = (email, password, callback) => {
                 password,
             }
 
-            dispatch({ type: "LOGIN_PENDING" })
+            dispatch({ type: "PROVIDER_SIGN_IN_PENDING" })
 
             const response = await httpRequest.post(url, false, null, body)
-            dispatch({ type: "LOGIN_SUCCESS", payload: response })
+            dispatch({ type: "PROVIDER_SIGN_IN_SUCCESS", payload: response })
             callback(response, null)
 
             if (response.data.status === "success") {
@@ -31,7 +31,7 @@ export const providerSignIn = (email, password, callback) => {
             }
         } catch (error) {
             callback(null, error.response)
-            console.log("LOGIN_ERROR--->", error.response)
+            console.log("PROVIDER_SIGN_IN_ERROR--->", error.response)
         }
     }
 }
@@ -63,15 +63,15 @@ export const providerSignUp = (
             password,
         }
 
-        dispatch({ type: "PROVIDER_SIGNIN_PENDING" })
+        dispatch({ type: "PROVIDER_SIGN_UP_PENDING" })
 
         try {
             const response = await httpRequest.post(url, false, null, body)
-            dispatch({ type: "PROVIDER_SIGNIN_SUCCESS", payload: response })
+            dispatch({ type: "PROVIDER_SIGN_UP_SUCCESS", payload: response })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("PROVIDER_SIGNIN_ERROR--->", error.response)
+            console.log("PROVIDER_SIGN_UP_ERROR--->", error.response)
         }
     }
 }
@@ -93,10 +93,10 @@ export const userSignIn = (email, password, callback) => {
                 password,
             }
 
-            dispatch({ type: "LOGIN_PENDING" })
+            dispatch({ type: "USER_SIGN_IN_PENDING" })
 
             const response = await httpRequest.post(url, false, null, body)
-            dispatch({ type: "LOGIN_SUCCESS", payload: response })
+            dispatch({ type: "USER_SIGN_IN_SUCCESS", payload: response })
             callback(response, null)
 
             if (response.data.status === "success") {
@@ -104,7 +104,7 @@ export const userSignIn = (email, password, callback) => {
             }
         } catch (error) {
             callback(null, error.response)
-            console.log("LOGIN_ERROR--->", error.response)
+            console.log("USER_SIGN_IN_ERROR--->", error.response)
         }
     }
 }
@@ -131,15 +131,15 @@ export const userSignUp = (firstName, lastName, email, password, callback) => {
             password,
         }
 
-        dispatch({ type: "USER_SIGNIN_PENDING" })
+        dispatch({ type: "USER_SIGN_UP_PENDING" })
 
         try {
             const response = await httpRequest.post(url, false, null, body)
-            dispatch({ type: "USER_SIGNIN_SUCCESS", payload: response })
+            dispatch({ type: "USER_SIGN_UP_SUCCESS", payload: response })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("USER_SIGNIN_ERROR--->", error.response)
+            console.log("USER_SIGN_UP_ERROR--->", error.response)
         }
     }
 }

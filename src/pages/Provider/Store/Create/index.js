@@ -13,23 +13,23 @@ import CustomAlert from "../../../../components/UI/SweetAlert"
 
 const ProviderCreateStore = (props) => {
     const dispatch = useDispatch()
-    const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput(
-        "http://quizhaat.com/syslex_booking_new/create-store.html"
-    )
-    const [email, handleEmail, setEmail] = useInput("kafi@gmail.com")
-    const [phoneNumber, handlePhoneNumber, setPhoneNumber] = useInput(
-        "01717055477"
-    )
-    const [companyName, handleCompanyName, setCompanyName] = useInput(
-        "Spondon IT"
-    )
-    const [address, handleAddress, setAddress] = useInput("dhaka")
-    const [about, handleAbout, setAbout] = useInput("about about about")
+    const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput("")
+    const [email, handleEmail, setEmail] = useInput("")
+    const [phoneNumber, handlePhoneNumber, setPhoneNumber] = useInput("")
+    const [companyName, handleCompanyName, setCompanyName] = useInput("")
+    const [address, handleAddress, setAddress] = useInput("")
+    const [about, handleAbout, setAbout] = useInput("")
     const [loading, setLoading] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
     const hideAlert = () => {
+        setYoutubeLink("")
+        setEmail("")
+        setPhoneNumber("")
+        setCompanyName("")
+        setAddress("")
+        setAbout("")
         setAlert(false)
     }
 
@@ -264,10 +264,11 @@ const ProviderCreateStore = (props) => {
                                                         </button>
                                                     </div>
                                                     <div>
-                                                        <input
+                                                        <textarea
+                                                            rows='4'
                                                             type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='it is Our Company'
+                                                            className='form-control input-box pt-2'
+                                                            placeholder='It is Our Company'
                                                             value={about}
                                                             onChange={
                                                                 handleAbout
@@ -277,8 +278,21 @@ const ProviderCreateStore = (props) => {
                                                 </div>
 
                                                 <div className='action-buttons d-flex justify-content-center mb-4'>
-                                                    <button className='gradient-btn gradient-blue ml-4'>
-                                                        Create Store
+                                                    <button
+                                                        type='submit'
+                                                        className='gradient-btn gradient-blue ml-4'
+                                                    >
+                                                        <span>Create Store</span>
+                                                        {loading && (
+                                                            <Spinner
+                                                                as='span'
+                                                                animation='border'
+                                                                size='sm'
+                                                                role='status'
+                                                                aria-hidden='true'
+                                                                className='ml-2 mb-1'
+                                                            />
+                                                        )}
                                                     </button>
                                                 </div>
                                             </div>
