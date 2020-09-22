@@ -84,7 +84,7 @@ export const providerSignUp = (
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const userSignUp = (email, password, callback) => {
+export const userSignIn = (email, password, callback) => {
     return async (dispatch) => {
         try {
             const url = base_url + "/login"
@@ -120,7 +120,7 @@ export const userSignUp = (email, password, callback) => {
  * @param {*is function that return reponse data or err in promise} callback
  */
 
-export const userSignIn = (firstName, lastName, email, password, callback) => {
+export const userSignUp = (firstName, lastName, email, password, callback) => {
     return async (dispatch) => {
         const url = base_url + "/new_register"
         const body = {
