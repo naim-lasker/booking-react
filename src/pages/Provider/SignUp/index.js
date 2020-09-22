@@ -164,7 +164,7 @@ const ProviderSignUp = (props) => {
                                                             I agree to the
                                                         </span>
                                                         <a
-                                                            href='#'
+                                                            href='/'
                                                             className='not-registered'
                                                         >
                                                             <span className='mx-2'>
@@ -173,7 +173,7 @@ const ProviderSignUp = (props) => {
                                                         </a>
                                                         &
                                                         <a
-                                                            href='#'
+                                                            href='/'
                                                             className='not-registered'
                                                         >
                                                             <span className='ml-2'>

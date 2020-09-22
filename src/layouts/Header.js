@@ -1,7 +1,6 @@
 import React from "react"
 import { Dropdown } from "react-bootstrap"
 import { FaBars, FaSignInAlt } from "react-icons/fa"
-import { Link } from "react-router-dom"
 import auth from "../helpers/auth"
 
 const Header = (props) => {
@@ -49,7 +48,8 @@ const Header = (props) => {
                                 </a>
                             </li> */}
 
-                            {userInfo && userInfo.token || providerInfo && providerInfo.token ? (
+                            {(userInfo && userInfo.token) ||
+                            (providerInfo && providerInfo.token) ? (
                                 <li className='nav-item'>
                                     <button
                                         className='nav-link sigh-out-btn'
@@ -62,7 +62,6 @@ const Header = (props) => {
                             ) : (
                                 <li className='nav-item mx-lg-4 mx-0'>
                                     <div className='authenticate d-flex flex-column flex-lg-row align-items-center dropdown'>
-
                                         <Dropdown>
                                             <Dropdown.Toggle
                                                 className='nav-link text-left mb-2 mb-lg-0'

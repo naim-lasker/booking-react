@@ -18,6 +18,7 @@ import AddUserAccount from "../pages/User/Account/Add"
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
 import PromotionDealsPage from "../pages/User/Promotion/Deals"
+import ProviderCreateStore from "../pages/Provider/Store/Create"
 
 const Routes = () => {
     return (
@@ -34,6 +35,12 @@ const Routes = () => {
                     component={ProviderSignUp}
                     path='/provider-signup'
                     title='Sign Up'
+                />
+                <Page
+                    exact
+                    component={ProviderCreateStore}
+                    path='/provider-create-store'
+                    title='Create Store'
                 />
                 <Page
                     exact
