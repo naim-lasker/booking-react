@@ -20,7 +20,7 @@ const ProviderSignIn = (props) => {
 
     useEffect(() => {
         if (providerInfo && providerInfo.token && providerInfo.role == 1) {
-            window.location.href = "/provider-add-account"
+            window.location.href = "/provider-create-store"
         }
     }, [])
 
