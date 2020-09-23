@@ -8,6 +8,7 @@ import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import CustomAlert from "../../../components/UI/SweetAlert"
+import { SubmitButton } from "../../../components/UI/Button"
 
 const UserSignUp = (props) => {
     const dispatch = useDispatch()
@@ -79,7 +80,11 @@ const UserSignUp = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
 
             <section className='singin-area mb-5 pb-5'>
                 <div className='container'>
@@ -223,22 +228,11 @@ const UserSignUp = (props) => {
                                                         </a>
                                                     </label>
 
-                                                    <button
-                                                        type='submit'
-                                                        className='primary-btn gradient-btn gradient-lime'
-                                                    >
-                                                        <span>Register</span>
-                                                        {loading && (
-                                                            <Spinner
-                                                                as='span'
-                                                                animation='border'
-                                                                size='sm'
-                                                                role='status'
-                                                                aria-hidden='true'
-                                                                className='ml-2 mb-1'
-                                                            />
-                                                        )}
-                                                    </button>
+                                                    <SubmitButton
+                                                        lime={true}
+                                                        text='Register'
+                                                        loading={loading}
+                                                    />
                                                 </div>
                                             </div>
                                         </form>

@@ -1,18 +1,19 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import { createProviderstore } from "../../../../services/store"
-import { useInput } from "../../../../helpers/common"
+import { useFileInput, useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
+import {SubmitButton} from "../../../../components/UI/Button"
 import { FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
 
 const ProviderCreateStore = (props) => {
     const dispatch = useDispatch()
+    const [avatar, handleAvatar, setAvatar] = useFileInput({ file: '', image: '' });
     const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput("")
     const [email, handleEmail, setEmail] = useInput("")
     const [phoneNumber, handlePhoneNumber, setPhoneNumber] = useInput("")
@@ -22,6 +23,10 @@ const ProviderCreateStore = (props) => {
     const [loading, setLoading] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
+
+    useEffect(() => {
+        // console.log('avatar', avatar);
+    }, [])
 
     const confirmAlert = () => {
         setYoutubeLink("")
@@ -48,12 +53,12 @@ const ProviderCreateStore = (props) => {
                 about,
                 (res, err) => {
                     setLoading(false)
-                    if (res && res.data && res.data.status == "error") {
+                    if (res && res.data && res.data.status === "error") {
                         return notify("error", res.data.data)
                     } else if (
                         res &&
                         res.data &&
-                        res.data.status == "success"
+                        res.data.status === "success"
                     ) {
                         setMessage(res.data.data)
                         setAlert(true)
@@ -97,10 +102,11 @@ const ProviderCreateStore = (props) => {
                                                     className='d-none'
                                                     accept='image/gif, image/jpg, image/jpeg, image/png'
                                                     alt=''
+                                                    onChange={handleAvatar}
                                                 />
                                                 <img
-                                                    className='w-100 h-100'
-                                                    src='/images/profile/profile.png'
+                                                    className='w-100 h-100 rounded-circle'
+                                                    src={avatar.image ? avatar.image : '/images/placeholder/avatar.png'}
                                                     alt=''
                                                 />
                                                 <div className='camera-icon'>
@@ -278,23 +284,12 @@ const ProviderCreateStore = (props) => {
                                                     </div>
                                                 </div>
 
-                                                <div className='action-buttons d-flex justify-content-center mb-4'>
-                                                    <button
-                                                        type='submit'
-                                                        className='gradient-btn gradient-blue ml-4'
-                                                    >
-                                                        <span>Create Store</span>
-                                                        {loading && (
-                                                            <Spinner
-                                                                as='span'
-                                                                animation='border'
-                                                                size='sm'
-                                                                role='status'
-                                                                aria-hidden='true'
-                                                                className='ml-2 mb-1'
-                                                            />
-                                                        )}
-                                                    </button>
+                                                <div className='text-center mb-4'>
+                                                    <SubmitButton
+                                                        blue={true}
+                                                        text="Create Store"
+                                                        loading={loading}
+                                                    />
                                                 </div>
                                             </div>
                                         </form>

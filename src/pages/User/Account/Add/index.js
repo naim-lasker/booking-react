@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import { addUserAccountDetails } from "../../../../services/account"
@@ -10,13 +9,14 @@ import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
+import { SubmitButton } from "../../../../components/UI/Button"
 
 const AddUserAccount = (props) => {
     const dispatch = useDispatch()
-    const [bankAccountName, setBankAccountName] = useInput("Gazi Asif")
-    const [iban, setIban] = useInput("1234")
-    const [bankName, setBankName] = useInput("Dutch Bangla")
-    const [swiftBic, setSwiftBic] = useInput("123456")
+    const [bankAccountName, setBankAccountName] = useInput("")
+    const [iban, setIban] = useInput("")
+    const [bankName, setBankName] = useInput("")
+    const [swiftBic, setSwiftBic] = useInput("")
     const [loading, setLoading] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
@@ -37,18 +37,19 @@ const AddUserAccount = (props) => {
                 swiftBic,
                 (res, err) => {
                     setLoading(false)
-                    if (res && res.data && res.data.status == "error") {
+                    if (res && res.data && res.data.status === "error") {
                         return notify("error", res.data.data)
                     } else if (
                         res &&
                         res.data &&
-                        res.data.status == "success"
+                        res.data.status === "success"
                     ) {
                         setMessage(res.data.data)
                         setAlert(true)
                     }
 
                     console.log("add account res", res)
+                    console.log("add account err", err)
                     // props.history.push("/")
                 }
             )
@@ -199,22 +200,11 @@ const AddUserAccount = (props) => {
                                                     >
                                                         Cancel
                                                     </a>
-                                                    <button
-                                                        type='submit'
-                                                        className='gradient-btn gradient-blue gradient-lime'
-                                                    >
-                                                        <span>Add Account</span>
-                                                        {loading && (
-                                                            <Spinner
-                                                                as='span'
-                                                                animation='border'
-                                                                size='sm'
-                                                                role='status'
-                                                                aria-hidden='true'
-                                                                className='ml-2 mb-1'
-                                                            />
-                                                        )}
-                                                    </button>
+                                                    <SubmitButton
+                                                        blue={true}
+                                                        text='Add Account'
+                                                        loading={loading}
+                                                    />
                                                 </div>
                                             </div>
                                         </form>

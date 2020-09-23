@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import { addProviderAccountDetails } from "../../../../services/account"
@@ -10,6 +9,7 @@ import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
+import { SubmitButton } from "../../../../components/UI/Button"
 
 const AddProviderAccount = (props) => {
     const dispatch = useDispatch()
@@ -38,12 +38,12 @@ const AddProviderAccount = (props) => {
                 (res, err) => {
                     setLoading(false)
 
-                    if (res && res.data && res.data.status == "error") {
+                    if (res && res.data && res.data.status === "error") {
                         return notify("error", res.data.data)
                     } else if (
                         res &&
                         res.data &&
-                        res.data.status == "success"
+                        res.data.status === "success"
                     ) {
                         setMessage(res.data.data)
                         setAlert(true)
@@ -62,7 +62,11 @@ const AddProviderAccount = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
 
             <section className='customer-edit-area'>
                 <div className='container'>
@@ -200,22 +204,11 @@ const AddProviderAccount = (props) => {
                                                     >
                                                         Cancel
                                                     </a>
-                                                    <button
-                                                        type='submit'
-                                                        className='gradient-btn gradient-blue'
-                                                    >
-                                                        <span>Add Account</span>
-                                                        {loading && (
-                                                            <Spinner
-                                                                as='span'
-                                                                animation='border'
-                                                                size='sm'
-                                                                role='status'
-                                                                aria-hidden='true'
-                                                                className='ml-2 mb-1'
-                                                            />
-                                                        )}
-                                                    </button>
+                                                    <SubmitButton
+                                                        blue={true}
+                                                        text='Add Account'
+                                                        loading={loading}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>

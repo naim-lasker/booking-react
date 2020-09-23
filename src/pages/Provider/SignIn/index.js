@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { providerSignIn } from "../../../services/authentication"
@@ -8,6 +7,7 @@ import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import auth from "../../../helpers/auth"
+import { SubmitButton } from "../../../components/UI/Button"
 
 const ProviderSignIn = (props) => {
     const providerInfo = auth.getProviderInfo()
@@ -157,23 +157,13 @@ const ProviderSignIn = (props) => {
                                                         Click here
                                                     </a>
                                                 </p>
-                                                <button
-                                                    href='/promotion'
-                                                    className='gradient-btn gradient-lime mb-sm-0 mb-4'
-                                                    type='submit'
-                                                >
-                                                    <span>Log In</span>
-                                                    {loading && (
-                                                        <Spinner
-                                                            as='span'
-                                                            animation='border'
-                                                            size='sm'
-                                                            role='status'
-                                                            aria-hidden='true'
-                                                            className='ml-2 mb-1'
-                                                        />
-                                                    )}
-                                                </button>
+
+                                                <SubmitButton
+                                                    lime={true}
+                                                    text="Log In"
+                                                    loading={loading}
+                                                    customClass="mb-sm-0 mb-4"
+                                                />
                                             </div>
                                         </form>
                                     </div>

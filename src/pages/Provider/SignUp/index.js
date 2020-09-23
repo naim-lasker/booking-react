@@ -1,6 +1,5 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { providerSignUp } from "../../../services/authentication"
@@ -8,6 +7,7 @@ import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import CustomAlert from "../../../components/UI/SweetAlert"
+import { SubmitButton } from "../../../components/UI/Button"
 
 const ProviderSignUp = (props) => {
     const dispatch = useDispatch()
@@ -223,22 +223,11 @@ const ProviderSignUp = (props) => {
                                                         </a>
                                                     </label>
 
-                                                    <button
-                                                        type='submit'
-                                                        className='primary-btn gradient-btn gradient-lime'
-                                                    >
-                                                        <span>Register</span>
-                                                        {loading && (
-                                                            <Spinner
-                                                                as='span'
-                                                                animation='border'
-                                                                size='sm'
-                                                                role='status'
-                                                                aria-hidden='true'
-                                                                className='ml-2 mb-1'
-                                                            />
-                                                        )}
-                                                    </button>
+                                                    <SubmitButton
+                                                        lime={true}
+                                                        text="Register"
+                                                        loading={loading}
+                                                    />
                                                 </div>
                                             </div>
                                         </form>
