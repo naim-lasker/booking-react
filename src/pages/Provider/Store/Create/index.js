@@ -23,7 +23,7 @@ const ProviderCreateStore = (props) => {
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
-    const hideAlert = () => {
+    const confirmAlert = () => {
         setYoutubeLink("")
         setEmail("")
         setPhoneNumber("")
@@ -69,7 +69,7 @@ const ProviderCreateStore = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
 
             <section className='customer-edit-area'>
                 <div className='container'>

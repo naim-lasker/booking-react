@@ -36,17 +36,46 @@ const Header = (props) => {
                         id='navbarToggler'
                     >
                         <ul className='navbar-nav ml-auto align-items-lg-center'>
-                            <li className='nav-item active'>
-                                <a className='nav-link' href='/promotion'>
-                                    Promotion
-                                    <span className='sr-only'>(current)</span>
+                            <li className='nav-item'>
+                                <a className='nav-link' href='/'>
+                                    Home
                                 </a>
                             </li>
-                            {/* <li className='nav-item'>
-                                <a className='nav-link' href='/news'>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Help
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Currency
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Flight
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Car Hire
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Hotel
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
+                                    Blog
+                                </a>
+                            </li>
+                            <li className='nav-item'>
+                                <a className='nav-link'>
                                     News
                                 </a>
-                            </li> */}
+                            </li>
 
                             {(userInfo && userInfo.token) ||
                             (providerInfo && providerInfo.token) ? (

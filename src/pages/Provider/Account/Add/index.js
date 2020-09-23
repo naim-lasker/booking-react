@@ -21,7 +21,7 @@ const AddProviderAccount = (props) => {
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
 
-    const hideAlert = () => {
+    const confirmAlert = () => {
         setAlert(false)
     }
 
@@ -62,7 +62,7 @@ const AddProviderAccount = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
 
             <section className='customer-edit-area'>
                 <div className='container'>

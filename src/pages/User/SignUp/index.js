@@ -25,7 +25,7 @@ const UserSignUp = (props) => {
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
-    const hideAlert = () => {
+    const confirmAlert = () => {
         setFirstName("")
         setLastName("")
         setEmail("")
@@ -79,7 +79,7 @@ const UserSignUp = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={hideAlert} />
+            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
 
             <section className='singin-area mb-5 pb-5'>
                 <div className='container'>
