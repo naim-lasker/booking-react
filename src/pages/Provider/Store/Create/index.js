@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import PhoneInput from "react-phone-number-input"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import { createProviderstore } from "../../../../services/store"
@@ -7,16 +8,24 @@ import { useFileInput, useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
-import {SubmitButton} from "../../../../components/UI/Button"
+import { SubmitButton } from "../../../../components/UI/Button"
 import { FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
+import auth from "../../../../helpers/auth"
 
 const ProviderCreateStore = (props) => {
     const dispatch = useDispatch()
-    const [avatar, handleAvatar, setAvatar] = useFileInput({ file: '', image: '' });
+    const providerInfo = auth.getProviderInfo()
+
+    const [avatar, handleAvatar, setAvatar] = useFileInput({
+        file: "",
+        image: "",
+    })
     const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput("")
-    const [email, handleEmail, setEmail] = useInput("")
-    const [phoneNumber, handlePhoneNumber, setPhoneNumber] = useInput("")
+    const [email, handleEmail, setEmail] = useInput(
+        providerInfo ? providerInfo.email : ""
+    )
+    const [phoneNumber, setPhoneNumber] = useState("")
     const [companyName, handleCompanyName, setCompanyName] = useInput("")
     const [address, handleAddress, setAddress] = useInput("")
     const [about, handleAbout, setAbout] = useInput("")
@@ -25,7 +34,7 @@ const ProviderCreateStore = (props) => {
     const [message, setMessage] = useState("")
 
     useEffect(() => {
-        // console.log('avatar', avatar);
+        // console.log("providerInfo", providerInfo)
     }, [])
 
     const confirmAlert = () => {
@@ -74,7 +83,11 @@ const ProviderCreateStore = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
 
             <section className='customer-edit-area'>
                 <div className='container'>
@@ -106,7 +119,11 @@ const ProviderCreateStore = (props) => {
                                                 />
                                                 <img
                                                     className='w-100 h-100 rounded-circle'
-                                                    src={avatar.image ? avatar.image : '/images/placeholder/avatar.png'}
+                                                    src={
+                                                        avatar.image
+                                                            ? avatar.image
+                                                            : "/images/placeholder/avatar.png"
+                                                    }
                                                     alt=''
                                                 />
                                                 <div className='camera-icon'>
@@ -192,18 +209,17 @@ const ProviderCreateStore = (props) => {
                                                         </button>
                                                     </div>
 
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='number'
-                                                            className='form-control input-box'
-                                                            placeholder='1254857858'
-                                                            value={phoneNumber}
-                                                            onChange={
-                                                                handlePhoneNumber
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <PhoneInput
+                                                        required
+                                                        className='form-control input-box'
+                                                        placeholder='1254857858'
+                                                        value={phoneNumber}
+                                                        onChange={(number) =>
+                                                            setPhoneNumber(
+                                                                number
+                                                            )
+                                                        }
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
@@ -287,7 +303,7 @@ const ProviderCreateStore = (props) => {
                                                 <div className='text-center mb-4'>
                                                     <SubmitButton
                                                         blue={true}
-                                                        text="Create Store"
+                                                        text='Create Store'
                                                         loading={loading}
                                                     />
                                                 </div>
