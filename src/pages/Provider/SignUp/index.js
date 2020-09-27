@@ -1,16 +1,18 @@
-import React, { Fragment, useState } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { providerSignUp } from "../../../services/authentication"
+import { providerSignIn, providerSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import CustomAlert from "../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../components/UI/Button"
+import auth from "../../../helpers/auth"
 
 const ProviderSignUp = (props) => {
     const dispatch = useDispatch()
+    const providerInfo = auth.getProviderInfo()
 
     const [firstName, handleFirstName, setFirstName] = useInput("")
     const [lastName, handlesetLastName, setLastName] = useInput("")
@@ -25,6 +27,12 @@ const ProviderSignUp = (props) => {
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
+    useEffect(() => {
+        if (providerInfo && providerInfo.token && providerInfo.role == 1) {
+            window.location.href = "/provider-create-store"
+        }
+    }, [])
+
     const confirmAlert = () => {
         setFirstName("")
         setLastName("")
@@ -32,7 +40,25 @@ const ProviderSignUp = (props) => {
         setPasword("")
         setConfirmPassword("")
         setAlert(false)
-        props.history.push("/provider-signin")
+        props.history.push("/provider-create-store")
+    }
+
+
+    const loginNow = () => {
+        dispatch(
+            providerSignIn(email, password, (res, err) => {
+                if (err) {
+                    notify("error", "Something went wrong")
+                } else if (res) {
+                    if (res.data && res.data.data && res.data.data.role == 1) {
+                        auth.clearUserInfo()
+                        auth.setProviderInfo(res.data.data)
+                        setMessage(email + " is registered successfully.")
+                        setAlert(true)
+                    }
+                }
+            })
+        )
     }
 
     const handleSubmit = (event) => {
@@ -65,8 +91,7 @@ const ProviderSignUp = (props) => {
                         res.data.contents &&
                         res.data.contents.role == 1
                     ) {
-                        setMessage(email + " is registered successfully.")
-                        setAlert(true)
+                        loginNow()
                     }
                 }
             })

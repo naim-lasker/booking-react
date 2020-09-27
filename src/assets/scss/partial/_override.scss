@@ -4,3 +4,42 @@
         outline: none !important;
     }
 }
+
+
+.css-yk16xz-control {
+    border: 0;
+    border-color: transparent !important;
+    height: 52px;
+    padding-left: 0;
+    &:focus {
+        box-shadow: none !important;
+        border-color: transparent !important;
+    }
+}
+
+.css-1pahdxg-control {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    height: 52px;
+}
+
+.css-g1d714-ValueContainer {
+    padding-left: 0 !important;
+    &:focus {
+        outline: none;
+    }
+}
+
+.css-26l3qy-menu {
+    left: 0;
+    margin-top: 3px !important;
+}
+
+
+.css-9gakcf-option {
+    background-color: $primary-color2 !important;
+}
+
+.css-yt9ioa-option, .css-1n7v3ny-option {
+    cursor: pointer !important;
+}

@@ -1,9 +1,13 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import Select from "react-select"
 import PhoneInput from "react-phone-number-input"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
-import { createProviderstore } from "../../../../services/store"
+import {
+    createProviderstore,
+    getCategoryList,
+} from "../../../../services/store"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
@@ -22,6 +26,8 @@ const ProviderCreateStore = (props) => {
         image: "",
     })
     const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput("")
+    const [category, setCategory] = useState([])
+    const [categories, setCategories] = useState([])
     const [email, handleEmail, setEmail] = useInput(
         providerInfo ? providerInfo.email : ""
     )
@@ -34,8 +40,40 @@ const ProviderCreateStore = (props) => {
     const [message, setMessage] = useState("")
 
     useEffect(() => {
-        // console.log("providerInfo", providerInfo)
+        categoryList()
     }, [])
+
+    console.log("category", category && category.value)
+
+    const categoryList = () => {
+        dispatch(
+            getCategoryList((res, err) => {
+                if (res) {
+                    const response = res.data
+
+                    const customCategories =
+                        response.length > 0
+                            ? response.map((item) => {
+                                  return {
+                                      label: item.service_name,
+                                      value: item.service_name
+                                          .toLowerCase()
+                                          .replace(/\s/g, "_"),
+                                  }
+                              })
+                            : [{
+                                  label: "",
+                                  value: "",
+                              }]
+                    setCategories(customCategories)
+
+                    console.log("customCategories", customCategories)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
 
     const confirmAlert = () => {
         setYoutubeLink("")
@@ -166,6 +204,35 @@ const ProviderCreateStore = (props) => {
                                                             onChange={
                                                                 handleYoutubeLink
                                                             }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div className='mb-4'>
+                                                    <div className='d-flex align-items-center mb-3'>
+                                                        <label
+                                                            className='label-name'
+                                                            htmlFor='fullName'
+                                                        >
+                                                            Catgory
+                                                        </label>
+                                                        <button className='question-icon ml-2'>
+                                                            ?
+                                                        </button>
+                                                    </div>
+                                                    <div>
+                                                        <Select
+                                                            placeholder='Select a category'
+                                                            className='form-control input-box'
+                                                            value={category}
+                                                            onChange={(
+                                                                category
+                                                            ) =>
+                                                                setCategory(
+                                                                    category
+                                                                )
+                                                            }
+                                                            options={categories}
                                                         />
                                                     </div>
                                                 </div>

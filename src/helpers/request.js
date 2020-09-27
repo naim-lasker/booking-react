@@ -13,7 +13,7 @@ const client = (token = null) => {
 
             if (tokenNeed) {
                 Object.assign(defaultOptions.headers, {
-                    Authorization: "Bearer " + token,
+                    token: token,
                 })
             }
 
@@ -47,7 +47,7 @@ const client = (token = null) => {
 
             if (tokenNeed) {
                 Object.assign(defaultOptions.headers, {
-                    Authorization: "Bearer " + token,
+                    token: token,
                 })
             }
 
@@ -64,7 +64,7 @@ const client = (token = null) => {
 
             if (tokenNeed) {
                 Object.assign(defaultOptions.headers, {
-                    Authorization: "Bearer " + token,
+                    token: token,
                 })
             }
 
@@ -81,7 +81,7 @@ const client = (token = null) => {
 
             if (tokenNeed) {
                 Object.assign(defaultOptions.headers, {
-                    Authorization: "Bearer " + token,
+                    token: token,
                 })
             }
 
