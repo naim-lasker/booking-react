@@ -108,6 +108,9 @@ button {
     &:focus {
         outline: none;
     }
+    &:hover {
+        text-decoration: none !important;
+    }
 }
 .form-control:focus {
     border-color: $border-color;;
@@ -126,6 +129,7 @@ a:hover {
 .btn:focus {
     text-decoration: none;
     outline: 0;
+    box-shadow: none;
 }
 
 .form-control:focus {

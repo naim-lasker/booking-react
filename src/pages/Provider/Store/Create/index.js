@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import Select from "react-select"
 import PhoneInput from "react-phone-number-input"
+import { Accordion, Button, Card } from "react-bootstrap"
 import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import {
@@ -13,9 +14,12 @@ import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { SubmitButton } from "../../../../components/UI/Button"
-import { FaHome } from "react-icons/fa"
+import { FaChevronUp, FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
 import auth from "../../../../helpers/auth"
+import { InputWithLabel } from "../../../../components/UI/InputField"
+import { InputLabel } from "../../../../components/UI/InputLabel"
+import { TextareaWithLabel } from "../../../../components/UI/TextareaField"
 
 const ProviderCreateStore = (props) => {
     const dispatch = useDispatch()
@@ -43,7 +47,6 @@ const ProviderCreateStore = (props) => {
         categoryList()
     }, [])
 
-    console.log("category", category && category.value)
 
     const categoryList = () => {
         dispatch(
@@ -61,10 +64,12 @@ const ProviderCreateStore = (props) => {
                                           .replace(/\s/g, "_"),
                                   }
                               })
-                            : [{
-                                  label: "",
-                                  value: "",
-                              }]
+                            : [
+                                  {
+                                      label: "",
+                                      value: "",
+                                  },
+                              ]
                     setCategories(customCategories)
 
                     console.log("customCategories", customCategories)
@@ -179,102 +184,62 @@ const ProviderCreateStore = (props) => {
                                 </div>
 
                                 <div className='row justify-content-center mb-5'>
-                                    <div className='col-lg-8'>
+                                    <div className='col-lg-8 mb-5'>
                                         <form onSubmit={handleSubmit}>
                                             <div className='form-container mb-3'>
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='fullName'
-                                                        >
-                                                            You tube Video link
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='https://www.youtube.com/watch?v=j94TPOjUFh4'
-                                                            value={youtubeLink}
-                                                            onChange={
-                                                                handleYoutubeLink
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <InputWithLabel
+                                                        required
+                                                        type='url'
+                                                        label='You tube Video link'
+                                                        id='youtubeVideoLink'
+                                                        infoText='You tube Video link info'
+                                                        placeholder='https://www.youtube.com/watch?v=j94TPOjUFh4'
+                                                        value={youtubeLink}
+                                                        onChange={
+                                                            handleYoutubeLink
+                                                        }
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='fullName'
-                                                        >
-                                                            Catgory
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <Select
-                                                            placeholder='Select a category'
-                                                            className='form-control input-box'
-                                                            value={category}
-                                                            onChange={(
+                                                    <InputLabel
+                                                        label='Catgory'
+                                                        id='catgory'
+                                                        infoText='Catgory info'
+                                                    />
+                                                    <Select
+                                                        placeholder='Select a category'
+                                                        className='form-control input-box'
+                                                        value={category}
+                                                        onChange={(category) =>
+                                                            setCategory(
                                                                 category
-                                                            ) =>
-                                                                setCategory(
-                                                                    category
-                                                                )
-                                                            }
-                                                            options={categories}
-                                                        />
-                                                    </div>
+                                                            )
+                                                        }
+                                                        options={categories}
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='email'
-                                                        >
-                                                            Email
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='email'
-                                                            className='form-control input-box'
-                                                            placeholder='lora.king@gmail.com'
-                                                            value={email}
-                                                            onChange={
-                                                                handleEmail
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <InputWithLabel
+                                                        required
+                                                        type='email'
+                                                        label='Email'
+                                                        id='email'
+                                                        infoText='Email info'
+                                                        placeholder='lora.king@gmail.com'
+                                                        value={email}
+                                                        onChange={handleEmail}
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='phoneNumber'
-                                                        >
-                                                            Company Phone Number
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
+                                                    <InputLabel
+                                                        label='Company Phone Number'
+                                                        id='phoneNumber'
+                                                        infoText='Company Phone Number info'
+                                                    />
 
                                                     <PhoneInput
                                                         required
@@ -290,84 +255,50 @@ const ProviderCreateStore = (props) => {
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='countryOforigin'
-                                                        >
-                                                            Company Name
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='Company Name'
-                                                            value={companyName}
-                                                            onChange={
-                                                                handleCompanyName
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <InputWithLabel
+                                                        required
+                                                        label='Company Name'
+                                                        id='companyName'
+                                                        infoText='Company Name info'
+                                                        placeholder='Company Name'
+                                                        value={companyName}
+                                                        onChange={
+                                                            handleCompanyName
+                                                        }
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='countryOforigin'
-                                                        >
-                                                            Company Address
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='London'
-                                                            value={address}
-                                                            onChange={
-                                                                handleAddress
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <InputWithLabel
+                                                        required
+                                                        label='Company Address'
+                                                        id='companyAddress'
+                                                        infoText='Company Address info'
+                                                        placeholder='London'
+                                                        value={address}
+                                                        onChange={
+                                                            handleAddress
+                                                        }
+                                                    />
                                                 </div>
 
                                                 <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='countryOforigin'
-                                                        >
-                                                            About Company
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <textarea
-                                                            rows='4'
-                                                            type='text'
-                                                            className='form-control input-box pt-2'
-                                                            placeholder='It is Our Company'
-                                                            value={about}
-                                                            onChange={
-                                                                handleAbout
-                                                            }
-                                                        />
-                                                    </div>
+                                                    <TextareaWithLabel
+                                                        required
+                                                        rows='4'
+                                                        maxLength='90'
+                                                        label='About Your Company'
+                                                        id='aboutYourCompany'
+                                                        infoText='About Your Company info'
+                                                        placeholder='It is Our Company'
+                                                        value={about}
+                                                        onChange={
+                                                            handleAbout
+                                                        }
+                                                    />
                                                 </div>
 
-                                                <div className='text-center mb-4'>
+                                                <div className='text-center'>
                                                     <SubmitButton
                                                         blue={true}
                                                         text='Create Store'
@@ -379,65 +310,40 @@ const ProviderCreateStore = (props) => {
                                     </div>
 
                                     <div className='col-lg-10'>
-                                        <div className='collapse-container'>
-                                            <div
-                                                className='accordion w-100'
-                                                id='accordionExample'
-                                            >
-                                                <div className='card border-0 custom-card px-4'>
-                                                    <div
-                                                        className='card-header border-0 bg-white px-0 px-0'
-                                                        id='headingTwo'
+                                        <Accordion className='collapse-container'>
+                                            <Card className='border-0 custom-card px-4'>
+                                                <Card.Header className='card-header border-0 bg-white px-0 px-0'>
+                                                    <Accordion.Toggle
+                                                        as={Button}
+                                                        className='btn d-block w-100 p-0'
+                                                        variant='link'
+                                                        eventKey='0'
                                                     >
-                                                        <h2 className='mb-0'>
-                                                            <div className='d-flex justify-content-between'>
-                                                                <button
-                                                                    className='btn btn-link collapsed collapse-btn d-flex justify-content-between'
-                                                                    type='button'
-                                                                    data-toggle='collapse'
-                                                                    data-target='#collapseTwo'
-                                                                    aria-expanded='true'
-                                                                    aria-controls='collapseTwo'
-                                                                >
-                                                                    <span>
-                                                                        Add
-                                                                        Account
-                                                                        Details
-                                                                    </span>
-                                                                    <i className='fas fa-chevron-up'></i>
-                                                                </button>
-                                                                <div>
-                                                                    <img
-                                                                        src='/images/icons/collapse-icon.png'
-                                                                        alt=''
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </h2>
-                                                    </div>
-                                                    <div
-                                                        id='collapseTwo'
-                                                        className='collapse'
-                                                        aria-labelledby='headingTwo'
-                                                        data-parent='#accordionExample'
-                                                    >
-                                                        <div className='card-body px-0 pt-0'>
-                                                            Anim pariatur cliche
-                                                            reprehenderit, enim
-                                                            eiusmod high life
-                                                            accusamus terry
-                                                            richardson ad squid.
-                                                            3 wolf moon officia
-                                                            aute, non cupidatat
-                                                            skateboard dolor
-                                                            brunch. Food truck
-                                                            quinoa nesciunt
-                                                            laborum eiusmod.
+                                                        <div className='collapsed collapse-btn d-flex justify-content-between align-items-center'>
+                                                            <span>
+                                                                Add Account
+                                                                Details
+                                                            </span>
+                                                            <FaChevronUp />
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                    </Accordion.Toggle>
+                                                </Card.Header>
+                                                <Accordion.Collapse eventKey='0'>
+                                                    <Card.Body className='px-0 pt-0'>
+                                                        Anim pariatur cliche
+                                                        reprehenderit, enim
+                                                        eiusmod high life
+                                                        accusamus terry
+                                                        richardson ad squid. 3
+                                                        wolf moon officia aute,
+                                                        non cupidatat skateboard
+                                                        dolor brunch. Food truck
+                                                        quinoa nesciunt laborum
+                                                        eiusmod.
+                                                    </Card.Body>
+                                                </Accordion.Collapse>
+                                            </Card>
+                                        </Accordion>
                                     </div>
                                 </div>
                             </div>
