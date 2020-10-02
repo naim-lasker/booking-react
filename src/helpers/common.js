@@ -11,7 +11,7 @@ export let useFileInput = initialValue => {
     const [value, setValue] = useState(initialValue);
   
     let handleChange = event => {
-      if(event.target && event.target.files.length) {
+      if(event.target && event.target.files && event.target.files.length) {
         let raw = event.target.files[0]
         let reader = new FileReader();
         reader.onloadend = (e) => {

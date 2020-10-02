@@ -118,6 +118,7 @@ button {
 a,
 a:focus,
 a:hover {
+    color: $text-color;
     text-decoration: none;
     outline: 0;
 }

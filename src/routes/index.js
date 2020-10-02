@@ -5,7 +5,8 @@ import Page from "./Page"
 import browserHistory from "./History"
 
 import RouteWithLayout from "./RouteWithLayout"
-import Main from "../layouts/Main"
+import ProviderMain from "../layouts/ProviderMain"
+import ProviderMainNoSidebar from "../layouts/ProviderMainNoSidebar"
 
 import ProviderSignIn from "../pages/Provider/SignIn"
 import ProviderSignUp from "../pages/Provider/SignUp"
@@ -24,26 +25,16 @@ const Routes = () => {
     return (
         <Router history={browserHistory}>
             <Switch>
-                <Page
+                <RouteWithLayout
                     exact
-                    component={ProviderSignIn}
-                    path='/provider-signin'
-                    title='Sign In'
-                />
-                <Page
-                    exact
-                    component={ProviderSignUp}
-                    path='/provider-signup'
-                    title='Sign Up'
-                />
-                <Page
-                    exact
+                    layout={ProviderMainNoSidebar}
                     component={ProviderCreateStore}
                     path='/provider-create-store'
                     title='Create Store'
                 />
-                <Page
+                <RouteWithLayout
                     exact
+                    layout={ProviderMain}
                     component={AddProviderAccount}
                     path='/provider-add-account'
                     title='Add Acount Details'
@@ -61,22 +52,36 @@ const Routes = () => {
                     path='/user-signup'
                     title='Sign Up'
                 />
-                <Page
+                <RouteWithLayout
                     exact
+                    layout={ProviderMain}
                     component={AddUserAccount}
                     path='/user-add-account'
                     title='Add Acount Details'
                 />
 
-                <Page exact component={HomePage} path='/' title='Home' />
-                <Page exact component={NewsPage} path='/news' title='News' />
                 <RouteWithLayout
-                    component={PromotionDealsPage}
                     exact
-                    layout={Main}
+                    layout={ProviderMain}
+                    component={PromotionDealsPage}
                     path='/promotion'
                     title='Promotion'
                 />
+
+                <Page
+                    exact
+                    component={ProviderSignIn}
+                    path='/provider-signin'
+                    title='Sign In'
+                />
+                <Page
+                    exact
+                    component={ProviderSignUp}
+                    path='/provider-signup'
+                    title='Sign Up'
+                />
+                <Page exact component={HomePage} path='/' title='Home' />
+                <Page exact component={NewsPage} path='/news' title='News' />
             </Switch>
         </Router>
     )

@@ -1,35 +1,36 @@
-import React from 'react'
-import { Redirect } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import Page from './Page'
+import React from "react"
+import { Redirect } from "react-router-dom"
+import PropTypes from "prop-types"
+import Page from "./Page"
+import auth from "../helpers/auth"
 
-const authService = () => {
-  return true
+const providerInfo = auth.getProviderInfo()
+const userInfo = auth.getUserInfo()
+
+const RouteWithLayout = (props) => {
+    const { layout: Layout, component: Component, ...rest } = props
+
+    return (
+        <Page
+            {...rest}
+            render={(matchProps) =>
+                (userInfo && userInfo.token) ||
+                (providerInfo && providerInfo.token) ? (
+                    <Layout>
+                        <Component />
+                    </Layout>
+                ) : (
+                    <Redirect to='/' />
+                )
+            }
+        />
+    )
 }
 
-const RouteWithLayout = props => {
-  const { layout: Layout, component: Component, ...rest } = props
-
-  return (
-    <Page
-        {...rest}
-        render={matchProps => 
-          authService ? (
-            <Layout>
-              <Component {...matchProps} />
-            </Layout>
-          ) : (
-            <Redirect to="/" />
-          )
-        }
-      />
-  );
-};
-
 RouteWithLayout.propTypes = {
-  component: PropTypes.any.isRequired,
-  layout: PropTypes.any.isRequired,
-  path: PropTypes.string
-};
+    component: PropTypes.any.isRequired,
+    layout: PropTypes.any.isRequired,
+    path: PropTypes.string,
+}
 
-export default RouteWithLayout;
+export default RouteWithLayout

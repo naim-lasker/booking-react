@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { InputLabel } from "../InputLabel"
 
 export const TextareaWithLabel = ({
@@ -8,7 +8,7 @@ export const TextareaWithLabel = ({
     ...rest
 }) => {
     return (
-        <Fragment>
+        <div className='mb-4'>
             <InputLabel label={label} id={id} infoText={infoText} />
             <div>
                 <textarea
@@ -16,6 +16,6 @@ export const TextareaWithLabel = ({
                     {...rest}
                 />
             </div>
-        </Fragment>
+        </div>
     )
 }

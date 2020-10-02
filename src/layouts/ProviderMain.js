@@ -3,7 +3,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import Sidebar from "./Sidebar"
 
-const Main = (props) => {
+const ProviderMain = (props) => {
     const { children } = props
 
     return (
@@ -14,8 +14,7 @@ const Main = (props) => {
                     <div className='col-lg-3 pr-lg-0'>
                         <Sidebar />
                     </div>
-
-                    {children}
+                    <div className='col-lg-9'>{children}</div>
                 </div>
             </div>
             <Footer />
@@ -23,4 +22,4 @@ const Main = (props) => {
     )
 }
 
-export default Main
+export default ProviderMain
