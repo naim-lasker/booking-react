@@ -2,22 +2,21 @@ import React from "react"
 import { FaEye, FaBookOpen, FaEnvelope, FaTachometerAlt, FaWallet, FaCog, FaBullhorn, FaStar } from "react-icons/fa"
 
 const providerFeatureList = [
-    { name: "Dashboard", icon: <FaTachometerAlt />, link: "/" },
-    { name: "Booking", icon: <FaBookOpen />, link: "/promotion" },
-    { name: "Wallet", icon: <FaWallet />, link: "/promotion" },
+    { name: "Booking", icon: <FaBookOpen />, link: "/provider-booking" },
+    { name: "Wallet", icon: <FaWallet />, link: "/" },
     {
         name: "Service and Product",
         dropdowns: [
-            { name: "Category", link: "/promotion" },
-            { name: "Menu", link: "/promotion" },
-            { name: "Product", link: "/promotion" },
+            { name: "Category", link: "/" },
+            { name: "Menu", link: "/" },
+            { name: "Product", link: "/" },
         ],
         dropdown: true,
         icon: <FaCog />,
-        link: "/promotion",
+        link: "/#",
     },
-    { name: "Promotion", icon: <FaBullhorn />, link: "/promotion" },
-    { name: "My Ratings", icon: <FaStar />, link: "/promotion" },
+    { name: "Promotion", icon: <FaBullhorn />, link: "/" },
+    { name: "My Ratings", icon: <FaStar />, link: "/provider-rating" },
     { name: "Contact Supports", icon: <FaEnvelope />, link: "/" },
 ]
 

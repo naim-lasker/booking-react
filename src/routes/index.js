@@ -11,8 +11,11 @@ import ProviderMainNoSidebar from "../layouts/ProviderMainNoSidebar"
 import ProviderSignIn from "../pages/Provider/SignIn"
 import ProviderSignUp from "../pages/Provider/SignUp"
 
-import ProviderAddAccount from "../pages/Provider/Account/Add"
+import ProviderBookingList from "../pages/Provider/Booking/List"
 import ProviderCreateStore from "../pages/Provider/Store/Create"
+import ProviderAddAccount from "../pages/Provider/Account/Add"
+import ProviderEditProfile from "../pages/Provider/Profile/Edit"
+import ProviderRatingList from "../pages/Provider/Rating/List"
 
 import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
@@ -41,6 +44,13 @@ const Routes = () => {
                 />
                 <RouteWithLayout
                     exact
+                    layout={ProviderMain}
+                    component={ProviderBookingList}
+                    path='/provider-booking'
+                    title='Booking List'
+                />
+                <RouteWithLayout
+                    exact
                     layout={ProviderMainNoSidebar}
                     component={ProviderCreateStore}
                     path='/provider-create-store'
@@ -52,6 +62,20 @@ const Routes = () => {
                     component={ProviderAddAccount}
                     path='/provider-add-account'
                     title='Add Acount Details'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderEditProfile}
+                    path='/provider-edit-profile'
+                    title='Edit Profile'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderRatingList}
+                    path='/provider-rating'
+                    title='My Ratings'
                 />
 
                 <Page

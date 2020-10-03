@@ -1,10 +1,10 @@
 import React from "react"
 import { FaHome } from "react-icons/fa"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
-import MainForm from "../../../../components/Provider/Store/Create/MainForm"
-import BottomAccordion from "../../../../components/Provider/Store/Create/BottomAccordion"
+import MainForm from "../../../../components/Provider/Profile/Edit/MainForm"
+import BottomAccordion from "../../../../components/Provider/Profile/Edit/BottomAccordion"
 
-const ProviderCreateStore = () => {
+const ProviderEditProfile = () => {
 
     return (
         <section className='customer-edit-area'>
@@ -12,7 +12,7 @@ const ProviderCreateStore = () => {
                 icon={<FaHome />}
                 names={[
                     { name: "Dashboard", link: "/provider-booking" },
-                    { name: "Create Store" },
+                    { name: "Edit Profile" },
                 ]}
             />
 
@@ -22,4 +22,4 @@ const ProviderCreateStore = () => {
         </section>
     )
 }
-export default ProviderCreateStore
+export default ProviderEditProfile

@@ -127,7 +127,7 @@ const MainForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className='row justify-content-center mb-5'>
                     <div className='col-lg-8'>
-                        <div className='d-flex justify-content-center my-5'>
+                        <div className='d-flex justify-content-center mb-5'>
                             <label
                                 htmlFor='imageInput'
                                 className='profile-pic-outer mr-5'

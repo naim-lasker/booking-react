@@ -15,11 +15,13 @@ const ProviderSingleFeature = ({ featureList }) => {
 
                         <Link
                             className='side-list-icon'
-                            onClick={() =>
-                                item.dropdown &&
-                                setOpen(!open)
-                            }
-                            to={item.link}
+                            onClick={(e) => {
+                                if (item.dropdown) {
+                                    e.preventDefault()
+                                    setOpen(!open)
+                                }
+                            }}
+                            to={item.dropdown ? "#" : item.link}
                         >
                             {item.name}
                         </Link>

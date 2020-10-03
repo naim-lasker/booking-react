@@ -71,7 +71,7 @@ const Header = () => {
 
                             {(userInfo && userInfo.token) ||
                             (providerInfo && providerInfo.token) ? (
-                                <li className='nav-item'>
+                                <li className='nav-item ml-3'>
                                     <button
                                         className='nav-link sigh-out-btn'
                                         onClick={logOut}

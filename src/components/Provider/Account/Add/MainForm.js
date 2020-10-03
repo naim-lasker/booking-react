@@ -63,7 +63,7 @@ const MainForm = (props) => {
             />
 
             <form onSubmit={handleSubmit}>
-                <div className='row justify-content-center my-5'>
+                <div className='row justify-content-center mb-5'>
                     <div className='col-lg-8'>
                         <div className='form-container'>
                             <InputWithLabel

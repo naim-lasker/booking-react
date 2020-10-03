@@ -9,7 +9,7 @@ const ProviderAddAccount = (props) => {
             <Breadcrumb
                 icon={<FaHome />}
                 names={[
-                    { name: "Dashboard", link: "/" },
+                    { name: "Dashboard", link: "/provider-booking" },
                     { name: "Add Account Details" },
                 ]}
             />

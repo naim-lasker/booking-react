@@ -1,53 +1,51 @@
-#provider {
-    //--------- Start Provider Booking Area -------------//
-    .booking-area {
-        .single-booking {
-            box-shadow: 0px 0px 5px 0px rgba(44, 71, 125, 0.16);
-            margin-bottom: 40px;
-        }
+//--------- Start Provider Booking Area -------------//
+.booking-area {
+    .single-booking {
+        box-shadow: 0px 0px 5px 0px rgba(44, 71, 125, 0.16);
+        margin-bottom: 40px;
+    }
 
-        .booking-left-content {
-            min-width: 65%;
-        }
+    .booking-left-content {
+        min-width: 65%;
+    }
 
-        .amount {
-            font-size: 20px;
-            font-weight: 600;
-            color: $primary-color3;
-        }
-        .customer-name {
-            font-size: 20px;
-            color: $title-color3;
-            font-weight: 600;
-        }
+    .amount {
+        font-size: 20px;
+        font-weight: 600;
+        color: $primary-color3;
+    }
+    .customer-name {
+        font-size: 20px;
+        color: $title-color3;
+        font-weight: 600;
+    }
 
-        .single-booking-para {
-            padding-bottom: 20px;
-            font-size: 17px;
-            font-weight: 400;
-            color: $text-color2;
-        }
-        .left-header {
-            font-size: 17px;
-            font-weight: 600;
-            color: $text-color2;
-        }
-        .single-booking-line {
-            background-color: #e1edf2;
-            display: block;
-            height: 1px;
-            width: 100%;
-            margin-bottom: 5px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-        .input-box {
-            border: 3px solid #d6e0e6;
-        }
-        .shadow-btn {
-            padding: 10px 40px;
+    .single-booking-para {
+        padding-bottom: 20px;
+        font-size: 17px;
+        font-weight: 400;
+        color: $text-color2;
+    }
+    .left-header {
+        font-size: 17px;
+        font-weight: 600;
+        color: $text-color2;
+    }
+    .single-booking-line {
+        background-color: #e1edf2;
+        display: block;
+        height: 1px;
+        width: 100%;
+        margin-bottom: 5px;
+        &:last-child {
+            margin-bottom: 0;
         }
     }
-    //----------- End Provider Booking Area -------------//
+    .input-box {
+        border: 3px solid #d6e0e6;
+    }
+    .shadow-btn {
+        padding: 10px 40px;
+    }
 }
+//----------- End Provider Booking Area -------------//

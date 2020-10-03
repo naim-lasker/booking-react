@@ -18,7 +18,7 @@ const ProviderSidebar = () => {
             </div>
             
             <div className='side-btn-container text-center'>
-                <Link className='border-btn' to='/'>
+                <Link className='border-btn' to='/provider-edit-profile'>
                     Edit Profile
                 </Link>
             </div>
