@@ -11,7 +11,7 @@ import { FaHome } from "react-icons/fa"
 import CustomAlert from "../../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../../components/UI/Button"
 
-const AddUserAccount = (props) => {
+const UserAddAccount = (props) => {
     const dispatch = useDispatch()
     const [bankAccountName, setBankAccountName] = useInput("")
     const [iban, setIban] = useInput("")
@@ -219,4 +219,4 @@ const AddUserAccount = (props) => {
         </Fragment>
     )
 }
-export default AddUserAccount
+export default UserAddAccount

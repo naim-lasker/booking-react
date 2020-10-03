@@ -32,9 +32,6 @@ export const addProviderAccountDetails = (
                 user_id: providerInfo.id,
             }
 
-            console.log('providerInfo', providerInfo);
-            // console.log('token', token);
-
             const api = base_url + "/add-bank-account"
 
             dispatch({ type: "ADD_ACCOUNT_DETAILS_PENDING", api })

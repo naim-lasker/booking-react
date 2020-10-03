@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
 
-const PromotionDealsPage = () => {
+const PromotionDeals = () => {
     return (
         <div className='col-lg-9'>
             <div className='promotion-area'>
@@ -104,4 +104,4 @@ const PromotionDealsPage = () => {
         </div>
     )
 }
-export default PromotionDealsPage
+export default PromotionDeals

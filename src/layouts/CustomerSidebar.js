@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import SingleActivity from "../components/Layout/Sidebar/SingleActivity"
-import SingleFeature from "../components/Layout/Sidebar/SingleFeature"
-import { activityList, featureList } from "../mock-data/sidebar"
+import CustomerSingleActivity from "../components/Layout/Sidebar/CustomerSingleActivity"
+import CustomerSingleFeature from "../components/Layout/Sidebar/CustomerSingleFeature"
+import { userActivityList, userFeatureList } from "../mock-data/sidebar"
 
 
-const Sidebar = () => {
+const CustomerSidebar = () => {
     return (
         <div className='booking-sidebar'>
             <div className='text-center'>
@@ -25,12 +25,12 @@ const Sidebar = () => {
             </div>
 
             <div className='side-list'>
-                <SingleActivity activityList={activityList} />
+                <CustomerSingleActivity activityList={userActivityList} />
 
-                <SingleFeature featureList={featureList} />
+                <CustomerSingleFeature featureList={userFeatureList} />
             </div>
         </div>
     )
 }
 
-export default Sidebar
+export default CustomerSidebar

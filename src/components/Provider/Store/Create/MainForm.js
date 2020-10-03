@@ -3,10 +3,8 @@ import Select from "react-select"
 import { useDispatch } from "react-redux"
 import PhoneInput from "react-phone-number-input"
 import { withRouter } from "react-router-dom"
-import {
-    createProviderstore,
-    getCategoryList,
-} from "../../../../services/store"
+import { createProviderstore } from "../../../../services/store"
+import { getCategoryList } from "../../../../services/category"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
@@ -52,13 +50,15 @@ const MainForm = () => {
                     const response = res.data
 
                     const customCategories =
-                    response && response.length > 0
+                        response && response.length > 0
                             ? response.map((item) => {
                                   return {
-                                      label: item.service_name,
-                                      value: item.service_name
-                                          .toLowerCase()
-                                          .replace(/\s/g, "_"),
+                                      label: item && item.category_name,
+                                      value:
+                                          item &&
+                                          item.category_name
+                                              .toLowerCase()
+                                              .replace(/\s/g, "_"),
                                   }
                               })
                             : [
@@ -68,8 +68,6 @@ const MainForm = () => {
                                   },
                               ]
                     setCategories(customCategories)
-
-                    console.log("customCategories", customCategories)
                 } else if (err) {
                     notify("error", "Something went wrong")
                 }

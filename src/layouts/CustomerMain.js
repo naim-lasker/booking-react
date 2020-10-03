@@ -1,9 +1,9 @@
 import React, { Fragment } from "react"
 import Header from "./Header"
 import Footer from "./Footer"
-import ProviderSidebar from "./ProviderSidebar"
+import CustomerSidebar from "./CustomerSidebar"
 
-const ProviderMain = (props) => {
+const CustomerMain = (props) => {
     const { children } = props
 
     return (
@@ -12,7 +12,7 @@ const ProviderMain = (props) => {
             <div className='container'>
                 <div className='row'>
                     <div className='col-lg-3 pr-lg-0'>
-                        <ProviderSidebar />
+                        <CustomerSidebar />
                     </div>
                     <div className='col-lg-9'>{children}</div>
                 </div>
@@ -22,4 +22,4 @@ const ProviderMain = (props) => {
     )
 }
 
-export default ProviderMain
+export default CustomerMain

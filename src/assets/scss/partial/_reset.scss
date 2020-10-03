@@ -132,7 +132,12 @@ a:hover {
     outline: 0;
     box-shadow: none;
 }
-
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: transparent;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: $primary-color2;
+}
 .form-control:focus {
     box-shadow: none;
 }

@@ -1,9 +1,9 @@
 import React from "react"
 import { Dropdown } from "react-bootstrap"
-import { FaBars, FaSignInAlt } from "react-icons/fa"
+import { FaBars, FaBell, FaEnvelope, FaSignInAlt } from "react-icons/fa"
 import auth from "../helpers/auth"
 
-const Header = (props) => {
+const Header = () => {
     const userInfo = auth.getUserInfo()
     const providerInfo = auth.getProviderInfo()
 
@@ -42,39 +42,31 @@ const Header = (props) => {
                                 </a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Help
-                                </a>
+                                <a className='nav-link'>Help</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Currency
-                                </a>
+                                <a className='nav-link'>Currency</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Flight
-                                </a>
+                                <a className='nav-link'>Hotel</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Car Hire
-                                </a>
+                                <a className='nav-link'>Blog</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Hotel
-                                </a>
+                                <a className='nav-link'>News</a>
+                            </li>
+
+                            <li className='nav-item'>
+                                <button className='nav-link'>
+                                    <FaEnvelope className='menu-icon' />
+                                </button>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>
-                                    Blog
-                                </a>
-                            </li>
-                            <li className='nav-item'>
-                                <a className='nav-link'>
-                                    News
-                                </a>
+                                <button className='nav-link'>
+                                    <FaBell className='menu-icon' />
+                                    <span className='menu-notification'>0</span>
+                                </button>
                             </li>
 
                             {(userInfo && userInfo.token) ||

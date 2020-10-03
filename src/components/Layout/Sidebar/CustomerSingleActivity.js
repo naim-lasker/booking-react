@@ -2,15 +2,15 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 
-const SingleActivity = ({ activityList }) => {
+const CustomerSingleActivity = ({ activityList }) => {
     return (
         <ul className='side-activities'>
             {activityList && activityList.length > 0 &&
                 activityList.map((item, index) => (
                     <li className='side-activitie-item' key={index}>
-                        {item && item.icon}
-                        <Link className='side-list-icon' to={item && item.link}>
-                            {item && item.name}
+                        {item.icon}
+                        <Link className='side-list-icon' to={item.link}>
+                            {item.name}
                         </Link>
                     </li>
                 ))}
@@ -18,8 +18,8 @@ const SingleActivity = ({ activityList }) => {
     )
 }
 
-SingleActivity.propTypes = {
+CustomerSingleActivity.propTypes = {
     activityList: PropTypes.array.isRequired,
 }
 
-export default SingleActivity
+export default CustomerSingleActivity

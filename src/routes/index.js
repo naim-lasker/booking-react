@@ -10,21 +10,35 @@ import ProviderMainNoSidebar from "../layouts/ProviderMainNoSidebar"
 
 import ProviderSignIn from "../pages/Provider/SignIn"
 import ProviderSignUp from "../pages/Provider/SignUp"
-import AddProviderAccount from "../pages/Provider/Account/Add"
+
+import ProviderAddAccount from "../pages/Provider/Account/Add"
+import ProviderCreateStore from "../pages/Provider/Store/Create"
 
 import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
-import AddUserAccount from "../pages/User/Account/Add"
+
+import UserAddAccount from "../pages/User/Account/Add"
+import UserPromotionDeals from "../pages/User/Promotion/Deals"
 
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
-import PromotionDealsPage from "../pages/User/Promotion/Deals"
-import ProviderCreateStore from "../pages/Provider/Store/Create"
 
 const Routes = () => {
     return (
         <Router history={browserHistory}>
             <Switch>
+                <Page
+                    exact
+                    component={ProviderSignIn}
+                    path='/provider-signin'
+                    title='Sign In'
+                />
+                <Page
+                    exact
+                    component={ProviderSignUp}
+                    path='/provider-signup'
+                    title='Sign Up'
+                />
                 <RouteWithLayout
                     exact
                     layout={ProviderMainNoSidebar}
@@ -35,7 +49,7 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={ProviderMain}
-                    component={AddProviderAccount}
+                    component={ProviderAddAccount}
                     path='/provider-add-account'
                     title='Add Acount Details'
                 />
@@ -52,10 +66,11 @@ const Routes = () => {
                     path='/user-signup'
                     title='Sign Up'
                 />
+
                 <RouteWithLayout
                     exact
                     layout={ProviderMain}
-                    component={AddUserAccount}
+                    component={UserAddAccount}
                     path='/user-add-account'
                     title='Add Acount Details'
                 />
@@ -63,22 +78,9 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={ProviderMain}
-                    component={PromotionDealsPage}
+                    component={UserPromotionDeals}
                     path='/promotion'
                     title='Promotion'
-                />
-
-                <Page
-                    exact
-                    component={ProviderSignIn}
-                    path='/provider-signin'
-                    title='Sign In'
-                />
-                <Page
-                    exact
-                    component={ProviderSignUp}
-                    path='/provider-signup'
-                    title='Sign Up'
                 />
                 <Page exact component={HomePage} path='/' title='Home' />
                 <Page exact component={NewsPage} path='/news' title='News' />

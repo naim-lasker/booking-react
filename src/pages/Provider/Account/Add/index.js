@@ -3,7 +3,7 @@ import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
 import MainForm from "../../../../components/Provider/Account/Add/MainForm"
 
-const AddProviderAccount = (props) => {
+const ProviderAddAccount = (props) => {
     return (
         <div className='customer-edit-area'>
             <Breadcrumb
@@ -18,4 +18,4 @@ const AddProviderAccount = (props) => {
         </div>
     )
 }
-export default AddProviderAccount
+export default ProviderAddAccount
