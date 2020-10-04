@@ -8,16 +8,16 @@ const providerFeatureList = [
         name: "Service and Product",
         dropdowns: [
             { name: "Category", link: "/provider-service-category-list" },
-            { name: "Menu", link: "/" },
+            { name: "Menu", link: "/provider-booking" },
             { name: "Product", link: "/provider-product-list" },
         ],
         dropdown: true,
         icon: <FaCog />,
         link: "/#",
     },
-    { name: "Promotion", icon: <FaBullhorn />, link: "/" },
+    { name: "Promotion", icon: <FaBullhorn />, link: "/provider-booking" },
     { name: "My Ratings", icon: <FaStar />, link: "/provider-rating" },
-    { name: "Contact Supports", icon: <FaEnvelope />, link: "/" },
+    { name: "Contact Supports", icon: <FaEnvelope />, link: "/provider-booking" },
 ]
 
 const userActivityList = [
