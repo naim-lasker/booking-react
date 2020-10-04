@@ -5,7 +5,7 @@ import { addProviderAccountDetails } from "../../../../services/account"
 import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
-import CustomAlert from "../../../../components/UI/SweetAlert"
+import { CustomAlert } from "../../../../components/UI/SweetAlert"
 import { ToastContainer } from "react-toastify"
 import { InputWithLabel } from "../../../UI/InputField"
 

@@ -25,6 +25,9 @@
     &.gradient-blue {
         background-image: linear-gradient(to right, #0237e3 0%, #00c3ed 50%, #0237e3 100%);
     }
+    &.gradient-red {
+        background-image: linear-gradient(to right, #ff0000  0%, #ffb100  50%, #ff0000  100%);
+    }
     &.button-small {
         padding: 10px 50px;
         font-size: 16px;

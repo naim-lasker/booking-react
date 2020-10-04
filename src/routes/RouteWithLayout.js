@@ -20,7 +20,7 @@ const RouteWithLayout = (props) => {
                         <Component />
                     </Layout>
                 ) : (
-                    <Redirect to='/' />
+                    <Redirect to='/provider-signin' />
                 )
             }
         />

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { Dropdown } from "react-bootstrap"
 import { FaBars, FaBell, FaEnvelope, FaSignInAlt } from "react-icons/fa"
 import auth from "../helpers/auth"
@@ -57,29 +57,32 @@ const Header = () => {
                                 <a className='nav-link'>News</a>
                             </li>
 
-                            <li className='nav-item'>
-                                <button className='nav-link'>
-                                    <FaEnvelope className='menu-icon' />
-                                </button>
-                            </li>
-                            <li className='nav-item'>
-                                <button className='nav-link'>
-                                    <FaBell className='menu-icon' />
-                                    <span className='menu-notification'>0</span>
-                                </button>
-                            </li>
-
                             {(userInfo && userInfo.token) ||
                             (providerInfo && providerInfo.token) ? (
-                                <li className='nav-item ml-3'>
-                                    <button
-                                        className='nav-link sigh-out-btn'
-                                        onClick={logOut}
-                                    >
-                                        <FaSignInAlt className='mr-2' />
-                                        <span>Log out</span>
-                                    </button>
-                                </li>
+                                <Fragment>
+                                    <li className='nav-item'>
+                                        <button className='nav-link'>
+                                            <FaEnvelope className='menu-icon' />
+                                        </button>
+                                    </li>
+                                    <li className='nav-item'>
+                                        <button className='nav-link'>
+                                            <FaBell className='menu-icon' />
+                                            <span className='menu-notification'>
+                                                0
+                                            </span>
+                                        </button>
+                                    </li>
+                                    <li className='nav-item ml-3'>
+                                        <button
+                                            className='nav-link sigh-out-btn'
+                                            onClick={logOut}
+                                        >
+                                            <FaSignInAlt className='mr-2' />
+                                            <span>Log out</span>
+                                        </button>
+                                    </li>
+                                </Fragment>
                             ) : (
                                 <li className='nav-item mx-lg-4 mx-0'>
                                     <div className='authenticate d-flex flex-column flex-lg-row align-items-center dropdown'>

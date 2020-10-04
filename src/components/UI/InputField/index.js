@@ -3,6 +3,7 @@ import { InputLabel } from "../InputLabel"
 
 export const InputWithLabel = ({
     label,
+    inputRef,
     id,
     infoText,
     type = "text",
@@ -13,6 +14,7 @@ export const InputWithLabel = ({
             <InputLabel label={label} id={id} infoText={infoText} />
             <div>
                 <input
+                    ref={inputRef}
                     id={id}
                     type={type}
                     className='form-control input-box'

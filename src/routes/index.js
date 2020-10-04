@@ -16,6 +16,7 @@ import ProviderCreateStore from "../pages/Provider/Store/Create"
 import ProviderAddAccount from "../pages/Provider/Account/Add"
 import ProviderEditProfile from "../pages/Provider/Profile/Edit"
 import ProviderRatingList from "../pages/Provider/Rating/List"
+import ProviderServiceCategoryList from "../pages/Provider/Service/CategoryList"
 
 import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
@@ -75,6 +76,13 @@ const Routes = () => {
                     layout={ProviderMain}
                     component={ProviderRatingList}
                     path='/provider-rating'
+                    title='My Ratings'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderServiceCategoryList}
+                    path='/provider-service-category-list'
                     title='My Ratings'
                 />
 

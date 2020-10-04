@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
-import CustomAlert from "../../../../components/UI/SweetAlert"
+import { CustomAlert } from "../../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../../components/UI/Button"
 
 const UserAddAccount = (props) => {
@@ -62,7 +62,11 @@ const UserAddAccount = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
 
             <section className='customer-edit-area'>
                 <div className='container'>

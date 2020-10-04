@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux"
 import PhoneInput from "react-phone-number-input"
 import { withRouter } from "react-router-dom"
 import { createProviderstore } from "../../../../services/store"
-import { getCategoryList } from "../../../../services/category"
+import { getServiceCategoryList } from "../../../../services/category"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
 import { InputWithLabel } from "../../../../components/UI/InputField"
 import { InputLabel } from "../../../../components/UI/InputLabel"
 import { TextareaWithLabel } from "../../../../components/UI/TextareaField"
-import CustomAlert from "../../../../components/UI/SweetAlert"
+import { CustomAlert } from "../../../../components/UI/SweetAlert"
 import { ToastContainer } from "react-toastify"
 import auth from "../../../../helpers/auth"
 import AccountModal from "./AccountModal"
@@ -45,7 +45,7 @@ const MainForm = () => {
 
     const categoryList = () => {
         dispatch(
-            getCategoryList((res, err) => {
+            getServiceCategoryList((res, err) => {
                 if (res) {
                     const response = res.data
 

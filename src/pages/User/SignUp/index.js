@@ -1,13 +1,12 @@
 import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { userSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
-import CustomAlert from "../../../components/UI/SweetAlert"
+import { CustomAlert } from "../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../components/UI/Button"
 
 const UserSignUp = (props) => {

@@ -2,11 +2,14 @@ import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { providerSignIn, providerSignUp } from "../../../services/authentication"
+import {
+    providerSignIn,
+    providerSignUp,
+} from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
-import CustomAlert from "../../../components/UI/SweetAlert"
+import { CustomAlert } from "../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../components/UI/Button"
 import auth from "../../../helpers/auth"
 
@@ -42,7 +45,6 @@ const ProviderSignUp = (props) => {
         setAlert(false)
         props.history.push("/provider-create-store")
     }
-
 
     const loginNow = () => {
         dispatch(
@@ -104,7 +106,11 @@ const ProviderSignUp = (props) => {
 
             <Header />
 
-            <CustomAlert show={alert} message={message} onConfirm={confirmAlert} />
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
 
             <section className='singin-area mb-5 pb-5'>
                 <div className='container'>
@@ -250,7 +256,7 @@ const ProviderSignUp = (props) => {
 
                                                     <SubmitButton
                                                         lime={true}
-                                                        text="Register"
+                                                        text='Register'
                                                         loading={loading}
                                                     />
                                                 </div>

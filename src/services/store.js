@@ -5,7 +5,7 @@ import httpRequest from "../helpers/request"
 const base_url = Config.base_url
 
 /**
- * Method: GET
+ * Method: POST
  * @param {*} youtubeLink
  * @param {*} email
  * @param {*} phoneNumber

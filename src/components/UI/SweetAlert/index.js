@@ -1,7 +1,7 @@
 import React from "react"
 import SweetAlert from "react-bootstrap-sweetalert"
 
-const CustomAlert = ({ show, onConfirm, message }) => {
+export const CustomAlert = ({ show, onConfirm, message }) => {
     return (
         <SweetAlert
             show={show}
@@ -15,4 +15,18 @@ const CustomAlert = ({ show, onConfirm, message }) => {
     )
 }
 
-export default CustomAlert
+
+export const WarningAlert = ({ show, onConfirm, message, onCancel }) => {
+    return (
+        <SweetAlert
+            show={show}
+            danger
+            title='Delete?'
+            onConfirm={onConfirm}
+            confirmBtnCssClass='gradient-btn gradient-red button-small'
+            onCancel={onCancel}
+        >
+            {message}
+        </SweetAlert>
+    )
+}
