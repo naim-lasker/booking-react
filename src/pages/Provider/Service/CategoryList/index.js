@@ -14,6 +14,7 @@ import {
     addServiceCategoy,
     getServiceCategoryList,
     updateServiceCategoy,
+    deleteServiceCategoy,
 } from "../../../../services/category"
 
 const ProviderServiceCategoryList = () => {
@@ -125,8 +126,32 @@ const ProviderServiceCategoryList = () => {
         setAlertDelete(true)
     }
 
-    const confirmDeleteAlert = (categoryID) => {
-        
+    const confirmDeleteAlert = () => {
+        dispatch(
+            deleteServiceCategoy(categoryID, (res, err) => {
+                console.log('delete res', res);
+                console.log('delete err', err);
+
+                setEditLoading(false)
+                if (res && res.data && res.data.status === "success") {
+                    categoryList()
+                    setEditLoading(false)
+                    setMessage(res.data.data)
+                    setAlert(true)
+                    setAlertDelete(false)
+                } else if (err) {
+                    if (err && err.data) {
+                        notify(
+                            "error",
+                            (err.data.contents &&
+                                err.data.contents.category_name &&
+                                err.data.contents.category_name[0]) ||
+                                "Something went wrong"
+                        )
+                    }
+                }
+            })
+        )
     }
 
     return (
@@ -143,6 +168,7 @@ const ProviderServiceCategoryList = () => {
                 show={alertDelete}
                 message={`Delete ${deleteCategoryName}?`}
                 onConfirm={confirmDeleteAlert}
+                onCancel={() => setAlertDelete(false)}
             />
             <Breadcrumb
                 icon={<FaHome />}

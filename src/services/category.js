@@ -96,7 +96,6 @@ export const updateServiceCategoy = (categoryId, categoryName, callback) => {
 
 /**
  * Method: DELETE
- * @param {*} categoryName
  * @param {*} categoryId
  * @param {*} callback
  */
@@ -106,14 +105,11 @@ export const deleteServiceCategoy = (categoryId, callback) => {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            const body = {
-                user_id: providerInfo.id,
-            }
 
             const api = base_url + "/delete_service_category/" + categoryId
 
             dispatch({ type: "DELETE_SERVICE_CATEGORY_PENDING", api })
-            const response = await httpRequest.post(api, true, token, body)
+            const response = await httpRequest.delete(api, true, token)
 
             dispatch({ type: "DELETE_SERVICE_CATEGORY_SUCCESS", payload: response })
             callback(response, null)

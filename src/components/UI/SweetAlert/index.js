@@ -21,8 +21,10 @@ export const WarningAlert = ({ show, onConfirm, message, onCancel }) => {
         <SweetAlert
             show={show}
             danger
+            showCancel
             title='Delete?'
             onConfirm={onConfirm}
+            cancelBtnCssClass='gradient-btn gradient-blue button-small'
             confirmBtnCssClass='gradient-btn gradient-red button-small'
             onCancel={onCancel}
         >
