@@ -12,14 +12,14 @@ const ProviderBookingList = () => {
 
             <div className='row'>
                 <div className='col-lg-11'>
-                    <Tabs className='shadow-tab' defaultActiveKey='home'>
-                        <Tab eventKey='home' title='Current Booking'>
+                    <Tabs className='shadow-tab' defaultActiveKey='currentBooking'>
+                        <Tab eventKey='currentBooking' title='Current Booking'>
                             <SingleBooking />
                             <SingleBooking />
                             <SingleBooking />
                             <SingleBooking />
                         </Tab>
-                        <Tab eventKey='profile' title='Past Booking'>
+                        <Tab eventKey='pastBooking' title='Past Booking'>
                             <SingleBooking />
                             <SingleBooking />
                             <SingleBooking />

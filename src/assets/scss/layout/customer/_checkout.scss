@@ -1,65 +1,63 @@
-#user {
-    //--------- Start Checkout Area -------------//
-    .checkout-area {
-        .img-container {
-            margin-left: 40px;
-            @media screen and (max-width: 1199px) {
-                margin-left: 12px;
-            }
-
-            @media screen and (max-width: 767px) {
-                margin-right: 25px;
-            }
+//--------- Start Checkout Area -------------//
+.checkout-area {
+    .img-container {
+        margin-left: 40px;
+        @media screen and (max-width: 1199px) {
+            margin-left: 12px;
         }
 
-        .question-icon,
-        .table-total-container,
-        .table-price-container {
-            @media screen and (max-width: 767px) {
-                margin: 0 25px;
-            }
+        @media screen and (max-width: 767px) {
+            margin-right: 25px;
         }
+    }
 
-        .table-text {
-            color: #3a3671;
-            font-size: 18px;
-            font-weight: 500;
+    .question-icon,
+    .table-total-container,
+    .table-price-container {
+        @media screen and (max-width: 767px) {
+            margin: 0 25px;
         }
+    }
 
-        .table-quantity-container {
-            border: 1px solid #3a3671;
-            border-radius: 4px;
-            @media screen and (max-width: 767px) {
-                margin: 0 25px;
-            }
+    .table-text {
+        color: #3a3671;
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .table-quantity-container {
+        border: 1px solid #3a3671;
+        border-radius: 4px;
+        @media screen and (max-width: 767px) {
+            margin: 0 25px;
         }
+    }
 
-        .table-quantity-btn {
-            display: inline-block;
-            background-color: $white;
-            color: #3a3671;
-            margin: 0;
-            font-size: 26px;
-            padding: 3px 8px 5px;
+    .table-quantity-btn {
+        display: inline-block;
+        background-color: $white;
+        color: #3a3671;
+        margin: 0;
+        font-size: 26px;
+        padding: 3px 8px 5px;
+    }
+
+    .table-quantity-value {
+        font-size: 20px;
+        padding: 4px 11px;
+        background-color: #3a3671;
+        color: #fff;
+    }
+
+    .checkout-summery {
+        max-width: 200px;
+        margin-bottom: 35px;
+        @media screen and (max-width: 991px) {
+            max-width: 100%;
         }
-
-        .table-quantity-value {
+        p {
+            color: $primary-color;
             font-size: 20px;
-            padding: 4px 11px;
-            background-color: #3a3671;
-            color: #fff;
-        }
-
-        .checkout-summery {
-            max-width: 200px;
-            margin-bottom: 35px;
-            @media screen and (max-width: 991px) {
-                max-width: 100%;
-            }
-            p {
-                color: $primary-color;
-                font-size: 20px;
-            }
         }
     }
 }

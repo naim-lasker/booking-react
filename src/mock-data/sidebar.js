@@ -3,13 +3,13 @@ import { FaEye, FaBookOpen, FaEnvelope, FaTachometerAlt, FaWallet, FaCog, FaBull
 
 const providerFeatureList = [
     { name: "Booking", icon: <FaBookOpen />, link: "/provider-booking" },
-    { name: "Wallet", icon: <FaWallet />, link: "/" },
+    { name: "Wallet", icon: <FaWallet />, link: "/provider-wallet" },
     {
         name: "Service and Product",
         dropdowns: [
             { name: "Category", link: "/provider-service-category-list" },
             { name: "Menu", link: "/" },
-            { name: "Product", link: "/" },
+            { name: "Product", link: "/provider-product-list" },
         ],
         dropdown: true,
         icon: <FaCog />,

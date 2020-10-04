@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { FaHome, FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import { ToastContainer } from "react-toastify"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
 import { useInput } from "../../../../helpers/common"
@@ -155,7 +154,6 @@ const ProviderServiceCategoryList = () => {
 
     return (
         <section className='checkout-area'>
-            <ToastContainer />
 
             <CustomAlert
                 show={alert}
