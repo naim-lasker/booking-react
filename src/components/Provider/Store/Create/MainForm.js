@@ -12,7 +12,6 @@ import { InputWithLabel } from "../../../../components/UI/InputField"
 import { InputLabel } from "../../../../components/UI/InputLabel"
 import { TextareaWithLabel } from "../../../../components/UI/TextareaField"
 import { CustomAlert } from "../../../../components/UI/SweetAlert"
-import { ToastContainer } from "react-toastify"
 import auth from "../../../../helpers/auth"
 import AccountModal from "./AccountModal"
 
@@ -117,8 +116,6 @@ const MainForm = () => {
 
     return (
         <Fragment>
-            <ToastContainer />
-
             <CustomAlert
                 show={alert}
                 message={message}

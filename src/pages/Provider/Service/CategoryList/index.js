@@ -1,21 +1,22 @@
 import React, { useEffect, useState } from "react"
-import { Modal, Spinner } from "react-bootstrap"
 import { FaHome, FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import { ToastContainer } from "react-toastify"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
-import { SubmitButton } from "../../../../components/UI/Button"
-import { InputWithLabel } from "../../../../components/UI/InputField"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
 import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { CustomTooltip } from "../../../../components/UI/Tooltip"
+import PlaceholderData from "../../../../components/UI/PlaceholderData"
 import {
     addServiceCategoy,
     getServiceCategoryList,
     updateServiceCategoy,
     deleteServiceCategoy,
 } from "../../../../services/category"
+import { CustomLoader } from "../../../../components/UI/Loader"
+import EditCategory from "../../../../components/Provider/Service/CategoryList/EditCategory"
+import AddCategory from "../../../../components/Provider/Service/CategoryList/AddCategory"
 
 const ProviderServiceCategoryList = () => {
     const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const ProviderServiceCategoryList = () => {
     const [categories, setCategories] = useState([])
     const [addLoading, setAddLoading] = useState(false)
     const [editLoading, setEditLoading] = useState(false)
+    const [deleteLoading, setDeleteLoading] = useState(false)
     const [categoryLoaded, setCategoryLoaded] = useState(true)
     const [alert, setAlert] = useState(false)
     const [alertDelete, setAlertDelete] = useState(false)
@@ -48,9 +50,9 @@ const ProviderServiceCategoryList = () => {
             addServiceCategoy(categoryName, (res, err) => {
                 setAddLoading(false)
                 if (res && res.data && res.data.status === "success") {
+                    categoryList()
                     setMessage(res.data.data)
                     setAlert(true)
-                    categoryList()
                 } else if (err) {
                     if (err && err.data) {
                         notify(
@@ -120,22 +122,19 @@ const ProviderServiceCategoryList = () => {
         )
     }
 
-    const deleteCategory = (id, catName) => {
+    const deleteCategoryItem = (id, catName) => {
         setCategoryID(id)
         setDeleteCategoryName(catName)
         setAlertDelete(true)
     }
 
-    const confirmDeleteAlert = () => {
+    const confirmDelete = () => {
+        setDeleteLoading(true)
         dispatch(
             deleteServiceCategoy(categoryID, (res, err) => {
-                console.log('delete res', res);
-                console.log('delete err', err);
-
-                setEditLoading(false)
+                setDeleteLoading(false)
                 if (res && res.data && res.data.status === "success") {
                     categoryList()
-                    setEditLoading(false)
                     setMessage(res.data.data)
                     setAlert(true)
                     setAlertDelete(false)
@@ -165,9 +164,10 @@ const ProviderServiceCategoryList = () => {
             />
 
             <WarningAlert
+                loading={deleteLoading}
                 show={alertDelete}
                 message={`Delete ${deleteCategoryName}?`}
-                onConfirm={confirmDeleteAlert}
+                onConfirm={confirmDelete}
                 onCancel={() => setAlertDelete(false)}
             />
             <Breadcrumb
@@ -180,39 +180,23 @@ const ProviderServiceCategoryList = () => {
 
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
-                    <form onSubmit={addCategory}>
-                        <div className='mb-3'>
-                            <InputWithLabel
-                                required
-                                type='text'
-                                label='Category Name'
-                                id='categoryName'
-                                infoText='Category Name info'
-                                placeholder='Category Name'
-                                value={categoryName}
-                                onChange={handleCategoryName}
-                            />
-                        </div>
-
-                        <div className='text-center mb-5'>
-                            <SubmitButton
-                                lime={true}
-                                text='Add Category'
-                                loading={addLoading}
-                            />
-                        </div>
-                    </form>
+                    <AddCategory
+                        onSubmit={addCategory}
+                        value={categoryName}
+                        onChange={handleCategoryName}
+                        loading={addLoading}
+                    />
                 </div>
 
                 <div className='mb-5 col-lg-8'>
                     <table className='table table-borderless table-responsive table-striped'>
                         <thead>
                             <tr>
-                                <th className='title-text fs-17'>
+                                <th width='80%' className='title-text fs-17'>
                                     Category Name
                                 </th>
 
-                                <th colSpan='2' className='text-right'>
+                                <th width='20%' className='text-right'>
                                     <button className='title-text fs-17'>
                                         Actions
                                     </button>
@@ -224,16 +208,13 @@ const ProviderServiceCategoryList = () => {
                                 categories && categories.length > 0 ? (
                                     categories.map((category) => (
                                         <tr key={category.id}>
-                                            <td width='80%'>
+                                            <td>
                                                 <span className='fs-17'>
                                                     {category.category_name}
                                                 </span>
                                             </td>
 
-                                            <td
-                                                width='20%'
-                                                className='text-right'
-                                            >
+                                            <td className='text-right'>
                                                 <button
                                                     data-tip
                                                     data-for='editButton'
@@ -254,7 +235,7 @@ const ProviderServiceCategoryList = () => {
 
                                                 <button
                                                     onClick={() =>
-                                                        deleteCategory(
+                                                        deleteCategoryItem(
                                                             category.id,
                                                             category.category_name
                                                         )
@@ -274,20 +255,15 @@ const ProviderServiceCategoryList = () => {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td>"No Category found"</td>
+                                        <td colSpan='2'>
+                                            <PlaceholderData text='No service category found!' />
+                                        </td>
                                     </tr>
                                 )
                             ) : (
                                 <tr>
-                                    <td>
-                                        <Spinner
-                                            as='span'
-                                            animation='border'
-                                            size='sm'
-                                            role='status'
-                                            aria-hidden='true'
-                                            className='ml-2 mb-1'
-                                        />
+                                    <td colSpan='2'>
+                                        <CustomLoader />
                                     </td>
                                 </tr>
                             )}
@@ -296,43 +272,14 @@ const ProviderServiceCategoryList = () => {
                 </div>
             </div>
 
-            <Modal
+            <EditCategory
                 show={modalShow}
                 onHide={() => setModalShow(false)}
-                size='md'
-                aria-labelledby='edit-category-modal'
-                centered
-            >
-                <form onSubmit={editCategory}>
-                    <Modal.Header closeButton>
-                        <Modal.Title id='edit-category-modal'>
-                            Edit Category
-                        </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <div className='mb-3'>
-                            <InputWithLabel
-                                required
-                                type='text'
-                                label='Category Name'
-                                id='categoryName'
-                                infoText='Category Name info'
-                                placeholder='Category Name'
-                                value={editCategoryName}
-                                onChange={handleEditCategoryName}
-                            />
-                        </div>
-
-                        <div className='text-center mb-5'>
-                            <SubmitButton
-                                lime={true}
-                                text='Edit Category'
-                                loading={editLoading}
-                            />
-                        </div>
-                    </Modal.Body>
-                </form>
-            </Modal>
+                onSubmit={editCategory}
+                value={editCategoryName}
+                onChange={handleEditCategoryName}
+                loading={editLoading}
+            />
         </section>
     )
 }

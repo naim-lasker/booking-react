@@ -6,7 +6,6 @@ import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
 import { CustomAlert } from "../../../../components/UI/SweetAlert"
-import { ToastContainer } from "react-toastify"
 import { InputWithLabel } from "../../../UI/InputField"
 
 const MainForm = (props) => {
@@ -54,8 +53,6 @@ const MainForm = (props) => {
 
     return (
         <Fragment>
-            <ToastContainer />
-
             <CustomAlert
                 show={alert}
                 message={message}

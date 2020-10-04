@@ -4,7 +4,6 @@ import Header from "../../../../layouts/Header"
 import Footer from "../../../../layouts/Footer"
 import { addUserAccountDetails } from "../../../../services/account"
 import { useInput } from "../../../../helpers/common"
-import { ToastContainer } from "react-toastify"
 import { notify } from "../../../../helpers/ui"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { FaHome } from "react-icons/fa"
@@ -58,8 +57,6 @@ const UserAddAccount = (props) => {
 
     return (
         <Fragment>
-            <ToastContainer />
-
             <Header />
 
             <CustomAlert

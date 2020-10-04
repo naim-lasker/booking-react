@@ -83,7 +83,7 @@ const Routes = () => {
                     layout={ProviderMain}
                     component={ProviderServiceCategoryList}
                     path='/provider-service-category-list'
-                    title='My Ratings'
+                    title='Service Category'
                 />
 
                 <Page

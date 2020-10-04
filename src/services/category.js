@@ -19,7 +19,10 @@ export const getServiceCategoryList = (callback) => {
             dispatch({ type: "SERVICE_CATEGORY_LIST_PENDING", api })
             const response = await httpRequest.get(api, true, token)
 
-            dispatch({ type: "SERVICE_CATEGORY_LIST_SUCCESS", payload: response })
+            dispatch({
+                type: "SERVICE_CATEGORY_LIST_SUCCESS",
+                payload: response,
+            })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
@@ -27,7 +30,6 @@ export const getServiceCategoryList = (callback) => {
         }
     }
 }
-
 
 /**
  * Method: POST
@@ -50,7 +52,10 @@ export const addServiceCategoy = (categoryName, callback) => {
             dispatch({ type: "CREATE_SERVICE_CATEGORY_PENDING", api })
             const response = await httpRequest.post(api, true, token, body)
 
-            dispatch({ type: "CREATE_SERVICE_CATEGORY_SUCCESS", payload: response })
+            dispatch({
+                type: "CREATE_SERVICE_CATEGORY_SUCCESS",
+                payload: response,
+            })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
@@ -58,8 +63,6 @@ export const addServiceCategoy = (categoryName, callback) => {
         }
     }
 }
-
-
 
 /**
  * Method: POST
@@ -83,7 +86,10 @@ export const updateServiceCategoy = (categoryId, categoryName, callback) => {
             dispatch({ type: "UPDATE_SERVICE_CATEGORY_PENDING", api })
             const response = await httpRequest.post(api, true, token, body)
 
-            dispatch({ type: "UPDATE_SERVICE_CATEGORY_SUCCESS", payload: response })
+            dispatch({
+                type: "UPDATE_SERVICE_CATEGORY_SUCCESS",
+                payload: response,
+            })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
@@ -91,8 +97,6 @@ export const updateServiceCategoy = (categoryId, categoryName, callback) => {
         }
     }
 }
-
-
 
 /**
  * Method: DELETE
@@ -105,13 +109,15 @@ export const deleteServiceCategoy = (categoryId, callback) => {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-
             const api = base_url + "/delete_service_category/" + categoryId
 
             dispatch({ type: "DELETE_SERVICE_CATEGORY_PENDING", api })
             const response = await httpRequest.delete(api, true, token)
 
-            dispatch({ type: "DELETE_SERVICE_CATEGORY_SUCCESS", payload: response })
+            dispatch({
+                type: "DELETE_SERVICE_CATEGORY_SUCCESS",
+                payload: response,
+            })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)

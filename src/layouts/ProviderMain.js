@@ -1,4 +1,5 @@
 import React, { Fragment } from "react"
+import { ToastContainer } from "react-toastify"
 import Header from "./Header"
 import Footer from "./Footer"
 import ProviderSidebar from "./ProviderSidebar"
@@ -8,6 +9,7 @@ const ProviderMain = (props) => {
 
     return (
         <Fragment>
+            <ToastContainer />
             <Header />
             <div className='container'>
                 <div className='row'>
