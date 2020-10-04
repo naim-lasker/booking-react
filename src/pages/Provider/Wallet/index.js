@@ -137,41 +137,41 @@ const ProviderWallet = () => {
                         </Tab>
 
                         <Tab eventKey='paymentMethods' title='Payment Methods'>
-                            <div class='row'>
-                                <div class='col-lg-6 mt-3 pt-3'>
-                                    <div class='card text-center'>
-                                        <div class='card-body'>
-                                            <p class='card-text'>
+                            <div className='row'>
+                                <div className='col-lg-6 mt-3 pt-3'>
+                                    <div className='card text-center'>
+                                        <div className='card-body'>
+                                            <p className='card-text'>
                                                 ID: 1254958A
                                             </p>
-                                            <p class='card-text'>
+                                            <p className='card-text'>
                                                 APP Key: 1254958A
                                             </p>
-                                            <p class='card-text'>
+                                            <p className='card-text'>
                                                 App Secret ID: A988 - 12213-
                                                 ADDDD
                                             </p>
                                         </div>
-                                        <div class='card-footer text-muted'>
+                                        <div className='card-footer text-muted'>
                                             Paypal
                                         </div>
                                     </div>
                                 </div>
-                                <div class='col-lg-6 mt-3 pt-3'>
-                                    <div class='card text-center'>
-                                        <div class='card-body'>
-                                            <p class='card-text'>
+                                <div className='col-lg-6 mt-3 pt-3'>
+                                    <div className='card text-center'>
+                                        <div className='card-body'>
+                                            <p className='card-text'>
                                                 ID: 1254958A
                                             </p>
-                                            <p class='card-text'>
+                                            <p className='card-text'>
                                                 APP Key: 1254958A
                                             </p>
-                                            <p class='card-text'>
+                                            <p className='card-text'>
                                                 App Secret ID: A988 - 12213-
                                                 ADDDD
                                             </p>
                                         </div>
-                                        <div class='card-footer text-muted'>
+                                        <div className='card-footer text-muted'>
                                             Stripe
                                         </div>
                                     </div>
