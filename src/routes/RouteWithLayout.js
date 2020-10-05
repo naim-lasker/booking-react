@@ -17,7 +17,7 @@ const RouteWithLayout = (props) => {
                 (userInfo && userInfo.token) ||
                 (providerInfo && providerInfo.token) ? (
                     <Layout>
-                        <Component />
+                        <Component {...matchProps} />
                     </Layout>
                 ) : (
                     <Redirect to='/provider-signin' />

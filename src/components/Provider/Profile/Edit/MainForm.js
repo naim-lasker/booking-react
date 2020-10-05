@@ -4,7 +4,7 @@ import PhoneInput from "react-phone-number-input"
 import { withRouter } from "react-router-dom"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { SubmitButton } from "../../../UI/Button"
-import { InputWithLabel } from "../../../UI/InputField"
+import { CustomInput } from "../../../UI/InputField"
 import { InputLabel } from "../../../UI/InputLabel"
 import auth from "../../../../helpers/auth"
 
@@ -70,8 +70,9 @@ const MainForm = () => {
                     </div>
 
                     <div className='form-container'>
-                        <InputWithLabel
+                        <CustomInput
                             required
+                            showLabel
                             type='text'
                             label='Full Name'
                             id='fullName'
@@ -81,8 +82,9 @@ const MainForm = () => {
                             onChange={handleFullName}
                         />
 
-                        <InputWithLabel
+                        <CustomInput
                             required
+                            showLabel
                             type='email'
                             label='Email'
                             id='email'
@@ -108,8 +110,9 @@ const MainForm = () => {
                             />
                         </div>
 
-                        <InputWithLabel
+                        <CustomInput
                             required
+                            showLabel
                             label='Country of Origin'
                             id='companyName'
                             infoText='Country of Origin info'

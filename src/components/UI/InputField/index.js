@@ -1,26 +1,45 @@
 import React from "react"
 import { InputLabel } from "../InputLabel"
 
-export const InputWithLabel = ({
+export const CustomInput = ({
+    showRightText,
+    showLabel,
+    className,
     label,
-    inputRef,
     id,
+    inputRef,
+    rightText,
     infoText,
     type = "text",
     ...rest
 }) => {
     return (
-        <div className='mb-4'>
-            <InputLabel label={label} id={id} infoText={infoText} />
-            <div>
+        <div className={`${showLabel ? "mb-4" : ''} ${className}`}>
+            {showLabel && (
+                <InputLabel label={label} id={id} infoText={infoText} />
+            )}
+
+            <div className={showRightText && "input-group"}>
                 <input
                     ref={inputRef}
-                    id={id}
                     type={type}
+                    id={id}
                     className='form-control input-box'
                     {...rest}
                 />
+                {showRightText && (
+                    <div className='input-group-append'>
+                        <span className='input-group-text input-box-text'>
+                            {rightText}
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
     )
+}
+
+CustomInput.defaultProps = {
+    showLabel: false,
+    className: "",
 }

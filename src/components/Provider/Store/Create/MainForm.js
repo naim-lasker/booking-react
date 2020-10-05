@@ -8,7 +8,7 @@ import { getServiceCategoryList } from "../../../../services/category"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
-import { InputWithLabel } from "../../../../components/UI/InputField"
+import { CustomInput } from "../../../../components/UI/InputField"
 import { InputLabel } from "../../../../components/UI/InputLabel"
 import { TextareaWithLabel } from "../../../../components/UI/TextareaField"
 import { CustomAlert } from "../../../../components/UI/SweetAlert"
@@ -159,8 +159,9 @@ const MainForm = () => {
                         </div>
 
                         <div className='form-container'>
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 type='url'
                                 label='You tube Video link'
                                 id='youtubeVideoLink'
@@ -187,8 +188,9 @@ const MainForm = () => {
                                 />
                             </div>
 
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 type='email'
                                 label='Email'
                                 id='email'
@@ -216,8 +218,9 @@ const MainForm = () => {
                                 />
                             </div>
 
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 label='Company Name'
                                 id='companyName'
                                 infoText='Company Name info'
@@ -226,8 +229,9 @@ const MainForm = () => {
                                 onChange={handleCompanyName}
                             />
 
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 label='Company Address'
                                 id='companyAddress'
                                 infoText='Company Address info'

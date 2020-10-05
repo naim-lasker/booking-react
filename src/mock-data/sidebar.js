@@ -1,5 +1,5 @@
 import React from "react"
-import { FaEye, FaBookOpen, FaEnvelope, FaTachometerAlt, FaWallet, FaCog, FaBullhorn, FaStar } from "react-icons/fa"
+import { FaEye, FaBookOpen, FaEnvelope, FaWallet, FaCog, FaBullhorn, FaStar } from "react-icons/fa"
 
 const providerFeatureList = [
     { name: "Booking", icon: <FaBookOpen />, link: "/provider-booking" },
@@ -10,6 +10,7 @@ const providerFeatureList = [
             { name: "Category", link: "/provider-service-category-list" },
             { name: "Menu", link: "/provider-booking" },
             { name: "Product", link: "/provider-product-list" },
+            { name: "Service", link: "/provider-add-service" },
         ],
         dropdown: true,
         icon: <FaCog />,

@@ -1,13 +1,14 @@
 import React from "react"
 import { SubmitButton } from "../../../UI/Button"
-import { InputWithLabel } from "../../../UI/InputField"
+import { CustomInput } from "../../../UI/InputField"
 
 const AddCategory = ({ onSubmit, value, onChange, loading }) => {
     return (
         <form onSubmit={onSubmit}>
             <div className='mb-3'>
-                <InputWithLabel
+                <CustomInput
                     required
+                    showLabel
                     type='text'
                     label='Category Name'
                     id='categoryName'

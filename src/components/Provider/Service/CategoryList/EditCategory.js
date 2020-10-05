@@ -1,7 +1,7 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
 import { SubmitButton } from "../../../UI/Button"
-import { InputWithLabel } from "../../../UI/InputField"
+import { CustomInput } from "../../../UI/InputField"
 
 const EditCategory = ({show, onHide, onSubmit, value, onChange, loading}) => {
     return (
@@ -20,8 +20,9 @@ const EditCategory = ({show, onHide, onSubmit, value, onChange, loading}) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className='mb-3'>
-                        <InputWithLabel
+                        <CustomInput
                             required
+                            showLabel
                             type='text'
                             label='Category Name'
                             id='categoryName'

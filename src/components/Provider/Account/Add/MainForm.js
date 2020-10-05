@@ -6,7 +6,7 @@ import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { SubmitButton } from "../../../../components/UI/Button"
 import { CustomAlert } from "../../../../components/UI/SweetAlert"
-import { InputWithLabel } from "../../../UI/InputField"
+import { CustomInput } from "../../../UI/InputField"
 
 const MainForm = (props) => {
     const dispatch = useDispatch()
@@ -63,8 +63,9 @@ const MainForm = (props) => {
                 <div className='row justify-content-center mb-5'>
                     <div className='col-lg-8'>
                         <div className='form-container'>
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 label='Name of the Account'
                                 id='nameOfAccount'
                                 infoText='Name of the Account info'
@@ -75,8 +76,9 @@ const MainForm = (props) => {
 
                             <div className='row'>
                                 <div className='col-lg-6'>
-                                    <InputWithLabel
+                                    <CustomInput
                                         required
+                                        showLabel
                                         label='IBAN'
                                         id='iban'
                                         infoText='IBAN info'
@@ -86,7 +88,8 @@ const MainForm = (props) => {
                                     />
                                 </div>
                                 <div className='col-lg-6'>
-                                    <InputWithLabel
+                                    <CustomInput
+                                        showLabel
                                         required
                                         label='Bank Name'
                                         id='bankName'
@@ -98,8 +101,9 @@ const MainForm = (props) => {
                                 </div>
                             </div>
 
-                            <InputWithLabel
+                            <CustomInput
                                 required
+                                showLabel
                                 label='SWIFT BIC'
                                 id='swiftBic'
                                 infoText='SWIFT BIC info'
