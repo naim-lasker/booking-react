@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
-import { CustomLoader } from "../../UI/Loader"
-import PlaceholderData from "../../UI/PlaceholderData"
+import { CustomLoader } from "../../../UI/Loader"
+import PlaceholderData from "../../../UI/PlaceholderData"
 
 const SingleProduct = ({ products, loading }) => {
     return !loading ? (

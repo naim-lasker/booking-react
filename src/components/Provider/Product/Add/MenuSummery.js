@@ -3,9 +3,9 @@ import PropTypes from "prop-types"
 
 const MenuSummery = ({
     sellingPrice,
-    discountPercentence,
+    discountPercentage,
     discountAmount,
-    vatCodePercentence,
+    vat,
     vatCodeAmount,
     customerPays,
 }) => {
@@ -19,11 +19,11 @@ const MenuSummery = ({
                         <td>${sellingPrice ? sellingPrice : 0}</td>
                     </tr>
                     <tr>
-                        <td width='150'>Vat @ {vatCodePercentence ? vatCodePercentence : 0}%</td>
+                        <td width='150'>Vat @ {vat ? vat : 0}%</td>
                         <td>${vatCodeAmount}</td>
                     </tr>
                     <tr>
-                        <td width='150'>Discount {discountPercentence ? discountPercentence : 0}%</td>
+                        <td width='150'>Discount {discountPercentage ? discountPercentage : 0}%</td>
                         <td>${discountAmount}</td>
                     </tr>
                     <tr>
