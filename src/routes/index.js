@@ -20,6 +20,7 @@ import ProviderServiceCategoryList from "../pages/Provider/Service/CategoryList"
 import ProviderAddService from "../pages/Provider/Service/Add"
 import ProviderWallet from "../pages/Provider/Wallet"
 import ProviderProductList from "../pages/Provider/Product/List"
+import ProviderAddProduct from "../pages/Provider/Product/Add"
 
 import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
@@ -108,6 +109,13 @@ const Routes = () => {
                     component={ProviderProductList}
                     path='/provider-product-list'
                     title='Product List'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderAddProduct}
+                    path='/provider-add-product'
+                    title='Add Product'
                 />
 
                 <Page

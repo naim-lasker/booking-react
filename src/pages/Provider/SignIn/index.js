@@ -35,9 +35,9 @@ const ProviderSignIn = (props) => {
 
         dispatch(
             providerSignIn(email, password, (res, err) => {
-                setLoading(false)
 
                 if (err) {
+                    setLoading(false)
                     notify(
                         "error",
                         err.data && err.data.data
@@ -53,6 +53,7 @@ const ProviderSignIn = (props) => {
                         auth.clearUserInfo()
                         auth.setProviderInfo(res.data.data)
                         window.location.href = "/provider-create-store"
+                        setLoading(false)
                     } else {
                         notify("error", "Please provide valid credential")
                     }
