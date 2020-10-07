@@ -7,6 +7,9 @@
             border: 1px dashed #d9d1fe;
             border-radius: 20px;
             cursor: pointer;
+            .profile-pic-inner-img {
+                max-height: 55px;
+            }
         }
         .browse-img {
             font-size: 20px;
@@ -25,7 +28,7 @@
     .menu-summery-area {
         position: absolute;
         background: #3300cc;
-        bottom: 35%;
+        bottom: 30%;
         left: -50%;
         padding: 25px 20px;
         width: 290px;

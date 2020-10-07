@@ -12,13 +12,14 @@ export const RadioButton = ({
     return (
         <div className={`${className ? className : ""} `}>
             <input
+                className='cursor-pointer'
                 id={id}
                 onChange={onChange}
                 value={value}
                 type='radio'
                 {...rest}
             />
-            <label className='ml-1' htmlFor={id}>
+            <label className='ml-1 cursor-pointer' htmlFor={id}>
                 {label}
             </label>
         </div>

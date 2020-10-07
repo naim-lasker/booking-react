@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from "react"
+import React, { createRef, useState } from "react"
 import { FaHome, FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import MenuSummery from "../../../../components/Provider/Product/Add/MenuSummery"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
+import { SubmitButton } from "../../../../components/UI/Button"
+import Checkbox from "../../../../components/UI/Checkbox"
 import { CustomInput } from "../../../../components/UI/InputField"
 import { RadioButton } from "../../../../components/UI/RadioButton"
+import { ConfirmAlert, CustomAlert } from "../../../../components/UI/SweetAlert"
 import { useFileInput, useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import { addProviderProduct } from "../../../../services/product"
 
 const ProviderAddProduct = () => {
     const dispatch = useDispatch()
-    const [productImage, setProductImage] = useState(null)
+    const [productImage, handleProductImage, setProductImage] = useFileInput({
+        file: "",
+        image: "",
+    })
     const [productName, handleProductName, setProductName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
@@ -21,9 +27,10 @@ const ProviderAddProduct = () => {
         quantityInStock,
         handleQuantityInStock,
         setQuantityInStock,
-    ] = useInput("")
+    ] = useInput(0)
     const [sellingPrice, handleSellingPrice, setSellingPrice] = useInput(0)
     const [vat, handleVat, setVatCodePercentence] = useInput(0)
+    const [availabilityStatus, setAvailabilityStatus] = useState(false)
     const [
         availabilityFrom,
         handleAvailabilityFrom,
@@ -33,20 +40,18 @@ const ProviderAddProduct = () => {
         new Date()
     )
     const [discountStatus, handleDiscountStatus, setDiscountStatus] = useInput(
-        false
+        1
     )
-    const [
-        availabilityStatus,
-        handleAvailabilityStatus,
-        setAvailabilityStatus,
-    ] = useInput(false)
     const [
         discountPercentage,
         handleDiscountPercentage,
         setDiscountPercentence,
     ] = useInput(0)
-    const [isService, handleIsService, setIsService] = useInput(false)
+    const [loadingService, setLoadingService] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [confirmAlert, setConfirmAlert] = useState(false)
+    const [alert, setAlert] = useState(false)
+    const [message, setMessage] = useState("")
 
     let discountAmount = 0
     discountAmount = ((sellingPrice * discountPercentage) / 100).toFixed(2)
@@ -60,46 +65,99 @@ const ProviderAddProduct = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
-    const multiFile = []
-    const fileArray = []
+    const productNameRef = createRef()
 
-    console.log("productImage", productImage)
+    let productObj = {
+        productImage: productImage.image,
+        productName,
+        overview,
+        additionalInfo,
+        sellingPrice,
+        vat,
+        quantityInStock,
+        discountStatus,
+        discountAmount,
+        discountPercentage,
+        availabilityStatus,
+        availabilityFrom,
+        availabilityTo,
+    }
 
-    const handleSubmit = (event) => {
-        event.preventDefault()
-
-        return
-        setLoading(true)
-
-        const productObj = {
-            productImage,
-            productName,
-            overview,
-            additionalInfo,
-            sellingPrice,
-            vat,
-            quantityInStock,
-            discountStatus,
-            discountAmount,
-            discountPercentage,
-            availabilityStatus,
-            availabilityFrom,
-            availabilityTo,
-            isService,
+    const checkSubmit = () => {
+        if (!productName) {
+            productNameRef.current.focus()
+            notify("error", "Please enter product name")
+        } else {
+            setConfirmAlert(true)
         }
-        dispatch(
-            addProviderProduct(productObj, (res, err) => {
-                setLoading(false)
+    }
 
-                // if (res && res.data && res.data.status === "error") {
-                //     return notify("error", res.data.data)
-                // } else if (res && res.data && res.data.status === "success") {
-                //     setMessage(res.data.data)
-                //     setAlert(true)
-                // }
+    const handleSubmitAsService = () => {
+        productObj.isService = 1
+        setLoadingService(true)
+
+        dispatch(
+            addProviderProduct(productObj, true, (res, err) => {
+                setLoadingService(false)
+                setConfirmAlert(false)
+
+                if (err && err.data) {
+                    return notify(
+                        "error",
+                        (err.data.message && err.data.message) ||
+                            "Somethingf went wrong"
+                    )
+                } else if (res && res.data) {
+                    setMessage(res.data.data)
+                    setAlert(true)
+                }
             })
         )
     }
+
+    const handleSubmit = () => {
+        productObj.isService = 0
+        setLoading(true)
+
+        dispatch(
+            addProviderProduct(productObj, false, (res, err) => {
+                setLoading(false)
+                setConfirmAlert(false)
+
+                if (err && err.data) {
+                    return notify(
+                        "error",
+                        (err.data.message && err.data.message) ||
+                            "Somethingf went wrong"
+                    )
+                } else if (res && res.data) {
+                    setMessage(res.data.data)
+                    setAlert(true)
+                }
+            })
+        )
+    }
+
+    const confirmAddService = () => {
+        setProductImage({
+            file: "",
+            image: "",
+        })
+        setProductName("")
+        setOverview("")
+        setAdditionalInfo("")
+        setQuantityInStock(0)
+        setSellingPrice(0)
+        setVatCodePercentence(0)
+        setAvailabilityFrom(new Date())
+        setAvailabilityTo(new Date())
+        setAvailabilityStatus(false)
+        setDiscountStatus(1)
+        setDiscountPercentence(0)
+        setAlert(false)
+    }
+
+    console.log("productImage", productImage)
 
     return (
         <section className='add-menu-area'>
@@ -111,159 +169,164 @@ const ProviderAddProduct = () => {
                 ]}
             />
 
-            <form onSubmit={handleSubmit}>
-                <div className='row justify-content-center'>
-                    <div className='col-lg-9'>
-                        <div className='upload-container row justify-content-center align-items-center flex-column '>
-                            <div className='row justify-content-center'>
-                                <label
-                                    htmlFor='imageInput'
-                                    className='upload-img-container text-center'
-                                >
-                                    <div className='profile-pic-inner'>
-                                        <input
-                                            multiple
-                                            id='imageInput'
-                                            type='file'
-                                            className='d-none'
-                                            accept='image/gif, image/jpg, image/jpeg, image/png'
-                                            alt=''
-                                            onChange={(e) => {
-                                                multiFile.push(e.target.files)
-                                                for (
-                                                    let i = 0;
-                                                    i < multiFile[0].length;
-                                                    i++
-                                                ) {
-                                                    fileArray.push(
-                                                        URL.createObjectURL(
-                                                            multiFile[0][i]
-                                                        )
-                                                    )
-                                                }
-                                                setProductImage(fileArray)
-                                            }}
-                                        />
-                                        <img
-                                            src='/images/icons/upload.png'
-                                            alt=''
-                                        />
-                                        <h4 className='browse-img mt-3'>
-                                            browse images
-                                        </h4>
-                                    </div>
-                                </label>
-                                <div className='align-self-center ml-5'>
-                                    <button className='question-icon'>?</button>
+            <ConfirmAlert
+                loadingYes={loadingService}
+                loadingNo={loading}
+                show={confirmAlert}
+                message={`Do you want to make this product as a service?`}
+                onConfirm={handleSubmitAsService}
+                onCancel={handleSubmit}
+            />
+
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAddService}
+            />
+
+            <div className='row justify-content-center'>
+                <div className='col-lg-9'>
+                    <div className='upload-container row justify-content-center align-items-center flex-column '>
+                        <div className='row justify-content-center'>
+                            <label
+                                htmlFor='imageInput'
+                                className='upload-img-container text-center'
+                            >
+                                <div className='profile-pic-inner'>
+                                    <input
+                                        multiple
+                                        id='imageInput'
+                                        type='file'
+                                        className='d-none'
+                                        accept='image/gif, image/jpg, image/jpeg, image/png'
+                                        alt=''
+                                        onChange={handleProductImage}
+                                    />
+                                    <img
+                                        className='profile-pic-inner-img'
+                                        src={
+                                            productImage.image
+                                                ? productImage.image
+                                                : "/images/icons/upload.png"
+                                        }
+                                        alt=''
+                                    />
+                                    <h4 className='browse-img mt-3'>
+                                        browse images
+                                    </h4>
                                 </div>
+                            </label>
+                            <div className='align-self-center ml-5'>
+                                <button className='question-icon'>?</button>
                             </div>
-                            <h3 className='upload-img-header'>
-                                Upload Multiple product images
-                            </h3>
+                        </div>
+                        <h3 className='upload-img-header'>
+                            Upload Multiple product images
+                        </h3>
+                    </div>
+
+                    <div className='mb-3'>
+                        <CustomInput
+                            inputRef={productNameRef}
+                            showLabel
+                            type='text'
+                            label='Product Name'
+                            id='productName'
+                            infoText='Product Name info'
+                            placeholder='All meat pizza'
+                            value={productName}
+                            onChange={handleProductName}
+                        />
+
+                        <CustomInput
+                            showLabel
+                            type='text'
+                            label='Overview'
+                            id='overview'
+                            infoText='Overview info'
+                            placeholder='This pizza is made with love in our home made oven'
+                            value={overview}
+                            onChange={handleOverview}
+                        />
+
+                        <CustomInput
+                            showLabel
+                            type='text'
+                            label='Additional Information'
+                            id='additionalInfo'
+                            infoText='Additional Information info'
+                            placeholder='We used pork, chicken, spicy beef on a tomato base pizza bread'
+                            value={additionalInfo}
+                            onChange={handleAdditionalInfo}
+                        />
+
+                        <CustomInput
+                            showLabel
+                            type='number'
+                            min='0'
+                            label='Quantity In Stock'
+                            id='quantityInStock'
+                            infoText='Quantity In Stock info'
+                            placeholder='Enter quantity in stock'
+                            value={quantityInStock}
+                            onChange={handleQuantityInStock}
+                        />
+
+                        <div className='row justify-content-md-between'>
+                            <div className='col-lg-5'>
+                                <CustomInput
+                                    showLabel
+                                    type='number'
+                                    min='0'
+                                    label='Selling Price'
+                                    id='sellingPrice'
+                                    infoText='Selling Price info'
+                                    placeholder='e.g. 10.00$'
+                                    value={sellingPrice}
+                                    onChange={handleSellingPrice}
+                                />
+                            </div>
+
+                            <div className='col-lg-5 mt-lg-0 mt-3'>
+                                <CustomInput
+                                    showLabel
+                                    showRightText
+                                    type='number'
+                                    maxLength='2'
+                                    min='0'
+                                    max='15'
+                                    rightText='%'
+                                    label='Choose VAT code'
+                                    id='vat'
+                                    infoText='Choose VAT code info'
+                                    placeholder='5% - 15%'
+                                    value={vat}
+                                    onChange={handleVat}
+                                />
+                            </div>
                         </div>
 
-                        <div className='mb-3'>
-                            <CustomInput
-                                required
-                                showLabel
-                                type='text'
-                                label='Product Name'
-                                id='productName'
-                                infoText='Product Name info'
-                                placeholder='All meat pizza'
-                                value={productName}
-                                onChange={handleProductName}
-                            />
-
-                            <CustomInput
-                                required
-                                showLabel
-                                type='text'
-                                label='Overview'
-                                id='overview'
-                                infoText='Overview info'
-                                placeholder='This pizza is made with love in our home made oven'
-                                value={overview}
-                                onChange={handleOverview}
-                            />
-
-                            <CustomInput
-                                required
-                                showLabel
-                                type='text'
-                                label='Additional Information'
-                                id='additionalInfo'
-                                infoText='Additional Information info'
-                                placeholder='We used pork, chicken, spicy beef on a tomato base pizza bread'
-                                value={additionalInfo}
-                                onChange={handleAdditionalInfo}
-                            />
-
-                            <CustomInput
-                                required
-                                showLabel
-                                type='number'
-                                min='0'
-                                label='Quantity In Stock'
-                                id='quantityInStock'
-                                infoText='Quantity In Stock info'
-                                placeholder='Enter quantity in stock'
-                                value={quantityInStock}
-                                onChange={handleQuantityInStock}
-                            />
-
-                            <div className='row justify-content-md-between'>
-                                <div className='col-lg-5'>
-                                    <CustomInput
-                                        required
-                                        showLabel
-                                        type='number'
-                                        min='0'
-                                        label='Selling Price'
-                                        id='sellingPrice'
-                                        infoText='Selling Price info'
-                                        placeholder='e.g. 10.00$'
-                                        value={sellingPrice}
-                                        onChange={handleSellingPrice}
-                                    />
-                                </div>
-
-                                <div className='col-lg-5 mt-lg-0 mt-3'>
-                                    <CustomInput
-                                        required
-                                        showLabel
-                                        showRightText
-                                        type='number'
-                                        maxLength='2'
-                                        min='0'
-                                        max='15'
-                                        rightText='%'
-                                        label='Choose VAT code'
-                                        id='vat'
-                                        infoText='Choose VAT code info'
-                                        placeholder='5% - 15%'
-                                        value={vat}
-                                        onChange={handleVat}
-                                    />
-                                </div>
+                        <div className='mb-4'>
+                            <div className='d-flex align-items-center'>
+                                <Checkbox
+                                    text='All Day Availability'
+                                    checked={availabilityStatus}
+                                    onChange={() =>
+                                        setAvailabilityStatus(
+                                            !availabilityStatus
+                                        )
+                                    }
+                                />
+                                <button className='question-icon ml-2'>
+                                    ?
+                                </button>
                             </div>
+                        </div>
 
-                            <div className='mb-4'>
-                                <div className='d-flex align-items-center'>
-                                    <label className='label-name mr-2'>
-                                        All Day Availability
-                                    </label>
-                                    <input type='checkbox' />
-                                    <button className='question-icon ml-2'>
-                                        ?
-                                    </button>
-                                </div>
-                            </div>
-
+                        {!availabilityStatus && (
                             <div className='row mb-4'>
                                 <div className='col-lg-5 col-md-6 mb-md-0 mb-3'>
                                     <CustomInput
-                                        required
                                         type='date'
                                         placeholder='From'
                                         value={availabilityFrom}
@@ -273,7 +336,6 @@ const ProviderAddProduct = () => {
 
                                 <div className='col-lg-5 col-md-6'>
                                     <CustomInput
-                                        required
                                         type='date'
                                         placeholder='To'
                                         value={availabilityTo}
@@ -281,38 +343,38 @@ const ProviderAddProduct = () => {
                                     />
                                 </div>
                             </div>
+                        )}
 
-                            <div className='mb-3'>
-                                <label className='label-name'>
-                                    Is discount available
-                                </label>
-                                <button className='question-icon ml-2'>
-                                    ?
-                                </button>
-                            </div>
+                        <div className='mb-3'>
+                            <label className='label-name'>
+                                Is discount available
+                            </label>
+                            <button className='question-icon ml-2'>?</button>
+                        </div>
 
-                            <div className='d-flex mb-3'>
-                                <RadioButton
-                                    className='mr-5'
-                                    id='discountAvailable'
-                                    onChange={handleDiscountStatus}
-                                    label='Yes'
-                                    value='yes'
-                                    name='discountStatus'
-                                />
-                                <RadioButton
-                                    id='discountNotAvailable'
-                                    onChange={handleDiscountStatus}
-                                    label='No'
-                                    value='no'
-                                    name='discountStatus'
-                                />
-                            </div>
+                        <div className='d-flex mb-3'>
+                            <RadioButton
+                                className='mr-5'
+                                id='discountAvailable'
+                                defaultChecked
+                                onChange={handleDiscountStatus}
+                                label='Yes'
+                                value='1'
+                                name='discountStatus'
+                            />
+                            <RadioButton
+                                id='discountNotAvailable'
+                                onChange={handleDiscountStatus}
+                                label='No'
+                                value='0'
+                                name='discountStatus'
+                            />
+                        </div>
 
-                            <div className='row align-items-center mb-5'>
+                        {discountStatus == 1 && (
+                            <div className='row align-items-center'>
                                 <div className='col-md-6 mb-md-0 mb-3'>
                                     <CustomInput
-                                        required
                                         showLabel
                                         showRightText
                                         type='number'
@@ -329,7 +391,6 @@ const ProviderAddProduct = () => {
 
                                 <div className='col-md-6'>
                                     <CustomInput
-                                        required
                                         showLabel
                                         disabled
                                         type='number'
@@ -342,106 +403,72 @@ const ProviderAddProduct = () => {
                                     />
                                 </div>
                             </div>
+                        )}
 
-                            <div className='row mb-4'>
-                                <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                                <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                                <div className='col-lg-4 col-md-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className='row mb-5'>
-                                <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                                <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                                <div className='col-lg-4 col-md-4 text-md-left text-center'>
-                                    <img
-                                        src='/images/profile/edit-img.png'
-                                        alt=''
-                                    />
-                                    <button className='ml-3 title-text'>
-                                        <FaPencilAlt />
-                                    </button>
-                                    <button className='title-text'>
-                                        <FaTrashAlt />
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className='d-flex justify-content-between mb-5 pb-5'>
-                                <button className='gradient-btn gradient-lime'>
-                                    Cencel
+                        <div className='row mb-5'>
+                            <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
+                                <img
+                                    src='/images/profile/edit-img.png'
+                                    alt=''
+                                />
+                                <button className='ml-3 title-text'>
+                                    <FaPencilAlt />
                                 </button>
-                                <button className='gradient-btn gradient-lime'>
-                                    Add Product
+                                <button className='title-text'>
+                                    <FaTrashAlt />
+                                </button>
+                            </div>
+                            <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
+                                <img
+                                    src='/images/profile/edit-img.png'
+                                    alt=''
+                                />
+                                <button className='ml-3 title-text'>
+                                    <FaPencilAlt />
+                                </button>
+                                <button className='title-text'>
+                                    <FaTrashAlt />
+                                </button>
+                            </div>
+                            <div className='col-lg-4 col-md-4 text-md-left text-center'>
+                                <img
+                                    src='/images/profile/edit-img.png'
+                                    alt=''
+                                />
+                                <button className='ml-3 title-text'>
+                                    <FaPencilAlt />
+                                </button>
+                                <button className='title-text'>
+                                    <FaTrashAlt />
                                 </button>
                             </div>
                         </div>
 
-                        <MenuSummery
-                            sellingPrice={sellingPrice}
-                            discountPercentage={discountPercentage}
-                            discountAmount={discountAmount}
-                            vat={vat}
-                            vatCodeAmount={vatCodeAmount}
-                            customerPays={customerPays}
-                        />
+                        <div className='d-flex justify-content-between mb-5 pb-5'>
+                            <a
+                                href='//provider-booking'
+                                className='gradient-btn gradient-lime'
+                            >
+                                Cencel
+                            </a>
+                            <SubmitButton
+                                lime={true}
+                                text='Add Producte'
+                                onClick={checkSubmit}
+                            />
+                        </div>
                     </div>
+
+                    <MenuSummery
+                        sellingPrice={sellingPrice}
+                        discountPercentage={discountPercentage}
+                        discountAmount={discountAmount}
+                        vat={vat}
+                        vatCodeAmount={vatCodeAmount}
+                        customerPays={customerPays}
+                    />
                 </div>
-            </form>
+            </div>
         </section>
     )
 }

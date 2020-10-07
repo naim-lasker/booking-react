@@ -1,9 +1,9 @@
 import React from "react"
 import { Spinner } from "react-bootstrap"
 
-export const SubmitButton = ({text, loading, lime, blue, customClass}) => {
+export const SubmitButton = ({onClick, text, loading, lime, blue, customClass}) => {
     return (
-        <button type='submit' className={`gradient-btn ${customClass} ${lime ? 'gradient-lime' : blue ? 'gradient-blue' : null}`}>
+        <button onClick={onClick} type='submit' className={`gradient-btn ${customClass} ${lime ? 'gradient-lime' : blue ? 'gradient-blue' : null}`}>
             <span>{text}</span>
             {loading && (
                 <Spinner
