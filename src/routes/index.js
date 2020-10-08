@@ -16,7 +16,7 @@ import ProviderCreateStore from "../pages/Provider/Store/Create"
 import ProviderAddAccount from "../pages/Provider/Account/Add"
 import ProviderEditProfile from "../pages/Provider/Profile/Edit"
 import ProviderRatingList from "../pages/Provider/Rating/List"
-import ProviderServiceCategoryList from "../pages/Provider/Service/CategoryList"
+import ProviderCategory from "../pages/Provider/Category"
 import ProviderAddService from "../pages/Provider/Service/Add"
 import ProviderWallet from "../pages/Provider/Wallet"
 import ProviderProductList from "../pages/Provider/Product/List"
@@ -85,8 +85,8 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={ProviderMain}
-                    component={ProviderServiceCategoryList}
-                    path='/provider-service-category-list'
+                    component={ProviderCategory}
+                    path='/provider-category'
                     title='Service Category'
                 />
                 <RouteWithLayout

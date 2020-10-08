@@ -7,7 +7,7 @@ const providerFeatureList = [
     {
         name: "Service and Product",
         dropdowns: [
-            { name: "Category", link: "/provider-service-category-list" },
+            { name: "Category", link: "/provider-category" },
             { name: "Menu", link: "/provider-booking" },
             { name: "Product", link: "/provider-product-list" },
             { name: "Service", link: "/provider-add-service" },

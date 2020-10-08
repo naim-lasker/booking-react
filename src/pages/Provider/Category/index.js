@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { FaHome, FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import Breadcrumb from "../../../../components/UI/Breadcrumb"
-import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
-import { useInput } from "../../../../helpers/common"
-import { notify } from "../../../../helpers/ui"
-import { CustomTooltip } from "../../../../components/UI/Tooltip"
-import PlaceholderData from "../../../../components/UI/PlaceholderData"
+import Breadcrumb from "../../../components/UI/Breadcrumb"
+import { CustomAlert, WarningAlert } from "../../../components/UI/SweetAlert"
+import { useInput } from "../../../helpers/common"
+import { notify } from "../../../helpers/ui"
+import { CustomTooltip } from "../../../components/UI/Tooltip"
+import PlaceholderData from "../../../components/UI/PlaceholderData"
 import {
     addServiceCategoy,
     getServiceCategoryList,
     updateServiceCategoy,
     deleteServiceCategoy,
-} from "../../../../services/category"
-import { CustomLoader } from "../../../../components/UI/Loader"
-import EditCategory from "../../../../components/Provider/Service/CategoryList/EditCategory"
-import AddCategory from "../../../../components/Provider/Service/CategoryList/AddCategory"
+} from "../../../services/category"
+import { CustomLoader } from "../../../components/UI/Loader"
+import EditCategory from "../../../components/Provider/Category/EditCategory"
+import AddCategory from "../../../components/Provider/Category/AddCategory"
 
-const ProviderServiceCategoryList = () => {
+const ProviderCategory = () => {
     const dispatch = useDispatch()
     const [categoryName, handleCategoryName, setCategoryName] = useInput("")
     const [
@@ -154,7 +154,6 @@ const ProviderServiceCategoryList = () => {
 
     return (
         <section className='checkout-area'>
-
             <CustomAlert
                 show={alert}
                 message={message}
@@ -194,10 +193,11 @@ const ProviderServiceCategoryList = () => {
                                     Category Name
                                 </th>
 
-                                <th width='20%' className='text-right'>
-                                    <button className='title-text fs-17'>
-                                        Actions
-                                    </button>
+                                <th
+                                    width='20%'
+                                    className='text-right title-text fs-17'
+                                >
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
@@ -281,4 +281,4 @@ const ProviderServiceCategoryList = () => {
         </section>
     )
 }
-export default ProviderServiceCategoryList
+export default ProviderCategory

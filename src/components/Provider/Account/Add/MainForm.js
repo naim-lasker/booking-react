@@ -20,7 +20,7 @@ const MainForm = (props) => {
 
     const confirmAlert = () => {
         setAlert(false)
-        props.history.push("/provider-service-category-list")
+        props.history.push("/provider-category")
     }
 
     const handleSubmit = (event) => {
@@ -114,7 +114,7 @@ const MainForm = (props) => {
 
                             <div className='d-flex justify-content-between'>
                                 <a
-                                    href='/provider-service-category-list'
+                                    href='/provider-category'
                                     className='gradient-btn gradient-lime'
                                 >
                                     Cancel
