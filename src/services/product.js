@@ -49,21 +49,13 @@ export const getProviderProductList = (callback) => {
  * @param {*} product_image
  * @param {*} callback
  */
-export const addProviderProduct = (product, hasService, callback) => {
+export const addProviderProduct = (product, callback) => {
     return async (dispatch) => {
         try {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            let body = {}
-
-            if (hasService) {
-                body.isService = 1
-            } else {
-                body.isService = 0
-            }
-
-            body = {
+            const body = {
                 product_image: product.productImage,
                 product_name: product.productName,
                 overview: product.overview,
