@@ -205,7 +205,7 @@ const MainForm = () => {
                     </div>
                 </div>
                 <h3 className='upload-img-header'>
-                    Upload Multiple product images
+                    Upload product image
                 </h3>
             </div>
 
@@ -383,7 +383,7 @@ const MainForm = () => {
                     </div>
                 )}
 
-                <div className='row mb-5'>
+                {/* <div className='row mb-5'>
                     <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
                         <img src='/images/profile/edit-img.png' alt='' />
                         <button className='ml-3 title-text'>
@@ -411,18 +411,18 @@ const MainForm = () => {
                             <FaTrashAlt />
                         </button>
                     </div>
-                </div>
+                </div> */}
 
                 <div className='d-flex justify-content-between mb-5 pb-5'>
                     <a
                         href='/provider-booking'
                         className='gradient-btn gradient-lime'
                     >
-                        Cencel
+                        Cancel
                     </a>
                     <SubmitButton
                         lime={true}
-                        text='Add Producte'
+                        text='Add Product'
                         onClick={checkSubmit}
                     />
                 </div>

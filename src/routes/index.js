@@ -16,9 +16,12 @@ import ProviderCreateStore from "../pages/Provider/Store/Create"
 import ProviderAddAccount from "../pages/Provider/Account/Add"
 import ProviderEditProfile from "../pages/Provider/Profile/Edit"
 import ProviderRatingList from "../pages/Provider/Rating/List"
-import ProviderCategory from "../pages/Provider/Category"
+import ProviderServiceCategory from "../pages/Provider/Service/Category"
 import ProviderAddService from "../pages/Provider/Service/Add"
 import ProviderServiceList from "../pages/Provider/Service/List"
+import ProviderMenuCategory from "../pages/Provider/Menu/Category"
+import ProviderAddMenu from "../pages/Provider/Menu/Add"
+import ProviderMenuList from "../pages/Provider/Menu/List"
 import ProviderWallet from "../pages/Provider/Wallet"
 import ProviderProductList from "../pages/Provider/Product/List"
 import ProviderAddProduct from "../pages/Provider/Product/Add"
@@ -86,8 +89,8 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={ProviderMain}
-                    component={ProviderCategory}
-                    path='/provider-category'
+                    component={ProviderServiceCategory}
+                    path='/provider-service-category'
                     title='Service Category'
                 />
                 <RouteWithLayout
@@ -103,6 +106,27 @@ const Routes = () => {
                     component={ProviderServiceList}
                     path='/provider-service-list'
                     title='Service List'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderMenuCategory}
+                    path='/provider-menu-category'
+                    title='Menu Category'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderAddMenu}
+                    path='/provider-add-menu'
+                    title='Add Menu'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderMenuList}
+                    path='/provider-menu-list'
+                    title='Add Menu'
                 />
                 <RouteWithLayout
                     exact

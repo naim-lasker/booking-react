@@ -1,23 +1,23 @@
-import React, { useState } from "react"
-import MenuSummery from "./MenuSummery"
+import React, { createRef, useState } from "react"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
 import { RadioButton } from "../../../UI/RadioButton"
-import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
 import { useFileInput, useInput } from "../../../../helpers/common"
-import { addProviderProduct } from "../../../../services/product"
-import { CustomAlert } from "../../../UI/SweetAlert"
+import { editProviderProduct } from "../../../../services/product"
+import { ConfirmAlert, CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
+import { Modal } from "react-bootstrap"
+import MenuSummery from "../Add/MenuSummery"
 
-const MainForm = () => {
+const EditProductModal = ({ show, onHide, productId }) => {
     const dispatch = useDispatch()
-    const [serviceImage, handleServiceImage, setServiceImage] = useFileInput({
+    const [productImage, handleProductImage, setProductImage] = useFileInput({
         file: "",
         image: "",
     })
-    const [serviceName, handleServiceName, setServiceName] = useInput("")
+    const [productName, handleProductName, setProductName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
         ""
@@ -46,7 +46,9 @@ const MainForm = () => {
         handleDiscountPercentage,
         setDiscountPercentence,
     ] = useInput(0)
+    const [loadingService, setLoadingService] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [confirmAlert, setConfirmAlert] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
@@ -62,9 +64,11 @@ const MainForm = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
-    let serviceObj = {
-        serviceImage: serviceImage.image,
-        serviceName,
+    const productNameRef = createRef()
+
+    let productObj = {
+        productImage: productImage.image,
+        productName,
         overview,
         additionalInfo,
         sellingPrice,
@@ -78,13 +82,46 @@ const MainForm = () => {
         availabilityTo,
     }
 
+    const checkSubmit = () => {
+        if (!productName) {
+            productNameRef.current.focus()
+            notify("error", "Please enter product name")
+        } else {
+            setConfirmAlert(true)
+        }
+    }
+
+    const handleSubmitAsService = () => {
+        productObj.isService = 1
+        setLoadingService(true)
+
+        dispatch(
+            editProviderProduct(productObj, productId, (res, err) => {
+                setLoadingService(false)
+                setConfirmAlert(false)
+
+                if (err && err.data) {
+                    return notify(
+                        "error",
+                        (err.data.message && err.data.message) ||
+                            "Somethingf went wrong"
+                    )
+                } else if (res && res.data) {
+                    setMessage(res.data.data)
+                    setAlert(true)
+                }
+            })
+        )
+    }
+
     const handleSubmit = () => {
-        serviceObj.isService = 0
+        productObj.isService = 0
         setLoading(true)
 
         dispatch(
-            addProviderProduct(serviceObj, (res, err) => {
+            editProviderProduct(productObj, productId, (res, err) => {
                 setLoading(false)
+                setConfirmAlert(false)
 
                 if (err && err.data) {
                     return notify(
@@ -101,11 +138,11 @@ const MainForm = () => {
     }
 
     const confirmAddService = () => {
-        setServiceImage({
+        setProductImage({
             file: "",
             image: "",
         })
-        setServiceName("")
+        setProductName("")
         setOverview("")
         setAdditionalInfo("")
         setQuantityInStock(0)
@@ -120,13 +157,32 @@ const MainForm = () => {
     }
 
     return (
-        <div className='col-lg-9'>
-            <CustomAlert
-                show={alert}
-                message={message}
-                onConfirm={confirmAddService}
-            />
-            <form onSubmit={handleSubmit}>
+        <Modal
+            className='add-menu-area'
+            show={show}
+            onHide={onHide}
+            size='lg'
+            aria-labelledby='edit-product'
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id='edit-product'>Edit Product</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='mx-3'>
+                <ConfirmAlert
+                    loadingYes={loadingService}
+                    loadingNo={loading}
+                    show={confirmAlert}
+                    message={`Do you want to make this product as a service?`}
+                    onConfirm={handleSubmitAsService}
+                    onCancel={handleSubmit}
+                />
+
+                <CustomAlert
+                    show={alert}
+                    message={message}
+                    onConfirm={confirmAddService}
+                />
                 <div className='upload-container row justify-content-center align-items-center flex-column '>
                     <div className='row justify-content-center'>
                         <label
@@ -141,13 +197,13 @@ const MainForm = () => {
                                     className='d-none'
                                     accept='image/gif, image/jpg, image/jpeg, image/png'
                                     alt=''
-                                    onChange={handleServiceImage}
+                                    onChange={handleProductImage}
                                 />
                                 <img
                                     className='profile-pic-inner-img'
                                     src={
-                                        serviceImage.image
-                                            ? serviceImage.image
+                                        productImage.image
+                                            ? productImage.image
                                             : "/images/icons/upload.png"
                                     }
                                     alt=''
@@ -162,21 +218,21 @@ const MainForm = () => {
                         </div>
                     </div>
                     <h3 className='upload-img-header'>
-                        Upload Multiple service images
+                        Upload product image
                     </h3>
                 </div>
 
                 <div className='mb-3'>
                     <CustomInput
-                        required
+                        inputRef={productNameRef}
                         showLabel
                         type='text'
-                        label='Service Name'
-                        id='serviceName'
-                        infoText='Service Name info'
+                        label='Product Name'
+                        id='productName'
+                        infoText='Product Name info'
                         placeholder='All meat pizza'
-                        value={serviceName}
-                        onChange={handleServiceName}
+                        value={productName}
+                        onChange={handleProductName}
                     />
 
                     <CustomInput
@@ -371,32 +427,33 @@ const MainForm = () => {
                             </button>
                         </div>
                     </div> */}
-                </div>
-                <div className='d-flex justify-content-between mb-5 pb-5'>
-                    <a
-                        href='/provider-booking'
-                        className='gradient-btn gradient-lime'
-                    >
-                        Cancel
-                    </a>
-                    <SubmitButton
-                        lime={true}
-                        text='Add Service'
-                        loading={loading}
-                    />
-                </div>
-            </form>
 
-            <MenuSummery
-                sellingPrice={sellingPrice}
-                discountPercentage={discountPercentage}
-                discountAmount={discountAmount}
-                vat={vat}
-                vatCodeAmount={vatCodeAmount}
-                customerPays={customerPays}
-            />
-        </div>
+                    <div className='d-flex justify-content-center mb-5 pb-5'>
+                        <a
+                            href='/provider-booking'
+                            className='gradient-btn gradient-lime mr-3'
+                        >
+                            Cancel
+                        </a>
+                        <SubmitButton
+                            lime={true}
+                            text='Add Product'
+                            onClick={checkSubmit}
+                        />
+                    </div>
+                </div>
+
+                <MenuSummery
+                    sellingPrice={sellingPrice}
+                    discountPercentage={discountPercentage}
+                    discountAmount={discountAmount}
+                    vat={vat}
+                    vatCodeAmount={vatCodeAmount}
+                    customerPays={customerPays}
+                />
+            </Modal.Body>
+        </Modal>
     )
 }
 
-export default MainForm
+export default EditProductModal

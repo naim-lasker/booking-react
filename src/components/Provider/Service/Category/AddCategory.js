@@ -1,6 +1,6 @@
 import React from "react"
-import { SubmitButton } from "../../UI/Button"
-import { CustomInput } from "../../UI/InputField"
+import { SubmitButton } from "../../../UI/Button"
+import { CustomInput } from "../../../UI/InputField"
 
 const AddCategory = ({ onSubmit, value, onChange, loading }) => {
     return (

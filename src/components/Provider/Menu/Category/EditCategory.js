@@ -1,7 +1,7 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
-import { SubmitButton } from "../../UI/Button"
-import { CustomInput } from "../../UI/InputField"
+import { SubmitButton } from "../../../UI/Button"
+import { CustomInput } from "../../../UI/InputField"
 
 const EditCategory = ({show, onHide, onSubmit, value, onChange, loading}) => {
     return (

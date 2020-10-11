@@ -3,12 +3,12 @@ import { FaEye, FaBookOpen, FaEnvelope, FaWallet, FaCog, FaBullhorn, FaStar } fr
 
 const providerFeatureList = [
     { name: "Booking", icon: <FaBookOpen />, link: "/provider-booking" },
-    { name: "Wallet", icon: <FaWallet />, link: "/provider-wallet" },
+    // { name: "Wallet", icon: <FaWallet />, link: "/provider-wallet" },
     {
         name: "Service and Product",
         dropdowns: [
-            { name: "Category", link: "/provider-category" },
-            { name: "Menu", link: "/provider-booking" },
+            { name: "Category", link: "/provider-service-category" },
+            { name: "Menu", link: "/provider-menu-category" },
             { name: "Product", link: "/provider-product-list" },
             { name: "Service", link: "/provider-service-list" },
         ],
@@ -16,9 +16,9 @@ const providerFeatureList = [
         icon: <FaCog />,
         link: "/#",
     },
-    { name: "Promotion", icon: <FaBullhorn />, link: "/provider-booking" },
+    // { name: "Promotion", icon: <FaBullhorn />, link: "/provider-booking" },
     { name: "My Ratings", icon: <FaStar />, link: "/provider-rating" },
-    { name: "Contact Supports", icon: <FaEnvelope />, link: "/provider-booking" },
+    // { name: "Contact Supports", icon: <FaEnvelope />, link: "/provider-booking" },
 ]
 
 const userActivityList = [

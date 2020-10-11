@@ -7,15 +7,18 @@ import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
 import { getProviderProductList } from "../../../../services/product"
 import ProductDetailsModal from "../../../../components/Provider/Product/Details"
+import EditProductModal from "../../../../components/Provider/Product/Edit"
 
 const ProviderProductList = () => {
     const dispatch = useDispatch()
 
     const [product, setProduct] = useState(null)
+    const [productId, setProductId] = useState(null)
     const [products, setProducts] = useState([])
     const [productOptions, setProductOptions] = useState([])
     const [productsLoaded, setProductsLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
+    const [editModalShow, setEditModalShow] = useState(false)
 
     useEffect(() => {
         productList()
@@ -53,6 +56,17 @@ const ProviderProductList = () => {
         )
     }
 
+    const onClickEdit = (id) => {
+        setProductId(id)
+        console.log('product id', id)
+        setEditModalShow(true)
+    }
+
+    const onClickDelete = (id) => {
+        setProductId(id)
+        console.log('product id', id)
+    }
+
     return (
         <section className='promotion-area mb-5'>
             <Breadcrumb icon={<FaHome />} names={[{ name: "Product List" }]} />
@@ -69,11 +83,22 @@ const ProviderProductList = () => {
                     <SingleProduct
                         products={products}
                         loading={productsLoaded}
+                        onClickEdit={onClickEdit}
+                        onClickDelete={onClickDelete}
                     />
                 </div>
             </div>
 
-            <ProductDetailsModal show={modalShow} onHide={() => setModalShow(false)} />
+            <ProductDetailsModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+
+            <EditProductModal
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                productId={productId}
+            />
         </section>
     )
 }
