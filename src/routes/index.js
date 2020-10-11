@@ -18,6 +18,7 @@ import ProviderEditProfile from "../pages/Provider/Profile/Edit"
 import ProviderRatingList from "../pages/Provider/Rating/List"
 import ProviderCategory from "../pages/Provider/Category"
 import ProviderAddService from "../pages/Provider/Service/Add"
+import ProviderServiceList from "../pages/Provider/Service/List"
 import ProviderWallet from "../pages/Provider/Wallet"
 import ProviderProductList from "../pages/Provider/Product/List"
 import ProviderAddProduct from "../pages/Provider/Product/Add"
@@ -95,6 +96,13 @@ const Routes = () => {
                     component={ProviderAddService}
                     path='/provider-add-service'
                     title='Add Service'
+                />
+                <RouteWithLayout
+                    exact
+                    layout={ProviderMain}
+                    component={ProviderServiceList}
+                    path='/provider-service-list'
+                    title='Service List'
                 />
                 <RouteWithLayout
                     exact

@@ -10,7 +10,7 @@ const providerFeatureList = [
             { name: "Category", link: "/provider-category" },
             { name: "Menu", link: "/provider-booking" },
             { name: "Product", link: "/provider-product-list" },
-            { name: "Service", link: "/provider-add-service" },
+            { name: "Service", link: "/provider-service-list" },
         ],
         dropdown: true,
         icon: <FaCog />,

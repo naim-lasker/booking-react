@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import Select from "react-select"
 import SingleProduct from "../../../../components/Provider/Product/List/SingleProduct"
 import ChooseProduct from "../../../../components/Provider/Product/List/ChooseProduct"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
 import { getProviderProductList } from "../../../../services/product"
+import ProductDetailsModal from "../../../../components/Provider/Product/Details"
 
 const ProviderProductList = () => {
     const dispatch = useDispatch()
@@ -15,6 +15,7 @@ const ProviderProductList = () => {
     const [products, setProducts] = useState([])
     const [productOptions, setProductOptions] = useState([])
     const [productsLoaded, setProductsLoaded] = useState(true)
+    const [modalShow, setModalShow] = useState(false)
 
     useEffect(() => {
         productList()
@@ -62,6 +63,7 @@ const ProviderProductList = () => {
                         value={product}
                         onChange={(product) => setProduct(product)}
                         options={productOptions}
+                        onPressDetails={() => setModalShow(true)}
                     />
 
                     <SingleProduct
@@ -70,6 +72,8 @@ const ProviderProductList = () => {
                     />
                 </div>
             </div>
+
+            <ProductDetailsModal show={modalShow} onHide={() => setModalShow(false)} />
         </section>
     )
 }
