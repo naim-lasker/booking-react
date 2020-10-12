@@ -38,7 +38,11 @@ const ProviderProductList = () => {
     const [message, setMessage] = useState("")
     const [detailsLoading, setDetailsLoading] = useState(true)
     const [quantityLoading, setQuantityLoading] = useState(false)
-    const [productQuantity, handleProductQuantity, setProductQuantity] = useInput("")
+    const [
+        productQuantity,
+        handleProductQuantity,
+        setProductQuantity,
+    ] = useInput("")
 
     useEffect(() => {
         productList()
@@ -148,11 +152,11 @@ const ProviderProductList = () => {
 
     const addQuantity = (e, id) => {
         e.preventDefault()
-        
+
         dispatch(
             addProviderProductQuantity(productQuantity, (res, err) => {
-                console.log('res', res);
-                console.log('err', err);
+                console.log("res", res)
+                console.log("err", err)
                 // setQuantityLoading(false)
                 // if (err && err.data) {
                 //     return notify(
@@ -168,7 +172,6 @@ const ProviderProductList = () => {
         )
     }
 
-
     return (
         <section className='promotion-area mb-5'>
             <Breadcrumb icon={<FaHome />} names={[{ name: "Product List" }]} />
@@ -182,7 +185,7 @@ const ProviderProductList = () => {
             <WarningAlert
                 loading={deleteLoading}
                 show={alertDelete}
-                message={`Delete ${productName}?`}
+                message={`Delete ${productName ? productName : ""}?`}
                 onConfirm={confirmDelete}
                 onCancel={() => setAlertDelete(false)}
             />

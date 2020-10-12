@@ -201,3 +201,29 @@ export const addProviderService = (service, callback) => {
         }
     }
 }
+
+/**
+ * Method: POST
+ * @param {*} serviceId
+ * @param {*} callback
+ */
+export const deleteProviderService = (serviceId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+
+            const api = base_url + "/delete_service/" + serviceId
+
+            dispatch({ type: "DELETE_SERVICE_PENDING", api })
+            const response = await httpRequest.delete(api, true, token)
+
+            dispatch({ type: "DELETE_SERVICE_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("DELETE_SERVICE_ERROR--->", error.response)
+        }
+    }
+}

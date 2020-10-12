@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { CustomLoader } from "../../../UI/Loader"
 import PlaceholderData from "../../../UI/PlaceholderData"
+import { CustomTooltip } from "../../../UI/Tooltip"
 
-const SingleService = ({ services, loading }) => {
+const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
     return !loading ? (
         services && services.length > 0 ? (
             services.map((service) => (
@@ -27,7 +28,10 @@ const SingleService = ({ services, loading }) => {
                                                 {service.service_name}
                                                 <br />
                                                 <strong className='primary-text3'>
-                                                    {service.selling_price ? ('$' + service.selling_price) : ''}
+                                                    {service.selling_price
+                                                        ? "$" +
+                                                          service.selling_price
+                                                        : ""}
                                                 </strong>
                                             </p>
                                         </div>
@@ -37,12 +41,29 @@ const SingleService = ({ services, loading }) => {
                         </div>
 
                         <div className='col-lg-2'>
-                            <button className='gray-text fs-17'>
+                            <button
+                                className='gray-text fs-17'
+                                onClick={() => {
+                                    onClickEdit(service)
+                                }}
+                                data-tip
+                                data-for='editButton'
+                            >
                                 <FaPencilAlt />
                             </button>
-                            <button className='gray-text fs-17'>
+                            <CustomTooltip id='editButton' text='Edit' />
+
+                            <button
+                                className='gray-text fs-17'
+                                onClick={() => {
+                                    onClickDelete(service)
+                                }}
+                                data-tip
+                                data-for='deleteButton'
+                            >
                                 <FaTrashAlt />
                             </button>
+                            <CustomTooltip id='deleteButton' text='Delete' />
                         </div>
                     </div>
                 </div>
@@ -58,7 +79,6 @@ const SingleService = ({ services, loading }) => {
         </div>
     )
 }
-
 
 SingleService.propTypes = {
     services: PropTypes.array.isRequired,

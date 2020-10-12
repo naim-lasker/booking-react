@@ -11,25 +11,25 @@ import ServiceDetailsModal from "../../../../components/Provider/Menu/Details"
 const ProviderMenuList = () => {
     const dispatch = useDispatch()
 
-    const [service, setService] = useState(null)
+    const [menu, setMenu] = useState(null)
     const [menus, setMenus] = useState([])
-    const [serviceOptions, setServiceOptions] = useState([])
-    const [servicesLoaded, setServicesLoaded] = useState(true)
+    const [menuOptions, setMenuOptions] = useState([])
+    const [menusLoaded, setMenusLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
 
     useEffect(() => {
-        serviceList()
+        menuList()
     }, [])
 
-    const serviceList = () => {
+    const menuList = () => {
         dispatch(
             getProviderMenuList((res, err) => {
                 if (res) {
-                    setServicesLoaded(false)
+                    setMenusLoaded(false)
                     const response = res.data.data
                     setMenus(response)
 
-                    const customServices =
+                    const customMenus =
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
@@ -44,9 +44,9 @@ const ProviderMenuList = () => {
                                   },
                               ]
 
-                    setServiceOptions(customServices)
+                    setMenuOptions(customMenus)
                 } else if (err) {
-                    setServicesLoaded(false)
+                    setMenusLoaded(false)
                     notify("error", "Something went wrong")
                 }
             })
@@ -60,15 +60,15 @@ const ProviderMenuList = () => {
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
                     <ChooseMenu
-                        value={service}
-                        onChange={(service) => setService(service)}
-                        options={serviceOptions}
+                        value={menu}
+                        onChange={(menu) => setMenu(menu)}
+                        options={menuOptions}
                         onPressDetails={() => setModalShow(true)}
                     />
 
                     <SingleMenu
                         menus={menus}
-                        loading={servicesLoaded}
+                        loading={menusLoaded}
                     />
                 </div>
             </div>

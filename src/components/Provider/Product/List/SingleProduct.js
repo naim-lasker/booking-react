@@ -62,9 +62,12 @@ const SingleProduct = ({ products, loading, onClickEdit, onClickDelete }) => {
                                 onClick={() => {
                                     onClickDelete(product)
                                 }}
+                                data-tip
+                                data-for='deleteButton'
                             >
                                 <FaTrashAlt />
                             </button>
+                            <CustomTooltip id='deleteButton' text='Delete' />
                         </div>
                     </div>
                 </div>
