@@ -4,9 +4,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import UserSidebar from "./UserSidebar"
 
-const UserMain = (props) => {
-    const { children } = props
-
+const UserMain = ({ children }) => {
     return (
         <Fragment>
             <ToastContainer />

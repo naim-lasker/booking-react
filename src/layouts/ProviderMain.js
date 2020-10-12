@@ -4,9 +4,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import ProviderSidebar from "./ProviderSidebar"
 
-const ProviderMain = (props) => {
-    const { children } = props
-
+const ProviderMain = ({ children }) => {
     return (
         <Fragment>
             <ToastContainer />
