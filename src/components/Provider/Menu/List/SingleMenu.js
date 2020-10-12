@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { CustomLoader } from "../../../UI/Loader"
 import PlaceholderData from "../../../UI/PlaceholderData"
+import { CustomTooltip } from "../../../UI/Tooltip"
 
-const SingleMenu = ({ menus, loading }) => {
+const SingleMenu = ({ menus, loading, onClickEdit, onClickDelete  }) => {
     return !loading ? (
         menus && menus.length > 0 ? (
             menus.map((menu) => (
@@ -37,12 +38,26 @@ const SingleMenu = ({ menus, loading }) => {
                         </div>
 
                         <div className='col-lg-2'>
-                            <button className='gray-text fs-17'>
+                            <button className='gray-text fs-17'
+                                onClick={() => {
+                                    onClickEdit(menu)
+                                }}
+                                data-tip
+                                data-for='editButton'>
                                 <FaPencilAlt />
                             </button>
-                            <button className='gray-text fs-17'>
+                            <CustomTooltip id='editButton' text='Edit' />
+                            
+                            <button className='gray-text fs-17'
+                                onClick={() => {
+                                    onClickDelete(menu)
+                                }}
+                                data-tip
+                                data-for='deleteButton'
+                            >
                                 <FaTrashAlt />
                             </button>
+                            <CustomTooltip id='deleteButton' text='Delete' />
                         </div>
                     </div>
                 </div>

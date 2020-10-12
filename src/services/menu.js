@@ -193,3 +193,29 @@ export const getProviderMenuList = (callback) => {
         }
     }
 }
+
+
+/**
+ * Method: POST
+ * @param {*} menuId
+ * @param {*} callback
+ */
+export const deleteProviderMenu = (menuId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const api = base_url + "/delete_res_menu/" + menuId
+
+            dispatch({ type: "DELETE_MENU_PENDING", api })
+            const response = await httpRequest.delete(api, true, token)
+
+            dispatch({ type: "DELETE_MENU_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("DELETE_MENU_ERROR--->", error.response)
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
 
-const ServiceDetailsModal = (props) => {
+const MenuDetailsModal = (props) => {
     return (
         <Modal
             {...props}
@@ -74,4 +74,4 @@ const ServiceDetailsModal = (props) => {
     )
 }
 
-export default ServiceDetailsModal
+export default MenuDetailsModal
