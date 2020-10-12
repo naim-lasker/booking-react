@@ -57,8 +57,8 @@ const ProviderMenuCategory = () => {
                         notify(
                             "error",
                             (err.data.contents &&
-                                err.data.contents.category_name &&
-                                err.data.contents.category_name[0]) ||
+                                err.data.contents.cat_name &&
+                                err.data.contents.cat_name[0]) ||
                                 "Something went wrong"
                         )
                     }
@@ -77,7 +77,7 @@ const ProviderMenuCategory = () => {
             getMenuCategoryList((res, err) => {
                 if (res) {
                     setCategoryLoaded(false)
-                    const response = res.data
+                    const response = res.data.data
                     setCategories(response)
                 } else if (err) {
                     setCategoryLoaded(false)
@@ -111,8 +111,8 @@ const ProviderMenuCategory = () => {
                         notify(
                             "error",
                             (err.data.contents &&
-                                err.data.contents.category_name &&
-                                err.data.contents.category_name[0]) ||
+                                err.data.contents.cat_name &&
+                                err.data.contents.cat_name[0]) ||
                                 "Something went wrong"
                         )
                     }
@@ -142,8 +142,8 @@ const ProviderMenuCategory = () => {
                         notify(
                             "error",
                             (err.data.contents &&
-                                err.data.contents.category_name &&
-                                err.data.contents.category_name[0]) ||
+                                err.data.contents.cat_name &&
+                                err.data.contents.cat_name[0]) ||
                                 "Something went wrong"
                         )
                     }
@@ -208,7 +208,7 @@ const ProviderMenuCategory = () => {
                                         <tr key={category.id}>
                                             <td>
                                                 <span className='fs-17'>
-                                                    {category.category_name}
+                                                    {category.cat_name}
                                                 </span>
                                             </td>
 
@@ -220,7 +220,7 @@ const ProviderMenuCategory = () => {
                                                     onClick={() =>
                                                         editCategoryItem(
                                                             category.id,
-                                                            category.category_name
+                                                            category.cat_name
                                                         )
                                                     }
                                                 >
@@ -235,7 +235,7 @@ const ProviderMenuCategory = () => {
                                                     onClick={() =>
                                                         deleteCategoryItem(
                                                             category.id,
-                                                            category.category_name
+                                                            category.cat_name
                                                         )
                                                     }
                                                     data-tip
@@ -254,7 +254,7 @@ const ProviderMenuCategory = () => {
                                 ) : (
                                     <tr>
                                         <td colSpan='2'>
-                                            <PlaceholderData text='No service category found!' />
+                                            <PlaceholderData text='No menu category found!' />
                                         </td>
                                     </tr>
                                 )

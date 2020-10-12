@@ -70,6 +70,7 @@ export const addProviderProduct = (product, callback) => {
                 availability_from: product.availabilityFrom,
                 availability_to: product.availabilityTo,
                 is_service: product.isService,
+                user_id: providerInfo.id,
             }
 
             const api = base_url + "/add_product"
@@ -125,18 +126,46 @@ export const editProviderProduct = (product, productId, callback) => {
                 availability_from: product.availabilityFrom,
                 availability_to: product.availabilityTo,
                 is_service: product.isService,
+                user_id: providerInfo.id,
             }
 
-            const api = base_url + "/edit_product" + productId
+            const api = base_url + "/update_product/" + productId
 
-            dispatch({ type: "ADD_PRODUCT_PENDING", api })
+            dispatch({ type: "UPDATE_PRODUCT_PENDING", api })
             const response = await httpRequest.post(api, true, token, body)
 
-            dispatch({ type: "ADD_PRODUCT_SUCCESS", payload: response })
+            dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: response })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("ADD_PRODUCT_ERROR--->", error.response)
+            console.log("UPDATE_PRODUCT_ERROR--->", error.response)
+        }
+    }
+}
+
+
+/**
+ * Method: POST
+ * @param {*} product_id
+ * @param {*} callback
+ */
+export const deleteProviderProduct = (productId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+
+            const api = base_url + "/delete_product/" + productId
+
+            dispatch({ type: "DELETE_PRODUCT_PENDING", api })
+            const response = await httpRequest.delete(api, true, token)
+
+            dispatch({ type: "DELETE_PRODUCT_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("DELETE_PRODUCT_ERROR--->", error.response)
         }
     }
 }

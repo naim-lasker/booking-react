@@ -10,14 +10,14 @@ const Header = () => {
     const logOut = () => {
         auth.clearUserInfo()
         auth.clearProviderInfo()
-        window.location.href = "/promotion"
+        window.location.href = "/"
     }
 
     return (
         <header className='header-area pb-3 pb-lg-5'>
             <div className='container'>
                 <nav className='navbar navbar-expand-lg'>
-                    <a className='navbar-brand' href='/promotion'>
+                    <a className='navbar-brand' href='/'>
                         <img src='/images/logo.png' alt='' />
                     </a>
                     <button

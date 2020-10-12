@@ -32,7 +32,6 @@ const SingleProduct = ({ products, loading, onClickEdit, onClickDelete }) => {
                                                 {product.product_name}
                                                 <br />
                                                 <strong className='primary-text3'>
-                                                    $
                                                     {product.selling_price
                                                         ? "$" +
                                                           product.selling_price
@@ -49,7 +48,7 @@ const SingleProduct = ({ products, loading, onClickEdit, onClickDelete }) => {
                             <button
                                 className='gray-text fs-17'
                                 onClick={() => {
-                                    onClickEdit(product.id)
+                                    onClickEdit(product)
                                 }}
                                 data-tip
                                 data-for='editButton'
@@ -61,7 +60,7 @@ const SingleProduct = ({ products, loading, onClickEdit, onClickDelete }) => {
                             <button
                                 className='gray-text fs-17'
                                 onClick={() => {
-                                    onClickDelete(product.id)
+                                    onClickDelete(product)
                                 }}
                             >
                                 <FaTrashAlt />

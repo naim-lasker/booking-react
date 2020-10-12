@@ -196,7 +196,7 @@ const UserAddAccount = (props) => {
 
                                                 <div className='d-flex justify-content-between mb-5 pb-5'>
                                                     <a
-                                                        href='/promotion'
+                                                        href='/provider-booking'
                                                         className='gradient-btn gradient-lime'
                                                     >
                                                         Cancel

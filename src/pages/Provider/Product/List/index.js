@@ -5,20 +5,27 @@ import SingleProduct from "../../../../components/Provider/Product/List/SinglePr
 import ChooseProduct from "../../../../components/Provider/Product/List/ChooseProduct"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
-import { getProviderProductList } from "../../../../services/product"
+import { deleteProviderProduct, getProviderProductList } from "../../../../services/product"
 import ProductDetailsModal from "../../../../components/Provider/Product/Details"
 import EditProductModal from "../../../../components/Provider/Product/Edit"
+import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
 
 const ProviderProductList = () => {
     const dispatch = useDispatch()
 
     const [product, setProduct] = useState(null)
+    const [productObj, setProductObj] = useState(null)
     const [productId, setProductId] = useState(null)
     const [products, setProducts] = useState([])
     const [productOptions, setProductOptions] = useState([])
     const [productsLoaded, setProductsLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
+    const [alertDelete, setAlertDelete] = useState(false)
+    const [deleteLoading, setDeleteLoading] = useState(false)
+    const [productName, setProductName] = useState("")
+    const [alert, setAlert] = useState(false)
+    const [message, setMessage] = useState("")
 
     useEffect(() => {
         productList()
@@ -56,20 +63,63 @@ const ProviderProductList = () => {
         )
     }
 
-    const onClickEdit = (id) => {
-        setProductId(id)
-        console.log('product id', id)
+    const onClickEdit = (product) => {
+        setProductObj(product)
         setEditModalShow(true)
     }
 
-    const onClickDelete = (id) => {
-        setProductId(id)
-        console.log('product id', id)
+    const onClickDelete = (product) => {
+        setAlertDelete(true)
+        setProductId(product ? product.id : null)
+        setProductName(product ? product.product_name : "")
+    }
+
+    const confirmDelete = () => {
+        setDeleteLoading(true)
+        dispatch(
+            deleteProviderProduct(productId, (res, err) => {
+                setDeleteLoading(false)
+                if (res && res.data && res.data.status === "success") {
+                    productList()
+                    setMessage(res.data.data)
+                    setAlert(true)
+                    setAlertDelete(false)
+                } else if (err) {
+                    if (err && err.data) {
+                        setAlertDelete(false)
+                        notify(
+                            "error",
+                            (err.data.contents &&
+                                err.data.contents.category_name &&
+                                err.data.contents.category_name[0]) ||
+                                "Something went wrong"
+                        )
+                    }
+                }
+            })
+        )
+    }
+    const confirmAlert = () => {
+        setAlert(false)
     }
 
     return (
         <section className='promotion-area mb-5'>
             <Breadcrumb icon={<FaHome />} names={[{ name: "Product List" }]} />
+
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={confirmAlert}
+            />
+
+            <WarningAlert
+                loading={deleteLoading}
+                show={alertDelete}
+                message={`Delete ${productName}?`}
+                onConfirm={confirmDelete}
+                onCancel={() => setAlertDelete(false)}
+            />
 
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
@@ -97,7 +147,7 @@ const ProviderProductList = () => {
             <EditProductModal
                 show={editModalShow}
                 onHide={() => setEditModalShow(false)}
-                productId={productId}
+                product={productObj}
             />
         </section>
     )

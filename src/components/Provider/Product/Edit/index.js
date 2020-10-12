@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react"
+import React, { createRef, useEffect, useState } from "react"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
 import { RadioButton } from "../../../UI/RadioButton"
@@ -11,8 +11,9 @@ import { notify } from "../../../../helpers/ui"
 import { Modal } from "react-bootstrap"
 import MenuSummery from "../Add/MenuSummery"
 
-const EditProductModal = ({ show, onHide, productId }) => {
+const EditProductModal = ({ show, onHide, product }) => {
     const dispatch = useDispatch()
+    const [productId, setProductId] = useState(0)
     const [productImage, handleProductImage, setProductImage] = useFileInput({
         file: "",
         image: "",
@@ -65,6 +66,21 @@ const EditProductModal = ({ show, onHide, productId }) => {
     ).toFixed(2)
 
     const productNameRef = createRef()
+
+    useEffect(() => {
+        setProductId(product ? product.id : 0)
+        setProductName(product ? product.product_name : "")
+        setOverview(product ? product.overview : "")
+        setAdditionalInfo(product ? product.additional_info : "")
+        setQuantityInStock(product ? product.quantity_in_stock : 0)
+        setSellingPrice(product ? product.selling_price : 0)
+        setVatCodePercentence(product ? product.vat : 0)
+        setAvailabilityStatus(product && product.availability_status == 1 ? true : false)
+        setAvailabilityFrom(product ? product.availability_from : "")
+        setAvailabilityTo(product ? product.availability_to : "")
+        setDiscountStatus(product && product.discount_status == 1 ? true : false)
+        setDiscountPercentence(product ? product.discount_percentage : "")
+    }, [product])
 
     let productObj = {
         productImage: productImage.image,
@@ -137,7 +153,7 @@ const EditProductModal = ({ show, onHide, productId }) => {
         )
     }
 
-    const confirmAddService = () => {
+    const confirmAddProduct = () => {
         setProductImage({
             file: "",
             image: "",
@@ -154,6 +170,7 @@ const EditProductModal = ({ show, onHide, productId }) => {
         setDiscountStatus(1)
         setDiscountPercentence(0)
         setAlert(false)
+        onHide()
     }
 
     return (
@@ -181,7 +198,7 @@ const EditProductModal = ({ show, onHide, productId }) => {
                 <CustomAlert
                     show={alert}
                     message={message}
-                    onConfirm={confirmAddService}
+                    onConfirm={confirmAddProduct}
                 />
                 <div className='upload-container row justify-content-center align-items-center flex-column '>
                     <div className='row justify-content-center'>
@@ -217,9 +234,7 @@ const EditProductModal = ({ show, onHide, productId }) => {
                             <button className='question-icon'>?</button>
                         </div>
                     </div>
-                    <h3 className='upload-img-header'>
-                        Upload product image
-                    </h3>
+                    <h3 className='upload-img-header'>Upload product image</h3>
                 </div>
 
                 <div className='mb-3'>
@@ -429,12 +444,12 @@ const EditProductModal = ({ show, onHide, productId }) => {
                     </div> */}
 
                     <div className='d-flex justify-content-center mb-5 pb-5'>
-                        <a
-                            href='/provider-booking'
+                        <button
+                            onClick={onHide}
                             className='gradient-btn gradient-lime mr-3'
                         >
                             Cancel
-                        </a>
+                        </button>
                         <SubmitButton
                             lime={true}
                             text='Add Product'

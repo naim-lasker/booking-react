@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { Collapse } from "react-bootstrap"
 
 const ProviderSingleFeature = ({ featureList }) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(true)
     return (
         <ul className='side-activities'>
             {featureList &&
@@ -29,7 +29,7 @@ const ProviderSingleFeature = ({ featureList }) => {
                         {item.dropdown &&
                             item.dropdowns.map((dropdown, i) => (
                                 <Collapse in={open} key={i}>
-                                    <div className='ml-4'>
+                                    <div className='ml-3'>
                                         <Link
                                             className='dropdown-item'
                                             to={dropdown.link}
