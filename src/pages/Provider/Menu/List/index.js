@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import SingleService from "../../../../components/Provider/Service/List/SingleService"
-import ChooseService from "../../../../components/Provider/Service/List/ChooseService"
+import SingleService from "../../../../components/Provider/Menu/List/SingleService"
+import ChooseMenu from "../../../../components/Provider/Menu/List/ChooseMenu"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
-import { getProviderServiceList } from "../../../../services/service"
+import { getMenuCategoryList } from "../../../../services/menu"
 import ServiceDetailsModal from "../../../../components/Provider/Menu/Details"
 
 const ProviderMenuList = () => {
@@ -23,7 +23,7 @@ const ProviderMenuList = () => {
 
     const serviceList = () => {
         dispatch(
-            getProviderServiceList((res, err) => {
+            getMenuCategoryList((res, err) => {
                 if (res) {
                     setServicesLoaded(false)
                     const response = res.data.data
@@ -55,11 +55,11 @@ const ProviderMenuList = () => {
 
     return (
         <section className='promotion-area mb-5'>
-            <Breadcrumb icon={<FaHome />} names={[{ name: "Service List" }]} />
+            <Breadcrumb icon={<FaHome />} names={[{ name: "Menu List" }]} />
 
             <div className='row justify-content-center'>
                 <div className='col-lg-9'>
-                    <ChooseService
+                    <ChooseMenu
                         value={service}
                         onChange={(service) => setService(service)}
                         options={serviceOptions}

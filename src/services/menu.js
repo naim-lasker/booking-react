@@ -125,3 +125,44 @@ export const deleteMenuCategory = (categoryId, callback) => {
         }
     }
 }
+
+
+
+/**
+ * Method: POST
+ * @param {*} menu
+ * @param {*} callback
+ */
+export const addProviderMenu = (menu, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const body = {
+                service_category_id: menu.categoryId,
+                service_name: menu.serviceName,
+                overview: menu.overview,
+                additional_info: menu.additionalInfo,
+                selling_price: menu.sellingPrice,
+                vat: menu.vat,
+                discount_status: menu.discountStatus,
+                discount_amount: menu.discountAmount,
+                time_duration: menu.timeDuration,
+                age_limit: menu.ageLimit,
+                user_id: providerInfo.id,
+            }
+
+            const api = base_url + "/add_res_menu"
+
+            dispatch({ type: "ADD_MENU_PENDING", api })
+            const response = await httpRequest.post(api, true, token, body)
+
+            dispatch({ type: "ADD_MENU_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("ADD_MENU_ERROR--->", error.response)
+        }
+    }
+}

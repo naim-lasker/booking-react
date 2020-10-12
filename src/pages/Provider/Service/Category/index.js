@@ -12,7 +12,7 @@ import {
     getServiceCategoryList,
     updateServiceCategoy,
     deleteServiceCategoy,
-} from "../../../../services/category"
+} from "../../../../services/service"
 import { CustomLoader } from "../../../../components/UI/Loader"
 import EditCategory from "../../../../components/Provider/Service/Category/EditCategory"
 import AddCategory from "../../../../components/Provider/Service/Category/AddCategory"

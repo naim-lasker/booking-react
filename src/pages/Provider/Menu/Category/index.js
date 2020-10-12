@@ -171,7 +171,7 @@ const ProviderMenuCategory = () => {
                 icon={<FaHome />}
                 names={[
                     { name: "Dashboard", link: "/provider-booking" },
-                    { name: "Add menu Category" },
+                    { name: "Add Menu Category" },
                 ]}
             />
 

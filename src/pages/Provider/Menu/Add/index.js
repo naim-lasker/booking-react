@@ -11,7 +11,7 @@ const ProviderAddMenu = () => {
                 icon={<FaHome />}
                 names={[
                     { name: "Dashboard", link: "/provider-add-menu" },
-                    { name: "Add Service" },
+                    { name: "Add Menu" },
                 ]}
             />
 

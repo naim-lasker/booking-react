@@ -6,7 +6,7 @@ const ChooseService = ({ value, onChange, options, onPressDetails }) => (
     <div className='mb-5'>
         <div className='mb-4'>
             <div className='d-flex align-items-center mb-3'>
-                <label className='label-name'>Choose your Service</label>
+                <label className='label-name'>Choose your service</label>
                 <button className='question-icon ml-2'>?</button>
             </div>
             <div>

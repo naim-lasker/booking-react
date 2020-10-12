@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+import Select from "react-select"
 import MenuSummery from "./MenuSummery"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
@@ -6,17 +7,20 @@ import { RadioButton } from "../../../UI/RadioButton"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
 import { useFileInput, useInput } from "../../../../helpers/common"
-import { addProviderProduct } from "../../../../services/product"
+import { addProviderMenu } from "../../../../services/menu"
 import { CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
+import { InputLabel } from "../../../UI/InputLabel"
 
 const MainForm = () => {
     const dispatch = useDispatch()
-    const [serviceImage, handleServiceImage, setServiceImage] = useFileInput({
+    const [category, setCategory] = useState([])
+    const [categories, setCategories] = useState([])
+    const [menuImage, handleMenuImage, setMenuImage] = useFileInput({
         file: "",
         image: "",
     })
-    const [serviceName, handleServiceName, setServiceName] = useInput("")
+    const [menuName, handleMenuName, setMenuName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
         ""
@@ -61,9 +65,47 @@ const MainForm = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
-    let serviceObj = {
-        serviceImage: serviceImage.image,
-        serviceName,
+    
+    useEffect(() => {
+        menuCategoryList()
+    }, [])
+
+    const menuCategoryList = () => {
+        // dispatch(
+        //     getServiceCategoryList((res, err) => {
+        //         if (res) {
+        //             const response = res.data
+
+        //             const customCategories =
+        //                 response && response.length > 0
+        //                     ? response.map((item) => {
+        //                           return {
+        //                               label: item && item.category_name,
+        //                               value:
+        //                                   item &&
+        //                                   item.category_name
+        //                                       .toLowerCase()
+        //                                       .replace(/\s/g, "_"),
+        //                           }
+        //                       })
+        //                     : [
+        //                           {
+        //                               label: "",
+        //                               value: "",
+        //                           },
+        //                       ]
+        //             setCategories(customCategories)
+        //         } else if (err) {
+        //             notify("error", "Something went wrong")
+        //         }
+        //     })
+        // )
+    }
+
+
+    let menuObj = {
+        menuImage: menuImage.image,
+        menuName,
         overview,
         additionalInfo,
         sellingPrice,
@@ -78,11 +120,10 @@ const MainForm = () => {
     }
 
     const handleSubmit = () => {
-        serviceObj.isService = 0
         setLoading(true)
 
         dispatch(
-            addProviderProduct(serviceObj, (res, err) => {
+            addProviderMenu(menuObj, (res, err) => {
                 setLoading(false)
 
                 if (err && err.data) {
@@ -99,12 +140,12 @@ const MainForm = () => {
         )
     }
 
-    const confirmAddService = () => {
-        setServiceImage({
+    const confirmAddMenu = () => {
+        setMenuImage({
             file: "",
             image: "",
         })
-        setServiceName("")
+        setMenuName("")
         setOverview("")
         setAdditionalInfo("")
         setQuantityInStock(0)
@@ -123,7 +164,7 @@ const MainForm = () => {
             <CustomAlert
                 show={alert}
                 message={message}
-                onConfirm={confirmAddService}
+                onConfirm={confirmAddMenu}
             />
             <form onSubmit={handleSubmit}>
                 <div className='upload-container row justify-content-center align-items-center flex-column '>
@@ -140,13 +181,13 @@ const MainForm = () => {
                                     className='d-none'
                                     accept='image/gif, image/jpg, image/jpeg, image/png'
                                     alt=''
-                                    onChange={handleServiceImage}
+                                    onChange={handleMenuImage}
                                 />
                                 <img
                                     className='profile-pic-inner-img'
                                     src={
-                                        serviceImage.image
-                                            ? serviceImage.image
+                                        menuImage.image
+                                            ? menuImage.image
                                             : "/images/icons/upload.png"
                                     }
                                     alt=''
@@ -160,22 +201,35 @@ const MainForm = () => {
                             <button className='question-icon'>?</button>
                         </div>
                     </div>
-                    <h3 className='upload-img-header'>
-                        Upload Multiple service images
-                    </h3>
+                    <h3 className='upload-img-header'>Upload menu images</h3>
                 </div>
 
                 <div className='mb-3'>
+                    <div className='mb-4'>
+                        <InputLabel
+                            label='Menu Category'
+                            id='menuCategory'
+                            infoText='Menu Catgory info'
+                        />
+                        <Select
+                            placeholder='Choose menu category'
+                            className='form-control input-box'
+                            value={category}
+                            onChange={(category) => setCategory(category)}
+                            options={categories}
+                        />
+                    </div>
+                    
                     <CustomInput
                         required
                         showLabel
                         type='text'
-                        label='Service Name'
-                        id='serviceName'
-                        infoText='Service Name info'
+                        label='Menu Name'
+                        id='menuName'
+                        infoText='Menu Name info'
                         placeholder='All meat pizza'
-                        value={serviceName}
-                        onChange={handleServiceName}
+                        value={menuName}
+                        onChange={handleMenuName}
                     />
 
                     <CustomInput
@@ -380,7 +434,7 @@ const MainForm = () => {
                     </a>
                     <SubmitButton
                         lime={true}
-                        text='Add Service'
+                        text='Add Menu'
                         loading={loading}
                     />
                 </div>

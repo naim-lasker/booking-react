@@ -42,8 +42,7 @@ const MainForm = () => {
         dispatch(
             getProviderProfileInfo(providerInfo.id, (res, err) => {
                 if (res) {
-                    console.log('res', res);
-
+                    console.log('res', res)
                 } else if (err) {
                     notify("error", "Something went wrong")
                 }

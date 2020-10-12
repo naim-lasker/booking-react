@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Select from "react-select"
 import MenuSummery from "./MenuSummery"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
@@ -10,8 +11,7 @@ import { useFileInput, useInput } from "../../../../helpers/common"
 import { addProviderService } from "../../../../services/service"
 import { CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
-import Select from "react-select"
-import { getServiceCategoryList } from "../../../../services/category"
+import { getServiceCategoryList } from "../../../../services/service"
 import { InputLabel } from "../../../UI/InputLabel"
 
 const MainForm = () => {
@@ -201,7 +201,7 @@ const MainForm = () => {
                         </div>
                     </div>
                     <h3 className='upload-img-header'>
-                        Upload Multiple service images
+                        Upload service images
                     </h3>
                 </div>
 
