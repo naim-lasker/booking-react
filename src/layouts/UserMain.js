@@ -4,7 +4,7 @@ import Header from "./Header"
 import Footer from "./Footer"
 import CustomerSidebar from "./CustomerSidebar"
 
-const CustomerMain = (props) => {
+const UserMain = (props) => {
     const { children } = props
 
     return (
@@ -24,4 +24,4 @@ const CustomerMain = (props) => {
     )
 }
 
-export default CustomerMain
+export default UserMain

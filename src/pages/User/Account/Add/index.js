@@ -57,8 +57,6 @@ const UserAddAccount = (props) => {
 
     return (
         <Fragment>
-            <Header />
-
             <CustomAlert
                 show={alert}
                 message={message}
@@ -66,157 +64,135 @@ const UserAddAccount = (props) => {
             />
 
             <section className='customer-edit-area'>
-                <div className='container'>
-                    <div className='row justify-content-center '>
-                        <div className='col-lg-8'>
-                            <div className='customer-edit-profile-container'>
-                                <Breadcrumb
-                                    icon={<FaHome />}
-                                    names={[
-                                        { name: "Dashboard", link: "/" },
-                                        { name: "Add Account Details" },
-                                    ]}
-                                />
-
-                                <div className='row justify-content-center mb-5'>
-                                    <div className='col-lg-8'>
-                                        <form onSubmit={handleSubmit}>
-                                            <div className='form-container mb-3'>
-                                                <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='fullName'
-                                                        >
-                                                            Name of the Account
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='Gaji asif'
-                                                            value={
-                                                                bankAccountName
-                                                            }
-                                                            onChange={
-                                                                setBankAccountName
-                                                            }
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className='mb-4'>
-                                                    <div className='row'>
-                                                        <div className='col-lg-6'>
-                                                            <div className='d-flex align-items-center mb-3'>
-                                                                <label
-                                                                    className='label-name'
-                                                                    htmlFor='email'
-                                                                >
-                                                                    IBAN
-                                                                </label>
-                                                                <button className='question-icon ml-2'>
-                                                                    ?
-                                                                </button>
-                                                            </div>
-                                                            <div>
-                                                                <input
-                                                                    required
-                                                                    type='text'
-                                                                    className='form-control input-box'
-                                                                    placeholder='lora.king@gmail.com'
-                                                                    value={iban}
-                                                                    onChange={
-                                                                        setIban
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                        <div className='col-lg-6'>
-                                                            <div className='d-flex align-items-center mb-3'>
-                                                                <label
-                                                                    className='label-name'
-                                                                    htmlFor='phoneNumber'
-                                                                >
-                                                                    Bank Name
-                                                                </label>
-                                                                <button className='question-icon ml-2'>
-                                                                    ?
-                                                                </button>
-                                                            </div>
-
-                                                            <div>
-                                                                <input
-                                                                    required
-                                                                    type='text'
-                                                                    className='form-control input-box'
-                                                                    placeholder='Bank Name'
-                                                                    value={
-                                                                        swiftBic
-                                                                    }
-                                                                    onChange={
-                                                                        setSwiftBic
-                                                                    }
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div className='mb-4'>
-                                                    <div className='d-flex align-items-center mb-3'>
-                                                        <label
-                                                            className='label-name'
-                                                            htmlFor='countryOforigin'
-                                                        >
-                                                            SWIFT BIC
-                                                        </label>
-                                                        <button className='question-icon ml-2'>
-                                                            ?
-                                                        </button>
-                                                    </div>
-                                                    <div>
-                                                        <input
-                                                            required
-                                                            type='text'
-                                                            className='form-control input-box'
-                                                            placeholder='**********'
-                                                            value={bankName}
-                                                            onChange={
-                                                                setBankName
-                                                            }
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className='d-flex justify-content-between mb-5 pb-5'>
-                                                    <a
-                                                        href='/provider-booking'
-                                                        className='gradient-btn gradient-lime'
-                                                    >
-                                                        Cancel
-                                                    </a>
-                                                    <SubmitButton
-                                                        blue={true}
-                                                        text='Add Account'
-                                                        loading={loading}
-                                                    />
-                                                </div>
-                                            </div>
-                                        </form>
+                <Breadcrumb
+                    icon={<FaHome />}
+                    names={[
+                        { name: "Dashboard", link: "/" },
+                        { name: "Add Account Details" },
+                    ]}
+                />
+                <div className='row justify-content-center'>
+                    <div className='col-lg-8'>
+                        <form onSubmit={handleSubmit}>
+                            <div className='mb-3'>
+                                <div className='mb-4'>
+                                    <div className='d-flex align-items-center mb-3'>
+                                        <label
+                                            className='label-name'
+                                            htmlFor='fullName'
+                                        >
+                                            Name of the Account
+                                        </label>
+                                        <button className='question-icon ml-2'>
+                                            ?
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <input
+                                            required
+                                            type='text'
+                                            className='form-control input-box'
+                                            placeholder='Gaji asif'
+                                            value={bankAccountName}
+                                            onChange={setBankAccountName}
+                                        />
                                     </div>
                                 </div>
+
+                                <div className='mb-4'>
+                                    <div className='row'>
+                                        <div className='col-lg-6'>
+                                            <div className='d-flex align-items-center mb-3'>
+                                                <label
+                                                    className='label-name'
+                                                    htmlFor='email'
+                                                >
+                                                    IBAN
+                                                </label>
+                                                <button className='question-icon ml-2'>
+                                                    ?
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    required
+                                                    type='text'
+                                                    className='form-control input-box'
+                                                    placeholder='lora.king@gmail.com'
+                                                    value={iban}
+                                                    onChange={setIban}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className='col-lg-6'>
+                                            <div className='d-flex align-items-center mb-3'>
+                                                <label
+                                                    className='label-name'
+                                                    htmlFor='phoneNumber'
+                                                >
+                                                    Bank Name
+                                                </label>
+                                                <button className='question-icon ml-2'>
+                                                    ?
+                                                </button>
+                                            </div>
+
+                                            <div>
+                                                <input
+                                                    required
+                                                    type='text'
+                                                    className='form-control input-box'
+                                                    placeholder='Bank Name'
+                                                    value={swiftBic}
+                                                    onChange={setSwiftBic}
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className='mb-4'>
+                                    <div className='d-flex align-items-center mb-3'>
+                                        <label
+                                            className='label-name'
+                                            htmlFor='countryOforigin'
+                                        >
+                                            SWIFT BIC
+                                        </label>
+                                        <button className='question-icon ml-2'>
+                                            ?
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <input
+                                            required
+                                            type='text'
+                                            className='form-control input-box'
+                                            placeholder='**********'
+                                            value={bankName}
+                                            onChange={setBankName}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className='d-flex justify-content-between mb-5 pb-5'>
+                                    <a
+                                        href='/provider-booking'
+                                        className='gradient-btn gradient-lime'
+                                    >
+                                        Cancel
+                                    </a>
+                                    <SubmitButton
+                                        blue={true}
+                                        text='Add Account'
+                                        loading={loading}
+                                    />
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </section>
-            <Footer />
         </Fragment>
     )
 }

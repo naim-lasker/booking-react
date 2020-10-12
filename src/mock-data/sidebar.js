@@ -22,7 +22,7 @@ const providerFeatureList = [
 ]
 
 const userActivityList = [
-    { name: "Promotion", icon: <FaEye />, link: "/promotion" },
+    { name: "Promotion", icon: <FaEye />, link: "/user-promotion" },
     { name: "Restaurant", icon: <FaEye />, link: "/" },
     { name: "Tours & Excursions", icon: <FaEye />, link: "/" },
     { name: "Water Activities", icon: <FaEye />, link: "/" },
@@ -30,10 +30,10 @@ const userActivityList = [
 ]
 
 const userFeatureList = [
-    { name: "My Bookings", icon: <FaBookOpen />, link: "/promotion" },
-    { name: "Messeges", icon: <FaEnvelope />, link: "/promotion" },
-    { name: "Favourites", icon: <FaEye />, link: "/promotion" },
-    { name: "My Ratings", icon: <FaEye />, link: "/promotion" },
+    { name: "My Bookings", icon: <FaBookOpen />, link: "/user-promotion" },
+    { name: "Messeges", icon: <FaEnvelope />, link: "/user-promotion" },
+    { name: "Favourites", icon: <FaEye />, link: "/user-promotion" },
+    { name: "My Ratings", icon: <FaEye />, link: "/user-promotion" },
     { name: "Contact Supports", icon: <FaEye />, link: "/" },
 ]
 

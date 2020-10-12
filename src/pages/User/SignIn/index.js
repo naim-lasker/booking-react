@@ -36,9 +36,9 @@ const UserSignIn = (props) => {
 
         dispatch(
             userSignIn(email, password, (res, err) => {
-                setLoading(false)
 
                 if (err) {
+                    setLoading(false)
                     notify(
                         "error",
                         err.data && err.data.data
@@ -54,7 +54,13 @@ const UserSignIn = (props) => {
                     if (res.data && res.data.data && res.data.data.role == 2) {
                         auth.clearProviderInfo()
                         auth.setUserInfo(res.data.data)
-                        window.location.href = "/user-add-account"
+                        console.log('res.data.data', res.data.data);
+                        if(res.data.data.hasStore == 1) {
+                            window.location.href = "/user-promotion"
+                        } else {
+                            window.location.href = "/user-add-account"
+                        }
+                        setLoading(false)
                     } else {
                         notify("error", "Please provide valid credential")
                     }

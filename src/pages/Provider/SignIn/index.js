@@ -52,7 +52,11 @@ const ProviderSignIn = (props) => {
                     if (res.data && res.data.data && res.data.data.role == 1) {
                         auth.clearUserInfo()
                         auth.setProviderInfo(res.data.data)
-                        window.location.href = "/provider-create-store"
+                        if(res.data.data.hasStore == 1) {
+                            window.location.href = "/provider-booking"
+                        } else {
+                            window.location.href = "/provider-create-store"
+                        }
                         setLoading(false)
                     } else {
                         notify("error", "Please provide valid credential")

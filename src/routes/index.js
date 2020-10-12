@@ -6,6 +6,7 @@ import browserHistory from "./History"
 
 import RouteWithLayout from "./RouteWithLayout"
 import ProviderMain from "../layouts/ProviderMain"
+import UserMain from "../layouts/UserMain"
 import ProviderMainNoSidebar from "../layouts/ProviderMainNoSidebar"
 
 import ProviderSignIn from "../pages/Provider/SignIn"
@@ -165,7 +166,7 @@ const Routes = () => {
 
                 <RouteWithLayout
                     exact
-                    layout={ProviderMain}
+                    layout={UserMain}
                     component={UserAddAccount}
                     path='/user-add-account'
                     title='Add Acount Details'
@@ -173,9 +174,9 @@ const Routes = () => {
 
                 <RouteWithLayout
                     exact
-                    layout={ProviderMain}
+                    layout={UserMain}
                     component={UserPromotionDeals}
-                    path='/promotion'
+                    path='/user-promotion'
                     title='Promotion'
                 />
                 <Page exact component={HomePage} path='/' title='Home' />
