@@ -1,7 +1,8 @@
 import React from "react"
 import { Modal } from "react-bootstrap"
+import { CustomLoader } from "../../../UI/Loader"
 
-const ProductDetailsModal = (props) => {
+const ProductDetailsModal = ({ productDetails, loading, addQuantityModal, ...props }) => {
     return (
         <Modal
             {...props}
@@ -10,49 +11,74 @@ const ProductDetailsModal = (props) => {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id='provider-add-account-modal'>
-                    Product Details
-                </Modal.Title>
+                <div className='d-flex justify-content-between w-100'>
+                    <Modal.Title id='provider-add-account-modal'>
+                        Product Details
+                    </Modal.Title>
+
+                    <button
+                        className='gradient-btn gradient-lime button-small'
+                        onClick={() => addQuantityModal(productDetails.id)}
+                    >
+                        Add quantity
+                    </button>
+                </div>
             </Modal.Header>
             <Modal.Body>
                 <div className='promotion-area '>
                     <div className='single-promotion'>
                         <img
                             className='img-fluid'
-                            src='/images/menu_info.png'
+                            src={
+                                productDetails && productDetails.product_image != ""
+                                    ? productDetails.product_image
+                                    : "/images/menu_info.png"
+                            }
                             alt=''
                         />
-                        <div className='single-promotion-content p-3'>
-                            <div className='single-promotion-head-content'>
-                                <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
-                                    <div className='header-content'>
-                                        <h4 className='section-header'>
-                                            Beauty & Spa Nicokolia Spaty
-                                        </h4>
-                                    </div>
-                                    <div className='single-promotion-price align-self-start'>
-                                        $30
+                        {!loading ? (
+                            <div className='single-promotion-content p-3'>
+                                <div className='single-promotion-head-content'>
+                                    <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
+                                        <div className='header-content'>
+                                            <h4 className='section-header'>
+                                                {productDetails &&
+                                                    productDetails.product_name}
+                                            </h4>
+                                        </div>
+                                        <div className='single-promotion-price align-self-start'>
+                                            {`$ ${
+                                                productDetails &&
+                                                productDetails.selling_price
+                                            }`}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className='mt-2'>
-                                <h4 className='pt-3 gray-text3'>Overview</h4>
-                                <p className='m-0'>
-                                    There are many variations of passages of
-                                    Lorem Ipsum available, but the majority
-                                </p>
-                            </div>
+                                <div className='mt-2'>
+                                    <h4 className='pt-3 gray-text3'>
+                                        Overview
+                                    </h4>
+                                    <p className='m-0'>
+                                        {productDetails &&
+                                            productDetails.overview}
+                                    </p>
+                                </div>
 
-                            <div className='mt-3'>
-                                <h4 className='pt-3 gray-text3'>
-                                    Additional Information
-                                </h4>
-                                <p className='m-0'>
-                                    There are many variations of passages of
-                                    Lorem Ipsum available, but the majority
-                                </p>
+                                <div className='mt-3'>
+                                    <h4 className='pt-3 gray-text3'>
+                                        Additional Information
+                                    </h4>
+                                    <p className='m-0'>
+                                        {productDetails &&
+                                            productDetails.additional_info}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <div className='border px-3 rounded'>
+                                <CustomLoader />
+                            </div>
+                        )}
                     </div>
 
                     <div className='mb-2 text-right'>

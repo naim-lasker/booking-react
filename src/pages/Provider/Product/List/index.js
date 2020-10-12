@@ -5,27 +5,40 @@ import SingleProduct from "../../../../components/Provider/Product/List/SinglePr
 import ChooseProduct from "../../../../components/Provider/Product/List/ChooseProduct"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
-import { deleteProviderProduct, getProviderProductList } from "../../../../services/product"
+import {
+    addProviderProductQuantity,
+    deleteProviderProduct,
+    getProviderProductDetails,
+    getProviderProductList,
+} from "../../../../services/product"
 import ProductDetailsModal from "../../../../components/Provider/Product/Details"
 import EditProductModal from "../../../../components/Provider/Product/Edit"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
+import AddQuantity from "../../../../components/Provider/Product/Details/AddQuantity"
+import { useInput } from "../../../../helpers/common"
 
 const ProviderProductList = () => {
     const dispatch = useDispatch()
 
     const [product, setProduct] = useState(null)
     const [productObj, setProductObj] = useState(null)
+    const [productDetails, setProductDetails] = useState(null)
     const [productId, setProductId] = useState(null)
+    const [quantityProductId, setQuantityProductId] = useState(null)
     const [products, setProducts] = useState([])
     const [productOptions, setProductOptions] = useState([])
     const [productsLoaded, setProductsLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
+    const [quantityModalShow, setQuantityModalShow] = useState(false)
     const [editModalShow, setEditModalShow] = useState(false)
     const [alertDelete, setAlertDelete] = useState(false)
     const [deleteLoading, setDeleteLoading] = useState(false)
     const [productName, setProductName] = useState("")
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
+    const [detailsLoading, setDetailsLoading] = useState(true)
+    const [quantityLoading, setQuantityLoading] = useState(false)
+    const [productQuantity, handleProductQuantity, setProductQuantity] = useInput("")
 
     useEffect(() => {
         productList()
@@ -43,6 +56,7 @@ const ProviderProductList = () => {
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
+                                      id: item && item.id,
                                       label: item && item.product_name,
                                       value: item && item.id,
                                   }
@@ -99,9 +113,61 @@ const ProviderProductList = () => {
             })
         )
     }
+
     const confirmAlert = () => {
         setAlert(false)
     }
+
+    const getGroductDetails = (productId) => {
+        dispatch(
+            getProviderProductDetails(productId, (res, err) => {
+                setDetailsLoading(false)
+                if (res && res.data) {
+                    setProductDetails(res.data.data)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
+
+    const onPressDetails = (productCategory) => {
+        if (!productCategory) {
+            return notify("error", "Please choose a product")
+        }
+        setDetailsLoading(true)
+        setModalShow(true)
+        getGroductDetails(productCategory.id)
+    }
+
+    const addQuantityModal = (id) => {
+        setQuantityProductId(id)
+        setModalShow(false)
+        setQuantityModalShow(true)
+    }
+
+    const addQuantity = (e, id) => {
+        e.preventDefault()
+        
+        dispatch(
+            addProviderProductQuantity(productQuantity, (res, err) => {
+                console.log('res', res);
+                console.log('err', err);
+                // setQuantityLoading(false)
+                // if (err && err.data) {
+                //     return notify(
+                //         "error",
+                //         (err.data.message && err.data.message) ||
+                //             "Somethingf went wrong"
+                //     )
+                // } else if (res && res.data) {
+                //     setMessage(res.data.data)
+                //     setAlert(true)
+                // }
+            })
+        )
+    }
+
 
     return (
         <section className='promotion-area mb-5'>
@@ -127,7 +193,7 @@ const ProviderProductList = () => {
                         value={product}
                         onChange={(product) => setProduct(product)}
                         options={productOptions}
-                        onPressDetails={() => setModalShow(true)}
+                        onPressDetails={onPressDetails}
                     />
 
                     <SingleProduct
@@ -140,8 +206,20 @@ const ProviderProductList = () => {
             </div>
 
             <ProductDetailsModal
+                productDetails={productDetails}
+                addQuantityModal={addQuantityModal}
+                loading={detailsLoading}
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+            />
+
+            <AddQuantity
+                show={quantityModalShow}
+                onHide={() => setQuantityModalShow(false)}
+                loading={quantityLoading}
+                onSubmit={addQuantity}
+                valu={productQuantity}
+                onChange={handleProductQuantity}
             />
 
             <EditProductModal

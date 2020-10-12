@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import PhoneInput from "react-phone-number-input"
 import { withRouter } from "react-router-dom"
@@ -7,6 +7,8 @@ import { SubmitButton } from "../../../UI/Button"
 import { CustomInput } from "../../../UI/InputField"
 import { InputLabel } from "../../../UI/InputLabel"
 import auth from "../../../../helpers/auth"
+import { getProviderProfileInfo } from "../../../../services/profile"
+import { notify } from "../../../../helpers/ui"
 
 const MainForm = () => {
     const dispatch = useDispatch()
@@ -29,6 +31,24 @@ const MainForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         return
+    }
+
+    useEffect(() => {
+        getProfileInfo()
+    }, [])
+
+
+    const getProfileInfo = () => {
+        dispatch(
+            getProviderProfileInfo(providerInfo.id, (res, err) => {
+                if (res) {
+                    console.log('res', res);
+
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
     }
 
     return (
@@ -122,7 +142,7 @@ const MainForm = () => {
                         />
 
                         <div className='d-flex justify-content-center'>
-                            <a href='/' className='gradient-btn gradient-lime mr-4'>
+                            <a href='/provider-product-list' className='gradient-btn gradient-lime mr-4'>
                                 Cancel
                             </a>
                             <SubmitButton

@@ -169,3 +169,62 @@ export const deleteProviderProduct = (productId, callback) => {
         }
     }
 }
+
+
+/**
+ * Method: GET
+ * @param {*} callback
+ */
+export const getProviderProductDetails = (productId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const api = base_url + "/edit_product/" + productId
+
+            dispatch({ type: "PRODUCT_DETAILS_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({
+                type: "PRODUCT_DETAILS_SUCCESS",
+                payload: response,
+            })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("PRODUCT_DETAILS_ERROR--->", error.response)
+        }
+    }
+}
+
+
+/**
+ * Method: POST
+ * @param {*} quantity_stock
+ * @param {*} callback
+ */
+export const addProviderProductQuantity = (quantityStock, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const body = {
+                quantity_stock: quantityStock,
+                user_id: providerInfo.id,
+            }
+
+            const api = base_url + "/update_product_quantity"
+
+            dispatch({ type: "ADD_PRODUCT_QUANTITY_PENDING", api })
+            const response = await httpRequest.post(api, true, token, body)
+
+            dispatch({ type: "ADD_PRODUCT_QUANTITY_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("ADD_PRODUCT_QUANTITY_ERROR--->", error.response)
+        }
+    }
+}
