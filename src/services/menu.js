@@ -140,8 +140,8 @@ export const addProviderMenu = (menu, callback) => {
             const token = providerInfo.token
 
             const body = {
-                service_category_id: menu.categoryId,
-                service_name: menu.serviceName,
+                menu_category_id: menu.categoryId,
+                menu_name: menu.menuName,
                 overview: menu.overview,
                 additional_info: menu.additionalInfo,
                 selling_price: menu.sellingPrice,
@@ -163,6 +163,33 @@ export const addProviderMenu = (menu, callback) => {
         } catch (error) {
             callback(null, error.response)
             console.log("ADD_MENU_ERROR--->", error.response)
+        }
+    }
+}
+
+/**
+ * Method: GET
+ * @param {*} callback
+ */
+export const getProviderMenuList = (callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const api = base_url + "/get_res_menu"
+
+            dispatch({ type: "MENU_LIST_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({
+                type: "MENU_LIST_SUCCESS",
+                payload: response,
+            })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("MENU_LIST_ERROR--->", error.response)
         }
     }
 }

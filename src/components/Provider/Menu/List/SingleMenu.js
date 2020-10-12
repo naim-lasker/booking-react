@@ -24,7 +24,7 @@ const SingleMenu = ({ menus, loading }) => {
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
                                         <div className='header-content'>
                                             <p className='mb-0'>
-                                                {menu.cat_name}
+                                                {menu.menu_name}
                                                 <br />
                                                 <strong className='primary-text3'>
                                                     {menu.selling_price ? ('$' + menu.selling_price) : ''}

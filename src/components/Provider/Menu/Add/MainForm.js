@@ -73,8 +73,10 @@ const MainForm = () => {
     const menuCategoryList = () => {
         dispatch(
             getMenuCategoryList((res, err) => {
-                if (res) {
-                    const response = res.data
+                if (res && res.data) {
+                    const response = res.data.data
+
+                    console.log('response', response);
 
                     const customCategories =
                         response && response.length > 0
@@ -119,7 +121,8 @@ const MainForm = () => {
         availabilityTo,
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
         setLoading(true)
 
         dispatch(

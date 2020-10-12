@@ -5,7 +5,7 @@ import SingleMenu from "../../../../components/Provider/Menu/List/SingleMenu"
 import ChooseMenu from "../../../../components/Provider/Menu/List/ChooseMenu"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
-import { getMenuCategoryList } from "../../../../services/menu"
+import { getProviderMenuList } from "../../../../services/menu"
 import ServiceDetailsModal from "../../../../components/Provider/Menu/Details"
 
 const ProviderMenuList = () => {
@@ -23,7 +23,7 @@ const ProviderMenuList = () => {
 
     const serviceList = () => {
         dispatch(
-            getMenuCategoryList((res, err) => {
+            getProviderMenuList((res, err) => {
                 if (res) {
                     setServicesLoaded(false)
                     const response = res.data.data
@@ -33,7 +33,7 @@ const ProviderMenuList = () => {
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
-                                      label: item && item.cat_name,
+                                      label: item && item.menu_name,
                                       value: item && item.id,
                                   }
                               })
