@@ -5,7 +5,7 @@ import CustomerSingleFeature from "../components/Layout/Sidebar/CustomerSingleFe
 import { userActivityList, userFeatureList } from "../mock-data/sidebar"
 
 
-const CustomerSidebar = () => {
+const UserSidebar = () => {
     return (
         <div className='booking-sidebar'>
             <div className='text-center'>
@@ -33,4 +33,4 @@ const CustomerSidebar = () => {
     )
 }
 
-export default CustomerSidebar
+export default UserSidebar
