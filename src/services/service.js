@@ -227,3 +227,30 @@ export const deleteProviderService = (serviceId, callback) => {
         }
     }
 }
+
+/**
+ * Method: GET
+ * @param {*} callback
+ */
+export const getProviderServiceDetails = (productId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const api = base_url + "/edit_service/" + productId
+
+            dispatch({ type: "SERVICE_DETAILS_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({
+                type: "SERVICE_DETAILS_SUCCESS",
+                payload: response,
+            })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("SERVICE_DETAILS_ERROR--->", error.response)
+        }
+    }
+}

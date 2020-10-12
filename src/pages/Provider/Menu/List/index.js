@@ -5,7 +5,7 @@ import SingleMenu from "../../../../components/Provider/Menu/List/SingleMenu"
 import ChooseMenu from "../../../../components/Provider/Menu/List/ChooseMenu"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
-import { deleteProviderMenu, getProviderMenuList } from "../../../../services/menu"
+import { deleteProviderMenu, getProviderMenuDetails, getProviderMenuList } from "../../../../services/menu"
 import MenuDetailsModal from "../../../../components/Provider/Menu/Details"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
 
@@ -17,6 +17,7 @@ const ProviderMenuList = () => {
     const [menuObj, setMenuObj] = useState(null)
     const [menuId, setMenuId] = useState(null)
     const [menuName, setMenuName] = useState("")
+    const [menuDetails, setMenuDetails] = useState(null)
     const [menuOptions, setMenuOptions] = useState([])
     const [menusLoaded, setMenusLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
@@ -25,6 +26,7 @@ const ProviderMenuList = () => {
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
     const [deleteLoading, setDeleteLoading] = useState(false)
+    const [detailsLoading, setDetailsLoading] = useState(true)
 
     useEffect(() => {
         menuList()
@@ -42,6 +44,7 @@ const ProviderMenuList = () => {
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
+                                      id: item && item.id,
                                       label: item && item.menu_name,
                                       value: item && item.id,
                                   }
@@ -89,8 +92,8 @@ const ProviderMenuList = () => {
                         notify(
                             "error",
                             (err.data.contents &&
-                                err.data.contents.service_name &&
-                                err.data.contents.service_name[0]) ||
+                                err.data.contents.menu_name &&
+                                err.data.contents.menu_name[0]) ||
                                 "Something went wrong"
                         )
                     }
@@ -101,6 +104,28 @@ const ProviderMenuList = () => {
 
     const confirmAlert = () => {
         setAlert(false)
+    }
+
+    const getMenuDetails = (menuId) => {
+        dispatch(
+            getProviderMenuDetails(menuId, (res, err) => {
+                setDetailsLoading(false)
+                if (res && res.data) {
+                    setMenuDetails(res.data.data)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
+
+    const onPressDetails = (menuCategory) => {
+        if (!menuCategory) {
+            return notify("error", "Please choose a menu")
+        }
+        setDetailsLoading(true)
+        setModalShow(true)
+        getMenuDetails(menuCategory.id)
     }
 
 
@@ -128,7 +153,7 @@ const ProviderMenuList = () => {
                         value={menu}
                         onChange={(menu) => setMenu(menu)}
                         options={menuOptions}
-                        onPressDetails={() => setModalShow(true)}
+                        onPressDetails={onPressDetails}
                     />
 
                     <SingleMenu
@@ -143,6 +168,8 @@ const ProviderMenuList = () => {
             <MenuDetailsModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                menuDetails={menuDetails}
+                loading={detailsLoading}
             />
         </section>
     )

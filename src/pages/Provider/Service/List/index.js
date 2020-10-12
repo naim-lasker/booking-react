@@ -8,6 +8,7 @@ import { notify } from "../../../../helpers/ui"
 import {
     getProviderServiceList,
     deleteProviderService,
+    getProviderServiceDetails,
 } from "../../../../services/service"
 import ServiceDetailsModal from "../../../../components/Provider/Service/Details"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
@@ -19,6 +20,7 @@ const ProviderServiceList = () => {
     const [services, setServices] = useState([])
     const [serviceObj, setServiceObj] = useState(null)
     const [serviceId, setServicetId] = useState(null)
+    const [serviceDetails, setServiceDetails] = useState(null)
     const [serviceName, setServiceName] = useState("")
     const [serviceOptions, setServiceOptions] = useState([])
     const [servicesLoaded, setServicesLoaded] = useState(true)
@@ -28,6 +30,7 @@ const ProviderServiceList = () => {
     const [deleteLoading, setDeleteLoading] = useState(false)
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
+    const [detailsLoading, setDetailsLoading] = useState(true)
 
     useEffect(() => {
         serviceList()
@@ -45,6 +48,7 @@ const ProviderServiceList = () => {
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
+                                      id: item && item.id,
                                       label: item && item.service_name,
                                       value: item && item.id,
                                   }
@@ -106,6 +110,29 @@ const ProviderServiceList = () => {
         setAlert(false)
     }
 
+    const getServiceDetails = (serviceId) => {
+        dispatch(
+            getProviderServiceDetails(serviceId, (res, err) => {
+                setDetailsLoading(false)
+                if (res && res.data) {
+                    setServiceDetails(res.data.data)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
+
+    const onPressDetails = (serviceCategory) => {
+        if (!serviceCategory) {
+            return notify("error", "Please choose a service")
+        }
+        setDetailsLoading(true)
+        setModalShow(true)
+        getServiceDetails(serviceCategory.id)
+    }
+
+
     return (
         <section className='promotion-area mb-5'>
             <Breadcrumb icon={<FaHome />} names={[{ name: "Service List" }]} />
@@ -130,7 +157,7 @@ const ProviderServiceList = () => {
                         value={service}
                         onChange={(service) => setService(service)}
                         options={serviceOptions}
-                        onPressDetails={() => setModalShow(true)}
+                        onPressDetails={onPressDetails}
                     />
 
                     <SingleService
@@ -145,6 +172,8 @@ const ProviderServiceList = () => {
             <ServiceDetailsModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                serviceDetails={serviceDetails}
+                loading={detailsLoading}
             />
         </section>
     )

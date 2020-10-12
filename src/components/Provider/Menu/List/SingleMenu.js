@@ -38,7 +38,7 @@ const SingleMenu = ({ menus, loading, onClickEdit, onClickDelete  }) => {
                         </div>
 
                         <div className='col-lg-2'>
-                            <button className='gray-text fs-17'
+                            {/* <button className='gray-text fs-17'
                                 onClick={() => {
                                     onClickEdit(menu)
                                 }}
@@ -46,7 +46,7 @@ const SingleMenu = ({ menus, loading, onClickEdit, onClickDelete  }) => {
                                 data-for='editButton'>
                                 <FaPencilAlt />
                             </button>
-                            <CustomTooltip id='editButton' text='Edit' />
+                            <CustomTooltip id='editButton' text='Edit' /> */}
                             
                             <button className='gray-text fs-17'
                                 onClick={() => {

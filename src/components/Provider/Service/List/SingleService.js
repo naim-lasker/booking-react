@@ -41,7 +41,7 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
                         </div>
 
                         <div className='col-lg-2'>
-                            <button
+                            {/* <button
                                 className='gray-text fs-17'
                                 onClick={() => {
                                     onClickEdit(service)
@@ -50,7 +50,7 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
                                 data-for='editButton'
                             >
                                 <FaPencilAlt />
-                            </button>
+                            </button> */}
                             <CustomTooltip id='editButton' text='Edit' />
 
                             <button

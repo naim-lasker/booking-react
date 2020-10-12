@@ -21,7 +21,7 @@ const ChooseMenu = ({ value, onChange, options, onPressDetails }) => (
         </div>
 
         <div className='d-flex justify-content-between'>
-            <button className='gradient-btn gradient-lime' onClick={onPressDetails}>Show Details</button>
+            <button className='gradient-btn gradient-lime' onClick={() => onPressDetails(value)}>Show Details</button>
             <a
                 href='provider-add-menu'
                 className='gradient-btn gradient-lime'

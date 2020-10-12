@@ -122,7 +122,7 @@ const ProviderProductList = () => {
         setAlert(false)
     }
 
-    const getGroductDetails = (productId) => {
+    const getProductDetails = (productId) => {
         dispatch(
             getProviderProductDetails(productId, (res, err) => {
                 setDetailsLoading(false)
@@ -141,7 +141,7 @@ const ProviderProductList = () => {
         }
         setDetailsLoading(true)
         setModalShow(true)
-        getGroductDetails(productCategory.id)
+        getProductDetails(productCategory.id)
     }
 
     const addQuantityModal = (id) => {

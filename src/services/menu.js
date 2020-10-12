@@ -219,3 +219,30 @@ export const deleteProviderMenu = (menuId, callback) => {
         }
     }
 }
+
+/**
+ * Method: GET
+ * @param {*} callback
+ */
+export const getProviderMenuDetails = (productId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const api = base_url + "/edit_res_menu/" + productId
+
+            dispatch({ type: "MENU_DETAILS_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({
+                type: "MENU_DETAILS_SUCCESS",
+                payload: response,
+            })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("MENU_DETAILS_ERROR--->", error.response)
+        }
+    }
+}
