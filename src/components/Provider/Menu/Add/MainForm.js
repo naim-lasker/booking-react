@@ -7,7 +7,7 @@ import { RadioButton } from "../../../UI/RadioButton"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
 import { useFileInput, useInput } from "../../../../helpers/common"
-import { addProviderMenu } from "../../../../services/menu"
+import { addProviderMenu, getMenuCategoryList } from "../../../../services/menu"
 import { CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
 import { InputLabel } from "../../../UI/InputLabel"
@@ -71,35 +71,35 @@ const MainForm = () => {
     }, [])
 
     const menuCategoryList = () => {
-        // dispatch(
-        //     getServiceCategoryList((res, err) => {
-        //         if (res) {
-        //             const response = res.data
+        dispatch(
+            getMenuCategoryList((res, err) => {
+                if (res) {
+                    const response = res.data
 
-        //             const customCategories =
-        //                 response && response.length > 0
-        //                     ? response.map((item) => {
-        //                           return {
-        //                               label: item && item.category_name,
-        //                               value:
-        //                                   item &&
-        //                                   item.category_name
-        //                                       .toLowerCase()
-        //                                       .replace(/\s/g, "_"),
-        //                           }
-        //                       })
-        //                     : [
-        //                           {
-        //                               label: "",
-        //                               value: "",
-        //                           },
-        //                       ]
-        //             setCategories(customCategories)
-        //         } else if (err) {
-        //             notify("error", "Something went wrong")
-        //         }
-        //     })
-        // )
+                    const customCategories =
+                        response && response.length > 0
+                            ? response.map((item) => {
+                                  return {
+                                      label: item && item.cat_name,
+                                      value:
+                                          item &&
+                                          item.cat_name
+                                              .toLowerCase()
+                                              .replace(/\s/g, "_"),
+                                  }
+                              })
+                            : [
+                                  {
+                                      label: "",
+                                      value: "",
+                                  },
+                              ]
+                    setCategories(customCategories)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
     }
 
 

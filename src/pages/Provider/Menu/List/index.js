@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import SingleService from "../../../../components/Provider/Menu/List/SingleService"
+import SingleMenu from "../../../../components/Provider/Menu/List/SingleMenu"
 import ChooseMenu from "../../../../components/Provider/Menu/List/ChooseMenu"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import { notify } from "../../../../helpers/ui"
@@ -12,7 +12,7 @@ const ProviderMenuList = () => {
     const dispatch = useDispatch()
 
     const [service, setService] = useState(null)
-    const [services, setServices] = useState([])
+    const [menus, setMenus] = useState([])
     const [serviceOptions, setServiceOptions] = useState([])
     const [servicesLoaded, setServicesLoaded] = useState(true)
     const [modalShow, setModalShow] = useState(false)
@@ -27,13 +27,13 @@ const ProviderMenuList = () => {
                 if (res) {
                     setServicesLoaded(false)
                     const response = res.data.data
-                    setServices(response)
+                    setMenus(response)
 
                     const customServices =
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
-                                      label: item && item.service_name,
+                                      label: item && item.cat_name,
                                       value: item && item.id,
                                   }
                               })
@@ -66,8 +66,8 @@ const ProviderMenuList = () => {
                         onPressDetails={() => setModalShow(true)}
                     />
 
-                    <SingleService
-                        services={services}
+                    <SingleMenu
+                        menus={menus}
                         loading={servicesLoaded}
                     />
                 </div>

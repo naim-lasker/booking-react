@@ -4,30 +4,30 @@ import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { CustomLoader } from "../../../UI/Loader"
 import PlaceholderData from "../../../UI/PlaceholderData"
 
-const SingleService = ({ services, loading }) => {
+const SingleMenu = ({ menus, loading }) => {
     return !loading ? (
-        services && services.length > 0 ? (
-            services.map((service) => (
-                <div className='single-promotion mb-3 p-3' key={service.id}>
+        menus && menus.length > 0 ? (
+            menus.map((menu) => (
+                <div className='single-promotion mb-3 p-3' key={menu.id}>
                     <div className='row'>
                         {/* <div className='col-lg-3'>
                             <img
                                 width='100%'
                                 className='img-fluid'
-                                src={service.service_image ? service.service_image : '/images/no-image.png'}
+                                src={menu.service_image ? menu.service_image : '/images/no-image.png'}
                                 alt=''
                             />
                         </div> */}
-                        <div className='col-lg-7'>
+                        <div className='col-lg-10'>
                             <div className='single-promotion-content'>
                                 <div className='single-promotion-head-content d-flex'>
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
                                         <div className='header-content'>
                                             <p className='mb-0'>
-                                                {service.service_name}
+                                                {menu.cat_name}
                                                 <br />
                                                 <strong className='primary-text3'>
-                                                    {service.selling_price ? ('$' + service.selling_price) : ''}
+                                                    {menu.selling_price ? ('$' + menu.selling_price) : ''}
                                                 </strong>
                                             </p>
                                         </div>
@@ -49,7 +49,7 @@ const SingleService = ({ services, loading }) => {
             ))
         ) : (
             <div className='border py-2 px-3 rounded'>
-                <PlaceholderData text='No service found!' />
+                <PlaceholderData text='No menu found!' />
             </div>
         )
     ) : (
@@ -60,9 +60,9 @@ const SingleService = ({ services, loading }) => {
 }
 
 
-SingleService.propTypes = {
-    services: PropTypes.array.isRequired,
+SingleMenu.propTypes = {
+    menus: PropTypes.array.isRequired,
     loading: PropTypes.bool.isRequired,
 }
 
-export default SingleService
+export default SingleMenu

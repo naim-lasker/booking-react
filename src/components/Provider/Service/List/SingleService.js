@@ -18,7 +18,7 @@ const SingleService = ({ services, loading }) => {
                                 alt=''
                             />
                         </div> */}
-                        <div className='col-lg-7'>
+                        <div className='col-lg-10'>
                             <div className='single-promotion-content'>
                                 <div className='single-promotion-head-content d-flex'>
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
