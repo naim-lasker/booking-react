@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import MenuSummery from "./MenuSummery"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
@@ -7,12 +7,17 @@ import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
 import { useFileInput, useInput } from "../../../../helpers/common"
-import { addProviderProduct } from "../../../../services/product"
+import { addProviderService } from "../../../../services/service"
 import { CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
+import Select from "react-select"
+import { getServiceCategoryList } from "../../../../services/category"
+import { InputLabel } from "../../../UI/InputLabel"
 
 const MainForm = () => {
     const dispatch = useDispatch()
+    const [category, setCategory] = useState([])
+    const [categories, setCategories] = useState([])
     const [serviceImage, handleServiceImage, setServiceImage] = useFileInput({
         file: "",
         image: "",
@@ -62,8 +67,44 @@ const MainForm = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
+    useEffect(() => {
+        serviceCategoryList()
+    }, [])
+
+    const serviceCategoryList = () => {
+        dispatch(
+            getServiceCategoryList((res, err) => {
+                if (res) {
+                    const response = res.data
+
+                    const customCategories =
+                        response && response.length > 0
+                            ? response.map((item) => {
+                                  return {
+                                      label: item && item.category_name,
+                                      value:
+                                          item &&
+                                          item.category_name
+                                              .toLowerCase()
+                                              .replace(/\s/g, "_"),
+                                  }
+                              })
+                            : [
+                                  {
+                                      label: "",
+                                      value: "",
+                                  },
+                              ]
+                    setCategories(customCategories)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
+
     let serviceObj = {
-        serviceImage: serviceImage.image,
+        categoryId: category.value,
         serviceName,
         overview,
         additionalInfo,
@@ -72,18 +113,16 @@ const MainForm = () => {
         quantityInStock,
         discountStatus,
         discountAmount,
-        discountPercentage,
-        availabilityStatus,
-        availabilityFrom,
-        availabilityTo,
+        timeDuration: '',
+        ageLimit: '',
     }
 
-    const handleSubmit = () => {
-        serviceObj.isService = 0
+    const handleSubmit = (e) => {
+        e.preventDefault()
         setLoading(true)
 
         dispatch(
-            addProviderProduct(serviceObj, (res, err) => {
+            addProviderService(serviceObj, (res, err) => {
                 setLoading(false)
 
                 if (err && err.data) {
@@ -167,6 +206,21 @@ const MainForm = () => {
                 </div>
 
                 <div className='mb-3'>
+                    <div className='mb-4'>
+                        <InputLabel
+                            label='Service Category'
+                            id='serviceCategory'
+                            infoText='Service Catgory info'
+                        />
+                        <Select
+                            placeholder='Choose service category'
+                            className='form-control input-box'
+                            value={category}
+                            onChange={(category) => setCategory(category)}
+                            options={categories}
+                        />
+                    </div>
+
                     <CustomInput
                         required
                         showLabel

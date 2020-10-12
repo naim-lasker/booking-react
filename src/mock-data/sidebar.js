@@ -23,18 +23,18 @@ const providerFeatureList = [
 
 const userActivityList = [
     { name: "Promotion", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Restaurant", icon: <FaEye />},
-    { name: "Tours & Excursions", icon: <FaEye />},
-    { name: "Water Activities", icon: <FaEye />},
-    { name: "Land Activities", icon: <FaEye />},
+    { name: "Restaurant", icon: <FaEye />, link: "/user-promotion" },
+    { name: "Tours & Excursions", icon: <FaEye />, link: "/user-promotion" },
+    { name: "Water Activities", icon: <FaEye />, link: "/user-promotion" },
+    { name: "Land Activities", icon: <FaEye />, link: "/user-promotion" },
 ]
 
 const userFeatureList = [
-    { name: "My Bookings", icon: <FaBookOpen /> },
-    { name: "Messeges", icon: <FaEnvelope /> },
-    { name: "Favourites", icon: <FaEye /> },
-    { name: "My Ratings", icon: <FaEye /> },
-    { name: "Contact Supports", icon: <FaEye />},
+    { name: "My Bookings", icon: <FaBookOpen />, link: "/user-promotion" },
+    { name: "Messeges", icon: <FaEnvelope />, link: "/user-promotion" },
+    { name: "Favourites", icon: <FaEye />, link: "/user-promotion" },
+    { name: "My Ratings", icon: <FaEye />, link: "/user-promotion" },
+    { name: "Contact Supports", icon: <FaEye />, link: "/user-promotion" },
 ]
 
 export { providerFeatureList, userActivityList, userFeatureList }

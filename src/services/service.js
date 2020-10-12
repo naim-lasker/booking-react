@@ -33,55 +33,48 @@ export const getProviderServiceList = (callback) => {
 
 /**
  * Method: POST
- * @param {*} product_name
+ * @param {*} service_category_id
+ * @param {*} service_name
  * @param {*} overview
  * @param {*} additional_info
  * @param {*} selling_price
  * @param {*} vat
- * @param {*} quantity_in_stock
  * @param {*} discount_status
  * @param {*} discount_amount
- * @param {*} discount_percentage
- * @param {*} availability_status
- * @param {*} availability_from
- * @param {*} availability_to
- * @param {*} is_service
- * @param {*} product_image
+ * @param {*} time_duration
+ * @param {*} age_limit
  * @param {*} callback
  */
-export const addProviderProduct = (product, callback) => {
+export const addProviderService = (service, callback) => {
     return async (dispatch) => {
         try {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
             const body = {
-                product_image: product.productImage,
-                product_name: product.productName,
-                overview: product.overview,
-                additional_info: product.additionalInfo,
-                selling_price: product.sellingPrice,
-                vat: product.vat,
-                quantity_in_stock: product.quantityInStock,
-                discount_status: product.discountStatus,
-                discount_amount: product.discountAmount,
-                discount_percentage: product.discountPercentage,
-                availability_status: product.availabilityStatus,
-                availability_from: product.availabilityFrom,
-                availability_to: product.availabilityTo,
-                is_service: product.isService,
+                service_category_id: service.categoryId,
+                service_name: service.serviceName,
+                overview: service.overview,
+                additional_info: service.additionalInfo,
+                selling_price: service.sellingPrice,
+                vat: service.vat,
+                discount_status: service.discountStatus,
+                discount_amount: service.discountAmount,
+                time_duration: service.timeDuration,
+                age_limit: service.ageLimit,
+                user_id: providerInfo.id,
             }
 
-            const api = base_url + "/add_product"
+            const api = base_url + "/add_service"
 
-            dispatch({ type: "ADD_PRODUCT_PENDING", api })
+            dispatch({ type: "ADD_SERVICE_PENDING", api })
             const response = await httpRequest.post(api, true, token, body)
 
-            dispatch({ type: "ADD_PRODUCT_SUCCESS", payload: response })
+            dispatch({ type: "ADD_SERVICE_SUCCESS", payload: response })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("ADD_PRODUCT_ERROR--->", error.response)
+            console.log("ADD_SERVICE_ERROR--->", error.response)
         }
     }
 }

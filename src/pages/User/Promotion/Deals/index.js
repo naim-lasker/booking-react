@@ -19,11 +19,11 @@ const PromotionDeals = () => {
                 <div>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        to='/'
+                        to='/user-promotion'
                     >
                         Show More
                     </Link>
-                    <Link className='border-btn primary-color ml-md-3' to='/'>
+                    <Link className='border-btn primary-color ml-md-3' to='/user-promotion'>
                         <span className='fas fa-filter mt-1'></span>
                         Apply Filter
                     </Link>
