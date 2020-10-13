@@ -1,8 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Select from "react-select"
+import { CustomSelect } from "../../../UI/Select"
 
-const ChooseService = ({ value, onChange, options, onPressDetails }) => (
+const ChooseService = ({
+    value,
+    onChange,
+    options,
+    selectRef,
+    hasError,
+    onPressDetails,
+}) => (
     <div className='mb-5'>
         <div className='mb-4'>
             <div className='d-flex align-items-center mb-3'>
@@ -10,18 +17,24 @@ const ChooseService = ({ value, onChange, options, onPressDetails }) => (
                 <button className='question-icon ml-2'>?</button>
             </div>
             <div>
-                <Select
+                <CustomSelect
                     placeholder='Select a service'
-                    className='form-control input-box'
+                    hasError={hasError}
                     value={value}
                     onChange={onChange}
                     options={options}
+                    selectRef={selectRef}
                 />
             </div>
         </div>
 
         <div className='d-flex justify-content-between'>
-            <button className='gradient-btn gradient-lime' onClick={() => onPressDetails(value)}>Show Details</button>
+            <button
+                className='gradient-btn gradient-lime'
+                onClick={() => onPressDetails(value)}
+            >
+                Show Details
+            </button>
             <a
                 href='provider-add-service'
                 className='gradient-btn gradient-lime'

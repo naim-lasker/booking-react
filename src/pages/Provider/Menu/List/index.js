@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import SingleMenu from "../../../../components/Provider/Menu/List/SingleMenu"
@@ -27,9 +27,14 @@ const ProviderMenuList = () => {
     const [alert, setAlert] = useState(false)
     const [deleteLoading, setDeleteLoading] = useState(false)
     const [detailsLoading, setDetailsLoading] = useState(true)
+    const [hasError, setHasError] = useState(false)
+    const selectRef = useRef(null);
 
     useEffect(() => {
         menuList()
+        return () => {
+            setHasError(false)
+        }
     }, [])
 
     const menuList = () => {
@@ -121,6 +126,8 @@ const ProviderMenuList = () => {
 
     const onPressDetails = (menuCategory) => {
         if (!menuCategory) {
+            selectRef.current.focus()
+            setHasError(true)
             return notify("error", "Please choose a menu")
         }
         setDetailsLoading(true)
@@ -154,6 +161,8 @@ const ProviderMenuList = () => {
                         onChange={(menu) => setMenu(menu)}
                         options={menuOptions}
                         onPressDetails={onPressDetails}
+                        selectRef={selectRef}
+                        hasError={hasError}
                     />
 
                     <SingleMenu

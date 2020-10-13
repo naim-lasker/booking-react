@@ -68,18 +68,40 @@ const EditProductModal = ({ show, onHide, product }) => {
     const productNameRef = createRef()
 
     useEffect(() => {
-        setProductId(product ? product.id : 0)
-        setProductName(product ? product.product_name : "")
-        setOverview(product ? product.overview : "")
-        setAdditionalInfo(product ? product.additional_info : "")
-        setQuantityInStock(product ? product.quantity_in_stock : 0)
-        setSellingPrice(product ? product.selling_price : 0)
-        setVatCodePercentence(product ? product.vat : 0)
-        setAvailabilityStatus(product && product.availability_status == 1 ? true : false)
-        setAvailabilityFrom(product ? product.availability_from : "")
-        setAvailabilityTo(product ? product.availability_to : "")
-        setDiscountStatus(product && product.discount_status == 1 ? true : false)
-        setDiscountPercentence(product ? product.discount_percentage : "")
+        setProductId(product && product.id ? product.id : 0)
+        setProductName(
+            product && product.product_name ? product.product_name : ""
+        )
+        setOverview(product && product.overview ? product.overview : "")
+        setAdditionalInfo(
+            product && product.additional_info ? product.additional_info : ""
+        )
+        setQuantityInStock(
+            product && product.quantity_in_stock ? product.quantity_in_stock : 0
+        )
+        setSellingPrice(
+            product && product.selling_price ? product.selling_price : 0
+        )
+        setVatCodePercentence(product && product.vat ? product.vat : 0)
+        setAvailabilityStatus(
+            product && product.availability_status == 1 ? true : false
+        )
+        setAvailabilityFrom(
+            product && product.availability_from
+                ? product.availability_from
+                : ""
+        )
+        setAvailabilityTo(
+            product && product.availability_to ? product.availability_to : ""
+        )
+        setDiscountStatus(
+            product && product.discount_status == 1 ? true : false
+        )
+        setDiscountPercentence(
+            product && product.discount_percentage
+                ? product.discount_percentage
+                : ""
+        )
     }, [product])
 
     let productObj = {
@@ -154,21 +176,6 @@ const EditProductModal = ({ show, onHide, product }) => {
     }
 
     const confirmAddProduct = () => {
-        setProductImage({
-            file: "",
-            image: "",
-        })
-        setProductName("")
-        setOverview("")
-        setAdditionalInfo("")
-        setQuantityInStock(0)
-        setSellingPrice(0)
-        setVatCodePercentence(0)
-        setAvailabilityFrom(new Date())
-        setAvailabilityTo(new Date())
-        setAvailabilityStatus(false)
-        setDiscountStatus(1)
-        setDiscountPercentence(0)
         setAlert(false)
         onHide()
     }
@@ -183,7 +190,7 @@ const EditProductModal = ({ show, onHide, product }) => {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title id='edit-product'>Edit Product</Modal.Title>
+                <Modal.Title id='edit-product'>Update Product</Modal.Title>
             </Modal.Header>
             <Modal.Body className='mx-3'>
                 <ConfirmAlert
@@ -452,7 +459,7 @@ const EditProductModal = ({ show, onHide, product }) => {
                         </button>
                         <SubmitButton
                             lime={true}
-                            text='Add Product'
+                            text='Update Product'
                             onClick={checkSubmit}
                         />
                     </div>

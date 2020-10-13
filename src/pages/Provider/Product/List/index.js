@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import SingleProduct from "../../../../components/Provider/Product/List/SingleProduct"
@@ -43,10 +43,17 @@ const ProviderProductList = () => {
         handleProductQuantity,
         setProductQuantity,
     ] = useInput("")
+    const [hasError, setHasError] = useState(false)
+
+    const selectRef = useRef(null);
 
     useEffect(() => {
         productList()
+        return () => {
+            setHasError(false)
+        }
     }, [])
+    
 
     const productList = () => {
         dispatch(
@@ -137,6 +144,8 @@ const ProviderProductList = () => {
 
     const onPressDetails = (productCategory) => {
         if (!productCategory) {
+            selectRef.current.focus()
+            setHasError(true)
             return notify("error", "Please choose a product")
         }
         setDetailsLoading(true)
@@ -196,6 +205,8 @@ const ProviderProductList = () => {
                         value={product}
                         onChange={(product) => setProduct(product)}
                         options={productOptions}
+                        selectRef={selectRef}
+                        hasError={hasError}
                         onPressDetails={onPressDetails}
                     />
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import SingleService from "../../../../components/Provider/Service/List/SingleService"
@@ -31,9 +31,14 @@ const ProviderServiceList = () => {
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
     const [detailsLoading, setDetailsLoading] = useState(true)
+    const [hasError, setHasError] = useState(false)
+    const selectRef = useRef(null);
 
     useEffect(() => {
         serviceList()
+        return () => {
+            setHasError(false)
+        }
     }, [])
 
     const serviceList = () => {
@@ -125,6 +130,8 @@ const ProviderServiceList = () => {
 
     const onPressDetails = (serviceCategory) => {
         if (!serviceCategory) {
+            selectRef.current.focus()
+            setHasError(true)
             return notify("error", "Please choose a service")
         }
         setDetailsLoading(true)
@@ -158,6 +165,8 @@ const ProviderServiceList = () => {
                         onChange={(service) => setService(service)}
                         options={serviceOptions}
                         onPressDetails={onPressDetails}
+                        selectRef={selectRef}
+                        hasError={hasError}
                     />
 
                     <SingleService
