@@ -1,11 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import { Tabs, Tab } from "react-bootstrap"
 import TabHeading from "../../../components/Public/Home/TabHeading"
-import RadionInput from "../../../components/Public/Home/RadionInput"
-import DateTimeInput from "../../../components/Public/Home/DateTimeInput"
+import RadioInput from "../../../components/Public/Home/RadioInput"
+import DateInput from "../../../components/Public/Home/DateInput"
 import InfoText from "../../../components/Public/Home/InfoText"
+import { useRadioButtons } from "../../../helpers/common"
+import TimeInput from "../../../components/Public/Home/TimeInput"
 
 export default () => {
+    const [carType, carTypeInputProps] = useRadioButtons("van")
+    const [startDate, setStartDate] = useState(new Date())
+    const [startTime, setStartTime] = useState("")
+
+    console.log("carType", carType)
+    console.log("startDate", startDate)
+    console.log("startTime", startTime)
     return (
         <section className='home-booking-area pb-5'>
             <div className='container'>
@@ -23,20 +32,22 @@ export default () => {
                                     />
                                 }
                             >
-                                <div>
+                                <div className='position-relative'>
                                     <div className='row mb-3 align-items-end'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
                                                 text='Van'
                                                 icon='/images/icons/van.png'
+                                                value='van'
+                                                {...carTypeInputProps}
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-md-0 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
                                                 text='Saloon'
                                                 icon='/images/icons/saloon.png'
+                                                value='saloon'
+                                                {...carTypeInputProps}
                                             />
                                         </div>
 
@@ -45,34 +56,46 @@ export default () => {
                                                 <InfoText text='Arriving Date' />
                                             </div>
 
-                                            <DateTimeInput
-                                                placeholder='29/08/2020'
+                                            <DateInput
+                                                placeholderText='29/08/2020'
                                                 icon='/images/icons/calendar.png'
+                                                selected={startDate}
+                                                onChange={(date) =>
+                                                    setStartDate(date)
+                                                }
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-lg-0 mt-2'>
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Pick Up Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <TimeInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
+                                                onChange={(value) =>
+                                                    setStartTime(
+                                                        value &&
+                                                            value.format(
+                                                                "h:mm a"
+                                                            )
+                                                    )
+                                                }
                                             />
                                         </div>
                                     </div>
 
                                     <div className='row align-items-end mt-lg-0 mt-5'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='People Carrier'
                                                 icon='/images/icons/carrier.png'
                                             />
                                         </div>
 
                                         <div className='col-lg-3 col-md-6 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Luxury'
                                                 icon='/images/icons/luxury.png'
                                             />
@@ -83,7 +106,7 @@ export default () => {
                                                 <InfoText text='Departing Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -93,12 +116,16 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Drop Off Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
                                         </div>
                                     </div>
+                                                
+                        <div className='reserve-now'>
+                            <button className='shadow-btn'>Reserve</button>
+                        </div>
                                 </div>
                             </Tab>
 
@@ -113,18 +140,18 @@ export default () => {
                                     />
                                 }
                             >
-                                <div>
+                                <div className='position-relative'>
                                     <div className='row mb-3 align-items-end'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Van'
                                                 icon='/images/icons/van.png'
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-md-0 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Saloon'
                                                 icon='/images/icons/saloon.png'
                                             />
@@ -135,7 +162,7 @@ export default () => {
                                                 <InfoText text='Arriving Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -144,7 +171,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Pick Up Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -153,16 +180,16 @@ export default () => {
 
                                     <div className='row align-items-end mt-lg-0 mt-5'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='People Carrier'
                                                 icon='/images/icons/carrier.png'
                                             />
                                         </div>
 
                                         <div className='col-lg-3 col-md-6 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Luxury'
                                                 icon='/images/icons/luxury.png'
                                             />
@@ -173,7 +200,7 @@ export default () => {
                                                 <InfoText text='Departing Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -183,7 +210,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Drop Off Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -206,16 +233,16 @@ export default () => {
                                 <div>
                                     <div className='row mb-3 align-items-end'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='People Carrier'
                                                 icon='/images/icons/carrier.png'
                                             />
                                         </div>
 
                                         <div className='col-lg-3 col-md-6 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Luxury'
                                                 icon='/images/icons/luxury.png'
                                             />
@@ -226,7 +253,7 @@ export default () => {
                                                 <InfoText text='Departing Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -236,7 +263,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Drop Off Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -245,15 +272,15 @@ export default () => {
 
                                     <div className='row align-items-end mt-lg-0 mt-5'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Van'
                                                 icon='/images/icons/van.png'
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-md-0 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Saloon'
                                                 icon='/images/icons/saloon.png'
                                             />
@@ -264,7 +291,7 @@ export default () => {
                                                 <InfoText text='Arriving Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -273,7 +300,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Pick Up Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -296,15 +323,15 @@ export default () => {
                                 <div>
                                     <div className='row mb-3 align-items-end'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Van'
                                                 icon='/images/icons/van.png'
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-md-0 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Saloon'
                                                 icon='/images/icons/saloon.png'
                                             />
@@ -315,7 +342,7 @@ export default () => {
                                                 <InfoText text='Arriving Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -324,7 +351,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Pick Up Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -333,16 +360,16 @@ export default () => {
 
                                     <div className='row align-items-end mt-lg-0 mt-5'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='People Carrier'
                                                 icon='/images/icons/carrier.png'
                                             />
                                         </div>
 
                                         <div className='col-lg-3 col-md-6 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Luxury'
                                                 icon='/images/icons/luxury.png'
                                             />
@@ -353,7 +380,7 @@ export default () => {
                                                 <InfoText text='Departing Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -363,7 +390,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Drop Off Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -386,15 +413,15 @@ export default () => {
                                 <div>
                                     <div className='row mb-3 align-items-end'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Van'
                                                 icon='/images/icons/van.png'
                                             />
                                         </div>
                                         <div className='col-lg-3 col-md-6 mt-md-0 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Saloon'
                                                 icon='/images/icons/saloon.png'
                                             />
@@ -405,7 +432,7 @@ export default () => {
                                                 <InfoText text='Arriving Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -414,7 +441,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Pick Up Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -423,16 +450,16 @@ export default () => {
 
                                     <div className='row align-items-end mt-lg-0 mt-5'>
                                         <div className='col-lg-3 col-md-6'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='People Carrier'
                                                 icon='/images/icons/carrier.png'
                                             />
                                         </div>
 
                                         <div className='col-lg-3 col-md-6 mt-3'>
-                                            <RadionInput
-                                                radioValue='carType'
+                                            <RadioInput
+                                                value='carType'
                                                 text='Luxury'
                                                 icon='/images/icons/luxury.png'
                                             />
@@ -443,7 +470,7 @@ export default () => {
                                                 <InfoText text='Departing Date' />
                                             </div>
 
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='29/08/2020'
                                                 icon='/images/icons/calendar.png'
                                             />
@@ -453,7 +480,7 @@ export default () => {
                                             <div className='d-flex justify-content-center align-items-center mb-2'>
                                                 <InfoText text='Drop Off Time' />
                                             </div>
-                                            <DateTimeInput
+                                            <DateInput
                                                 placeholder='15.00'
                                                 icon='/images/icons/clock.png'
                                             />
@@ -464,11 +491,11 @@ export default () => {
                         </Tabs>
                     </div>
 
-                    <div className='col-lg-12'>
+                    {/* <div className='col-lg-12'>
                         <div className='reserve-now'>
                             <button className='shadow-btn'>Reserve</button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

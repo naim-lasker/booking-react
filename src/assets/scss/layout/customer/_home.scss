@@ -91,6 +91,8 @@
         .input-box {
             border: 3px solid $border-color;
             height: 60px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
         }
         .input-group-text {
             border-right: 3px solid $border-color;
@@ -132,11 +134,10 @@
         }
     }
     .reserve-now {
-        top: -35px;
-        position: relative;
+        bottom: -90px;
+        position: absolute;
         text-align: center;
         width: 100%;
-        z-index: 2;
     }
     .tab-top-text {
         color: $title-color2;

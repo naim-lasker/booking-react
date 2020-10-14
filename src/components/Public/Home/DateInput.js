@@ -1,12 +1,13 @@
 import React from "react"
+import DatePicker from "react-datepicker"
 
-const DateTimeInput = ({ placeholder, icon }) => {
+const DateInput = ({ icon, ...rest }) => {
     return (
-        <div className='input-group align-items-center'>
-            <input
-                type='text'
+        <div className='input-group flex-nowrap align-items-center'>
+
+            <DatePicker
                 className='form-control input-box py-2 border-right-0 datepicker'
-                placeholder={placeholder}
+                {...rest}
             />
             <span className='input-group-append'>
                 <div className='input-group-text bg-transparent'>
@@ -17,4 +18,4 @@ const DateTimeInput = ({ placeholder, icon }) => {
     )
 }
 
-export default DateTimeInput
+export default DateInput

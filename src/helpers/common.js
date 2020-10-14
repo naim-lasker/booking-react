@@ -1,18 +1,32 @@
 import { useState } from "react"
 
-export let useInput = (initialValue = "") => {
+export const useInput = (initialValue = "") => {
     const [value, setValue] = useState(initialValue)
-    let handleChange = (e) => setValue(e.target.value)
+    const handleChange = (e) => setValue(e.target.value)
 
     return [value, handleChange, setValue]
 }
 
-export let useFileInput = (initialValue) => {
+export const useRadioButtons = (name) => {
+    const [value, setValue] = useState(null)
+
+    const handleChange = (e) => setValue(e.target.value)
+
+    const inputProps = {
+        name,
+        type: "radio",
+        onChange: handleChange,
+    }
+
+    return [value, inputProps]
+}
+
+export const useFileInput = (initialValue) => {
     const [value, setValue] = useState(initialValue)
 
-    let handleChange = (event) => {
+    const handleChange = (event) => {
         if (event.target && event.target.files && event.target.files.length) {
-            let raw = event.target.files[0]
+            const raw = event.target.files[0]
             let reader = new FileReader()
             reader.onloadend = (e) => {
                 setValue({
