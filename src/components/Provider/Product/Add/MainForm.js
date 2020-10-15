@@ -253,7 +253,7 @@ const MainForm = () => {
                         <CustomInput
                             showLabel
                             type='number'
-                            min='0'
+                            min='1'
                             label='Selling Price'
                             id='sellingPrice'
                             infoText='Selling Price info'

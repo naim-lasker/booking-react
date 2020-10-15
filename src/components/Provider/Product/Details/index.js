@@ -2,7 +2,12 @@ import React from "react"
 import { Modal } from "react-bootstrap"
 import { CustomLoader } from "../../../UI/Loader"
 
-const ProductDetailsModal = ({ productDetails, loading, addQuantityModal, ...props }) => {
+const ProductDetailsModal = ({
+    productDetails,
+    loading,
+    addQuantityModal,
+    ...props
+}) => {
     return (
         <Modal
             {...props}
@@ -26,17 +31,19 @@ const ProductDetailsModal = ({ productDetails, loading, addQuantityModal, ...pro
             </Modal.Header>
             <Modal.Body>
                 <div className='promotion-area '>
-                    <div className='single-promotion'>
-                        <img
-                            className='img-fluid'
-                            src={
-                                productDetails && productDetails.product_image != ""
-                                    ? productDetails.product_image
-                                    : "/images/menu_info.png"
-                            }
-                            alt=''
-                        />
-                        {!loading ? (
+                    {!loading ? (
+                        <div className='single-promotion'>
+                            {productDetails &&
+                                productDetails.product_image &&
+                                productDetails.product_image != "" && (
+                                    <div className='text-center'>
+                                        <img
+                                            className='img-fluid max-width-150'
+                                            src={productDetails.product_image}
+                                            alt=''
+                                        />
+                                    </div>
+                                )}
                             <div className='single-promotion-content p-3'>
                                 <div className='single-promotion-head-content'>
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
@@ -47,7 +54,7 @@ const ProductDetailsModal = ({ productDetails, loading, addQuantityModal, ...pro
                                             </h4>
                                         </div>
                                         <div className='single-promotion-price align-self-start'>
-                                            {`$ ${
+                                            {`$${
                                                 productDetails &&
                                                 productDetails.selling_price
                                             }`}
@@ -74,12 +81,12 @@ const ProductDetailsModal = ({ productDetails, loading, addQuantityModal, ...pro
                                     </p>
                                 </div>
                             </div>
-                        ) : (
-                            <div className='border px-3 rounded'>
-                                <CustomLoader />
-                            </div>
-                        )}
-                    </div>
+                        </div>
+                    ) : (
+                        <div className='border px-3 rounded'>
+                            <CustomLoader />
+                        </div>
+                    )}
 
                     <div className='mb-2 text-right'>
                         <button

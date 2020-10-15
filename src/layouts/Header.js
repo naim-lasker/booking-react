@@ -48,13 +48,15 @@ const Header = () => {
                                 <a className='nav-link'>Currency</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>Hotel</a>
-                            </li>
-                            <li className='nav-item'>
                                 <a className='nav-link'>Blog</a>
                             </li>
                             <li className='nav-item'>
-                                <a className='nav-link'>News</a>
+                                <a
+                                    className='nav-link'
+                                    href='/provider-booking'
+                                >
+                                    My Profile
+                                </a>
                             </li>
 
                             {(userInfo && userInfo.token) ||
