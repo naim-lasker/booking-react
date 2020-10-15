@@ -85,12 +85,6 @@ export default () => {
                             </Tab>
                         </Tabs>
                     </div>
-
-                    {/* <div className='col-lg-12'>
-                        <div className='reserve-now'>
-                            <button className='shadow-btn'>Reserve</button>
-                        </div>
-                    </div> */}
                 </div>
             </div>
         </section>
