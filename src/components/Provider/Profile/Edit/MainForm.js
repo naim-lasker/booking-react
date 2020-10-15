@@ -14,12 +14,9 @@ const MainForm = () => {
     const dispatch = useDispatch()
     const providerInfo = auth.getProviderInfo()
 
-    console.log('providerInfo', providerInfo);
+    console.log("providerInfo", providerInfo)
 
-    const [avatar, handleAvatar, setAvatar] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [avatar, handleAvatar, setAvatar] = useFileInput("")
     const [fullName, handleFullName, setYoutubeLink] = useInput("")
     const [email, handleEmail, setEmail] = useInput(
         providerInfo ? providerInfo.email : ""
@@ -37,12 +34,11 @@ const MainForm = () => {
         getProfileInfo()
     }, [])
 
-
     const getProfileInfo = () => {
         dispatch(
             getProviderProfileInfo(providerInfo.id, (res, err) => {
                 if (res) {
-                    console.log('res', res)
+                    console.log("res", res)
                 } else if (err) {
                     notify("error", "Something went wrong")
                 }
@@ -71,8 +67,8 @@ const MainForm = () => {
                                 <img
                                     className='w-100 h-100 rounded-circle'
                                     src={
-                                        avatar.image
-                                            ? avatar.image
+                                        avatar
+                                            ? avatar
                                             : "/images/profile/profile.png"
                                     }
                                     alt=''
@@ -141,7 +137,10 @@ const MainForm = () => {
                         />
 
                         <div className='d-flex justify-content-center'>
-                            <a href='/provider-product-list' className='gradient-btn gradient-lime mr-4'>
+                            <a
+                                href='/provider-product-list'
+                                className='gradient-btn gradient-lime mr-4'
+                            >
                                 Cancel
                             </a>
                             <SubmitButton

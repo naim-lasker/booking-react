@@ -19,10 +19,7 @@ const MainForm = () => {
     const dispatch = useDispatch()
     const providerInfo = auth.getProviderInfo()
 
-    const [avatar, handleAvatar, setAvatar] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [avatar, handleAvatar, setAvatar] = useFileInput("")
     const [youtubeLink, handleYoutubeLink, setYoutubeLink] = useInput("")
     const [category, setCategory] = useState([])
     const [categories, setCategories] = useState([])
@@ -141,8 +138,8 @@ const MainForm = () => {
                                     <img
                                         className='w-100 h-100 rounded-circle'
                                         src={
-                                            avatar.image
-                                                ? avatar.image
+                                            avatar
+                                                ? avatar
                                                 : "/images/placeholder/avatar.png"
                                         }
                                         alt=''

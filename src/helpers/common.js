@@ -26,13 +26,9 @@ export const useFileInput = (initialValue) => {
 
     const handleChange = (event) => {
         if (event.target && event.target.files && event.target.files.length) {
-            const raw = event.target.files[0]
             let reader = new FileReader()
             reader.onloadend = (e) => {
-                setValue({
-                    file: raw,
-                    image: reader.result,
-                })
+                setValue(reader.result)
             }
             reader.readAsDataURL(event.target.files[0])
         }

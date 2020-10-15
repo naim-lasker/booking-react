@@ -18,10 +18,7 @@ const MainForm = () => {
     const dispatch = useDispatch()
     const [category, setCategory] = useState([])
     const [categories, setCategories] = useState([])
-    const [serviceImage, handleServiceImage, setServiceImage] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [serviceImage, handleServiceImage, setServiceImage] = useFileInput("")
     const [serviceName, handleServiceName, setServiceName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
@@ -113,8 +110,8 @@ const MainForm = () => {
         quantityInStock,
         discountStatus,
         discountAmount,
-        timeDuration: '',
-        ageLimit: '',
+        timeDuration: "",
+        ageLimit: "",
     }
 
     const handleSubmit = (e) => {
@@ -140,10 +137,7 @@ const MainForm = () => {
     }
 
     const confirmAddService = () => {
-        setServiceImage({
-            file: "",
-            image: "",
-        })
+        setServiceImage("")
         setServiceName("")
         setOverview("")
         setAdditionalInfo("")
@@ -185,8 +179,8 @@ const MainForm = () => {
                                 <img
                                     className='profile-pic-inner-img'
                                     src={
-                                        serviceImage.image
-                                            ? serviceImage.image
+                                        serviceImage
+                                            ? serviceImage
                                             : "/images/icons/upload.png"
                                     }
                                     alt=''
@@ -200,9 +194,7 @@ const MainForm = () => {
                             <button className='question-icon'>?</button>
                         </div>
                     </div>
-                    <h3 className='upload-img-header'>
-                        Upload service images
-                    </h3>
+                    <h3 className='upload-img-header'>Upload service images</h3>
                 </div>
 
                 <div className='mb-3'>

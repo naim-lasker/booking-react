@@ -16,10 +16,7 @@ const MainForm = () => {
     const dispatch = useDispatch()
     const [category, setCategory] = useState([])
     const [categories, setCategories] = useState([])
-    const [menuImage, handleMenuImage, setMenuImage] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [menuImage, handleMenuImage, setMenuImage] = useFileInput("")
     const [menuName, handleMenuName, setMenuName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
@@ -65,7 +62,6 @@ const MainForm = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
-    
     useEffect(() => {
         menuCategoryList()
     }, [])
@@ -76,7 +72,7 @@ const MainForm = () => {
                 if (res && res.data) {
                     const response = res.data.data
 
-                    console.log('response', response);
+                    console.log("response", response)
 
                     const customCategories =
                         response && response.length > 0
@@ -104,9 +100,8 @@ const MainForm = () => {
         )
     }
 
-
     let menuObj = {
-        menuImage: menuImage.image,
+        menuImage,
         menuName,
         overview,
         additionalInfo,
@@ -144,10 +139,7 @@ const MainForm = () => {
     }
 
     const confirmAddMenu = () => {
-        setMenuImage({
-            file: "",
-            image: "",
-        })
+        setMenuImage("")
         setMenuName("")
         setOverview("")
         setAdditionalInfo("")
@@ -189,8 +181,8 @@ const MainForm = () => {
                                 <img
                                     className='profile-pic-inner-img'
                                     src={
-                                        menuImage.image
-                                            ? menuImage.image
+                                        menuImage
+                                            ? menuImage
                                             : "/images/icons/upload.png"
                                     }
                                     alt=''
@@ -222,7 +214,7 @@ const MainForm = () => {
                             options={categories}
                         />
                     </div>
-                    
+
                     <CustomInput
                         required
                         showLabel

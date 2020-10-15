@@ -13,10 +13,7 @@ import { notify } from "../../../../helpers/ui"
 
 const MainForm = () => {
     const dispatch = useDispatch()
-    const [productImage, handleProductImage, setProductImage] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [productImage, handleProductImage, setProductImage] = useFileInput("")
     const [productName, handleProductName, setProductName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
@@ -67,7 +64,7 @@ const MainForm = () => {
     const productNameRef = createRef()
 
     let productObj = {
-        productImage: productImage.image,
+        productImage,
         productName,
         overview,
         additionalInfo,
@@ -138,10 +135,7 @@ const MainForm = () => {
     }
 
     const confirmAddService = () => {
-        setProductImage({
-            file: "",
-            image: "",
-        })
+        setProductImage("")
         setProductName("")
         setOverview("")
         setAdditionalInfo("")
@@ -191,8 +185,8 @@ const MainForm = () => {
                             <img
                                 className='profile-pic-inner-img'
                                 src={
-                                    productImage.image
-                                        ? productImage.image
+                                    productImage
+                                        ? productImage
                                         : "/images/icons/upload.png"
                                 }
                                 alt=''
@@ -204,9 +198,7 @@ const MainForm = () => {
                         <button className='question-icon'>?</button>
                     </div>
                 </div>
-                <h3 className='upload-img-header'>
-                    Upload product image
-                </h3>
+                <h3 className='upload-img-header'>Upload product image</h3>
             </div>
 
             <div className='mb-3'>

@@ -14,10 +14,7 @@ import MenuSummery from "../Add/MenuSummery"
 const EditProductModal = ({ show, onHide, product }) => {
     const dispatch = useDispatch()
     const [productId, setProductId] = useState(0)
-    const [productImage, handleProductImage, setProductImage] = useFileInput({
-        file: "",
-        image: "",
-    })
+    const [productImage, handleProductImage, setProductImage] = useFileInput("")
     const [productName, handleProductName, setProductName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
     const [additionalInfo, handleAdditionalInfo, setAdditionalInfo] = useInput(
@@ -69,6 +66,9 @@ const EditProductModal = ({ show, onHide, product }) => {
 
     useEffect(() => {
         setProductId(product && product.id ? product.id : 0)
+        setProductImage(
+            product && product.product_image ? product.product_image : ""
+        )
         setProductName(
             product && product.product_name ? product.product_name : ""
         )
@@ -105,7 +105,7 @@ const EditProductModal = ({ show, onHide, product }) => {
     }, [product])
 
     let productObj = {
-        productImage: productImage.image,
+        productImage,
         productName,
         overview,
         additionalInfo,
@@ -226,8 +226,8 @@ const EditProductModal = ({ show, onHide, product }) => {
                                 <img
                                     className='profile-pic-inner-img'
                                     src={
-                                        productImage.image
-                                            ? productImage.image
+                                        productImage
+                                            ? productImage
                                             : "/images/icons/upload.png"
                                     }
                                     alt=''
@@ -450,7 +450,7 @@ const EditProductModal = ({ show, onHide, product }) => {
                         </div>
                     </div> */}
 
-                    <div className='d-flex justify-content-center mb-5 pb-5'>
+                    <div className='d-flex justify-content-center pb-5'>
                         <button
                             onClick={onHide}
                             className='gradient-btn gradient-lime mr-3'
