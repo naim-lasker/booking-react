@@ -31,7 +31,8 @@ import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
 
 import UserAddAccount from "../pages/User/Account/Add"
-import UserPromotionDeals from "../pages/User/Promotion/Deals"
+import PromotionList from "../pages/User/Promotion/List"
+import RestaurantList from "../pages/User/Restaurant/List"
 
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
@@ -175,8 +176,16 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={UserMain}
-                    component={UserPromotionDeals}
-                    path='/user-promotion'
+                    component={PromotionList}
+                    path='/user-promotion-list'
+                    title='Promotion'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
+                    component={RestaurantList}
+                    path='/user-restaurant-list'
                     title='Promotion'
                 />
                 <Page exact component={HomePage} path='/' title='Home' />

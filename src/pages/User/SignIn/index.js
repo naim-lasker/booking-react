@@ -56,7 +56,7 @@ const UserSignIn = (props) => {
                         auth.setUserInfo(res.data.data)
                         console.log('res.data.data', res.data.data);
                         if(res.data.data.hasStore == 1) {
-                            window.location.href = "/user-promotion"
+                            window.location.href = "/user-promotion-list"
                         } else {
                             window.location.href = "/user-add-account"
                         }

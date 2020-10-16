@@ -4,14 +4,14 @@ import { Link } from "react-router-dom"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
 
-const PromotionDeals = () => {
+const PromotionList = () => {
     return (
         <div className='promotion-area'>
             <div className='d-md-flex flex-md-row flex-column justify-content-sm-between align-items-start'>
                 <Breadcrumb
                     icon={<FaHome />}
                     names={[
-                        { name: "Dashboard", link: "/user-promotion" },
+                        { name: "Dashboard", link: "/user-promotion-list" },
                         { name: "Promotion" },
                     ]}
                 />
@@ -19,11 +19,11 @@ const PromotionDeals = () => {
                 <div>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        to='/user-promotion'
+                        to='/user-promotion-list'
                     >
                         Show More
                     </Link>
-                    <Link className='border-btn primary-color ml-md-3' to='/user-promotion'>
+                    <Link className='border-btn primary-color ml-md-3' to='/user-promotion-list'>
                         <span className='fas fa-filter mt-1'></span>
                         Apply Filter
                     </Link>
@@ -99,4 +99,4 @@ const PromotionDeals = () => {
         </div>
     )
 }
-export default PromotionDeals
+export default PromotionList

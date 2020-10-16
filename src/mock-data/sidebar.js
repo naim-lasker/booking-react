@@ -23,19 +23,19 @@ const providerFeatureList = [
 ]
 
 const userActivityList = [
-    { name: "Promotion", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Restaurant", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Tours & Excursions", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Water Activities", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Land Activities", icon: <FaEye />, link: "/user-promotion" },
+    { name: "Promotion", icon: <FaEye />, link: "/user-promotion-list" },
+    { name: "Restaurant", icon: <FaEye />, link: "/user-restaurant-list" },
+    { name: "Tours & Excursions", icon: <FaEye />, link: "/user-promotion-list" },
+    { name: "Water Activities", icon: <FaEye />, link: "/user-promotion-list" },
+    { name: "Land Activities", icon: <FaEye />, link: "/user-promotion-list" },
 ]
 
 const userFeatureList = [
-    { name: "My Bookings", icon: <FaBookOpen />, link: "/user-promotion" },
-    { name: "Messeges", icon: <FaEnvelope />, link: "/user-promotion" },
-    { name: "Favourites", icon: <FaEye />, link: "/user-promotion" },
-    { name: "My Ratings", icon: <FaEye />, link: "/user-promotion" },
-    { name: "Contact Supports", icon: <FaEye />, link: "/user-promotion" },
+    { name: "My Bookings", icon: <FaBookOpen />, link: "/user-promotion-list" },
+    { name: "Messeges", icon: <FaEnvelope />, link: "/user-promotion-list" },
+    { name: "Favourites", icon: <FaEye />, link: "/user-promotion-list" },
+    { name: "My Ratings", icon: <FaEye />, link: "/user-promotion-list" },
+    { name: "Contact Supports", icon: <FaEye />, link: "/user-promotion-list" },
 ]
 
 export { providerFeatureList, userActivityList, userFeatureList }
