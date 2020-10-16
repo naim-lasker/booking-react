@@ -6,47 +6,55 @@ import { useFileInput, useInput } from "../../../../helpers/common"
 import { SubmitButton } from "../../../UI/Button"
 import { CustomInput } from "../../../UI/InputField"
 import { InputLabel } from "../../../UI/InputLabel"
-import auth from "../../../../helpers/auth"
 import { getProviderProfileInfo } from "../../../../services/profile"
 import { notify } from "../../../../helpers/ui"
+import auth from "../../../../helpers/auth"
+import { TextareaWithLabel } from "../../../UI/TextareaField"
+import { CustomLoader } from "../../../UI/Loader"
 
 const MainForm = () => {
     const dispatch = useDispatch()
-    const providerInfo = auth.getProviderInfo()
-
-    console.log("providerInfo", providerInfo)
-
     const [avatar, handleAvatar, setAvatar] = useFileInput("")
-    const [fullName, handleFullName, setYoutubeLink] = useInput("")
-    const [email, handleEmail, setEmail] = useInput(
-        providerInfo ? providerInfo.email : ""
-    )
+    const [fullName, handleFullName, setFullName] = useInput("")
+    const [email, handleEmail, setEmail] = useInput("")
     const [phoneNumber, setPhoneNumber] = useState("")
     const [companyName, handleCompanyName, setCompanyName] = useInput("")
-    const [loading, setLoading] = useState(false)
+    const [about, handleAbout, setAbout] = useInput("")
+    const [getLoading, setGetLoading] = useState(true)
+    const [updateLoading, setUpdateLoading] = useState(false)
+
+    const providerInfo = auth.getProviderInfo()
+
+    useEffect(() => {
+        const getProfileInfo = async () => {
+            dispatch(
+                getProviderProfileInfo(providerInfo.id, (res, err) => {
+                    setGetLoading(false)
+                    if (res && res.data) {
+                        setInputValue(res.data.data)
+                    } else if (err) {
+                        notify("error", "Something went wrong")
+                    }
+                })
+            )
+        }
+
+        getProfileInfo()
+    }, [])
+
+    const setInputValue = (response) => {
+        setEmail(response.email)
+        setPhoneNumber(response.phone_no)
+        setCompanyName(response.company_name)
+        setAbout(response.about_com)
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
         return
     }
 
-    useEffect(() => {
-        getProfileInfo()
-    }, [])
-
-    const getProfileInfo = () => {
-        dispatch(
-            getProviderProfileInfo(providerInfo.id, (res, err) => {
-                if (res) {
-                    console.log("res", res)
-                } else if (err) {
-                    notify("error", "Something went wrong")
-                }
-            })
-        )
-    }
-
-    return (
+    return !getLoading ? (
         <form onSubmit={handleSubmit}>
             <div className='row justify-content-center mb-5'>
                 <div className='col-lg-8'>
@@ -136,6 +144,18 @@ const MainForm = () => {
                             onChange={handleCompanyName}
                         />
 
+                        <TextareaWithLabel
+                            required
+                            rows='4'
+                            maxLength='90'
+                            label='About Your Company'
+                            id='aboutYourCompany'
+                            infoText='About Your Company info'
+                            placeholder='It is Our Company'
+                            value={about}
+                            onChange={handleAbout}
+                        />
+
                         <div className='d-flex justify-content-center'>
                             <a
                                 href='/provider-product-list'
@@ -146,13 +166,19 @@ const MainForm = () => {
                             <SubmitButton
                                 blue={true}
                                 text='Edit profile'
-                                loading={loading}
+                                loading={updateLoading}
                             />
                         </div>
                     </div>
                 </div>
             </div>
         </form>
+    ) : (
+        <div className='row justify-content-center'>
+            <div className='col-lg-8 border rounded mb-4'>
+                <CustomLoader />
+            </div>
+        </div>
     )
 }
 

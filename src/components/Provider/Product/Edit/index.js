@@ -9,7 +9,6 @@ import { editProviderProduct } from "../../../../services/product"
 import { ConfirmAlert, CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
 import { Modal } from "react-bootstrap"
-import MenuSummery from "../Add/MenuSummery"
 
 const EditProductModal = ({ show, onHide, product }) => {
     const dispatch = useDispatch()
@@ -137,6 +136,7 @@ const EditProductModal = ({ show, onHide, product }) => {
             editProviderProduct(productObj, productId, (res, err) => {
                 setLoadingService(false)
                 setConfirmAlert(false)
+                window.location.href = "/provider-product-list"
 
                 if (err && err.data) {
                     return notify(
@@ -160,6 +160,7 @@ const EditProductModal = ({ show, onHide, product }) => {
             editProviderProduct(productObj, productId, (res, err) => {
                 setLoading(false)
                 setConfirmAlert(false)
+                window.location.href = "/provider-product-list"
 
                 if (err && err.data) {
                     return notify(
@@ -420,37 +421,7 @@ const EditProductModal = ({ show, onHide, product }) => {
                         </div>
                     )}
 
-                    {/* <div className='row mb-5'>
-                        <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                        <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                        <div className='col-lg-4 col-md-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                    </div> */}
-
-                    <div className='d-flex justify-content-center pb-5'>
+                    <div className='d-flex justify-content-center pb-3'>
                         <button
                             onClick={onHide}
                             className='gradient-btn gradient-lime mr-3'
@@ -465,14 +436,14 @@ const EditProductModal = ({ show, onHide, product }) => {
                     </div>
                 </div>
 
-                <MenuSummery
+                {/* <MenuSummery
                     sellingPrice={sellingPrice}
                     discountPercentage={discountPercentage}
                     discountAmount={discountAmount}
                     vat={vat}
                     vatCodeAmount={vatCodeAmount}
                     customerPays={customerPays}
-                />
+                /> */}
             </Modal.Body>
         </Modal>
     )
