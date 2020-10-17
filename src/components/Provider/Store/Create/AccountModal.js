@@ -20,7 +20,7 @@ const AccountModal = (props) => {
             </Modal.Body>
 
             <Modal.Footer className='justify-content-center'>
-                <a href='/provider-service-category' >Add account details at a later time </a>
+                <a href='/provider-booking'>Add account details later </a>
             </Modal.Footer>
         </Modal>
     )

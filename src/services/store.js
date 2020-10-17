@@ -15,12 +15,14 @@ const base_url = Config.base_url
  * @param {*} callback
  */
 export const createProviderstore = (
+    avatar,
     youtubeLink,
     email,
     phoneNumber,
     companyName,
     address,
     about,
+    serviceCategoryId,
     callback
 ) => {
     return async (dispatch) => {
@@ -29,12 +31,14 @@ export const createProviderstore = (
             const token = providerInfo.token
 
             const body = {
+                store_image: avatar,
                 youtube_link: youtubeLink,
                 email: email,
                 phone_no: phoneNumber,
                 company_name: companyName,
                 address: address,
                 about_com: about,
+                service_category_id: serviceCategoryId,
                 user_id: providerInfo.id,
             }
 

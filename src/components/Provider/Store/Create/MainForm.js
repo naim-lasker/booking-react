@@ -39,6 +39,8 @@ const MainForm = () => {
         categoryList()
     }, [])
 
+    console.log("category", category)
+
     const categoryList = () => {
         dispatch(
             getServiceCategoryList((res, err) => {
@@ -49,6 +51,7 @@ const MainForm = () => {
                         response && response.length > 0
                             ? response.map((item) => {
                                   return {
+                                      id: item && item.id,
                                       label: item && item.category_name,
                                       value:
                                           item &&
@@ -59,6 +62,7 @@ const MainForm = () => {
                               })
                             : [
                                   {
+                                      id: 0,
                                       label: "",
                                       value: "",
                                   },
@@ -72,6 +76,8 @@ const MainForm = () => {
     }
 
     const confirmAlert = () => {
+        setAvatar("")
+        setCategory([])
         setYoutubeLink("")
         setEmail("")
         setPhoneNumber("")
@@ -88,23 +94,22 @@ const MainForm = () => {
 
         dispatch(
             createProviderstore(
+                avatar,
                 youtubeLink,
                 email,
                 phoneNumber,
                 companyName,
                 address,
                 about,
+                category && category.id,
                 (res, err) => {
                     setLoading(false)
-                    if (res && res.data && res.data.status === "error") {
-                        return notify("error", res.data.data)
-                    } else if (
-                        res &&
-                        res.data &&
-                        res.data.status === "success"
-                    ) {
+
+                    if (res && res.data && res.data.status === "success") {
                         setMessage(res.data.data)
                         setAlert(true)
+                    } else if (err) {
+                        return notify("error", "Please check all the fields")
                     }
                 }
             )
@@ -188,6 +193,7 @@ const MainForm = () => {
                             <CustomInput
                                 required
                                 showLabel
+                                disabled
                                 type='email'
                                 label='Email'
                                 id='email'
