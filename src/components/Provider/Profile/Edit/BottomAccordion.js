@@ -1,14 +1,21 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Accordion, Button, Card } from "react-bootstrap"
 import { FaChevronUp } from "react-icons/fa"
+import { useDispatch } from "react-redux"
 import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
+import {
+    getProviderAccountDetails,
+    updateProviderAccountDetails,
+} from "../../../../services/account"
 import { SubmitButton } from "../../../UI/Button"
 import { CustomInput } from "../../../UI/InputField"
+import { CustomAlert } from "../../../UI/SweetAlert"
 import EditPayment from "./EditPayment"
 
 const BottomAccordion = () => {
-    const [password, handlePassword, setYoutubeLink] = useInput("")
+    const dispatch = useDispatch()
+    const [password, handlePassword, setPassword] = useInput("")
     const [
         confirmPassword,
         handleConfirmPassword,
@@ -16,12 +23,48 @@ const BottomAccordion = () => {
     ] = useInput("")
     const [loading, setLoading] = useState()
 
-    const [bankAccountName, handleBankAccountName, setBankAccountName] = useInput("")
+    const [
+        bankAccountName,
+        handleBankAccountName,
+        setBankAccountName,
+    ] = useInput("")
     const [iban, handleIban, setIban] = useInput("")
     const [bankName, handleBankName, setBankName] = useInput("")
     const [swiftBic, handleSwiftBic, setSwiftBic] = useInput("")
-    const [paymentLoading, setPaymentLoading] = useState()
     const [modalShow, setModalShow] = useState(false)
+    const [getLoading, setGetLoading] = useState(true)
+    const [paymentUpdateLoading, setPaymentUpdateLoading] = useState(false)
+    const [message, setMessage] = useState("")
+    const [alert, setAlert] = useState(false)
+
+    useEffect(() => {
+        const getBankInfo = async () => {
+            dispatch(
+                getProviderAccountDetails((res, err) => {
+                    console.log("res", res)
+                    console.log("err", err)
+                    setGetLoading(false)
+
+                    if (res && res.data) {
+                        setInputValue(res.data.data)
+                    } else if (err) {
+                        notify("error", "Something went wrong")
+                    }
+                })
+            )
+        }
+
+        getBankInfo()
+    }, [])
+
+    const setInputValue = (response) => {
+        setBankAccountName(
+            response.bank_account_name ? response.bank_account_name : ""
+        )
+        setIban(response.iban ? response.iban : "")
+        setBankName(response.bank_name ? response.bank_name : "")
+        setSwiftBic(response.swift_bic ? response.swift_bic : "")
+    }
 
     const updatePassword = (e) => {
         e.preventDefault()
@@ -33,19 +76,42 @@ const BottomAccordion = () => {
 
     const updatePayment = (e) => {
         e.preventDefault()
+        setPaymentUpdateLoading(true)
 
-        if (password !== confirmPassword) {
-            notify("error", "Your pasword does not match!")
-        }
+        dispatch(
+            updateProviderAccountDetails(
+                bankAccountName,
+                iban,
+                bankName,
+                swiftBic,
+                (res, err) => {
+                    setModalShow(false)
+                    setPaymentUpdateLoading(false)
+
+                    if (res && res.data && res.data.status === "success") {
+                        setMessage(res.data.data)
+                        setAlert(true)
+                    } else if (err) {
+                        return notify("error", "Please check all the fields")
+                    }
+                }
+            )
+        )
     }
 
     return (
         <div className='row justify-content-center mb-5'>
+            <CustomAlert
+                show={alert}
+                message={message}
+                onConfirm={() => setAlert(false)}
+            />
+
             <EditPayment
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 onSubmit={updatePayment}
-                loading={paymentLoading}
+                loading={paymentUpdateLoading}
                 bankAccountName={bankAccountName}
                 handleBankAccountName={handleBankAccountName}
                 iban={iban}

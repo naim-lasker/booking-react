@@ -25,8 +25,39 @@ export const getProviderProfileInfo = (id, callback) => {
             })
             callback(response, null)
         } catch (error) {
-            callback(null, error.response)
+            callback(null, error)
             console.log("PROFILE_INFO_ERROR--->", error.response)
+        }
+    }
+}
+
+export const updateProviderProfileInfo = (providerObj, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const body = {
+                store_image: providerObj.storeImg,
+                first_name: providerObj.firstName,
+                last_name: providerObj.lastName,
+                mobile: providerObj.phoneNumber,
+                country: providerObj.country,
+                address: providerObj.address,
+                about_com: providerObj.about,
+                user_id: providerInfo.id,
+            }
+
+            const api = base_url + "/update_store/" + providerInfo.id
+
+            dispatch({ type: "UPDATE_STORE_PENDING", api })
+            const response = await httpRequest.post(api, true, token, body)
+
+            dispatch({ type: "UPDATE_STORE_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("UPDATE_STORE_ERROR--->", error.response)
         }
     }
 }
