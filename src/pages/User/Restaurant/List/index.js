@@ -11,7 +11,7 @@ const RestaurantList = () => {
                 <Breadcrumb
                     icon={<FaHome />}
                     names={[
-                        { name: "Dashboard", link: "/user-promotion-list" },
+                        { name: "Dashboard", link: "/user-restaurant-list" },
                         { name: "Restaurant" },
                     ]}
                 />
