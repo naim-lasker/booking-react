@@ -10,7 +10,7 @@ const AddCategory = ({ onSubmit, value, onChange, loading }) => {
                     required
                     showLabel
                     type='text'
-                    label='Category Name'
+                    label='Service Category Name'
                     id='categoryName'
                     infoText='Category Name info'
                     placeholder='Category Name'

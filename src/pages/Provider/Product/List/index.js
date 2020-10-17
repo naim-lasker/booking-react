@@ -45,7 +45,7 @@ const ProviderProductList = () => {
     ] = useInput("")
     const [hasError, setHasError] = useState(false)
 
-    const selectRef = useRef(null);
+    const selectRef = useRef(null)
 
     useEffect(() => {
         productList()
@@ -53,7 +53,6 @@ const ProviderProductList = () => {
             setHasError(false)
         }
     }, [])
-    
 
     const productList = () => {
         dispatch(
@@ -183,7 +182,13 @@ const ProviderProductList = () => {
 
     return (
         <section className='promotion-area mb-5'>
-            <Breadcrumb icon={<FaHome />} names={[{ name: "Product List" }]} />
+            <Breadcrumb
+                icon={<FaHome />}
+                names={[
+                    { name: "Dashboard", link: "/provider-booking" },
+                    { name: "Product List" },
+                ]}
+            />
 
             <CustomAlert
                 show={alert}

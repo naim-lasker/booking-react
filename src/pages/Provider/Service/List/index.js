@@ -12,6 +12,7 @@ import {
 } from "../../../../services/service"
 import ServiceDetailsModal from "../../../../components/Provider/Service/Details"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
+import EditServiceModal from "../../../../components/Provider/Service/Edit"
 
 const ProviderServiceList = () => {
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const ProviderServiceList = () => {
     const [alert, setAlert] = useState(false)
     const [detailsLoading, setDetailsLoading] = useState(true)
     const [hasError, setHasError] = useState(false)
-    const selectRef = useRef(null);
+    const selectRef = useRef(null)
 
     useEffect(() => {
         serviceList()
@@ -139,7 +140,6 @@ const ProviderServiceList = () => {
         getServiceDetails(serviceCategory.id)
     }
 
-
     return (
         <section className='promotion-area mb-5'>
             <Breadcrumb icon={<FaHome />} names={[{ name: "Service List" }]} />
@@ -183,6 +183,12 @@ const ProviderServiceList = () => {
                 onHide={() => setModalShow(false)}
                 serviceDetails={serviceDetails}
                 loading={detailsLoading}
+            />
+
+            <EditServiceModal
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                service={serviceObj}
             />
         </section>
     )

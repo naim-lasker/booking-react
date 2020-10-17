@@ -180,9 +180,13 @@ export const addProviderService = (service, callback) => {
                 overview: service.overview,
                 additional_info: service.additionalInfo,
                 selling_price: service.sellingPrice,
+                availability_status: service.availabilityStatus,
+                availability_from: service.availabilityFrom,
+                availability_to: service.availabilityTo,
                 vat: service.vat,
                 discount_status: service.discountStatus,
                 discount_amount: service.discountAmount,
+                discount_percentage: service.discountPercentage,
                 time_duration: service.timeDuration,
                 age_limit: service.ageLimit,
                 user_id: providerInfo.id,
@@ -198,6 +202,61 @@ export const addProviderService = (service, callback) => {
         } catch (error) {
             callback(null, error.response)
             console.log("ADD_SERVICE_ERROR--->", error.response)
+        }
+    }
+}
+
+
+/**
+ * Method: POST
+ * @param {*} service_name
+ * @param {*} overview
+ * @param {*} additional_info
+ * @param {*} selling_price
+ * @param {*} vat
+ * @param {*} discount_status
+ * @param {*} discount_amount
+ * @param {*} discount_percentage
+ * @param {*} availability_status
+ * @param {*} availability_from
+ * @param {*} availability_to
+ * @param {*} is_service
+ * @param {*} service_image
+ * @param {*} callback
+ */
+export const editProviderService = (service, serviceId, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            const body = {
+                service_category_id: service.categoryId,
+                service_image: service.serviceImage,
+                service_name: service.serviceName,
+                overview: service.overview,
+                additional_info: service.additionalInfo,
+                selling_price: service.sellingPrice,
+                vat: service.vat,
+                discount_status: service.discountStatus,
+                discount_amount: service.discountAmount,
+                discount_percentage: service.discountPercentage,
+                availability_status: service.availabilityStatus,
+                availability_from: service.availabilityFrom,
+                availability_to: service.availabilityTo,
+                user_id: providerInfo.id,
+            }
+
+            const api = base_url + "/update_service/" + serviceId
+
+            dispatch({ type: "UPDATE_SERVICE_PENDING", api })
+            const response = await httpRequest.post(api, true, token, body)
+
+            dispatch({ type: "UPDATE_SERVICE_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("UPDATE_SERVICE_ERROR--->", error.response)
         }
     }
 }
@@ -232,13 +291,13 @@ export const deleteProviderService = (serviceId, callback) => {
  * Method: GET
  * @param {*} callback
  */
-export const getProviderServiceDetails = (productId, callback) => {
+export const getProviderServiceDetails = (serviceId, callback) => {
     return async (dispatch) => {
         try {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            const api = base_url + "/edit_service/" + productId
+            const api = base_url + "/edit_service/" + serviceId
 
             dispatch({ type: "SERVICE_DETAILS_PENDING", api })
             const response = await httpRequest.get(api, true, token)

@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react"
-import Select from "react-select"
-import MenuSummery from "./MenuSummery"
+import React, { createRef, useEffect, useState } from "react"
 import { CustomInput } from "../../../UI/InputField"
 import Checkbox from "../../../UI/Checkbox"
 import { RadioButton } from "../../../UI/RadioButton"
-import { FaPencilAlt, FaTrashAlt } from "react-icons/fa"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
 import { useFileInput, useInput } from "../../../../helpers/common"
-import { addProviderService } from "../../../../services/service"
-import { CustomAlert } from "../../../UI/SweetAlert"
+import { editProviderService } from "../../../../services/service"
+import { ConfirmAlert, CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
-import { getServiceCategoryList } from "../../../../services/service"
+import { Modal } from "react-bootstrap"
 import { InputLabel } from "../../../UI/InputLabel"
+import { CustomSelect } from "../../../UI/Select"
 
-const MainForm = () => {
+const EditServiceModal = ({ show, onHide, service }) => {
+    console.log('service', service)
     const dispatch = useDispatch()
     const [category, setCategory] = useState([])
     const [categories, setCategories] = useState([])
+    const [serviceId, setServiceId] = useState(0)
     const [serviceImage, handleServiceImage, setServiceImage] = useFileInput("")
     const [serviceName, handleServiceName, setServiceName] = useInput("")
     const [overview, handleOverview, setOverview] = useInput("")
@@ -43,7 +43,9 @@ const MainForm = () => {
         handleDiscountPercentage,
         setDiscountPercentence,
     ] = useInput(0)
+    const [loadingService, setLoadingService] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [confirmAlert, setConfirmAlert] = useState(false)
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
 
@@ -59,65 +61,77 @@ const MainForm = () => {
         (Number(discountAmount) + Number(vatCodeAmount))
     ).toFixed(2)
 
+    const serviceNameRef = createRef()
+
     useEffect(() => {
-        serviceCategoryList()
-    }, [])
-
-    const serviceCategoryList = () => {
-        dispatch(
-            getServiceCategoryList((res, err) => {
-                if (res) {
-                    const response = res.data
-
-                    const customCategories =
-                        response && response.length > 0
-                            ? response.map((item) => {
-                                  return {
-                                      label: item && item.category_name,
-                                      value:
-                                          item &&
-                                          item.category_name
-                                              .toLowerCase()
-                                              .replace(/\s/g, "_"),
-                                  }
-                              })
-                            : [
-                                  {
-                                      label: "",
-                                      value: "",
-                                  },
-                              ]
-                    setCategories(customCategories)
-                } else if (err) {
-                    notify("error", "Something went wrong")
-                }
-            })
+        setServiceId(service && service.id ? service.id : 0)
+        setServiceImage(
+            service && service.service_image ? service.service_image : ""
         )
-    }
+        setServiceName(
+            service && service.service_name ? service.service_name : ""
+        )
+        setOverview(service && service.overview ? service.overview : "")
+        setAdditionalInfo(
+            service && service.additional_info ? service.additional_info : ""
+        )
+        setSellingPrice(
+            service && service.selling_price ? service.selling_price : 0
+        )
+        setVatCodePercentence(service && service.vat ? service.vat : 0)
+        setAvailabilityStatus(
+            service && service.availability_status == 1 ? true : false
+        )
+        setAvailabilityFrom(
+            service && service.availability_from
+                ? service.availability_from
+                : ""
+        )
+        setAvailabilityTo(
+            service && service.availability_to ? service.availability_to : ""
+        )
+        setDiscountStatus(
+            service && service.discount_status == 1 ? true : false
+        )
+        setDiscountPercentence(
+            service && service.discount_percentage
+                ? service.discount_percentage
+                : ""
+        )
+    }, [service])
 
     let serviceObj = {
-        categoryId: category.value,
+        serviceImage,
         serviceName,
         overview,
         additionalInfo,
         sellingPrice,
-        availabilityStatus,
-        availabilityFrom,
-        availabilityTo,
         vat,
         discountStatus,
         discountAmount,
-        timeDuration: "",
-        ageLimit: "",
+        discountPercentage,
+        availabilityStatus,
+        availabilityFrom,
+        availabilityTo,
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const checkSubmit = () => {
+        if (!serviceName) {
+            serviceNameRef.current.focus()
+            notify("error", "Please enter service name")
+        } else {
+            setConfirmAlert(true)
+        }
+    }
+
+    const handleSubmit = () => {
         setLoading(true)
 
         dispatch(
-            addProviderService(serviceObj, (res, err) => {
+            editProviderService(serviceObj, serviceId, (res, err) => {
                 setLoading(false)
+                setConfirmAlert(false)
+                window.location.href = "/provider-service-list"
 
                 if (err && err.data) {
                     return notify(
@@ -134,29 +148,39 @@ const MainForm = () => {
     }
 
     const confirmAddService = () => {
-        setCategories([])
-        setServiceImage("")
-        setServiceName("")
-        setOverview("")
-        setAdditionalInfo("")
-        setSellingPrice(0)
-        setVatCodePercentence(0)
-        setAvailabilityFrom(new Date())
-        setAvailabilityTo(new Date())
-        setAvailabilityStatus(false)
-        setDiscountStatus(1)
-        setDiscountPercentence(0)
         setAlert(false)
+        onHide()
     }
 
     return (
-        <div className='col-lg-9'>
-            <CustomAlert
-                show={alert}
-                message={message}
-                onConfirm={confirmAddService}
-            />
-            <form onSubmit={handleSubmit}>
+        <Modal
+            className='add-menu-area'
+            show={show}
+            onHide={onHide}
+            size='lg'
+            aria-labelledby='edit-service'
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id='edit-service'>Update Service</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className='mx-3'>
+                <ConfirmAlert
+                    loadingYes={loading}
+                    show={confirmAlert}
+                    message='Update service?'
+                    onConfirm={handleSubmit}
+                    onCancel={() => {
+                        setConfirmAlert(false)
+                        onHide()
+                    }}
+                />
+
+                <CustomAlert
+                    show={alert}
+                    message={message}
+                    onConfirm={confirmAddService}
+                />
                 <div className='upload-container row justify-content-center align-items-center flex-column '>
                     <div className='row justify-content-center'>
                         <label
@@ -191,7 +215,7 @@ const MainForm = () => {
                             <button className='question-icon'>?</button>
                         </div>
                     </div>
-                    <h3 className='upload-img-header'>Upload service images</h3>
+                    <h3 className='upload-img-header'>Upload service image</h3>
                 </div>
 
                 <div className='mb-3'>
@@ -201,17 +225,15 @@ const MainForm = () => {
                             id='serviceCategory'
                             infoText='Service Catgory info'
                         />
-                        <Select
+                        <CustomSelect
                             placeholder='Choose service category'
-                            className='form-control input-box'
                             value={category}
                             onChange={(category) => setCategory(category)}
                             options={categories}
                         />
                     </div>
-
                     <CustomInput
-                        required
+                        inputRef={serviceNameRef}
                         showLabel
                         type='text'
                         label='Service Name'
@@ -373,61 +395,32 @@ const MainForm = () => {
                         </div>
                     )}
 
-                    {/* <div className='row mb-5'>
-                        <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                        <div className='col-lg-4 col-md-4 mb-md-0 mb-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                        <div className='col-lg-4 col-md-4 text-md-left text-center'>
-                            <img src='/images/profile/edit-img.png' alt='' />
-                            <button className='ml-3 title-text'>
-                                <FaPencilAlt />
-                            </button>
-                            <button className='title-text'>
-                                <FaTrashAlt />
-                            </button>
-                        </div>
-                    </div> */}
+                    <div className='d-flex justify-content-center pb-3'>
+                        <button
+                            onClick={onHide}
+                            className='gradient-btn gradient-lime mr-3'
+                        >
+                            Cancel
+                        </button>
+                        <SubmitButton
+                            lime={true}
+                            text='Update Service'
+                            onClick={checkSubmit}
+                        />
+                    </div>
                 </div>
-                <div className='d-flex justify-content-between mb-5 pb-5'>
-                    <a
-                        href='/provider-booking'
-                        className='gradient-btn gradient-lime'
-                    >
-                        Cancel
-                    </a>
-                    <SubmitButton
-                        lime={true}
-                        text='Add Service'
-                        loading={loading}
-                    />
-                </div>
-            </form>
 
-            <MenuSummery
-                sellingPrice={sellingPrice}
-                discountPercentage={discountPercentage}
-                discountAmount={discountAmount}
-                vat={vat}
-                vatCodeAmount={vatCodeAmount}
-                customerPays={customerPays}
-            />
-        </div>
+                {/* <MenuSummery
+                    sellingPrice={sellingPrice}
+                    discountPercentage={discountPercentage}
+                    discountAmount={discountAmount}
+                    vat={vat}
+                    vatCodeAmount={vatCodeAmount}
+                    customerPays={customerPays}
+                /> */}
+            </Modal.Body>
+        </Modal>
     )
 }
 
-export default MainForm
+export default EditServiceModal
