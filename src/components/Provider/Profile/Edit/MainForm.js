@@ -77,7 +77,7 @@ const MainForm = () => {
                                     src={
                                         avatar
                                             ? avatar
-                                            : "/images/profile/profile.png"
+                                            : "/images/placeholder/avatar.png"
                                     }
                                     alt=''
                                 />

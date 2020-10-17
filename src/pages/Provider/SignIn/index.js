@@ -50,6 +50,8 @@ const ProviderSignIn = (props) => {
                     )
                 } else if (res) {
                     if (res.data && res.data.data && res.data.data.role == 1) {
+                        console.log('login response', res.data.data)
+
                         auth.clearUserInfo()
                         auth.setProviderInfo(res.data.data)
                         if(res.data.data.hasStore == 1) {

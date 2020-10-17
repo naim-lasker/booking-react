@@ -16,7 +16,7 @@ const ProviderRatingList = () => {
             <div className='row justify-content-center'>
                 <div className='myrating-head-container'>
                     <div className='myrating-img-container text-center'>
-                        <img src='/images/profile/profile.png' alt='' />
+                        <img src='/images/placeholder/avatar.png' alt='' />
                     </div>
                     <h3 className='text-center rating-point'>3.85</h3>
                     <div className='stars'>

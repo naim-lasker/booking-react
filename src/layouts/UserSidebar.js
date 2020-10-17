@@ -12,7 +12,7 @@ const UserSidebar = () => {
                 <div className='side-profile-container'>
                     <img
                         className='side-profile'
-                        src='/images/profile/profile.png'
+                        src='/images/placeholder/avatar.png'
                         alt=''
                     />
                 </div>
