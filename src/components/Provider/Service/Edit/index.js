@@ -63,7 +63,7 @@ const EditServiceModal = ({ show, onHide, service }) => {
 
     const serviceNameRef = createRef()
 
-    useEffect(() => {
+    const setServiceInfo = () => {
         setServiceId(service && service.id ? service.id : 0)
         setServiceImage(
             service && service.service_image ? service.service_image : ""
@@ -98,6 +98,10 @@ const EditServiceModal = ({ show, onHide, service }) => {
                 ? service.discount_percentage
                 : ""
         )
+    }
+
+    useEffect(() => {
+        setServiceInfo()
     }, [service])
 
     let serviceObj = {

@@ -2,7 +2,6 @@ import React from "react"
 import { FaHome } from "react-icons/fa"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import MainForm from "../../../../components/Provider/Store/Create/MainForm"
-import BottomAccordion from "../../../../components/Provider/Store/Create/BottomAccordion"
 
 const ProviderCreateStore = () => {
 
@@ -18,7 +17,6 @@ const ProviderCreateStore = () => {
 
             <MainForm />
 
-            <BottomAccordion />
         </section>
     )
 }
