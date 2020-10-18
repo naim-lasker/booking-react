@@ -178,7 +178,6 @@ const MainForm = () => {
                             />
 
                             <CustomInput
-                                required
                                 showLabel
                                 label='Country'
                                 id='country'
@@ -196,7 +195,6 @@ const MainForm = () => {
                                 />
 
                                 <PhoneInput
-                                    required
                                     className='form-control input-box'
                                     placeholder='Number while on holiday'
                                     value={phoneNumber}
@@ -207,7 +205,6 @@ const MainForm = () => {
                             </div>
 
                             <CustomInput
-                                required
                                 showLabel
                                 label='Company Address'
                                 id='companyAddress'
@@ -218,7 +215,6 @@ const MainForm = () => {
                             />
 
                             <TextareaWithLabel
-                                required
                                 rows='4'
                                 maxLength='90'
                                 label='About Your Company'
