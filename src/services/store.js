@@ -31,7 +31,7 @@ export const createProviderstore = (
             const token = providerInfo.token
 
             const body = {
-                store_image: avatar,
+                icon_image_path: avatar,
                 youtube_link: youtubeLink,
                 email: email,
                 phone_no: phoneNumber,

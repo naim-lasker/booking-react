@@ -2,12 +2,13 @@ import React, { Fragment, useState } from "react"
 import { useDispatch } from "react-redux"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
-import { userSignUp } from "../../../services/authentication"
+import { userSignIn, userSignUp } from "../../../services/authentication"
 import { useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import { CustomAlert } from "../../../components/UI/SweetAlert"
 import { SubmitButton } from "../../../components/UI/Button"
+import auth from "../../../helpers/auth"
 
 const UserSignUp = (props) => {
     const dispatch = useDispatch()
@@ -26,13 +27,31 @@ const UserSignUp = (props) => {
     const [message, setMessage] = useState("")
 
     const confirmAlert = () => {
+        console.log('jo');
         setFirstName("")
         setLastName("")
         setEmail("")
         setPasword("")
         setConfirmPassword("")
         setAlert(false)
-        props.history.push("/user-signin")
+        window.location.href = "/user-restaurant-list"
+    }
+
+    const loginNow = () => {
+        dispatch(
+            userSignIn(email, password, (res, err) => {
+                if (err) {
+                    notify("error", "Something went wrong")
+                } else if (res) {
+                    if (res.data && res.data.data && res.data.data.role == 2) {
+                        auth.clearUserInfo()
+                        auth.setUserInfo(res.data.data)
+                        setMessage(email + " is registered successfully.")
+                        setAlert(true)
+                    }
+                }
+            })
+        )
     }
 
     const handleSubmit = (event) => {
@@ -65,8 +84,7 @@ const UserSignUp = (props) => {
                         res.data.contents &&
                         res.data.contents.role == 2
                     ) {
-                        setMessage(email + " is registered successfully.")
-                        setAlert(true)
+                        loginNow()
                     }
                 }
             })

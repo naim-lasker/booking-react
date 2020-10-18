@@ -6,7 +6,6 @@ const base_url = Config.base_url
 
 /**
  * Method: GET
- * @param {*} callback
  */
 export const getProviderProfileInfo = (id, callback) => {
     return async (dispatch) => {
@@ -31,6 +30,10 @@ export const getProviderProfileInfo = (id, callback) => {
     }
 }
 
+
+/**
+ * Method: POST
+ */
 export const updateProviderProfileInfo = (providerObj, callback) => {
     return async (dispatch) => {
         try {
@@ -38,7 +41,7 @@ export const updateProviderProfileInfo = (providerObj, callback) => {
             const token = providerInfo.token
 
             const body = {
-                store_image: providerObj.storeImg,
+                icon_image_path: providerObj.storeImg,
                 first_name: providerObj.firstName,
                 last_name: providerObj.lastName,
                 mobile: providerObj.phoneNumber,

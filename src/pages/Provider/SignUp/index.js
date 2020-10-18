@@ -37,13 +37,14 @@ const ProviderSignUp = (props) => {
     }, [])
 
     const confirmAlert = () => {
+        console.log('hi');
         setFirstName("")
         setLastName("")
         setEmail("")
         setPasword("")
         setConfirmPassword("")
         setAlert(false)
-        props.history.push("/provider-create-store")
+        window.location.href = "/provider-create-store"
     }
 
     const loginNow = () => {

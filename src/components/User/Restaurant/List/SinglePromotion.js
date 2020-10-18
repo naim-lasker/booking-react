@@ -2,7 +2,7 @@ import React from "react"
 import { FaStar, FaStarHalf } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-const SinglePromotion = () => {
+const SinglePromotion = ({ stores }) => {
     return (
         <div className='col-lg-6 col-md-6'>
             <div className='single-promotion'>
@@ -22,7 +22,7 @@ const SinglePromotion = () => {
                             <div className='header-content pl-3'>
                                 <h4 className='section-header'>Beauty & Spa</h4>
                                 <div>
-                                    <FaStar className='single-promotion-star'/>
+                                    <FaStar className='single-promotion-star' />
                                     <FaStar className='single-promotion-star' />
                                     <FaStar className='single-promotion-star' />
                                     <FaStar className='single-promotion-star' />
