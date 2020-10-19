@@ -1,4 +1,5 @@
 import { Config } from "../config/index"
+import auth from "../helpers/auth"
 import httpRequest from "../helpers/request"
 
 const base_url = Config.base_url
@@ -109,7 +110,6 @@ export const userSignIn = (email, password, callback) => {
     }
 }
 
-
 /**
  * Method: POST
  * User Sign Up
@@ -146,8 +146,6 @@ export const userSignUp = (firstName, lastName, email, password, callback) => {
 
 /**
  * Method: POST
- * logout
- * @param {*is function that return reponse data or err in promise} callback
  */
 
 export const Logout = (callback) => {
@@ -161,6 +159,32 @@ export const Logout = (callback) => {
             const response = await httpRequest.post(api, true, token, body)
 
             dispatch({ type: "LOGOUT_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+        }
+    }
+}
+
+/**
+ * Method: POST
+ */
+
+export const updatePassword = (userId, password, callback) => {
+    return async (dispatch) => {
+        try {
+            const providerInfo = await auth.getProviderInfo()
+            const token = providerInfo.token
+
+            let api = base_url + "/change_password/" + userId
+            let body = {
+                password,
+            }
+
+            dispatch({ type: "PASSWORD_UPDATE_PENDING", api, body })
+            const response = await httpRequest.post(api, true, token, body)
+
+            dispatch({ type: "PASSWORD_UPDATE_SUCCESS", payload: response })
             callback(response, null)
         } catch (error) {
             callback(null, error.response)

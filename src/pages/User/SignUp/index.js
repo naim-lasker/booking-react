@@ -58,7 +58,7 @@ const UserSignUp = (props) => {
         event.preventDefault()
 
         if (password !== confirmPassword) {
-            return notify("error", "Your pasword doesnot match!")
+            return notify("error", "Your pasword does not match!")
         }
 
         setLoading(true)

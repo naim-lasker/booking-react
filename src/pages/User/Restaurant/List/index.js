@@ -3,7 +3,7 @@ import { FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
-import SinglePromotion from "../../../../components/User/Restaurant/List/SinglePromotion"
+import SingleStore from "../../../../components/User/Restaurant/List/SingleStore"
 import { notify } from "../../../../helpers/ui"
 import { getCustomerMenuList } from "../../../../services/menu"
 
@@ -20,8 +20,7 @@ const RestaurantList = () => {
         dispatch(
             getCustomerMenuList((res, err) => {
                 setLoading(false)
-
-                if (res && res.status == "success") {
+                if (res && res.data.status == "success") {
                     setStores(res.data.all_stores)
                 } else if (err) {
                     notify("error", "Something went wrong")
@@ -43,7 +42,7 @@ const RestaurantList = () => {
             </div>
 
             <div className='row'>
-                <SinglePromotion stores={stores} />
+                <SingleStore stores={stores} loading={loading} />
             </div>
 
             <div className='row mt-4'>

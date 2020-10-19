@@ -250,7 +250,7 @@ export const getCustomerMenuList = (callback) => {
             const userInfo = await auth.getUserInfo()
             const token = userInfo.token
 
-            const api = base_url + "/get_all_restuarants/" + userInfo.id
+            const api = base_url + "/get_all_restuarants"
 
             dispatch({ type: "MENU_LIST_PENDING", api })
             const response = await httpRequest.get(api, true, token)

@@ -14,7 +14,7 @@ export const getProviderProductList = (callback) => {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            const api = base_url + "/get_products"
+            const api = base_url + "/get_products/" + providerInfo.id
 
             dispatch({ type: "PRODUCT_LIST_PENDING", api })
             const response = await httpRequest.get(api, true, token)

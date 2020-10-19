@@ -115,12 +115,17 @@ const MainForm = () => {
         )
     }
 
+    const onConfirm = () => {
+        setAlert(false)
+        window.location.href = "/provider-edit-profile"
+    }
+
     return !getLoading ? (
         <Fragment>
             <CustomAlert
                 show={alert}
                 message={message}
-                onConfirm={() => setAlert(false)}
+                onConfirm={onConfirm}
             />
 
             <form onSubmit={handleSubmit}>
