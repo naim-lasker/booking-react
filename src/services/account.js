@@ -7,7 +7,8 @@ const base_url = Config.base_url
 /**
  * Method: POST
  */
-export const addProviderAccountDetails = (
+export const addAccountDetails = (
+    userType,
     bankAccountName,
     iban,
     bankName,
@@ -16,8 +17,16 @@ export const addProviderAccountDetails = (
 ) => {
     return async (dispatch) => {
         try {
-            const providerInfo = auth.getProviderInfo()
-            const token = providerInfo.token
+            let token = ""
+            let providerInfo = {}
+            let userInfo = {}
+            if (userType == "provider") {
+                providerInfo = auth.getProviderInfo()
+                token = providerInfo.token
+            } else if (userType == "user") {
+                userInfo = auth.getUserInfo()
+                token = userInfo.token
+            }
 
             const body = {
                 bank_account_name: bankAccountName,
@@ -25,6 +34,12 @@ export const addProviderAccountDetails = (
                 bank_name: bankName,
                 swift_bic: swiftBic,
                 user_id: providerInfo.id,
+            }
+
+            if (userType == "provider") {
+                body.user_id = providerInfo.id
+            } else if (userType == "user") {
+                body.user_id = userInfo.id
             }
 
             const api = base_url + "/add-bank-account"
@@ -36,7 +51,7 @@ export const addProviderAccountDetails = (
             callback(response, null)
         } catch (error) {
             callback(null, error.response)
-            console.log("ADD_ACCOUNT_DETAILS_ERROR--->", error.response)
+            console.log("ADD_ACCOUNT_DETAILS_ERROR--->", error)
         }
     }
 }

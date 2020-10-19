@@ -54,7 +54,8 @@ const UserSignIn = (props) => {
                     if (res.data && res.data.data && res.data.data.role == 2) {
                         auth.clearProviderInfo()
                         auth.setUserInfo(res.data.data)
-                        console.log('res.data.data', res.data.data);
+                        console.log('res.data.data', res.data.data)
+
                         if(res.data.data.hasStore == 1) {
                             window.location.href = "/user-restaurant-list"
                         } else {

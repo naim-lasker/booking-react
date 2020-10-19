@@ -51,9 +51,9 @@ const MainForm = () => {
 
     const setInputValue = (response) => {
         setStoreImg(
-            response.storeDetails.store_image &&
-                response.storeDetails.store_image != ""
-                ? response.storeDetails.store_image
+            response.UserDetails.icon_image_path &&
+                response.UserDetails.icon_image_path != ""
+                ? response.UserDetails.icon_image_path
                 : "/images/placeholder/avatar.png"
         )
         setFirstName(
@@ -103,7 +103,12 @@ const MainForm = () => {
                     setMessage(res.data.data)
                     setAlert(true)
                 } else if (err) {
-                    return notify("error", "Please check all the fields")
+                    return notify(
+                        "error",
+                        err.data && err.data.message
+                            ? err.data.message
+                            : "Please check all the fields"
+                    )
                 }
             })
         )
@@ -182,7 +187,7 @@ const MainForm = () => {
                                 label='Country'
                                 id='country'
                                 infoText='Country info'
-                                placeholder='lora.king@gmail.com'
+                                placeholder='Canada'
                                 value={country}
                                 onChange={handleCountry}
                             />
@@ -227,7 +232,7 @@ const MainForm = () => {
 
                             <div className='d-flex justify-content-center'>
                                 <a
-                                    href='/provider-product-list'
+                                    href='/provider-booking'
                                     className='gradient-btn gradient-lime mr-4'
                                 >
                                     Cancel

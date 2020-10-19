@@ -10,17 +10,17 @@ import { CustomInput } from "../../../UI/InputField"
 
 const MainForm = (props) => {
     const dispatch = useDispatch()
-    const [bankAccountName, setBankAccountName] = useInput("")
-    const [iban, setIban] = useInput("")
-    const [bankName, setBankName] = useInput("")
-    const [swiftBic, setSwiftBic] = useInput("")
+    const [bankAccountName, setBankAccountName] = useInput("Gazi Asif")
+    const [iban, setIban] = useInput("asif@gmail.com")
+    const [bankName, setBankName] = useInput("Brack")
+    const [swiftBic, setSwiftBic] = useInput("123456")
     const [alert, setAlert] = useState(false)
     const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
 
     const confirmAlert = () => {
         setAlert(false)
-        props.history.push("/provider-service-category")
+        props.history.push("/user-restaurant-list")
     }
 
     const handleSubmit = (event) => {
@@ -29,7 +29,7 @@ const MainForm = (props) => {
 
         dispatch(
             addAccountDetails(
-                "provider",
+                'user',
                 bankAccountName,
                 iban,
                 bankName,
