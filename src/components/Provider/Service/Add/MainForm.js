@@ -70,23 +70,19 @@ const MainForm = () => {
                     const response = res.data
 
                     const customCategories =
-                        response && response.length > 0
-                            ? response.map((item) => {
-                                  return {
-                                      label: item && item.category_name,
-                                      value:
-                                          item &&
-                                          item.category_name
-                                              .toLowerCase()
-                                              .replace(/\s/g, "_"),
-                                  }
-                              })
-                            : [
-                                  {
-                                      label: "",
-                                      value: "",
-                                  },
-                              ]
+                        response &&
+                        response.length > 0 &&
+                        response.map((item) => {
+                            return {
+                                id: item && item.id,
+                                label: item && item.category_name,
+                                value:
+                                    item &&
+                                    item.category_name
+                                        .toLowerCase()
+                                        .replace(/\s/g, "_"),
+                            }
+                        })
                     setCategories(customCategories)
                 } else if (err) {
                     notify("error", "Something went wrong")
@@ -96,7 +92,7 @@ const MainForm = () => {
     }
 
     let serviceObj = {
-        categoryId: category.value,
+        categoryId: category.id,
         serviceName,
         overview,
         additionalInfo,

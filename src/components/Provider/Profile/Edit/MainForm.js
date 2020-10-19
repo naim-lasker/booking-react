@@ -82,6 +82,7 @@ const MainForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        setUpdateLoading(true)
 
         const providerObj = {
             storeImg,
