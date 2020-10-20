@@ -19,12 +19,12 @@ const ServiceDetailsModal = ({ serviceDetails, loading, ...props }) => {
                 <div className='promotion-area '>
                     <div className='single-promotion'>
                         <img
-                            className='img-fluid'
+                            className='img-fluid details-img w-100'
                             src={
                                 serviceDetails &&
-                                serviceDetails.service_image != ""
-                                    ? serviceDetails.service_image
-                                    : "/images/menu_info.png"
+                                serviceDetails.first_image_path != ""
+                                    ? serviceDetails.first_image_path
+                                    : "/images/no-image.png"
                             }
                             alt=''
                         />

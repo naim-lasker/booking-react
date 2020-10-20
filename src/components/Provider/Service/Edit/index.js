@@ -13,7 +13,6 @@ import { InputLabel } from "../../../UI/InputLabel"
 import { CustomSelect } from "../../../UI/Select"
 
 const EditServiceModal = ({ show, onHide, service }) => {
-    console.log('service', service)
     const dispatch = useDispatch()
     const [category, setCategory] = useState([])
     const [categories, setCategories] = useState([])

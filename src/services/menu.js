@@ -240,26 +240,3 @@ export const getProviderMenuDetails = (productId, callback) => {
         }
     }
 }
-
-/**
- * Method: GET
- */
-export const getCustomerMenuList = (callback) => {
-    return async (dispatch) => {
-        try {
-            const userInfo = await auth.getUserInfo()
-            const token = userInfo.token
-
-            const api = base_url + "/get_all_restuarants"
-
-            dispatch({ type: "MENU_LIST_PENDING", api })
-            const response = await httpRequest.get(api, true, token)
-
-            dispatch({ type: "MENU_LIST_SUCCESS", payload: response })
-            callback(response, null)
-        } catch (error) {
-            callback(null, error.response)
-            console.log("MENU_LIST_ERROR--->", error.response)
-        }
-    }
-}

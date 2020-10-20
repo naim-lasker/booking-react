@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"
-import { FaHome } from "react-icons/fa"
+import { FaFilter, FaHome } from "react-icons/fa"
 import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
 import SingleStore from "../../../../components/User/Restaurant/List/SingleStore"
 import { notify } from "../../../../helpers/ui"
-import { getCustomerMenuList } from "../../../../services/menu"
+import { getCustomerMenuList } from "../../../../services/store"
 
 const RestaurantList = () => {
     const dispatch = useDispatch()
@@ -39,6 +40,22 @@ const RestaurantList = () => {
                         { name: "Restaurant" },
                     ]}
                 />
+
+                <div>
+                    <Link
+                        className='border-btn primary-color my-md-0 my-3'
+                        to='/user-promotion-list'
+                    >
+                        Show More
+                    </Link>
+                    <Link
+                        className='border-btn primary-color ml-md-3'
+                        to='/user-promotion-list'
+                    >
+                        <FaFilter className='mr-1' />
+                        Apply Filter
+                    </Link>
+                </div>
             </div>
 
             <div className='row'>

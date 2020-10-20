@@ -69,7 +69,7 @@ const SingleStore = ({ loading, stores }) => {
         ) : (
             <div className='col-lg-12'>
                 <div className='border py-5 px-3 rounded'>
-                    <PlaceholderData text='No store found!' />
+                    <PlaceholderData text='No menu found!' />
                 </div>
             </div>
         )
