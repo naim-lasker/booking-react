@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import Breadcrumb from "../../../../components/UI/Breadcrumb"
 import Pagination from "../../../../components/UI/Pagination"
+import StoreFilterModal from "../../../../components/Public/Filter/StoreFilterModal"
 import SingleStore from "../../../../components/User/Restaurant/List/SingleStore"
 import { notify } from "../../../../helpers/ui"
 import { getCustomerMenuList } from "../../../../services/store"
@@ -12,6 +13,7 @@ const RestaurantList = () => {
     const dispatch = useDispatch()
     const [stores, setStores] = useState([])
     const [loading, setLoading] = useState(true)
+    const [showFilterModal, setShowFilterModal] = useState(false)
 
     useEffect(() => {
         menuList()
@@ -48,15 +50,16 @@ const RestaurantList = () => {
                     >
                         Show More
                     </Link>
-                    <Link
+                    <button onClick={() => setShowFilterModal(true)}
                         className='border-btn primary-color ml-md-3'
-                        to='/user-promotion-list'
                     >
                         <FaFilter className='mr-1' />
                         Apply Filter
-                    </Link>
+                    </button>
                 </div>
             </div>
+
+            <StoreFilterModal show={showFilterModal} onHide={() => setShowFilterModal(false)} />
 
             <div className='row'>
                 <SingleStore stores={stores} loading={loading} />
