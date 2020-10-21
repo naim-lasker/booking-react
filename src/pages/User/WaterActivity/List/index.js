@@ -7,7 +7,7 @@ import Pagination from "../../../../components/UI/Pagination"
 import StoreFilterModal from "../../../../components/Public/Filter/StoreFilterModal"
 import SingleStore from "../../../../components/User/Restaurant/List/SingleStore"
 import { notify } from "../../../../helpers/ui"
-import { getCustomerWaterList } from "../../../../services/store"
+import { getUserWaterList } from "../../../../services/store"
 
 const WaterActivities = () => {
     const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const WaterActivities = () => {
 
     const menuList = () => {
         dispatch(
-            getCustomerWaterList((res, err) => {
+            getUserWaterList((res, err) => {
                 setLoading(false)
                 if (res && res.data.status == "success") {
                     setStores(res.data.all_stores)

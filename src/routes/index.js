@@ -30,6 +30,8 @@ import ProviderAddProduct from "../pages/Provider/Product/Add"
 import UserSignIn from "../pages/User/SignIn"
 import UserSignUp from "../pages/User/SignUp"
 
+import UserEditProfile from "../pages/User/Profile/Edit"
+import UserAddCard from "../pages/User/Card/Add"
 import UserAddAccount from "../pages/User/Account/Add"
 import PromotionList from "../pages/User/Promotion/List"
 import RestaurantList from "../pages/User/Restaurant/List"
@@ -171,9 +173,25 @@ const Routes = () => {
                 <RouteWithLayout
                     exact
                     layout={UserMain}
+                    component={UserEditProfile}
+                    path='/user-edit-profile'
+                    title='Edit Profile'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
                     component={UserAddAccount}
                     path='/user-add-account'
                     title='Add Acount Details'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
+                    component={UserAddCard}
+                    path='/user-add-card'
+                    title='Add Card Details'
                 />
 
                 <RouteWithLayout

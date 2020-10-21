@@ -105,7 +105,7 @@ export const getCustomerToursList = (callback) => {
 /**
  * Method: GET
  */
-export const getCustomerWaterList = (callback) => {
+export const getUserWaterList = (callback) => {
     return async (dispatch) => {
         try {
             const userInfo = await auth.getUserInfo()

@@ -19,7 +19,7 @@ const UserSidebar = () => {
                 <h4 className='side-name'>Charli Maria</h4>
             </div>
             <div className='side-btn-container text-center'>
-                <Link className='border-btn' to='/'>
+                <Link className='border-btn' to='/user-edit-profile'>
                     Edit Profile
                 </Link>
             </div>

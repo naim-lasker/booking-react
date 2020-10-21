@@ -15,7 +15,7 @@ const UserSignIn = (props) => {
 
     useEffect(() => {
         if (userInfo && userInfo.token && userInfo.role == 2) {
-            window.location.href = "/user-add-account"
+            window.location.href = "/user-add-card"
         }
     }, [])
 
@@ -59,7 +59,7 @@ const UserSignIn = (props) => {
                         if(res.data.data.hasStore == 1) {
                             window.location.href = "/user-restaurant-list"
                         } else {
-                            window.location.href = "/user-add-account"
+                            window.location.href = "/user-add-card"
                         }
                         setLoading(false)
                     } else {

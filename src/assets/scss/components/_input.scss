@@ -16,6 +16,20 @@
     border-bottom-right-radius: 12px;
 }
 
+.input-with-icon {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-icon-container {
+    height: 55px;
+}
+
+.input-icon {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
 .label-name {
     font-size: 17px;
     font-family: $primary-font;
