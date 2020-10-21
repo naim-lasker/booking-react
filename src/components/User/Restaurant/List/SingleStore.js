@@ -12,14 +12,14 @@ const SingleStore = ({ loading, stores }) => {
                     <div className='single-promotion'>
                         <img
                             className='img-fluid w-100'
-                            src={store.store_image ? store.store_image : '/images/no-image-horizontal.png'}
+                            src={store.first_image_path ? store.first_image_path : '/images/no-image-horizontal.png'}
                             alt=''
                         />
                         <div className='single-promotion-content'>
                             <div className='single-promotion-head-content d-flex mt-3'>
                                 <img
                                     className='avatar img-fluid'
-                                    src='/images/promotion/promo-avatar.png'
+                                    src={store.store_image ? store.store_image : '/images/no-image-horizontal.png'}
                                     alt=''
                                 />
                                 <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
@@ -69,7 +69,7 @@ const SingleStore = ({ loading, stores }) => {
         ) : (
             <div className='col-lg-12'>
                 <div className='border py-5 px-3 rounded'>
-                    <PlaceholderData text='No menu found!' />
+                    <PlaceholderData text='No data found!' />
                 </div>
             </div>
         )

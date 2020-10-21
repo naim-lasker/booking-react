@@ -1,17 +1,16 @@
-import React, { useState } from "react"
+import React from "react"
 import PropTypes from "prop-types"
 import InputRange from 'react-input-range';
 
-const MultiRange = () => {
-    const [value, setValue] = useState({ min: 2, max: 10 })
+const MultiRange = ({maxValue, minValue, value, onChange}) => {
 
     console.log('value', value);
     return (
         <InputRange
-            maxValue={20}
-            minValue={0}
+            maxValue={maxValue}
+            minValue={minValue}
             value={value}
-            onChange={(value) => setValue( value )}
+            onChange={onChange}
         />
     )
 }

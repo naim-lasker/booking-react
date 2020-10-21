@@ -34,6 +34,8 @@ import UserAddAccount from "../pages/User/Account/Add"
 import PromotionList from "../pages/User/Promotion/List"
 import RestaurantList from "../pages/User/Restaurant/List"
 import ToursExcursions from "../pages/User/ToursExcursions/List"
+import WaterActivities from "../pages/User/WaterActivity/List"
+import LandActivities from "../pages/User/LandActivity/List"
 
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
@@ -195,6 +197,22 @@ const Routes = () => {
                     layout={UserMain}
                     component={ToursExcursions}
                     path='/user-tours-list'
+                    title='Promotion'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
+                    component={WaterActivities}
+                    path='/user-water-list'
+                    title='Promotion'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
+                    component={LandActivities}
+                    path='/user-land-list'
                     title='Promotion'
                 />
                 <Page exact component={HomePage} path='/' title='Home' />

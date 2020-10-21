@@ -1,8 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import { Modal } from "react-bootstrap"
 import MultiRange from "../../UI/Range"
 
 const StoreFilterModal = (props) => {
+    const [value, setValue] = useState({ min: 150, max: 310 })
+
+    console.log("value", value)
     return (
         <Modal
             {...props}
@@ -21,29 +24,24 @@ const StoreFilterModal = (props) => {
                         htmlFor='amountRange'
                     >
                         <span>Min price</span>
-                        <input
-                            className='border-0 ml-4'
-                            type='text'
-                            id='minAmount'
-                            readOnly
-                        />
+                        <span className='font-weight-bold text-dark'>{value && value.min}</span>
                     </label>
                     <label
                         className='label-name d-flex flex-column align-items-end'
                         htmlFor='amountRange'
                     >
                         <span>Max price</span>
-                        <input
-                            className='text-right border-0 mr-4'
-                            type='text'
-                            id='maxAmount'
-                            readOnly
-                        />
+                        <span className='font-weight-bold text-dark'>{value && value.max}</span>
                     </label>
                 </div>
                 <div id='amountRange'></div>
 
-                <MultiRange />
+                <MultiRange
+                    maxValue={500}
+                    minValue={0}
+                    value={value}
+                    onChange={(value) => setValue(value)}
+                />
 
                 <div className='input-block pt-5'>
                     <label className='label-name' htmlFor='formControlRange'>
@@ -172,11 +170,20 @@ const StoreFilterModal = (props) => {
                         </label>
                     </div>
                 </div>
-            </Modal.Body>
 
-            <Modal.Footer className='justify-content-center'>
-                <a href='/provider-booking'>Add account details later </a>
-            </Modal.Footer>
+                <div className='row mt-md-5 mt-4 mb-5'>
+                    <div className='col-lg-12'>
+                        <div className='action-buttons d-flex justify-content-center'>
+                            <button className='gradient-btn gradient-lime'>
+                                Cencel
+                            </button>
+                            <button className='gradient-btn gradient-blue ml-4'>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </Modal.Body>
         </Modal>
     )
 }
