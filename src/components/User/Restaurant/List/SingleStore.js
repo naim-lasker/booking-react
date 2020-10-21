@@ -12,7 +12,7 @@ const SingleStore = ({ loading, stores }) => {
                     <div className='single-promotion'>
                         <img
                             className='img-fluid w-100'
-                            src={store.image_path ? store.image_path : '/images/no-image-horizontal.png'}
+                            src={store.store_image ? store.store_image : '/images/no-image-horizontal.png'}
                             alt=''
                         />
                         <div className='single-promotion-content'>
@@ -39,7 +39,7 @@ const SingleStore = ({ loading, stores }) => {
                                         </div>
                                     </div>
                                     <div className='single-promotion-price align-self-start'>
-                                        ${store.selling_price}
+                                        ${store.min_selling_price ? store.min_selling_price : 0}
                                     </div>
                                 </div>
                             </div>

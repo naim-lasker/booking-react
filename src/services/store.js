@@ -78,3 +78,26 @@ export const getCustomerMenuList = (callback) => {
         }
     }
 }
+
+/**
+ * Method: GET
+ */
+export const getCustomerToursList = (callback) => {
+    return async (dispatch) => {
+        try {
+            const userInfo = await auth.getUserInfo()
+            const token = userInfo.token
+
+            const api = base_url + "/get_tours_stores"
+
+            dispatch({ type: "TOURS_LIST_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({ type: "TOURS_LIST_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("TOURS_LIST_ERROR--->", error.response)
+        }
+    }
+}

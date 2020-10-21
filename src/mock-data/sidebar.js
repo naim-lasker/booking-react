@@ -25,7 +25,7 @@ const providerFeatureList = [
 const userActivityList = [
     // { name: "Promotion", icon: <FaEye />, link: "/user-promotion-list" },
     { name: "Restaurant", icon: <FaEye />, link: "/user-restaurant-list" },
-    { name: "Tours & Excursions", icon: <FaEye />, link: "/user-restaurant-list" },
+    { name: "Tours & Excursions", icon: <FaEye />, link: "/user-tours-list" },
     { name: "Water Activities", icon: <FaEye />, link: "/user-restaurant-list" },
     { name: "Land Activities", icon: <FaEye />, link: "/user-restaurant-list" },
 ]

@@ -33,6 +33,7 @@ import UserSignUp from "../pages/User/SignUp"
 import UserAddAccount from "../pages/User/Account/Add"
 import PromotionList from "../pages/User/Promotion/List"
 import RestaurantList from "../pages/User/Restaurant/List"
+import ToursExcursions from "../pages/User/ToursExcursions/List"
 
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
@@ -186,6 +187,14 @@ const Routes = () => {
                     layout={UserMain}
                     component={RestaurantList}
                     path='/user-restaurant-list'
+                    title='Promotion'
+                />
+
+                <RouteWithLayout
+                    exact
+                    layout={UserMain}
+                    component={ToursExcursions}
+                    path='/user-tours-list'
                     title='Promotion'
                 />
                 <Page exact component={HomePage} path='/' title='Home' />
