@@ -39,14 +39,14 @@ const LandActivities = () => {
                     icon={<FaHome />}
                     names={[
                         { name: "Dashboard", link: "/user-restaurant-list" },
-                        { name: "Tours & Excursions" },
+                        { name: "Land Activities" },
                     ]}
                 />
 
                 <div>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        to='/user-promotion-list'
+                        to='/user-land-list'
                     >
                         Show More
                     </Link>

@@ -39,14 +39,14 @@ const WaterActivities = () => {
                     icon={<FaHome />}
                     names={[
                         { name: "Dashboard", link: "/user-restaurant-list" },
-                        { name: "Tours & Excursions" },
+                        { name: "Water Activities" },
                     ]}
                 />
 
                 <div>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        to='/user-promotion-list'
+                        to='/user-water-list'
                     >
                         Show More
                     </Link>

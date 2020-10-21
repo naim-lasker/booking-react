@@ -46,7 +46,7 @@ const ToursExcursions = () => {
                 <div>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
-                        to='/user-promotion-list'
+                        to='/user-tours-list'
                     >
                         Show More
                     </Link>
