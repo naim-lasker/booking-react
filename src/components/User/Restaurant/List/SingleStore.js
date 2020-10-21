@@ -11,7 +11,7 @@ const SingleStore = ({ loading, stores }) => {
                 <div className='col-lg-6 col-md-6' key={index}>
                     <div className='single-promotion'>
                         <img
-                            className='img-fluid w-100'
+                            className='img-fluid w-100 single-promotion-top-img'
                             src={store.first_image_path ? store.first_image_path : '/images/no-image-horizontal.png'}
                             alt=''
                         />
