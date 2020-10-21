@@ -137,7 +137,7 @@ export const getProviderServiceList = (callback) => {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            const api = base_url + "/get_service"
+            const api = base_url + "/get_service/" + providerInfo.id
 
             dispatch({ type: "SERVICE_LIST_PENDING", api })
             const response = await httpRequest.get(api, true, token)
