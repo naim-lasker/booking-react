@@ -231,7 +231,7 @@ const ProviderServiceCategory = () => {
                                                     text='Edit'
                                                 />
 
-                                                <button
+                                                {/* <button
                                                     onClick={() =>
                                                         deleteCategoryItem(
                                                             category.id,
@@ -247,7 +247,7 @@ const ProviderServiceCategory = () => {
                                                 <CustomTooltip
                                                     id='deleteButton'
                                                     text='Delete'
-                                                />
+                                                /> */}
                                             </td>
                                         </tr>
                                     ))

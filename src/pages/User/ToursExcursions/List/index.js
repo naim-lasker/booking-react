@@ -67,7 +67,7 @@ const ToursExcursions = () => {
 
             <div className='row mt-4'>
                 <div className='col-lg-12'>
-                    <Pagination />
+                    {/* <Pagination /> */}
                 </div>
             </div>
         </div>

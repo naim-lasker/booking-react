@@ -29,7 +29,7 @@ const ProviderBookingList = () => {
                 </div>
             </div>
 
-            <Pagination />
+            {/* <Pagination /> */}
         </section>
     )
 }
