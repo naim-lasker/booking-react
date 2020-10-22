@@ -4,8 +4,15 @@ import Checkbox from "../../../UI/Checkbox"
 import { RadioButton } from "../../../UI/RadioButton"
 import { SubmitButton } from "../../../UI/Button"
 import { useDispatch } from "react-redux"
-import { useFileInput, useInput } from "../../../../helpers/common"
-import { editProviderService } from "../../../../services/service"
+import {
+    getServiceSelectItems,
+    useFileInput,
+    useInput,
+} from "../../../../helpers/common"
+import {
+    editProviderService,
+    getServiceCategoryList,
+} from "../../../../services/service"
 import { ConfirmAlert, CustomAlert } from "../../../UI/SweetAlert"
 import { notify } from "../../../../helpers/ui"
 import { Modal } from "react-bootstrap"
@@ -99,9 +106,42 @@ const EditServiceModal = ({ show, onHide, service }) => {
         )
     }
 
+    console.log("category", category)
+
     useEffect(() => {
+        categoryList()
         setServiceInfo()
     }, [service])
+
+    const categoryList = () => {
+        dispatch(
+            getServiceCategoryList((res, err) => {
+                if (res) {
+                    const response = res.data
+                    const customCategories = getServiceSelectItems(response)
+
+                    setCategories(customCategories)
+
+                    const selectedCategoryArr =
+                        response &&
+                        service &&
+                        response.length > 0 &&
+                        response.filter(function (item) {
+                            return item.id == service.service_category_id
+                        })
+
+                    const selectedCategory = getServiceSelectItems(
+                        selectedCategoryArr
+                    )
+
+                    setCategory(selectedCategory)
+
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
 
     let serviceObj = {
         serviceImage,

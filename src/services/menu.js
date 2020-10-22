@@ -172,7 +172,7 @@ export const getProviderMenuList = (callback) => {
             const providerInfo = await auth.getProviderInfo()
             const token = providerInfo.token
 
-            const api = base_url + "/get_res_menu"
+            const api = base_url + "/get_res_menu/" + providerInfo.id
 
             dispatch({ type: "MENU_LIST_PENDING", api })
             const response = await httpRequest.get(api, true, token)

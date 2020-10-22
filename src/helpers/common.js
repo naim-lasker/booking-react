@@ -36,3 +36,17 @@ export const useFileInput = (initialValue) => {
 
     return [value, handleChange, setValue]
 }
+
+export const getServiceSelectItems = (arr) => {
+    if (arr && arr.length > 0) {
+        return arr.map((item) => {
+            return {
+                id: item && item.id,
+                label: item && item.category_name,
+                value:
+                    item &&
+                    item.category_name.toLowerCase().replace(/\s/g, "_"),
+            }
+        })
+    }
+}

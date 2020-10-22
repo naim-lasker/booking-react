@@ -84,6 +84,7 @@ const EditPayment = ({
 
                         <div className='d-flex justify-content-between mb-4'>
                             <button
+                                type='button'
                                 onClick={onHide}
                                 className='gradient-btn gradient-lime'
                             >
