@@ -11,7 +11,7 @@ const ProviderMain = ({ children }) => {
             <Header />
             <div className='container'>
                 <div className='row'>
-                    <div className='col-lg-3 pr-lg-0'>
+                    <div className='col-lg-3'>
                         <ProviderSidebar />
                     </div>
                     <div className='col-lg-9'>{children}</div>

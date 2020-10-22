@@ -31,13 +31,6 @@ const PaymentAccordion = () => {
 
     useEffect(() => {
         getBankInfo()
-
-        setBankAccountName(
-            bankInfo.bank_account_name ? bankInfo.bank_account_name : ""
-        )
-        setIban(bankInfo.iban ? bankInfo.iban : "")
-        setBankName(bankInfo.bank_name ? bankInfo.bank_name : "")
-        setSwiftBic(bankInfo.swift_bic ? bankInfo.swift_bic : "")
     }, [])
 
     const getBankInfo = () => {
@@ -52,6 +45,15 @@ const PaymentAccordion = () => {
                 }
             })
         )
+    }
+
+    const setBankInfoValues = () => {
+        setBankAccountName(
+            bankInfo.bank_account_name ? bankInfo.bank_account_name : ""
+        )
+        setIban(bankInfo.iban ? bankInfo.iban : "")
+        setBankName(bankInfo.bank_name ? bankInfo.bank_name : "")
+        setSwiftBic(bankInfo.swift_bic ? bankInfo.swift_bic : "")
     }
 
     const updatePayment = (e) => {
@@ -69,6 +71,7 @@ const PaymentAccordion = () => {
                     setPaymentUpdateLoading(false)
 
                     if (res && res.data && res.data.status === "success") {
+                        getBankInfo()
                         setMessage(res.data.data)
                         setAlert(true)
                     } else if (err) {
@@ -119,7 +122,10 @@ const PaymentAccordion = () => {
                     <Card.Body className='px-0 pt-0 text-center'>
                         <button
                             className='gradient-btn gradient-lime mr-4'
-                            onClick={() => setModalShow(true)}
+                            onClick={() => {
+                                setBankInfoValues()
+                                setModalShow(true)
+                            }}
                         >
                             Update Payment
                         </button>

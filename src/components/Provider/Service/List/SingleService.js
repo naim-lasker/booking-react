@@ -11,15 +11,15 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
             services.map((service) => (
                 <div className='single-promotion mb-3 p-3' key={service.id}>
                     <div className='row'>
-                        {/* <div className='col-lg-3'>
+                        <div className='col-lg-2'>
                             <img
                                 width='100%'
                                 className='img-fluid'
-                                src={service.service_image ? service.service_image : '/images/no-image.png'}
+                                src={service.first_image_path ? service.first_image_path : '/images/no-image.png'}
                                 alt=''
                             />
-                        </div> */}
-                        <div className='col-lg-10'>
+                        </div>
+                        <div className='col-lg-8'>
                             <div className='single-promotion-content'>
                                 <div className='single-promotion-head-content d-flex'>
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>

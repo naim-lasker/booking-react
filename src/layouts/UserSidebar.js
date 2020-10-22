@@ -16,7 +16,6 @@ const UserSidebar = () => {
     useEffect(() => {
         getProfileInfo()
     }, [])
-    console.log("userDetails", userDetails)
 
     const getProfileInfo = () => {
         dispatch(

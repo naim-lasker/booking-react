@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react"
 import { Accordion, Button, Card } from "react-bootstrap"
 import { FaChevronUp } from "react-icons/fa"
 import { useDispatch } from "react-redux"
+import moment from "moment"
 import { useInput } from "../../../../helpers/common"
 import { notify } from "../../../../helpers/ui"
 import {
@@ -14,11 +15,9 @@ import EditPayment from "./EditPayment"
 const PaymentAccordion = () => {
     const dispatch = useDispatch()
 
-    const [
-        cardHolderName,
-        handleCardHolderName,
-        setCardHolderName,
-    ] = useInput("")
+    const [cardHolderName, handleCardHolderName, setCardHolderName] = useInput(
+        ""
+    )
     const [expiryDate, setExpiryDate] = useState(new Date())
     const [cvv, handleCvv, setCvv] = useInput("")
     const [cardNo, handleCardNo, setCardNo] = useInput("")
@@ -29,34 +28,34 @@ const PaymentAccordion = () => {
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
 
-    console.log('cardHolderName', cardInfo.card_holder_name);
-
     useEffect(() => {
-    
-        const getCardInfo = () => {
-            dispatch(
-                getUserCardDetails((res, err) => {
-                    setGetLoading(false)
-    
-                    if (res && res.data) {
-                        console.log('res', res);
-                        setCardInfo(res.data.data)
-                    } else if (err) {
-                        notify("error", "Something went wrong")
-                    }
-                })
-            )
-        }
         getCardInfo()
+    }, [])
 
+    const getCardInfo = () => {
+        dispatch(
+            getUserCardDetails((res, err) => {
+                setGetLoading(false)
+
+                if (res && res.data) {
+                    setCardInfo(res.data.data)
+                } else if (err) {
+                    notify("error", "Something went wrong")
+                }
+            })
+        )
+    }
+
+    const setCardInfoValues = () => {
         setCardHolderName(
             cardInfo.card_holder_name ? cardInfo.card_holder_name : ""
         )
-        setExpiryDate(cardInfo.expiry_date ? cardInfo.expiry_date : new Date())
+        setExpiryDate(
+            cardInfo.expiry_date ? moment(cardInfo.expiry_date).toDate() : new Date()
+        )
         setCvv(cardInfo.cvv ? cardInfo.cvv : "")
         setCardNo(cardInfo.card_no ? cardInfo.card_no : "")
-    }, [])
-
+    }
 
     const updatePayment = (e) => {
         e.preventDefault()
@@ -73,6 +72,7 @@ const PaymentAccordion = () => {
                     setPaymentUpdateLoading(false)
 
                     if (res && res.data && res.data.status === "success") {
+                        getCardInfo()
                         setMessage(res.data.data)
                         setAlert(true)
                     } else if (err) {
@@ -123,7 +123,10 @@ const PaymentAccordion = () => {
                     <Card.Body className='px-0 pt-0 text-center'>
                         <button
                             className='gradient-btn gradient-lime mr-4'
-                            onClick={() => setModalShow(true)}
+                            onClick={() => {
+                                setCardInfoValues()
+                                setModalShow(true)
+                            }}
                         >
                             Update Payment
                         </button>

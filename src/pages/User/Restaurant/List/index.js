@@ -34,7 +34,7 @@ const RestaurantList = () => {
 
     return (
         <div className='promotion-area'>
-            <div className='d-md-flex flex-md-row flex-column justify-content-sm-between align-items-start'>
+            <div className='d-md-flex flex-md-row flex-column justify-content-sm-between align-items-center'>
                 <Breadcrumb
                     icon={<FaHome />}
                     names={[
@@ -43,7 +43,7 @@ const RestaurantList = () => {
                     ]}
                 />
 
-                <div>
+                <div className='mb-5'>
                     <Link
                         className='border-btn primary-color my-md-0 my-3'
                         to='/user-restaurant-list'

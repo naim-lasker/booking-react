@@ -27,14 +27,13 @@ const UserSignUp = (props) => {
     const [message, setMessage] = useState("")
 
     const confirmAlert = () => {
-        console.log('jo');
         setFirstName("")
         setLastName("")
         setEmail("")
         setPasword("")
         setConfirmPassword("")
         setAlert(false)
-        window.location.href = "/user-restaurant-list"
+        window.location.href = "/user-add-card"
     }
 
     const loginNow = () => {

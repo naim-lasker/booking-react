@@ -11,7 +11,7 @@ const UserMain = ({ children }) => {
             <Header />
             <div className='container'>
                 <div className='row'>
-                    <div className='col-lg-3 pr-lg-0'>
+                    <div className='col-lg-3'>
                         <UserSidebar />
                     </div>
                     <div className='col-lg-9'>{children}</div>

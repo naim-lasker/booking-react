@@ -193,8 +193,8 @@ export const getUserCardDetails = (callback) => {
 
 export const updateUserCardDetails = (
     cardHolderName,
-    cvv,
     expiryDate,
+    cvv,
     cardNo,
     callback
 ) => {
@@ -205,11 +205,13 @@ export const updateUserCardDetails = (
 
             const body = {
                 card_holder_name: cardHolderName,
-                cvv,
                 expiry_date: expiryDate,
+                cvv,
                 card_no: cardNo,
                 user_id: userInfo.id,
             }
+
+            console.log('body', body);
 
             const api = base_url + "/update_bank_card_details/" + userInfo.id
 
