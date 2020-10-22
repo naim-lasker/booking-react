@@ -22,7 +22,7 @@ const PaymentAccordion = () => {
     const [expiryDate, setExpiryDate] = useState(new Date())
     const [cvv, handleCvv, setCvv] = useInput("")
     const [cardNo, handleCardNo, setCardNo] = useInput("")
-    const [modalShow, setModalShow] = useState(true)
+    const [modalShow, setModalShow] = useState(false)
     const [getLoading, setGetLoading] = useState(true)
     const [paymentUpdateLoading, setPaymentUpdateLoading] = useState(false)
     const [cardInfo, setCardInfo] = useState("")
@@ -57,7 +57,6 @@ const PaymentAccordion = () => {
         setCardNo(cardInfo.card_no ? cardInfo.card_no : "")
     }, [])
 
-    console.log('cardInfo', cardInfo);
 
     const updatePayment = (e) => {
         e.preventDefault()

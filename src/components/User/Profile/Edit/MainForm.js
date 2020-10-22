@@ -11,46 +11,44 @@ import {
     updateUserProfileInfo,
 } from "../../../../services/profile"
 import { notify } from "../../../../helpers/ui"
-import auth from "../../../../helpers/auth"
 import { TextareaWithLabel } from "../../../UI/TextareaField"
 import { CustomLoader } from "../../../UI/Loader"
 import { CustomAlert } from "../../../UI/SweetAlert"
 
 const MainForm = () => {
     const dispatch = useDispatch()
-    const [storeImg, handleStoreImg, setStoreImg] = useFileInput("")
+    const [avatar, handleAvatar, setAvatar] = useFileInput("")
     const [firstName, handleFirstName, setFirstName] = useInput("")
     const [lastName, handleLastName, setLastName] = useInput("")
+    const [email, handleEmail, setEmail] = useInput("")
     const [country, handleCountry, setCountry] = useInput("")
     const [phoneNumber, setPhoneNumber] = useState("")
-    const [address, handleAddress, setAddress] = useInput("")
-    const [about, handleAbout, setAbout] = useInput("")
     const [getLoading, setGetLoading] = useState(true)
     const [updateLoading, setUpdateLoading] = useState(false)
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
 
-    const userInfo = auth.getUserInfo()
 
     useEffect(() => {
         const getProfileInfo = async () => {
             dispatch(
-                getUserProfileInfo(userInfo.id, (res, err) => {
+                getUserProfileInfo((res, err) => {
                     setGetLoading(false)
                     if (res && res.data) {
                         setInputValue(res.data)
                     } else if (err) {
+                        console.log('err', err);
                         notify("error", "Something went wrong")
                     }
                 })
             )
         }
 
-        // getProfileInfo()
+        getProfileInfo()
     }, [])
 
     const setInputValue = (response) => {
-        setStoreImg(
+        setAvatar(
             response.UserDetails.icon_image_path &&
                 response.UserDetails.icon_image_path != ""
                 ? response.UserDetails.icon_image_path
@@ -64,19 +62,14 @@ const MainForm = () => {
         setLastName(
             response.UserDetails.last_name ? response.UserDetails.last_name : ""
         )
+        setEmail(
+            response.UserDetails.email ? response.UserDetails.email : ""
+        )
         setCountry(
             response.UserDetails.country ? response.UserDetails.country : ""
         )
         setPhoneNumber(
-            response.storeDetails.phone_no ? response.storeDetails.phone_no : ""
-        )
-        setAddress(
-            response.storeDetails.address ? response.storeDetails.address : ""
-        )
-        setAbout(
-            response.storeDetails.about_com
-                ? response.storeDetails.about_com
-                : ""
+            response.UserDetails.mobile ? response.UserDetails.mobile : ""
         )
     }
 
@@ -85,13 +78,12 @@ const MainForm = () => {
         setUpdateLoading(true)
 
         const userObj = {
-            storeImg,
+            avatar,
             firstName,
             lastName,
+            email,
             phoneNumber,
             country,
-            address,
-            about,
         }
 
         dispatch(
@@ -143,13 +135,13 @@ const MainForm = () => {
                                         className='d-none'
                                         accept='image/gif, image/jpg, image/jpeg, image/png'
                                         alt=''
-                                        onChange={handleStoreImg}
+                                        onChange={handleAvatar}
                                     />
                                     <img
                                         className='w-100 h-100 rounded-circle'
                                         src={
-                                            storeImg
-                                                ? storeImg
+                                            avatar
+                                                ? avatar
                                                 : "/images/placeholder/avatar.png"
                                         }
                                         alt=''
@@ -189,6 +181,17 @@ const MainForm = () => {
                             />
 
                             <CustomInput
+                                required
+                                showLabel
+                                label='Email'
+                                id='email'
+                                infoText='Email info'
+                                placeholder='Lora'
+                                value={email}
+                                onChange={handleEmail}
+                            />
+
+                            <CustomInput
                                 showLabel
                                 label='Country'
                                 id='country'
@@ -214,27 +217,6 @@ const MainForm = () => {
                                     }
                                 />
                             </div>
-
-                            <CustomInput
-                                showLabel
-                                label='Company Address'
-                                id='companyAddress'
-                                infoText='Company Address info'
-                                placeholder='London'
-                                value={address}
-                                onChange={handleAddress}
-                            />
-
-                            <TextareaWithLabel
-                                rows='4'
-                                maxLength='90'
-                                label='About Your Company'
-                                id='aboutYourCompany'
-                                infoText='About Your Company info'
-                                placeholder='It is Our Company'
-                                value={about}
-                                onChange={handleAbout}
-                            />
 
                             <div className='d-flex justify-content-center'>
                                 <a

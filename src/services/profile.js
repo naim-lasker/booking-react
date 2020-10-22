@@ -103,14 +103,14 @@ export const updateUserProfileInfo = (userObj, callback) => {
                 icon_image_path: userObj.storeImg,
                 first_name: userObj.firstName,
                 last_name: userObj.lastName,
+                email: userObj.email,
                 mobile: userObj.phoneNumber,
                 country: userObj.country,
                 address: userObj.address,
-                about_com: userObj.about,
                 user_id: userInfo.id,
             }
 
-            const api = base_url + "/update_store/" + userInfo.id
+            const api = base_url + "/update_user_profile_details/" + userInfo.id
 
             dispatch({ type: "UPDATE_STORE_PENDING", api })
             const response = await httpRequest.post(api, true, token, body)
