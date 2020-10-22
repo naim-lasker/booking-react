@@ -3,13 +3,11 @@ import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import ProviderSingleFeature from "../components/Layout/Sidebar/ProviderSingleFeature"
 import { CustomLoader } from "../components/UI/Loader"
-import auth from "../helpers/auth"
 import { providerFeatureList } from "../mock-data/sidebar"
 import { getProviderProfileInfo } from "../services/profile"
 
 const ProviderSidebar = () => {
     const dispatch = useDispatch()
-    const providerInfo = auth.getProviderInfo()
 
     const [providerDetails, setProviderDetails] = useState({})
     const [loading, setLoading] = useState(true)
@@ -20,7 +18,7 @@ const ProviderSidebar = () => {
 
     const getProfileInfo = () => {
         dispatch(
-            getProviderProfileInfo(providerInfo.id, (res, err) => {
+            getProviderProfileInfo((res, err) => {
                 setLoading(false)
                 if (res && res.data && res.data.UserDetails) {
                     setProviderDetails(res.data.UserDetails)
@@ -48,9 +46,13 @@ const ProviderSidebar = () => {
                     </div>
                     <h4 className='side-name'>
                         {providerDetails
-                            ? providerDetails.first_name +
+                            ? (providerDetails.first_name
+                                  ? providerDetails.first_name
+                                  : "") +
                               " " +
-                              providerDetails.last_name
+                              (providerDetails.last_name
+                                  ? providerDetails.last_name
+                                  : "")
                             : ""}
                     </h4>
                 </div>

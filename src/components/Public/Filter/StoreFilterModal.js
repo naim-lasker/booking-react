@@ -5,7 +5,6 @@ import MultiRange from "../../UI/Range"
 const StoreFilterModal = (props) => {
     const [value, setValue] = useState({ min: 150, max: 310 })
 
-    console.log("value", value)
     return (
         <Modal
             {...props}

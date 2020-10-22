@@ -11,7 +11,6 @@ import {
     updateProviderProfileInfo,
 } from "../../../../services/profile"
 import { notify } from "../../../../helpers/ui"
-import auth from "../../../../helpers/auth"
 import { TextareaWithLabel } from "../../../UI/TextareaField"
 import { CustomLoader } from "../../../UI/Loader"
 import { CustomAlert } from "../../../UI/SweetAlert"
@@ -30,12 +29,11 @@ const MainForm = () => {
     const [message, setMessage] = useState("")
     const [alert, setAlert] = useState(false)
 
-    const providerInfo = auth.getProviderInfo()
 
     useEffect(() => {
         const getProfileInfo = async () => {
             dispatch(
-                getProviderProfileInfo(providerInfo.id, (res, err) => {
+                getProviderProfileInfo((res, err) => {
                     setGetLoading(false)
                     if (res && res.data) {
                         setInputValue(res.data)
