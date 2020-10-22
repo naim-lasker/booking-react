@@ -8,6 +8,7 @@ import { notify } from "../../../../helpers/ui"
 import { deleteProviderMenu, getProviderMenuDetails, getProviderMenuList } from "../../../../services/menu"
 import MenuDetailsModal from "../../../../components/Provider/Menu/Details"
 import { CustomAlert, WarningAlert } from "../../../../components/UI/SweetAlert"
+import EditMenuModal from "../../../../components/Provider/Menu/Edit"
 
 const ProviderMenuList = () => {
     const dispatch = useDispatch()
@@ -179,6 +180,12 @@ const ProviderMenuList = () => {
                 onHide={() => setModalShow(false)}
                 menuDetails={menuDetails}
                 loading={detailsLoading}
+            />
+
+            <EditMenuModal
+                show={editModalShow}
+                onHide={() => setEditModalShow(false)}
+                menu={menuObj}
             />
         </section>
     )

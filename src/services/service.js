@@ -209,20 +209,6 @@ export const addProviderService = (service, callback) => {
 
 /**
  * Method: POST
- * @param {*} service_name
- * @param {*} overview
- * @param {*} additional_info
- * @param {*} selling_price
- * @param {*} vat
- * @param {*} discount_status
- * @param {*} discount_amount
- * @param {*} discount_percentage
- * @param {*} availability_status
- * @param {*} availability_from
- * @param {*} availability_to
- * @param {*} is_service
- * @param {*} service_image
- * @param {*} callback
  */
 export const editProviderService = (service, serviceId, callback) => {
     return async (dispatch) => {
