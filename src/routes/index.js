@@ -2,7 +2,7 @@ import React from "react"
 import { Router, Switch } from "react-router-dom"
 import Page from "./Page"
 
-import browserHistory from "./History"
+import browserHistory from "./history"
 
 import RouteWithLayout from "./RouteWithLayout"
 import ProviderMain from "../layouts/ProviderMain"

@@ -56,14 +56,19 @@
         }
     }
     .navbar-collapse {
+        display: block;
         @media screen and (max-width: 991px) {
-            position: fixed;
+            position: absolute;
             top: 82px;
             left: 32px;
             right: 32px;
-            background-color: #ddd;
+            background-color: #ececec;
             padding: 10px 20px;
             border-radius: 10px;
+            display: none;
+            &.show {
+                display: block;
+            }
         }
     }
     .nav-item {
@@ -75,7 +80,7 @@
             font-size: 15px;
             padding: 5px 15px;
             @media screen and (max-width: 991px) {
-                margin-bottom: 12px;
+                margin-bottom: 4px;
             }
             &:hover {
                 color: $primary-color;
@@ -142,6 +147,9 @@
             .nav-link {
                 display: inline-block;
                 padding-left: 40px;
+                @media screen and (max-width: 991px) {
+                    padding-left: 0;
+                }
                 &::before {
                     content: "";
                     position: absolute;
