@@ -147,3 +147,26 @@ export const getCustomerLandList = (callback) => {
         }
     }
 }
+
+/**
+ * Method: GET
+ */
+export const getCustomerStoreDetails = (storeId, callback) => {
+    return async (dispatch) => {
+        try {
+            const userInfo = await auth.getUserInfo()
+            const token = userInfo.token
+
+            const api = base_url + "/get_store_details/" + storeId
+
+            dispatch({ type: "STORE_DETAILS_PENDING", api })
+            const response = await httpRequest.get(api, true, token)
+
+            dispatch({ type: "STORE_DETAILS_SUCCESS", payload: response })
+            callback(response, null)
+        } catch (error) {
+            callback(null, error.response)
+            console.log("STORE_DETAILS_ERROR--->", error.response)
+        }
+    }
+}

@@ -12,7 +12,7 @@
             }
         }
         .service-banner-area {
-            padding-bottom: 70px;
+            padding-bottom: 50px;
             @media screen and (max-width: 767px) {
                 padding-bottom: 40px;
             }
@@ -115,11 +115,11 @@
         }
 
         // /* Start Carousel Style */
-        .owl-dots {
+        .slick-dots {
             display: flex;
             justify-content: center;
             position: absolute;
-            top: 88%;
+            bottom: 25px;
             left: 50%;
             @include transform(translate(-50%, 0%));
 
@@ -128,15 +128,18 @@
             }
         }
 
-        .owl-carousel button.owl-dot {
+        li button {
             width: 12px;
             height: 12px;
             border-radius: 5px;
             margin: 0 5px;
             background-color: #cbd9de;
+            &:before {
+                font-size: 0;
+            }
         }
 
-        .owl-carousel button.owl-dot.active {
+        li.slick-active button {
             background-color: $primary-color2;
         }
 

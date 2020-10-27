@@ -44,7 +44,7 @@ export default () => {
     return (
         <section className='banner-area'>
             <div className='container'>
-                <div className='owl-carousel banner-container'>
+                <div className='banner-container'>
                     <Carousel controls={false}>
                         {bannerData.length > 0 &&
                             bannerData.map((banner, index) => (

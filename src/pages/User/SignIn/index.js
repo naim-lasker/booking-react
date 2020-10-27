@@ -155,7 +155,7 @@ const UserSignIn = (props) => {
                                             </div>
 
                                             <div className='mt-4 d-flex flex-sm-row flex-column-reverse justify-content-between align-items-center'>
-                                                <p className='m-0'>
+                                                <p className='m-0 mt-md-0 mt-4'>
                                                     <span className='mr-2'>
                                                         Not registered yet?
                                                     </span>

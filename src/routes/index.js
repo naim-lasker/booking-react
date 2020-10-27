@@ -2,7 +2,7 @@ import React from "react"
 import { Router, Switch } from "react-router-dom"
 import Page from "./Page"
 
-import browserHistory from "./history"
+import browserHistory from "./History"
 
 import RouteWithLayout from "./RouteWithLayout"
 import ProviderMain from "../layouts/ProviderMain"
@@ -38,6 +38,7 @@ import RestaurantList from "../pages/User/Restaurant/List"
 import ToursExcursions from "../pages/User/ToursExcursions/List"
 import WaterActivities from "../pages/User/WaterActivity/List"
 import LandActivities from "../pages/User/LandActivity/List"
+import UserServiceDetails from "../pages/User/Store/Details"
 
 import HomePage from "../pages/public/Home"
 import NewsPage from "../pages/public/News"
@@ -233,6 +234,7 @@ const Routes = () => {
                     path='/user-land-list'
                     title='Promotion'
                 />
+                <Page exact component={UserServiceDetails} path="/user-store-details/:id" title='Home' />
                 <Page exact component={HomePage} path='/' title='Home' />
                 <Page exact component={NewsPage} path='/news' title='News' />
             </Switch>

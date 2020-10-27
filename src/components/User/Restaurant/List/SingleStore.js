@@ -5,6 +5,7 @@ import { CustomLoader } from "../../../UI/Loader"
 import PlaceholderData from "../../../UI/PlaceholderData"
 
 const SingleStore = ({ loading, stores }) => {
+    console.log("stores", stores)
     return !loading ? (
         stores && stores.length > 0 ? (
             stores.map((store, index) => (
@@ -12,14 +13,22 @@ const SingleStore = ({ loading, stores }) => {
                     <div className='single-promotion'>
                         <img
                             className='img-fluid w-100 single-promotion-top-img'
-                            src={store.first_image_path ? store.first_image_path : '/images/no-image-horizontal.png'}
+                            src={
+                                store.first_image_path
+                                    ? store.first_image_path
+                                    : "/images/no-image-horizontal.png"
+                            }
                             alt=''
                         />
                         <div className='single-promotion-content'>
                             <div className='single-promotion-head-content d-flex mt-3'>
                                 <img
                                     className='avatar img-fluid'
-                                    src={store.store_image ? store.store_image : '/images/no-image-horizontal.png'}
+                                    src={
+                                        store.store_image
+                                            ? store.store_image
+                                            : "/images/no-image-horizontal.png"
+                                    }
                                     alt=''
                                 />
                                 <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
@@ -39,7 +48,10 @@ const SingleStore = ({ loading, stores }) => {
                                         </div>
                                     </div>
                                     <div className='single-promotion-price align-self-start'>
-                                        ${store.min_selling_price ? store.min_selling_price : 0}
+                                        $
+                                        {store.min_selling_price
+                                            ? store.min_selling_price
+                                            : 0}
                                     </div>
                                 </div>
                             </div>
@@ -53,7 +65,12 @@ const SingleStore = ({ loading, stores }) => {
                             </div>
 
                             <div className='mb-2'>
-                                <Link className='view-more-btn' to='/user-restaurant-list'>
+                                <Link className='view-more-btn'
+                                    to={{
+                                        pathname: `/user-store-details/${store.id}`,
+                                        state: { store: store },
+                                    }}
+                                >
                                     <img
                                         src='/images/icons/arrow-shape.png'
                                         alt=''
