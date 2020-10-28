@@ -3,14 +3,14 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom"
 import { Collapse } from "react-bootstrap"
 
-const ProviderSingleFeature = ({ featureList }) => {
+const ProviderSingleFeature = ({ featureList, onClickItem }) => {
     const [open, setOpen] = useState(true)
     return (
         <ul className='side-activities'>
             {featureList &&
                 featureList.length > 0 &&
                 featureList.map((item, index) => (
-                    <li className='side-feature-item' key={index}>
+                    <li className='side-feature-item' key={index} onClick={onClickItem}>
                         {item.icon}
 
                         <Link

@@ -23,7 +23,7 @@ const PromotionList = () => {
                     >
                         Show More
                     </Link>
-                    <Link className='border-btn primary-color ml-md-3' to='/user-promotion-list'>
+                    <Link className='border-btn primary-color ml-3' to='/user-promotion-list'>
                         <span className='fas fa-filter mt-1'></span>
                         Apply Filter
                     </Link>

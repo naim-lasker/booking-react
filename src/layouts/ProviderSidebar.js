@@ -49,7 +49,7 @@ const ProviderSidebar = () => {
                 </button>
             )}
 
-            <div className='text-right mb-2'>
+            <div className='text-right mb-2 d-lg-none d-block'>
                 <button type='button' onClick={closeSidebar}>
                     <FaTimesCircle size='22' />
                 </button>
@@ -89,13 +89,13 @@ const ProviderSidebar = () => {
             )}
 
             <div className='side-btn-container text-center'>
-                <Link className='border-btn' to='/provider-edit-profile'>
+                <Link className='border-btn' to='/provider-edit-profile' onClick={closeSidebar}>
                     Edit Profile
                 </Link>
             </div>
 
             <div className='side-list'>
-                <ProviderSingleFeature featureList={providerFeatureList} />
+                <ProviderSingleFeature featureList={providerFeatureList} onClickItem={closeSidebar} />
             </div>
         </div>
     )

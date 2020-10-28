@@ -87,6 +87,9 @@
                 padding: 12px 61px;
                 font-size: 16px;
                 display: inline-block;
+                @media screen and (max-width: 1199px) {
+                    padding: 12px 30px;
+                }
             }
             .menu-icon {
                 display: inline-block;

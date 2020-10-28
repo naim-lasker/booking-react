@@ -11,7 +11,7 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
             services.map((service) => (
                 <div className='single-promotion mb-3 p-3' key={service.id}>
                     <div className='row'>
-                        <div className='col-lg-2'>
+                        <div className='col-md-3 d-md-block d-none'>
                             <img
                                 width='100%'
                                 className='img-fluid'
@@ -19,7 +19,7 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
                                 alt=''
                             />
                         </div>
-                        <div className='col-lg-8'>
+                        <div className='col-md-7 col-sm-9 col-8'>
                             <div className='single-promotion-content'>
                                 <div className='single-promotion-head-content d-flex'>
                                     <div className='single-promotion-head-info d-flex justify-content-between align-items-center w-100'>
@@ -40,7 +40,7 @@ const SingleService = ({ services, loading, onClickEdit, onClickDelete }) => {
                             </div>
                         </div>
 
-                        <div className='col-lg-2'>
+                        <div className='col-md-2 col-sm-3 col-4'>
                             <button
                                 className='gray-text fs-17'
                                 onClick={() => {

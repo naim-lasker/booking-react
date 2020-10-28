@@ -9,6 +9,10 @@
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
             height: 55px;
+            @media screen and (max-width: 767px) {
+                height: 45px;
+                border-width: 1px;
+            }
         }
     }
     .service-list {

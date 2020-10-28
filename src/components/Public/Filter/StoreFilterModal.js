@@ -16,7 +16,7 @@ const StoreFilterModal = (props) => {
             <Modal.Header closeButton>
                 <Modal.Title id='store-filter-modal'>Apply Filter</Modal.Title>
             </Modal.Header>
-            <Modal.Body className='mx-4'>
+            <Modal.Body className='mx-md-4 mx-0'>
                 <div className='d-flex justify-content-between mb-3'>
                     <label
                         className='label-name d-flex flex-column'
@@ -174,7 +174,7 @@ const StoreFilterModal = (props) => {
                     <div className='col-lg-12'>
                         <div className='action-buttons d-flex justify-content-center'>
                             <button className='gradient-btn gradient-lime'>
-                                Cencel
+                                Cancel
                             </button>
                             <button className='gradient-btn gradient-blue ml-4'>
                                 Apply Filters

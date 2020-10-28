@@ -51,7 +51,7 @@ const UserSidebar = () => {
                 </button>
             )}
 
-            <div className='text-right mb-2'>
+            <div className='text-right mb-2 d-lg-none d-block'>
                 <button type='button' onClick={closeSidebar}>
                     <FaTimesCircle size='22' />
                 </button>
@@ -91,15 +91,15 @@ const UserSidebar = () => {
             )}
 
             <div className='side-btn-container text-center'>
-                <Link className='border-btn' to='/user-edit-profile'>
+                <Link className='border-btn' to='/user-edit-profile' onClick={closeSidebar}>
                     Edit Profile
                 </Link>
             </div>
 
             <div className='side-list'>
-                <CustomerSingleActivity activityList={userActivityList} />
+                <CustomerSingleActivity activityList={userActivityList} onClickItem={closeSidebar} />
 
-                <CustomerSingleFeature featureList={userFeatureList} />
+                <CustomerSingleFeature featureList={userFeatureList} onClickItem={closeSidebar} />
             </div>
         </div>
     )

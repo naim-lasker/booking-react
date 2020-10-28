@@ -3,7 +3,7 @@ import { CustomTooltip } from "../Tooltip"
 
 export const InputLabel = ({ label, id, infoText }) => {
     return (
-        <div className='d-flex align-items-center mb-3'>
+        <div className='d-flex align-items-center mb-sm-3 mb-2'>
             <label className='label-name' htmlFor={id}>
                 {label}
             </label>

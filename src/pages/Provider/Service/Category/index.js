@@ -185,7 +185,7 @@ const ProviderServiceCategory = () => {
                     />
                 </div>
 
-                <div className='mb-5 col-lg-8'>
+                <div className='mb-5 col-md-8'>
                     <table className='table table-borderless table-responsive table-striped'>
                         <thead>
                             <tr>

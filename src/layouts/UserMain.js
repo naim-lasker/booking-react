@@ -11,10 +11,10 @@ const UserMain = ({ children }) => {
             <Header />
             <div className='container'>
                 <div className='row'>
-                    <div className='col-lg-3'>
+                    <div className='col-xl-3 col-lg-4'>
                         <UserSidebar />
                     </div>
-                    <div className='col-lg-9'>{children}</div>
+                    <div className='col-xl-9 col-lg-8'>{children}</div>
                 </div>
             </div>
             <Footer />

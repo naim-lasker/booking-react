@@ -5,14 +5,14 @@ import { FaAngleDoubleRight } from "react-icons/fa"
 
 const Breadcrumb = ({ icon, names }) => {
     return (
-        <nav className='breadcrumb-nav mb-5'>
+        <nav className='breadcrumb-nav mb-md-5 mb-3'>
             <ul className='breadcrumb-list d-flex align-items-center'>
                 <li className='breadcrumb-icon'>{icon}</li>
                 {names && names.length > 0 &&
                     names.map((item, index) => (
                         <Fragment key={index}>
                             <li
-                                className={index !== names.length - 1 ? "mr-4" : null}
+                                className={index !== names.length - 1 ? "mr-xl-4 mr-3" : null}
                             >
                                 {item.link ? (
                                     <Link

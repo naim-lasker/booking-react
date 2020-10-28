@@ -51,7 +51,7 @@ const ToursExcursions = () => {
                         Show More
                     </Link>
                     <button onClick={() => setShowFilterModal(true)}
-                        className='border-btn primary-color ml-md-3'
+                        className='border-btn primary-color ml-3'
                     >
                         <FaFilter className='mr-1' />
                         Apply Filter
