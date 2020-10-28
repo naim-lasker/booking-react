@@ -25,7 +25,7 @@ const UserSignIn = () => {
             window.location.href = "/user-add-card"
         }
 
-        setCaptcha(randomString(4))
+        setCaptcha(randomString(5))
     }, [])
 
     const handleSubmit = (event) => {

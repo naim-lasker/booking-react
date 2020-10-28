@@ -3,7 +3,7 @@
 --------------------------------------------------------------*/
 .header-area {
     position: relative;
-    z-index: 999;
+    z-index: 99;
     &:before {
         content: "";
         position: absolute;
@@ -42,11 +42,6 @@
         position: fixed;
         top: 30px;
         right: 20px;
-    }
-    .sidebar-toggler {
-        position: fixed;
-        top: 30px;
-        left: 20px;
     }
     .navbar-brand {
         img {

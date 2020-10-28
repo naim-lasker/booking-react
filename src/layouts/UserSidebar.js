@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { FaBars, FaTimesCircle } from "react-icons/fa"
 import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 import CustomerSingleActivity from "../components/Layout/Sidebar/CustomerSingleActivity"
@@ -12,6 +13,7 @@ const UserSidebar = () => {
 
     const [userDetails, setUserDetails] = useState({})
     const [loading, setLoading] = useState(true)
+    const [showSidebar, setShowSidebar] = useState(false)
 
     useEffect(() => {
         getProfileInfo()
@@ -28,8 +30,33 @@ const UserSidebar = () => {
             })
         )
     }
+
+    const openSidebar = () => {
+        setShowSidebar(!showSidebar)
+    }
+
+    const closeSidebar = () => {
+        setShowSidebar(false)
+    }
+
     return (
-        <div className='booking-sidebar'>
+        <div className={`booking-sidebar ${showSidebar ? "show-sidebar" : ""}`}>
+            {!showSidebar && (
+                <button
+                    className='navbar-toggler sidebar-toggler'
+                    type='button'
+                    onClick={openSidebar}
+                >
+                    <FaBars />
+                </button>
+            )}
+
+            <div className='text-right mb-2'>
+                <button type='button' onClick={closeSidebar}>
+                    <FaTimesCircle size='22' />
+                </button>
+            </div>
+
             {!loading ? (
                 <div className='text-center'>
                     <div className='side-profile-container'>
