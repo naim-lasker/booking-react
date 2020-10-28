@@ -1,34 +1,37 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Spinner } from "react-bootstrap"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { userSignIn } from "../../../services/authentication"
-import { useInput } from "../../../helpers/common"
+import { randomString, useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import auth from "../../../helpers/auth"
 import { SubmitButton } from "../../../components/UI/Button"
+import { CustomTooltip } from "../../../components/UI/Tooltip"
 
-const UserSignIn = (props) => {
+const UserSignIn = () => {
     const userInfo = auth.getUserInfo()
+
+    const dispatch = useDispatch()
+    const [email, setEmail] = useInput("")
+    const [password, setPasword] = useInput("")
+    const [captcha, setCaptcha] = useState("")
+    const [code, setCode] = useInput("")
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (userInfo && userInfo.token && userInfo.role == 2) {
             window.location.href = "/user-add-card"
         }
-    }, [])
 
-    const dispatch = useDispatch()
-    const [email, setEmail] = useInput("")
-    const [password, setPasword] = useInput("")
-    const [code, setCode] = useInput("")
-    const [loading, setLoading] = useState(false)
+        setCaptcha(randomString(4))
+    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        if (code !== "sWwm") {
+        if (code !== captcha) {
             return notify("error", "Captcha code does not match")
         }
 
@@ -36,7 +39,6 @@ const UserSignIn = (props) => {
 
         dispatch(
             userSignIn(email, password, (res, err) => {
-
                 if (err) {
                     setLoading(false)
                     notify(
@@ -54,9 +56,9 @@ const UserSignIn = (props) => {
                     if (res.data && res.data.data && res.data.data.role == 2) {
                         auth.clearProviderInfo()
                         auth.setUserInfo(res.data.data)
-                        console.log('res.data.data', res.data.data)
+                        console.log("res.data.data", res.data.data)
 
-                        if(res.data.data.hasStore == 1) {
+                        if (res.data.data.hasStore == 1) {
                             window.location.href = "/user-restaurant-list"
                         } else {
                             window.location.href = "/user-add-card"
@@ -141,8 +143,31 @@ const UserSignIn = (props) => {
                                             </div>
 
                                             <div>
-                                                <div className='captcha-box mb-3 text-center'>
-                                                    <span>sWwm</span>
+                                                <div className='captcha-box mb-3 d-flex align-items-center text-center'>
+                                                    <span className='captcha-text d-block w-75'>
+                                                        {captcha}
+                                                    </span>
+                                                    <button
+                                                        className='d-block w-25'
+                                                        type='button'
+                                                        onClick={() =>
+                                                            setCaptcha(
+                                                                randomString(5)
+                                                            )
+                                                        }
+                                                        data-tip
+                                                        data-for='captchaBtn'
+                                                    >
+                                                        <img
+                                                            className='captcha-img'
+                                                            src='/images/refresh.png'
+                                                            alt=''
+                                                        />
+                                                    </button>
+                                                    <CustomTooltip
+                                                        id='captchaBtn'
+                                                        text='Click to refresh captcha'
+                                                    />
                                                 </div>
                                                 <input
                                                     required

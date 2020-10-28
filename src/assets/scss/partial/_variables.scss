@@ -1,8 +1,13 @@
 
 //    Font Family
+@font-face {
+    font-family: "Bradley Hand ITC";
+    src: url("/asset/fonts/bradhitc.ttf") format("truetype");
+}
 
 $primary-font	: 'Work Sans', sans-serif;
 $MyriadRegular-font	: 'Myriad Pro Regular';
+$BHITC-font	: 'Bradley Hand ITC';
 
 /*--------------------------- Color variations ----------------------*/
 

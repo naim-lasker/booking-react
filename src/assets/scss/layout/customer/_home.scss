@@ -1,5 +1,10 @@
 //--------- Start Booking Area -------------//
 .home-booking-area {
+    .nav-tabs {
+        @media screen and (max-width: 767px) {
+            flex-direction: column;
+        }
+    }
     .nav-item {
         min-width: 198px;
         border-left: 3px solid $border-color;
@@ -14,9 +19,6 @@
         }
         @media screen and (max-width: 991px) {
             border: 3px solid $border-color;
-        }
-        @media screen and (max-width: 402px) {
-            min-width: 290px;
         }
         &.active {
             background-color: $primary-color2;

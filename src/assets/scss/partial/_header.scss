@@ -186,12 +186,12 @@
         .dropdown-menu {
             left: -78px !important;
             border: 0;
-            padding-top: 0;
             margin: 0 10px;
             background-color: #fff;
             padding: 18px 17px 1px;
             @media screen and (max-width: 991px) {
                 background-color: transparent;
+                padding-top: 0;
             }
         }
         .dropdown-item {

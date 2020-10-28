@@ -102,7 +102,7 @@ const BookFlightTab = () => {
                         </div>
 
                         <DateInput
-                            placeholder='29/08/2020'
+                            placeholderText='29/08/2020'
                             icon='/images/icons/calendar.png'
                         />
                     </div>
@@ -116,7 +116,7 @@ const BookFlightTab = () => {
                             />
                         </div>
                         <DateInput
-                            placeholder='15.00'
+                            placeholderText='15.00'
                             icon='/images/icons/clock.png'
                         />
                     </div>

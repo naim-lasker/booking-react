@@ -3,18 +3,20 @@ import { useDispatch } from "react-redux"
 import Header from "../../../layouts/Header"
 import Footer from "../../../layouts/Footer"
 import { providerSignIn } from "../../../services/authentication"
-import { useInput } from "../../../helpers/common"
+import { randomString, useInput } from "../../../helpers/common"
 import { ToastContainer } from "react-toastify"
 import { notify } from "../../../helpers/ui"
 import auth from "../../../helpers/auth"
+import { CustomTooltip } from "../../../components/UI/Tooltip"
 import { SubmitButton } from "../../../components/UI/Button"
 
-const ProviderSignIn = (props) => {
+const ProviderSignIn = () => {
     const providerInfo = auth.getProviderInfo()
 
     const dispatch = useDispatch()
     const [email, setEmail] = useInput("")
     const [password, setPasword] = useInput("")
+    const [captcha, setCaptcha] = useState("")
     const [code, setCode] = useInput("")
     const [loading, setLoading] = useState(false)
 
@@ -22,12 +24,14 @@ const ProviderSignIn = (props) => {
         if (providerInfo && providerInfo.token && providerInfo.role == 1) {
             window.location.href = "/provider-create-store"
         }
+
+        setCaptcha(randomString(5))
     }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        if (code !== "sWwm") {
+        if (code !== captcha) {
             return notify("error", "Captcha code does not match")
         }
 
@@ -35,7 +39,6 @@ const ProviderSignIn = (props) => {
 
         dispatch(
             providerSignIn(email, password, (res, err) => {
-
                 if (err) {
                     setLoading(false)
                     notify(
@@ -50,11 +53,11 @@ const ProviderSignIn = (props) => {
                     )
                 } else if (res) {
                     if (res.data && res.data.data && res.data.data.role == 1) {
-                        console.log('login response', res.data.data)
+                        console.log("login response", res.data.data)
 
                         auth.clearUserInfo()
                         auth.setProviderInfo(res.data.data)
-                        if(res.data.data.hasStore == 1) {
+                        if (res.data.data.hasStore == 1) {
                             window.location.href = "/provider-booking"
                         } else {
                             window.location.href = "/provider-create-store"
@@ -139,8 +142,31 @@ const ProviderSignIn = (props) => {
                                             </div>
 
                                             <div>
-                                                <div className='captcha-box mb-3 text-center'>
-                                                    <span>sWwm</span>
+                                                <div className='captcha-box mb-3 d-flex align-items-center text-center'>
+                                                    <span className='captcha-text d-block w-75'>
+                                                        {captcha}
+                                                    </span>
+                                                    <button
+                                                        className='d-block w-25'
+                                                        type='button'
+                                                        onClick={() =>
+                                                            setCaptcha(
+                                                                randomString(5)
+                                                            )
+                                                        }
+                                                        data-tip
+                                                        data-for='captchaBtn'
+                                                    >
+                                                        <img
+                                                            className='captcha-img'
+                                                            src='/images/refresh.png'
+                                                            alt=''
+                                                        />
+                                                    </button>
+                                                    <CustomTooltip
+                                                        id='captchaBtn'
+                                                        text='Click to refresh captcha'
+                                                    />
                                                 </div>
                                                 <input
                                                     required
@@ -167,9 +193,9 @@ const ProviderSignIn = (props) => {
 
                                                 <SubmitButton
                                                     lime={true}
-                                                    text="Log In"
+                                                    text='Log In'
                                                     loading={loading}
-                                                    customClass="mb-sm-0 mb-4"
+                                                    customClass='mb-sm-0 mb-4'
                                                 />
                                             </div>
                                         </form>
