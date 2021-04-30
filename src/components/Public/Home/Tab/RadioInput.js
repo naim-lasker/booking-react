@@ -2,7 +2,7 @@ import React from "react"
 
 const RadioInput = ({ text, icon, ...rest }) => {
     return (
-        <label className='w-100 d-flex align-items-center mb-0 justify-content-md-start justify-content-center'>
+        <label className='w-100 d-flex align-items-center mb-0 justify-content-md-start justify-content-md-center'>
             <input
                 type='radio'
                 {...rest}
