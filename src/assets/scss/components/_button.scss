@@ -16,13 +16,13 @@
     background-size: 200% auto;
     @include transition();
     @media screen and (max-width: 991px) {
-        font-size: 17px;
+        // font-size: 17px;
         padding: 10px 30px;
     }
-    @media screen and (max-width: 575px) {
-        font-size: 16px;
-        padding: 6px 24px;
-    }
+    // @media screen and (max-width: 575px) {
+    //     font-size: 16px;
+    //     padding: 6px 24px;
+    // }
     &.gradient-lime {
         background-image: linear-gradient(to right, $primary-color3 0%, $primary-color4 50%, $primary-color3 100%);
     }
